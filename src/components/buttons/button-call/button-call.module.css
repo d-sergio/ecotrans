@@ -1,0 +1,15 @@
+.style {
+    width: 116px;
+    height: 32px;
+
+    font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .style {
+        width: 221px;
+        height: 65px;
+
+        font-size: 22px;
+    }
+}

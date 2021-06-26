@@ -1,0 +1,11 @@
+.arrowPic {
+    background-image: url('./images/arrow-left-small.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+    .arrowPic {
+        background-image: url('./images/arrow-left.svg');
+    }
+}

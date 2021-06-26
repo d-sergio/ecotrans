@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Buttons from '../components/buttons';
+import ViewContext from '../components/root-layout/view-context';
 
-const index = () => {
+function Index() {
+    const view = useContext(ViewContext);
     return (<>
         <Buttons.Contact/>
         <p>.</p>
@@ -18,7 +20,9 @@ const index = () => {
         <Buttons.ArrowLeft/>
         <p>.</p>
         <Buttons.ArrowRight/>
+        <p>.</p>
+        {view}
     </>);
 };
 
-export default index;
+export default Index;

@@ -8,6 +8,9 @@
     "gatsby"
   ],
   "scripts": {
+    "npx develop": "sudo npx gatsby develop",
+    "npx clean": "sudo npx gatsby clean",
+    "npx build": "sudo npx gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",

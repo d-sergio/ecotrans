@@ -1,3 +1,6 @@
 {
-    "desktop": 768
+    "mediaQuery": {
+        "mobile": "(min-width: 0px) and (max-width: 767px)",
+        "desktop": "(min-width: 768px)"
+    }
 }

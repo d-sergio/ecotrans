@@ -5,30 +5,31 @@ import ViewContext from "./view-context";
 export default function RootLayout (props) {
     const [view, setView] = useState(undefined);
 
-    useEffect(() => {
-        if (view === undefined) {
-            setView(init);
-        } else mediaQuery();
-    });
+    useEffect(mediaQuery);
 
     function mediaQuery() {
         if (typeof window !== undefined) {
             const mobileView = window.matchMedia(config.mediaQuery.mobile);
             const desktopView = window.matchMedia(config.mediaQuery.desktop);
+
+            if (view === undefined) setView(init);
     
             mobileView.addEventListener("change", mobileHandler);
             desktopView.addEventListener("change", desktopHandler);
 
             function mobileHandler(e) {
-                changeView(e, 'mobile');
+                if (e.matches) setView('mobile');
             }
 
             function desktopHandler(e) {
-                changeView(e, 'desktop');
+                if (e.matches) setView('desktop');
             }
 
-            function changeView(e, view) {
-                if (e.matches) setView(view);
+            function init() {
+                if (mobileView.matches) return 'mobile';
+                if (desktopView.matches) return 'desktop';
+        
+                return 'mobile';
             }
 
             return function removeListeners() {
@@ -36,18 +37,6 @@ export default function RootLayout (props) {
                 desktopView.removeEventListener("change", desktopHandler);
             }
         }
-    }
-
-    function init() {
-        if (typeof window !== undefined) {
-            const mobileView = window.matchMedia(config.mediaQuery.mobile);
-            const desktopView = window.matchMedia(config.mediaQuery.desktop);
-
-            if (mobileView.matches) return 'mobile';
-            if (desktopView.matches) return 'desktop';
-        }
-
-        return 'mobile';
     }
 
     return (

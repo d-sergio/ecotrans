@@ -1,11 +1,14 @@
+import React from "react";
 import Contact from "./button-contact";
 import Choose from "./button-choose";
 import Call from "./button-call";
 import Detailed from "./button-detailed";
 import Send from "./button-send";
 import Subscribe from "./button-subscribe";
-import ArrowLeft from "./button-arrow/button-arrow-left";
-import ArrowRight from "./button-arrow/button-arrow-right";
+import Arrow from "./button-arrow/button-arrow";
+
+const ArrowLeft = () => <Arrow direction={'left'}/>;
+const ArrowRight= () => <Arrow direction={'right'}/>;
 
 const buttons = {
     Contact,

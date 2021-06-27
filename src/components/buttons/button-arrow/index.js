@@ -1,6 +1,7 @@
-import Right from "./button-arrow-right";
-import Left from "./button-arrow-left";
+import React from "react";
+import Arrow from "./button-arrow";
 
-const arrows = {Right, Left}
+const Left = () => <Arrow direction={'left'}/>;
+const Right= () => <Arrow direction={'right'}/>;
 
-export default arrows;
+export default {Left, Right};

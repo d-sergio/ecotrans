@@ -1,0 +1,25 @@
+.mobile {
+    height: 194px;
+    width: 194px;
+    min-width: 194px;
+
+    font-size: 14px;
+    font-weight: 400;
+    color: #3D3D3D;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    height: 97px;
+}
+
+.serviceName {
+    display: flex;
+    height: 43px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4px 0 4px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateLarge from '../service-template-large';
-import img from '../images/neutralization.svg';
+import img from '../../../../static/images/cards-services/neutralization.svg';
 
 function CardNeutralLarge() {
     const logo = <div style={{marginTop: '-19px'}}><img src={img} alt='neutralization_logo' style={{height: '67px'}}/></div>;

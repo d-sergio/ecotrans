@@ -1,10 +1,17 @@
 import React from 'react';
-import {style} from './button-choose.module.css';
-import {buttonsStyle, buttonUppercase} from '../common-buttons.module.css';
+import {mobile, desktop} from './button-choose.module.css';
+import {buttonsCommon} from '../common-buttons.module.css';
 
-const cssStyle = [style, buttonsStyle, buttonUppercase].join(' ');
+/**Кнопка Выбрать
+ * 
+ * Props:
+ * @param {Boolean} desktop 
+ * @returns 
+ */
+function ButtonChoose(props) {
+    const viewMode = props.desktop === true ? desktop : mobile;
+    const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-const ButtonChoose = () => {
     return <button className={cssStyle}>Выбрать</button>;
 };
 

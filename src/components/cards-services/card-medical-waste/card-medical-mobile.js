@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateMobile from '../service-template-mobile';
-import img from '../images/medical-waste.svg';
+import img from '../../../../static/images/cards-services/medical-waste.svg';
 
 function CardMedicalMobile() {
     const imgStyle = {

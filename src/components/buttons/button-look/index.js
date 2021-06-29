@@ -1,3 +1,3 @@
-import ButtonLook from "./button-look";
+import Look from "./button-look";
 
-export default ButtonLook;
+export default Look;

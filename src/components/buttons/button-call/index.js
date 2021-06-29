@@ -1,3 +1,12 @@
-import ButtonCall from "./button-call";
+import React from "react";
+import Call from "./button-call";
 
-export default ButtonCall;
+const Mobile = () => <Call/>;
+const Desktop = () => <Call desktop={true}/>;
+
+const call = {
+    Mobile,
+    Desktop
+};
+
+export default call;

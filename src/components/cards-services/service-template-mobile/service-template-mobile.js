@@ -1,7 +1,7 @@
 import React from 'react';
 import {commonStyle} from '../service-template-common/service-template-common.module.css';
 import {mobile, image, serviceName} from './service-template-mobile.module.css';
-import ButtonChoose from '../../buttons/button-choose';
+import ButtonChoose from '../../buttons/button-choose/button-choose';
 
 const styles = [commonStyle, mobile].join(" ");
 

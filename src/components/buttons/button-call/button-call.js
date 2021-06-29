@@ -1,10 +1,17 @@
 import React from 'react';
-import {style} from './button-call.module.css';
-import {buttonsStyle, buttonUppercase} from '../common-buttons.module.css';
+import {mobile, desktop} from './button-call.module.css';
+import {buttonsCommon} from '../common-buttons.module.css';
 
-const cssStyle = [style, buttonsStyle, buttonUppercase].join(' ');
+/**Кнопка Позвонить
+ * 
+ * Props:
+ * @param {Boolean} desktop - десктопный вариант, если true.
+ * Иначе - мобильный
+ */
+function ButtonCall(props) {
+    const viewMode = props.desktop === true ? desktop : mobile;
+    const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-const ButtonCall = () => {
     return <button className={cssStyle}>Позвонить</button>;
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {commonStyle} from '../service-template-common/service-template-common.module.css';
 import {large, image, serviceName, text, description} from './service-template-large.module.css';
-import ButtonChoose from '../../buttons/button-choose';
+import ButtonChoose from '../../buttons/button-choose/button-choose';
 
 const styles = [commonStyle, large].join(" ");
 
@@ -23,7 +23,7 @@ function ServicesTemplateLarge(props) {
                 <div className={serviceName}>{props.serviceName}</div>
                 <div className={description}>{props.description}</div>
             </div>
-            <ButtonChoose/>
+            <ButtonChoose desktop={true}/>
         </div>
     );
 }

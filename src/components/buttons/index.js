@@ -5,8 +5,7 @@ import Detailed from "./button-detailed";
 import Look from "./button-look";
 import Send from "./button-send";
 import Subscribe from "./button-subscribe";
-import ArrowRight from "./button-arrow/button-arrow-right";
-import ArrowLeft from "./button-arrow/button-arrow-left";
+import Arrow from "./button-arrow";
 
 
 const buttons = {
@@ -17,8 +16,7 @@ const buttons = {
     Look,
     Send,
     Subscribe,
-    ArrowLeft,
-    ArrowRight
+    Arrow
 };
 
 export default buttons;

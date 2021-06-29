@@ -1,15 +1,14 @@
-.style {
+.mobile {
     width: 148px;
     height: 48px;
 
     font-size: 20px;
 }
 
-@media screen and (min-width: 768px) {
-    .style {
-        width: 221px;
-        height: 65px;
+.desktop {
+    width: 221px;
+    height: 65px;
 
-        font-size: 24px;
-    }
+    font-size: 24px;
+    text-transform: uppercase;
 }

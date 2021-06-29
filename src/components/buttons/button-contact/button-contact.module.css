@@ -1,4 +1,4 @@
-.style {
+.mobile {
     width: 109px;
     height: 32px;
 
@@ -10,11 +10,9 @@
     font-family: "MontserratBold";
 }
 
-@media screen and (min-width: 768px) {
-    .style {
-        width: 281px;
-        height: 65px;
+.desktop {
+    width: 281px;
+    height: 65px;
 
-        font-size: 24px;
-    }
+    font-size: 24px;
 }

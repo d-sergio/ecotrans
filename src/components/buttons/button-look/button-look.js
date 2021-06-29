@@ -1,10 +1,11 @@
 import React from 'react';
 import {style} from './button-look.module.css';
-import {buttonsStyle} from '../common-buttons.module.css';
+import {buttonsCommon} from '../common-buttons.module.css';
 
-const cssStyle = [style, buttonsStyle].join(' ');
-
+/**Кнопка Смотреть (только мобильная)*/
 function ButtonLook () {
+    const cssStyle = [style, buttonsCommon].join(' ');
+
     return <button className={cssStyle}>Смотреть</button>;
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateMobile from '../service-template-mobile';
-import img from '../images/docs.svg';
+import img from '../../../../static/images/cards-services/docs.svg';
 
 function CardDocsMobile() {
     const logo = <img src={img} alt='docs_logo' style={{height: '66px'}}/>;

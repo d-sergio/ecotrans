@@ -1,3 +1,3 @@
-import ButtonDetailed from "./button-detailed";
+import Detailed from "./button-detailed";
 
-export default ButtonDetailed;
+export default Detailed;

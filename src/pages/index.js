@@ -25,29 +25,43 @@ function Index() {
             <CardsServices.Transport.Large/>
             <CardsProjects.Green.Mobile/>
             <CardsProjects.Technopark.Mobile/>
-            <CardsProjects.Education.Mobile/>
-            <CardsProjects.Education.Desktop smallMode={true}/>
-            <CardsProjects.Education.Desktop/>
+            <CardsProjects.Education.Mobile/>   
             <CardsProjects.Green.Desktop smallMode={true}/>
-            <CardsProjects.Green.Desktop/>
+            <CardsProjects.Education.Desktop smallMode={true}/>
             <CardsProjects.Technopark.Desktop smallMode={true}/>
+            <CardsProjects.Education.Desktop/>
+            <CardsProjects.Green.Desktop/>
             <CardsProjects.Technopark.Desktop/>
         </div>
-        <Buttons.Contact/>
+        <Buttons.Contact.Mobile/>
         <p>.</p>
-        <Buttons.Choose/>
+        <Buttons.Contact.Desktop/>
         <p>.</p>
-        <Buttons.Call/>
+        <Buttons.Choose.Mobile/>
+        <p>.</p>
+        <Buttons.Choose.Desktop/>
+        <p>.</p>
+        <Buttons.Call.Mobile/>
+        <p>.</p>
+        <Buttons.Call.Desktop/>
         <p>.</p>
         <Buttons.Detailed/>
         <p>.</p>
-        <Buttons.Send/>
+        <Buttons.Send.Mobile/>
         <p>.</p>
-        <Buttons.Subscribe/>
+        <Buttons.Send.Desktop/>
         <p>.</p>
-        <Buttons.ArrowRight/>
+        <Buttons.Subscribe.Mobile/>
         <p>.</p>
-        <Buttons.ArrowLeft/>
+        <Buttons.Subscribe.Desktop/>
+        <p>.</p>
+        <Buttons.Arrow.MobileLeft/>
+        <p>.</p>
+        <Buttons.Arrow.MobileRight/>
+        <p>.</p>
+        <Buttons.Arrow.DesktopLeft/>
+        <p>.</p>
+        <Buttons.Arrow.DesktopRight/>
         <p>.</p>
         {view}
     </>);

@@ -7,13 +7,22 @@
 
 2. buttons
 
-Все кнопки: Contact, Choose, Call, Detailed, Send, Subscribe, ArrowLeft, ArrowRight
+Все кнопки:
+Detailed - Подробнее
+Look - Смотреть
+Contact.Mobile Contact.Desktop - Связаться (с нами)
+Choose.Mobile Choose.Desktop - Выбрать
+Call.Mobile Call.Desktop - Позвонить
+Send.Mobile Send.Desktop - Отправить
+Subscribe.Mobile Subscribe.Desktop - Подписаться
+Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
+Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
 
 Доступны как свойство при импорте компонента Buttons:
 
     import Buttons from '../components/buttons';
     ...
-    <Buttons.Contact/>
+    <Buttons.Contact.Mobile/>
 
 3. cards-services
 

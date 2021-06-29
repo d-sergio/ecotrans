@@ -1,3 +1,12 @@
-import ButtonSend from "./button-send";
+import React from "react";
+import Send from "./button-send";
 
-export default ButtonSend;
+const Mobile = () => <Send/>;
+const Desktop = () => <Send desktop={true}/>;
+
+const send = {
+    Mobile,
+    Desktop
+};
+
+export default send;

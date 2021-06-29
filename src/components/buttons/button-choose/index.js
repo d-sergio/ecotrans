@@ -1,3 +1,13 @@
-import ButtonChoose from "./button-choose";
+import React from "react";
+import Choose from "./button-choose";
 
-export default ButtonChoose;
+const Mobile = () => <Choose/>;
+const Desktop = () => <Choose desktop={true}/>;
+
+const choose = {
+    Mobile,
+    Desktop
+};
+
+
+export default choose;

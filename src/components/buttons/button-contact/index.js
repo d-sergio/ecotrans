@@ -1,3 +1,12 @@
-import ButtonContact from "./button-contact";
+import React from "react";
+import Contact from "./button-contact";
 
-export default ButtonContact;
+const Mobile = () => <Contact/>;
+const Desktop = () => <Contact desktop={true}/>;
+
+const contact = {
+    Mobile,
+    Desktop
+};
+
+export default contact;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateLarge from '../service-template-large';
-import img from '../images/medical-waste.svg';
+import img from '../../../../static/images/cards-services/medical-waste.svg';
 
 function CardMedicalLarge() {
     const imgStyle = {

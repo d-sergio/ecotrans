@@ -1,0 +1,21 @@
+.arrowCommon {
+    border-radius: 50%;
+
+    background-color: #F97C08;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.arrowDesktop {
+    height: 48px;
+    width: 48px;
+
+    background-image: url(/images/button-arrow/arrow.svg);
+}
+
+.arrowMobile {        
+    height: 28px;
+    width: 28px;
+
+    background-image: url(/images/button-arrow/arrow-small.svg);
+}

@@ -1,10 +1,17 @@
 import React from 'react';
-import {style} from './button-send.module.css';
-import {buttonsStyle} from '../common-buttons.module.css';
+import {mobile, desktop} from './button-send.module.css';
+import {buttonsCommon} from '../common-buttons.module.css';
 
-const cssStyle = [style, buttonsStyle].join(' ');
+/**Кнопка Отправить
+ * 
+ * Props:
+ * @param {Boolean} desktop - десктопный вариант, если true.
+ * Иначе - мобильный
+ */
+function ButtonSend(props) {
+    const viewMode = props.desktop === true ? desktop : mobile;
+    const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-const ButtonSend = () => {
     return <button className={cssStyle}>Отправить</button>;
 };
 

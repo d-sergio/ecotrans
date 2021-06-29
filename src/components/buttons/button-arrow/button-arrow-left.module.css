@@ -1,9 +1,0 @@
-.style {
-    background-image: url(/images/button-arrow-left/arrow-left-small.svg);
-}
-
-@media screen and (min-width: 768px) {
-    .style {
-        background-image: url(/images/button-arrow-left/arrow-left.svg);
-    }
-}

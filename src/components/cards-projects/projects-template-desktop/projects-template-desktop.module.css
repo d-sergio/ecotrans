@@ -1,27 +1,27 @@
-.large {
-    height: 448px;
-    width: 448px;
-    min-width: 448px;
-}
-
 .image {
     display: flex;
     justify-content: center;
     align-items: flex-end;
 
-    height: 150px;
+    height: 105px;
 }
 
-.text {
-    height: 136px;
-}
-
-.serviceName {
-    display: flex;    
+.nameSmall {
     justify-content: center;
     align-items: center;
 
-    height: 74px;
+    font-size: 20px;
+    line-height: 28px;
+    color: #3D3D3D;
+}
+
+.nameLarge {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 62px;
+    margin-top: 10px;
 
     font-family: "MontserratBold";
     font-size: 26px;

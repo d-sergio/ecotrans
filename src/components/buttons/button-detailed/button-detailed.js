@@ -1,16 +1,11 @@
-import React, {useContext} from 'react';
-import ViewContext from "../../root-layout/view-context";
+import React from 'react';
 import {style} from './button-detailed.module.css';
 import {buttonsStyle} from '../common-buttons.module.css';
 
 const cssStyle = [style, buttonsStyle].join(' ');
 
-const ButtonDetailed = () => {
-    const view = useContext(ViewContext);
-
-    const buttonText = view === 'mobile' ? 'Смотреть' : 'Подробнее'
-   
-    return <button className={cssStyle}>{buttonText}</button>;
+const ButtonDetailed = () => {   
+    return <button className={cssStyle}>Подробнее</button>;
 };
 
 export default ButtonDetailed;

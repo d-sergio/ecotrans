@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateLarge from '../service-template-large';
-import img from '../logo/transportation.svg';
+import img from '../images/transportation.svg';
 
 function CardTransportLarge() {
     const logo = <img src={img} alt='transportation_logo' style={{width: '93px'}}/>

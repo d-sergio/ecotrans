@@ -35,9 +35,9 @@ function Index() {
         <p>.</p>
         <Buttons.Subscribe/>
         <p>.</p>
-        <Buttons.ArrowLeft/>
-        <p>.</p>
         <Buttons.ArrowRight/>
+        <p>.</p>
+        <Buttons.ArrowLeft/>
         <p>.</p>
         {view}
     </>);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateMobile from '../service-template-large';
-import img from '../logo/training.svg';
+import img from '../images/training.svg';
 
 function CardTrainingLarge() {
     const logo = <img src={img} alt='training_logo' style={{height: '80px'}}/>

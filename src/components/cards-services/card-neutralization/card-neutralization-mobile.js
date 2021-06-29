@@ -1,6 +1,6 @@
 import React from 'react';
 import ServicesTemplateMobile from '../service-template-mobile';
-import img from '../logo/neutralization.svg';
+import img from '../images/neutralization.svg';
 
 function CardNeutralMobile() {
     const logo = <img src={img} alt='neutralization_logo' style={{height: '64px'}}/>

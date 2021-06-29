@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceTemplateSmall from '../service-template-small';
-import img from '../logo/training.svg';
+import img from '../images/training.svg';
 
 function CardTrainingSmall() {
     const logo = <img src={img} alt='training_logo' style={{height: '48px'}}/>

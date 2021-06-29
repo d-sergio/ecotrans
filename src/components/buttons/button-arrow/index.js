@@ -1,7 +1,9 @@
-import React from "react";
-import Arrow from "./button-arrow";
+import Right from "./button-arrow-right";
+import Left from "./button-arrow-left";
 
-const Left = () => <Arrow direction={'left'}/>;
-const Right= () => <Arrow direction={'right'}/>;
+const arrow = {
+    Right,
+    Left
+}
 
-export default {Left, Right};
+export default arrow;

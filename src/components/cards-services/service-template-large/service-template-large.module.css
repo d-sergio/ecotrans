@@ -2,8 +2,6 @@
     height: 448px;
     width: 448px;
     min-width: 448px;
-
-    color: #3D3D3D;
 }
 
 .image {
@@ -25,13 +23,14 @@
 
     height: 74px;
 
+    font-family: "MontserratBold";
     font-size: 26px;
-    font-weight: 900;
     line-height: 28px;
+    color: #3D3D3D;
 }
 
 .description {
+    font-family: "MontserratRegular";
     font-size: 18px;
-    font-weight: 100;
     color: #3D3D3D;
 }

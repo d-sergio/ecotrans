@@ -24,12 +24,10 @@
     height: 74px;
 
     font-family: "MontserratBold";
-    font-size: 26px;
+    font-size: 1.625rem;
     line-height: 28px;
-    color: #3D3D3D;
 }
 
 .description {
-    font-size: 18px;
-    color: #3D3D3D;
+    font-size: 1.125rem;
 }

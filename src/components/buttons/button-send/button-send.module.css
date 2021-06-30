@@ -2,13 +2,13 @@
     width: 148px;
     height: 48px;
 
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .desktop {
     width: 221px;
     height: 65px;
 
-    font-size: 24px;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }

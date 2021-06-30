@@ -1,8 +1,8 @@
 import React from "react";
 import Call from "./button-call";
 
-const Mobile = () => <Call/>;
-const Desktop = () => <Call desktop={true}/>;
+const Mobile = () => <Call mobile={true}/>;
+const Desktop = () => <Call/>;
 
 const call = {
     Mobile,

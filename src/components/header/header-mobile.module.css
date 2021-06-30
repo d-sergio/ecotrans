@@ -1,0 +1,17 @@
+.style{
+    display: flex;
+    justify-content: space-between;
+
+    height: 24px;
+    padding: 12px 8px 12px 8px;
+
+    background-color: #EAFFE2;
+}
+
+.phone{
+    display: flex;
+    align-items: center;
+
+    font-family: "MontserratLight";
+    font-size: 0.625rem;
+}

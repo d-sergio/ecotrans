@@ -19,7 +19,7 @@ function ServicesTemplateMobile(props) {
                 {props.logo}
             </div>
             <div className={serviceName}>{props.serviceName}</div>
-            <ButtonChoose/>
+            <ButtonChoose mobile={true}/>
         </div>
     );
 }

@@ -1,0 +1,16 @@
+.menu{
+    display: flex;
+    align-items: center;
+
+    margin-left: -45px;
+}
+
+.menu a{
+    margin-left: 45px;
+
+    transition: color 0.3s;
+}
+
+.menu a:hover{
+    color: #F97C08;
+}

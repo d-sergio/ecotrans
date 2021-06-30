@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 28px;
+    height: 19px;
+}
+
+.onClose{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: center;
+
+    height: 19px;
+
+    cursor: pointer;
+}
+
+.line{
+    height: 3px;
+    width: 28px;
+    background-color: #F97C08;
+}
+
+.cross{
+    display: block;
+    position: relative;
+    height: 19px;
+    width: 28px;
+    cursor: pointer;
+}
+
+.cross::before, .cross::after{
+    position: absolute;
+    content: ' ';
+    height: 33px;
+    width: 3px;
+
+    top: -8px;
+    left: 12px;
+
+    border-radius: 2px;
+    background-color: #F97C08;
+}
+
+.cross::before{
+    transform: rotate(54deg);
+}
+
+.cross::after{
+    transform: rotate(-54deg);
+}

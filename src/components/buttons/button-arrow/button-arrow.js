@@ -6,15 +6,15 @@ import {arrowCommon, arrowMobile, arrowDesktop} from './button-arrow-common.modu
  * Props:
  * @param {Boolean} right - отображается стрелка влево, если false или не указано
  * Иначе - вправо
- * @param {Boolean} desktop - десктопный вариант, если true. Иначе - мобильный
+ * @param {Boolean} mobile - мобильный вариант, если true
 */
 function ButtonArrow(props) {
     const direction = props.right === true ? {transform: 'scale(-1, 1)'} : {};
-    const viewMode = props.desktop === true ? arrowDesktop : arrowMobile;
+    const viewMode = props.mobile === true ? arrowMobile : arrowDesktop;
 
     const styles = [viewMode, arrowCommon].join(" ");
     
-    return(<button style={direction} className={styles}/>);
+    return(<button style={direction} className={styles}>{}</button>);
 };
 
 export default ButtonArrow;

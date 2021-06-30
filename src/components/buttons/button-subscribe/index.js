@@ -1,8 +1,8 @@
 import React from "react";
 import Subscribe from "./button-subscribe";
 
-const Mobile = () => <Subscribe/>;
-const Desktop = () => <Subscribe desktop={true}/>;
+const Mobile = () => <Subscribe mobile={true}/>;
+const Desktop = () => <Subscribe/>;
 
 const subscribe = {
     Mobile,

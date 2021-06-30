@@ -1,8 +1,8 @@
 import React from "react";
 import Choose from "./button-choose";
 
-const Mobile = () => <Choose/>;
-const Desktop = () => <Choose desktop={true}/>;
+const Mobile = () => <Choose mobile={true}/>;
+const Desktop = () => <Choose/>;
 
 const choose = {
     Mobile,

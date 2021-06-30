@@ -8,6 +8,7 @@
 a {
     text-decoration: none;
     cursor: pointer;
+    color: #3D3D3D;
 }
 
 li {
@@ -16,7 +17,8 @@ li {
 
 body {
     font-family: "MontserratRegular";
-    background: white;
+    background-color: white;
+    color: #3D3D3D;
 }
 
 html {

@@ -38,6 +38,32 @@ function ProjectsTemplateDesktop(props) {
     );
 }
 
+const largeViewCSS  = {
+    circle: {
+        height: '448px',
+        width: '448px',
+        minWidth: '448px'
+    },
+    image: {
+        height: '151px'
+    },
+    nameSmall: {
+        display: 'none'
+    },
+    text: {
+        height: '140px'
+    },
+    nameLarge: {
+        display: 'flex'
+    },
+    description: {
+        display: 'block'
+    },
+    button: {
+        display: 'block'
+    }
+};
+
 const smallViewCSS = {
     circle: {
         height: '296px',
@@ -65,30 +91,5 @@ const smallViewCSS = {
     }
 };
 
-const largeViewCSS  = {
-    circle: {
-        height: '448px',
-        width: '448px',
-        minWidth: '448px'
-    },
-    image: {
-        height: '151px'
-    },
-    nameSmall: {
-        display: 'none'
-    },
-    text: {
-        height: '140px'
-    },
-    nameLarge: {
-        display: 'flex'
-    },
-    description: {
-        display: 'block'
-    },
-    button: {
-        display: 'block'
-    }
-};
 
 export default ProjectsTemplateDesktop;

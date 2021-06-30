@@ -17,6 +17,7 @@ Send.Mobile Send.Desktop - Отправить
 Subscribe.Mobile Subscribe.Desktop - Подписаться
 Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
 Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
+Menu - кнопка мобильного меню
 
 Доступны как свойство при импорте компонента Buttons:
 

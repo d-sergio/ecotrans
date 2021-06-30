@@ -5,11 +5,10 @@ import {buttonsCommon} from '../common-buttons.module.css';
 /**Кнопка Подписаться
  * 
  * Props:
- * @param {Boolean} desktop - десктопный вариант, если true.
- * Иначе - мобильный
+ * @param {Boolean} mobile - мобильный вариант, если true.
  */
 function ButtonSubscribe (props) {
-    const viewMode = props.desktop === true ? desktop : mobile;
+    const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
     return <button className={cssStyle}>Подписаться</button>;

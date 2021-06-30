@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {container, onClose, line, cross} from './button-menu.module.css';
 
+/**Кнопка мобильного меню*/
 function ButtonMenu() {
     const [isOpen, setState] = useState(false);
 

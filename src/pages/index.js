@@ -1,14 +1,10 @@
-import React, {useContext} from 'react';
-import ViewContext from '../components/root-layout/view-context';
-import Header from '../components/header/header';
+import React from 'react';
+import Layout from '../components/layout/layout';
 
 function Index() {
-    const view = useContext(ViewContext);
     return (
-        <>
-            <Header/>
-            <Header mobile={true}/>
-        </>
+        <Layout>
+        </Layout>
     );
 };
 

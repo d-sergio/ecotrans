@@ -1,0 +1,42 @@
+.container{
+    padding: 36px 83px 26px 83px;
+
+    background-color: #EAFFE2;
+}
+
+.flexContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-top: 20px;
+
+    line-height: 2.625rem;
+}
+
+.ecotrans{
+    font-family: "MontserratBold";
+    font-size: 1.25rem;
+    background-color: #EAFFE2;
+}
+
+.address{
+    font-size: 0.812rem;
+}
+
+.address img{
+    padding-right: 12px;
+}
+
+.docs{
+
+    font-size: 0.812rem;
+}
+
+.menu{
+    font-size: 0.875rem;}
+
+.links{
+    font-size: 0.812rem;
+}

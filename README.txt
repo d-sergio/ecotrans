@@ -2,10 +2,20 @@
 
 1. root-layout
 
-Корневой компонент root-layout управляет контекстом ViewContext, в котором хранится
-текущий режим отображения сайта mobile/desktop
+Корневой компонент root-layout управляет контекстом MobileView, принимающим
+значения true/false. Параметры медиа-запросов, по которым может определяться
+мобильный/десктопный режим сайта, задаются в файле config/config.json
+
+Кроме того, в некоторых случаях компоненты сами могут совершать медиа-запросы
+через media-query.js (смотри подробнее components/root-layout/media-query-readme.txt)
 
 2. buttons
+
+Доступны как свойство при импорте компонента Buttons:
+
+    import Buttons from '../components/buttons';
+    ...
+    <Buttons.Contact.Mobile/>
 
 Все кнопки:
 Detailed - Подробнее
@@ -18,12 +28,6 @@ Subscribe.Mobile Subscribe.Desktop - Подписаться
 Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
 Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
 Menu - кнопка мобильного меню
-
-Доступны как свойство при импорте компонента Buttons:
-
-    import Buttons from '../components/buttons';
-    ...
-    <Buttons.Contact.Mobile/>
 
 3. cards-services
 

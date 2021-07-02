@@ -1,17 +1,16 @@
 import React, {useContext} from 'react';
 import Header from '../header';
 import Footer from '../footer';
-import ViewContext from '../root-layout/view-context';
+import MobileView from '../root-layout/view-context';
 
 function Layout(props) {
-    const view = useContext(ViewContext);
-    const mobileView = view === 'mobile' ? true : false;
+    const view = useContext(MobileView);
 
     return(
         <>
-            <Header mobile={mobileView}/>
+            <Header mobile={view}/>
                 {props.children}
-            <Footer mobile={mobileView}/>
+            <Footer mobile={view}/>
         </>
     );
 }

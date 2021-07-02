@@ -1,5 +1,5 @@
 import React from 'react';
-import {style, logo, phone} from "./header-desktop.module.css";
+import {outer, style, logo, phone} from "./header-desktop.module.css";
 import MenuDesktop from '../header-menu/menu-desktop';
 
 function HeaderDesktop(props) {
@@ -18,10 +18,12 @@ function HeaderDesktop(props) {
     );
 
     return(
-        <div className={style}>
-            <Logo/>
-            <MenuDesktop/>
-            <Phone/>
+        <div className={outer}>
+            <div className={style}>
+                <Logo/>
+                <MenuDesktop/>
+                <Phone/>
+            </div>
         </div>
     );
 }

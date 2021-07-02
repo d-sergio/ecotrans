@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ViewContext = React.createContext('mobile');
+const MobileView = React.createContext(true);
 
-export default ViewContext;
+export default MobileView;

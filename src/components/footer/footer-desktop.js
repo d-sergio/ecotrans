@@ -3,17 +3,19 @@ import {Link} from 'gatsby';
 import mapPin from '../../../static/images/address/map-pin.svg';
 import mail from '../../../static/images/address/mail.svg';
 import phone from '../../../static/images/address/phone.svg';
-import {container, flexContainer, ecotrans, address, docs, menu, links} from './footer-desktop.module.css';
+import {outer, container, flexContainer, ecotrans, address, docs, menu, links} from './footer-desktop.module.css';
 
 function FooterDesktop() {
     return(
-        <div className={container}>
-            <div className={ecotrans}>ООО “ЭКОТРАНС”</div>
-            <div className={flexContainer}>
-                <Address/>
-                <Docs/>
-                <Menu/>
-                <Links/>
+        <div className={outer}>
+            <div className={container}>
+                <div className={ecotrans}>ООО “ЭКОТРАНС”</div>
+                <div className={flexContainer}>
+                    <Address/>
+                    <Docs/>
+                    <Menu/>
+                    <Links/>
+                </div>
             </div>
         </div>
     );

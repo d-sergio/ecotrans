@@ -1,7 +1,12 @@
-.container{
-    padding: 36px 83px 26px 83px;
-
+.outer{
     background-color: #EAFFE2;
+}
+
+.container{
+    max-width: 1440px;
+    padding: 36px 83px 26px 83px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .flexContainer{

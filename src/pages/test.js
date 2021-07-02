@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
-import ViewContext from '../components/root-layout/view-context';
+import MobileView from '../components/root-layout/view-context';
 import Buttons from '../components/buttons';
 import CardsServices from '../components/cards-services';
 import CardsProjects from '../components/cards-projects';
 import Layout from '../components/layout/layout';
 
 function Test() {
-    const view = useContext(ViewContext);
+    const view = useContext(MobileView);
     return (
         <Layout>
             <div style={{display: 'flex', flexWrap: 'wrap'}}>
@@ -65,7 +65,7 @@ function Test() {
             <p>.</p>
             <Buttons.Arrow.DesktopRight/>
             <Buttons.Menu/>
-            {view}
+            {view ? 'mobile' : 'desktop'}
         </Layout>);
 };
 

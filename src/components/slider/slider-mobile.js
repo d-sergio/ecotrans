@@ -9,6 +9,7 @@ function SliderMobile() {
         prev: <ArrowLeft/>,
         next: <ArrowRight/>
     };
+    
     return <Slider params={params}>{cards}</Slider>;
 }
 

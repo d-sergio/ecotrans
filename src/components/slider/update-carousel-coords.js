@@ -1,3 +1,4 @@
+/**Задаём margin-left для carousel, соответствующий текущей позиции слайдера */
 function updateCarouselCoords(carousel, currentPosition) {
     try{        
         if (carousel !== null){

@@ -1,71 +1,79 @@
+/**Внешние импорты:
+ * src/libs/animate/animate.js
+ * src/libs/react-hooks/use-previous-hook.js
+*/
+
 import React, {useState, useRef, useEffect} from 'react';
+import usePrevious from '../../libs/react-hooks/use-previous-hook';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 import updateSlideWidth from './update-slide-width';
 import createSlides from './create-slides';
 import updateCarouselCoords from './update-carousel-coords';
-import getVisible from './get-visible';
+import setNewPosition from './set-new-position';
+import animateMove from './animate-move';
 
 function Slider(props) {
-    const params = createParams(props.params);
+    /*Инициализация params. Здесь не добавляется поле children. Оно
+    будет определено в первом useEffect инициализации.*/
+    const params = useRef(createParams(props.params));
 
+    /*Длительность анимации также указывает, вызывать ли анимацию после
+    изменения состояния слайдера. Ноль - не вызывать анимацию.*/
+    const animDuration = useRef(); 
+    const animate = useRef();   //Здесь будет общедоступный объект анимации. 
     const carousel = useRef(null);
     const viewport = useRef(null);
 
+    /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
+    Проще её сохранить здесь сразу, чем вычислять потом.*/
     const initState = {
-        currentPosition: 0,
+        prevPosition: 0,
+        currentPosition: props.params.initPosition,
         children: React.Children.toArray(props.children)
     };
 
     const [state, setState] = useState(initState);
     const [init, setInit] = useState(false);
+    const prevState = usePrevious(state);
 
+    /*Вызывается только один раз для инициализации params.current.children
+    и установки размеров и начальных координат слайдера*/
     useEffect(() => {
-        updateSlideWidth(viewport.current, carousel.current, params.visible);
+        params.current.children = React.Children.toArray(props.children);
+        updateSlideWidth(viewport.current, carousel.current, params.current.visible);
         updateCarouselCoords(carousel.current, state.currentPosition);
         setInit(true);
     }, [init]);
 
     useEffect(() => {
         //запуск анимации
-        updateSlideWidth(viewport.current, carousel.current, params.visible);
-        updateCarouselCoords(carousel.current, state.currentPosition);
+        if (animDuration.current > 0) {
+            /*Корректировка слайдов и carousel, если добавились слайды
+            Перед анимацией выставляем слайдер на предыдущую позицию!*/
+            if (prevState.children !== state.children){
+                updateSlideWidth(viewport.current, carousel.current, params.current.visible);
+                updateCarouselCoords(carousel.current, state.prevPosition); //prevPosition!!!
+            }
+
+            animateMove(params.current, state, carousel.current, animate.current, animDuration.current);
+        } else {
+            updateSlideWidth(viewport.current, carousel.current, params.current.visible);
+            updateCarouselCoords(carousel.current, state.currentPosition);
+        }
     });
 
     function buttonHandler(shift) {
-        setNewPosition(state.currentPosition + shift);
-    }
+        animDuration.current = params.current.duration; //Также указывает, что потребуется анимация.
 
-    function setNewPosition(destination) {
-        let newPosition = destination;
-        let newChildren = state.children;
+        const destination = state.currentPosition + shift
 
-        const visible = getVisible(params.visible);
-
-        //Добавление слайдов в carousel слева или справа дублированием children.
-        //Смысл в том, что слева и справа от новой позиции всегда должен быть запас
-        //элементов, равный или больше visible
-        if (destination - visible < 0 || destination + visible > state.children.length) {
-            newChildren = newChildren.concat(newChildren);
-        }
-
-        //если позиция уходит в отрицательные значения, то слева появятся продублированные
-        //children. Просто пересчитаем позицию в с их учётом и она станет положительной
-        if (destination < 0) {
-            newPosition = state.children.length - visible;
-        };
-
-        setState(
-            {
-                currentPosition: newPosition,
-                children: newChildren
-            }
-        );
+        setNewPosition(destination, state, setState, params.current);
     }
 
     return(
         <div className={containerStyle}>
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
-                {params.prev}
+                {params.current.prev}
             </div>
 
             <div className={viewportStyle} ref={viewport}>
@@ -75,7 +83,7 @@ function Slider(props) {
             </div>
 
             <div className={nextStyle} onClick={() => buttonHandler(1)}>
-                {params.next}
+                {params.current.next}
             </div>
         </div>
     );
@@ -86,7 +94,9 @@ function createParams(sliderProps) {
     const defaults = {
         visible: 1,
         prev: null,
-        next: null
+        next: null,
+        duration: 500,
+        callback: undefined
     };
 
     return Object.assign({}, defaults, sliderProps);

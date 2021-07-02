@@ -28,7 +28,7 @@ function Slider(props) {
     Проще её сохранить здесь сразу, чем вычислять потом.*/
     const initState = {
         prevPosition: 0,
-        currentPosition: props.params.initPosition,
+        currentPosition: props.params.initPosition || 0,
         children: React.Children.toArray(props.children)
     };
 
@@ -40,12 +40,13 @@ function Slider(props) {
     и установки размеров и начальных координат слайдера*/
     useEffect(() => {
         params.current.children = React.Children.toArray(props.children);
-        updateSlideWidth(viewport.current, carousel.current, params.current.visible);
-        updateCarouselCoords(carousel.current, state.currentPosition);
+        updateWidthAndCoords();
         setInit(true);
     }, [init]);
 
     useEffect(() => {
+        window.addEventListener('resize', updateWidthAndCoords);
+        
         //запуск анимации
         if (animDuration.current > 0) {
             /*Корректировка слайдов и carousel, если добавились слайды
@@ -57,10 +58,15 @@ function Slider(props) {
 
             animateMove(params.current, state, carousel.current, animate.current, animDuration.current);
         } else {
-            updateSlideWidth(viewport.current, carousel.current, params.current.visible);
-            updateCarouselCoords(carousel.current, state.currentPosition);
+            updateWidthAndCoords();
         }
+        return () => window.removeEventListener('resize', updateWidthAndCoords);
     });
+
+    function updateWidthAndCoords() {
+        updateSlideWidth(viewport.current, carousel.current, params.current.visible);
+        updateCarouselCoords(carousel.current, state.currentPosition);
+    }
 
     function buttonHandler(shift) {
         animDuration.current = params.current.duration; //Также указывает, что потребуется анимация.

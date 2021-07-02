@@ -22,7 +22,7 @@ function setNewPosition(destination, state, setState, params) {
         newPosition = params.children.length + destination;
     }
     //Добавляем целую ленту params.children справа
-    if (destination + visible > state.children.length) {
+    if (destination + visible >= state.children.length - 1) {
         newChildren = newChildren.concat(params.children);
     }
 

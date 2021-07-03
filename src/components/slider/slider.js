@@ -7,10 +7,13 @@ import React, {useState, useRef, useEffect} from 'react';
 import usePrevious from '../../libs/react-hooks/use-previous-hook';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 import updateSlideWidth from './update-slide-width';
-import createSlides from './create-slides';
 import updateCarouselCoords from './update-carousel-coords';
-import setNewPosition from './set-new-position';
 import animateMove from './animate-move';
+
+import setNewPosition from './set-new-position';
+import createSlides from './create-slides';
+//import createVisibleSlides from './alternative/create-visible-slides';
+//import setNewPosition from './alternative/set-new-position-alternative';
 
 function Slider(props) {
     /*Инициализация params. Здесь не добавляется поле children. Оно
@@ -69,11 +72,15 @@ function Slider(props) {
     }
 
     function buttonHandler(shift) {
-        animDuration.current = params.current.duration; //Также указывает, что потребуется анимация.
+        if (shift === 0) return;
 
+        animDuration.current = params.current.duration; //Также указывает, что потребуется анимация.
+        
         const destination = state.currentPosition + shift
 
         setNewPosition(destination, state, setState, params.current);
+
+        //setNewPosition(shift, state, setState, params.current); //альтернативный вариант
     }
 
     return(
@@ -84,7 +91,11 @@ function Slider(props) {
 
             <div className={viewportStyle} ref={viewport}>
                 <div className={carouselStyle} ref={carousel}>
-                    {createSlides(state.children, slideStyle)}
+                    {createSlides(state.children, slideStyle)
+                    /*
+                    //альтерантивный вариант
+                    createVisibleSlides(state.children, state.currentPosition, params.current.visible, slideStyle)
+                    */}
                 </div>
             </div>
 

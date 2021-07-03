@@ -51,6 +51,7 @@ function setNewPosition(destination, state, setState, params, viewport, carousel
 
     setState(
         {
+            ...setState,
             prevPosition: prevPosition,
             currentPosition: newPosition,
             children: newChildren

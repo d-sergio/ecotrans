@@ -5,10 +5,11 @@
 
 import React, {useState, useRef, useEffect} from 'react';
 import usePrevious from '../../libs/react-hooks/use-previous-hook';
-import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 import updateSlideWidth from './update-slide-width';
 import updateCarouselCoords from './update-carousel-coords';
 import animateMove from './animate-move';
+import mouseHandler from './mouse-handler';
+import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 
 import setNewPosition from './set-new-position';
 import createSlides from './create-slides';
@@ -16,6 +17,14 @@ import createSlides from './create-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';
 
 function Slider(props) {
+    /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
+    Проще её сохранить здесь сразу, чем вычислять потом.*/
+    const initState = {
+        prevPosition: 0,
+        currentPosition: props.params.initPosition || 0,
+        children: React.Children.toArray(props.children)
+    };
+
     /*Инициализация params. Здесь не добавляется поле children. Оно
     будет определено в первом useEffect инициализации.*/
     const params = useRef(createParams(props.params));
@@ -27,29 +36,25 @@ function Slider(props) {
     const carousel = useRef(null);
     const viewport = useRef(null);
 
-    /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
-    Проще её сохранить здесь сразу, чем вычислять потом.*/
-    const initState = {
-        prevPosition: 0,
-        currentPosition: props.params.initPosition || 0,
-        children: React.Children.toArray(props.children)
-    };
-
     const [state, setState] = useState(initState);
     const [init, setInit] = useState(false);
     const prevState = usePrevious(state);
 
     /*Вызывается только один раз для инициализации params.current.children
     и установки размеров и начальных координат слайдера*/
-    useEffect(() => {
+    useEffect(() => initialize(), [init]);
+
+    useEffect(() => updateComponent());
+
+    function initialize() {
         params.current.children = React.Children.toArray(props.children);
         updateWidthAndCoords();
         setInit(true);
-    }, [init]);
+    }
 
-    useEffect(() => {
+    function updateComponent() {
         window.addEventListener('resize', updateWidthAndCoords);
-        
+
         //запуск анимации
         if (animDuration.current > 0) {
             /*Корректировка слайдов и carousel, если добавились слайды
@@ -59,12 +64,16 @@ function Slider(props) {
                 updateCarouselCoords(carousel.current, state.prevPosition); //prevPosition!!!
             }
 
-            animateMove(params.current, state, carousel.current, animate.current, animDuration.current);
+            animateMove(params.current,
+                state, carousel.current,
+                animate.current,
+                animDuration.current);
         } else {
             updateWidthAndCoords();
         }
+
         return () => window.removeEventListener('resize', updateWidthAndCoords);
-    });
+    }
 
     function updateWidthAndCoords() {
         updateSlideWidth(viewport.current, carousel.current, params.current.visible);
@@ -83,6 +92,16 @@ function Slider(props) {
         //setNewPosition(shift, state, setState, params.current, viewport.current, carousel.current); //альтернативный вариант
     }
 
+    function startMouseHandler(e) {
+        mouseHandler(e,
+            params.current,
+            state, setState,
+            viewport.current,
+            carousel.current,
+            animate.current,
+            animDuration);
+    }
+
     return(
         <div className={containerStyle}>
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
@@ -90,7 +109,7 @@ function Slider(props) {
             </div>
 
             <div className={viewportStyle} ref={viewport}>
-                <div className={carouselStyle} ref={carousel}>
+                <div className={carouselStyle} ref={carousel} onMouseDown={(e) => startMouseHandler(e)}>
                     {createSlides(state.children, slideStyle)
                     /*
                     //альтерантивный вариант
@@ -113,6 +132,9 @@ function createParams(sliderProps) {
         prev: null,
         next: null,
         duration: 500,
+        treshold: 0.2,
+        friction: 5,
+        disableScrollingOn: 10,
         callback: undefined
     };
 

@@ -5,7 +5,7 @@ function updateSlideWidth(viewport, carousel, visible) {
     try{
         //Рефы могли обнулиться, если компонент был перерисован
         if (viewport !== null && carousel !== null) {
-            const numberOfVisible = getVisible(visible);
+            const numberOfVisible = getVisible(visible, viewport, carousel);
             const viewportWidth = viewport.offsetWidth;
 
             const slideWidth = viewportWidth/numberOfVisible;

@@ -4,8 +4,8 @@ import React from 'react';
 import getVisible from "../get-visible";
 
 /**Создать видимые слайды*/
-function createVisibleSlides(children, currentPosition, visible, slideStyle) {
-    const numberOfVisible = getVisible(visible);
+function createVisibleSlides(children, currentPosition, visible, viewport, carousel, slideStyle) {
+    const numberOfVisible = getVisible(visible, viewport, carousel);
     
     const from = currentPosition;   //с какого слайда показываем
     const to = currentPosition + numberOfVisible;   //до какого

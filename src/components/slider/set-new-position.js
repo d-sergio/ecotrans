@@ -1,12 +1,12 @@
 import getVisible from './get-visible';
 
 /**Установить новую позицию. Также добавляет новые слайды по необходимости */
-function setNewPosition(destination, state, setState, params) {
+function setNewPosition(destination, state, setState, params, viewport, carousel) {
     let prevPosition = state.currentPosition;   //текущая позиция станет предыдущей, после setState
     let newPosition = destination;
     let newChildren = state.children;
 
-    const visible = getVisible(params.visible);
+    const visible = getVisible(params.visible, viewport, carousel);
 
     /*Добавление слайдов в carousel слева или справа дублированием children.
     Смысл в том, что слева и справа от новой позиции всегда должен быть запас

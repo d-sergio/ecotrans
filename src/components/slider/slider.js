@@ -78,9 +78,9 @@ function Slider(props) {
         
         const destination = state.currentPosition + shift
 
-        setNewPosition(destination, state, setState, params.current);
+        setNewPosition(destination, state, setState, params.current, viewport.current, carousel.current);
 
-        //setNewPosition(shift, state, setState, params.current); //альтернативный вариант
+        //setNewPosition(shift, state, setState, params.current, viewport.current, carousel.current); //альтернативный вариант
     }
 
     return(
@@ -94,7 +94,7 @@ function Slider(props) {
                     {createSlides(state.children, slideStyle)
                     /*
                     //альтерантивный вариант
-                    createVisibleSlides(state.children, state.currentPosition, params.current.visible, slideStyle)
+                    createVisibleSlides(state.children, state.currentPosition, params.current.visible, viewport.current, carousel.current, slideStyle)
                     */}
                 </div>
             </div>

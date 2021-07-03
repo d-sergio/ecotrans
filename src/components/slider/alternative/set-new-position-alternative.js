@@ -1,6 +1,6 @@
 import getVisible from '../get-visible';
 
-function setNewPosition(shift, state, setState, params) {
+function setNewPosition(shift, state, setState, params, viewport, carousel) {
     if (shift === 0) return;
 
     const visible = getVisible(params.visible);

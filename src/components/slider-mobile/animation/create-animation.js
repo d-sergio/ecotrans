@@ -1,6 +1,6 @@
 //Используется в animate-move.js
 
-import {Animation, sliderDraw, invertedSliderDraw, changeStyleProperty} from "../../libs/animate/animate";
+import {Animation, sliderDraw, invertedSliderDraw, changeStyleProperty} from "../../../libs/animate/animate";
 
 /**Создать и вернуть объект анимации
  * 

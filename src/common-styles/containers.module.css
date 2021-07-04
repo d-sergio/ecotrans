@@ -1,5 +1,11 @@
-.mobileContainer{
+.mobileContainerGreen{
     padding-left: 8px;
     padding-right: 8px;
     background-color: #EAFFE2;
+}
+
+.mobileContainerWhite{
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: white;
 }

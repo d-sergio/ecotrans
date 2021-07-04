@@ -33,7 +33,7 @@ Menu - кнопка мобильного меню
 
 Карточки для слайдера Услуги: Transport, Docs, Training, Medical, Neutral
 
-Доступны в трё вариантах: Mobile, Small, Large. Например: 
+Доступны в трёх вариантах: Mobile, Small, Large. Например: 
 
     import Cards from '../components/cards-services';
     ...
@@ -41,3 +41,25 @@ Menu - кнопка мобильного меню
 
 Папки service-template-large, service-template-small, service-template-mobile
 содержат шаблоны для создания новых карточек
+
+4. cards-projects
+
+Карточки для слайдера Проекты: Green, Technopark, Education
+
+Доступны в двух вариантах: Mobile, Desktop. Например:
+
+    import Cards from '../components/cards-projects';
+    ...
+    <Cards.Green.Mobile/>
+
+5. cards-advantages
+
+Карточки Преимущества: 
+
+Ecologist, License, Technologies, Training
+
+Пропс mobile={true} переключает на мобильный вариант
+
+    import Cards from '../components/cards-advantages';
+    ...
+    <Cards.Ecologist mobile={true}/>

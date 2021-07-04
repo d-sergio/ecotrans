@@ -4,17 +4,14 @@ import Buttons from '../components/buttons';
 import CardsServices from '../components/cards-services';
 import CardsProjects from '../components/cards-projects';
 import Layout from '../components/layout/layout';
-import Advantages from '../components/cards-advantages';
+import AdvMobile from '../components/block-advantages/advantages-mobile';
 
 function Test() {
     const view = useContext(MobileView);
     return (
         <Layout>
-            <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                <Advantages.Ecologist/>
-                <Advantages.License/>
-                <Advantages.Technologies/>
-                <Advantages.Training/>
+            <AdvMobile/>
+            {/*<div style={{display: 'flex', flexWrap: 'wrap'}}>
                 <CardsServices.Transport.Mobile/>
                 <CardsServices.Docs.Mobile/>
                 <CardsServices.Training.Mobile/>
@@ -70,7 +67,7 @@ function Test() {
             <p>.</p>
             <Buttons.Arrow.DesktopRight/>
             <Buttons.Menu/>
-            {view ? 'mobile' : 'desktop'}
+    {view ? 'mobile' : 'desktop'}*/}
         </Layout>);
 };
 

@@ -2,10 +2,10 @@ import React from 'react';
 import Layout from '../components/layout/layout';
 import SliderMobile from '../components/slider-projects-services';
 import Slider from '../components/slider/slider-mobile';
-import {mobileContainer} from '../common-styles/containers.module.css';
+import {mobileContainerGreen} from '../common-styles/containers.module.css';
 import {servMobile} from './pages-styles/index.module.css';
 
-const servicesStyle = [servMobile, mobileContainer].join(" ");
+const servicesStyle = [servMobile, mobileContainerGreen].join(" ");
 
 function Index() {
     return (

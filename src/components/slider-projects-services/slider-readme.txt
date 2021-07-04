@@ -41,7 +41,6 @@ params = {
     treshold: 0.2,  //см. ниже
     friction: 5,    //см. ниже
     disableScrollingOn: 10, //см. ниже
-    motion: 'ordinary', //см. ниже
     callback: undefined //необязательный колбэк, который получает текущую позицию слайдера
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import Slider from './slider';
 import Buttons from '../buttons';
-import Cards from '../cards-services';
+import Cards from '../cards-projects';
 
-function SliderMobile() {
+function SliderProjects() {
     const params = {
         visible: 1,
+        treshold: 0.1,
         prev: <ArrowLeft/>,
         next: <ArrowRight/>
     };
@@ -13,14 +14,12 @@ function SliderMobile() {
     return <Slider params={params}>{cards}</Slider>;
 }
 
-export default SliderMobile;
+export default SliderProjects;
 
 const cards = [
-    <Cards.Docs.Mobile/>,
-    <Cards.Neutral.Mobile/>,
-    <Cards.Transport.Mobile/>,
-    <Cards.Medical.Mobile/>,
-    <Cards.Training.Mobile/>
+    <Cards.Green.Mobile/>,
+    <Cards.Education.Mobile/>,
+    <Cards.Technopark.Mobile/>
 ];
 
 const ArrowLeft = () => (

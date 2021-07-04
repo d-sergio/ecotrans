@@ -1,20 +1,20 @@
-import getVisible from "../mechanics/get-visible";
-import handleTouchEvents from "./handle-touch-events";
-import setNewPosition from '../new-position/set-new-position';
-import searchInertialPosition from '../new-position/search-inertial-position';
+import getVisible from '../../mechanics/get-visible';
+import setNewPosition from '../../mechanics/set-new-position';
+import searchInertialPosition from '../../new-position/search-inertial-position';
+import handleMouseEvents from './handle-mouse-events';
 
-function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
-    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
-    handleTouchEvents(touchHandlerProperties);
+function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
+    const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
+    handleMouseEvents(mouseHandlerProperties);
 }
 
-function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
-    const numberOfVisible = getVisible(params.visible, viewport, carousel);
+function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
+    const numberOFvisible = getVisible(params.visible, viewport, carousel);
     const carouselLength = state.children.length;
-
+    
     /*листать карусель есть смысл только, если число слайдов превышает ширину
     слайдера */
-    if (carouselLength < numberOfVisible) {
+    if (carouselLength < numberOFvisible) {
         return;
     }
 
@@ -22,18 +22,17 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
         animate.cancel();
     }
 
-    const touchHandlerProperties = {
+    const mouseHandlerProperties = {
         carousel: carousel,
         viewport: viewport,
         callback: calcInertialMotion,
-        disableScrollingOn: params.disableScrollingOn,
         event: e
     }
     
     if (carousel !== null && viewport !== null){
-        return touchHandlerProperties;
+        return mouseHandlerProperties;
     } else {
-        console.log(`Slider. touchHandler(): sliderTouchHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
+        console.log(`Slider. configureMouseHandler(): configureMouseHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
     }
 
     function calcInertialMotion(speed) {
@@ -56,4 +55,4 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
     }
 }
 
-export default touchHandler;
+export default mouseHandler;

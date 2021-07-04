@@ -1,7 +1,7 @@
-import getVisible from '../mechanics/get-visible';
-import setNewPosition from '../new-position/set-new-position';
-import searchInertialPosition from '../new-position/search-inertial-position';
-import handleMouseEvents from './handle-mouse-events';
+import getVisible from '../../mechanics/get-visible';
+import setNewPosition from '../../mechanics/set-new-position';
+import searchNewPosition from '../../new-position/search-new-position';
+import handleMouseEvents from '../inertial/handle-mouse-events';
 
 function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
     const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
@@ -25,7 +25,7 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
     const mouseHandlerProperties = {
         carousel: carousel,
         viewport: viewport,
-        callback: calcInertialMotion,
+        callback: calcNewPosition,
         event: e
     }
     
@@ -35,23 +35,20 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
         console.log(`Slider. configureMouseHandler(): configureMouseHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
     }
 
-    function calcInertialMotion(speed) {
+    function calcNewPosition(speed) {
         const inertialParams = {
             speed: speed,
-            friction: params.friction,
             treshold: params.treshold,
-            duration: params.duration,
             carousel: carousel,
-            viewport: viewport,
             currentPosition: state.currentPosition
         };
 
         //получить новую позицию и время анимации
-        const newPosition = searchInertialPosition(inertialParams);
+        const newPosition = searchNewPosition(inertialParams);
     
-        animDuration.current = newPosition.animDuration;
+        animDuration.current = params.duration;
     
-        setNewPosition(newPosition.newPosition, state, setState, params, viewport, carousel);
+        setNewPosition(newPosition, state, setState, params, viewport, carousel);
     }
 }
 

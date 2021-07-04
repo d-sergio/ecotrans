@@ -3,16 +3,20 @@
  * src/libs/react-hooks/use-previous-hook.js
 */
 
+//Настраиваемые импорты
+//выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
+import mouseHandler from './event-handlers/ordinary/mouse-handler';
+import touchHandler from './event-handlers/ordinary/touch-handler';
+
+//Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
 import usePrevious from '../../libs/react-hooks/use-previous-hook';
 import updateSlideWidth from './mechanics/update-slide-width';
 import updateCarouselCoords from './mechanics/update-carousel-coords';
 import animateMove from './animation/animate-move';
-import mouseHandler from './event-handlers/mouse-handler';
-import touchHandler from './event-handlers/touch-handler';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 
-import setNewPosition from './new-position/set-new-position';
+import setNewPosition from './mechanics/set-new-position';
 import createSlides from './mechanics/create-slides';
 //import createVisibleSlides from './alternative/create-visible-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';

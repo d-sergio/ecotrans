@@ -1,4 +1,4 @@
-import getVisible from '../mechanics/get-visible';
+import getVisible from './get-visible';
 
 /**Установить новую позицию. Также добавляет новые слайды по необходимости */
 function setNewPosition(destination, state, setState, params, viewport, carousel) {

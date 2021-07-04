@@ -1,0 +1,26 @@
+.style {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 125px;
+
+    font-size: 0.875rem;
+
+    background-image: url(/images/advantages/advantages-mobile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+@media screen and (min-width: 768px) {
+    .style {
+        width: 355px;
+        height: 196px;
+    
+        font-size: 1.5rem;
+    
+        background-image: url(/images/advantages/advantages-desktop.png);
+    }    
+}

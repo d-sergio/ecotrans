@@ -137,7 +137,7 @@ export default function searchInertialPosition(initialParams) {
             function calcNewPosition() {
                 if (params.carousel !== null) {
                     const slideWidth = params.carousel.children[0].offsetWidth;
-                    const calculatedPosition = Math.abs(correctTargetMarginLeft) / slideWidth;
+                    const calculatedPosition = Math.abs(correctTargetMarginLeft - params.adjacentCorrect) / slideWidth;
                     const integer = Math.trunc(calculatedPosition); //округляем до целого вычисленную позицию
                     const fraction = calculatedPosition - integer; //дробная часть позиции(см. описание выше)
                     const treshold = params.treshold;
@@ -151,14 +151,14 @@ export default function searchInertialPosition(initialParams) {
                         return integer;
                     } else if (shift > 0 && (1 - fraction) < treshold) {
                         return integer + 1;
-                    } else if (shift == 0 && calculatedPosition > currentPosition && (1 - fraction) > treshold) {
+                    } else if (shift === 0 && calculatedPosition > currentPosition && (1 - fraction) > treshold) {
                         return integer;
-                    } else if (shift == 0 && calculatedPosition > currentPosition && (1 - fraction) < treshold) {
+                    } else if (shift === 0 && calculatedPosition > currentPosition && (1 - fraction) < treshold) {
                         return integer + 1;
                     }
-                    else if (shift == 0 && calculatedPosition < currentPosition && fraction > treshold) {
+                    else if (shift === 0 && calculatedPosition < currentPosition && fraction > treshold) {
                         return integer + 1;
-                    } else if (shift == 0 && calculatedPosition < currentPosition && fraction < treshold) {
+                    } else if (shift === 0 && calculatedPosition < currentPosition && fraction < treshold) {
                         return integer;
                     } else {
                         return integer;  //например просто клик по неподвижному слайдеру

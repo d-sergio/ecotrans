@@ -67,14 +67,19 @@ function Slider(props) {
             /*Корректировка слайдов и carousel, если добавились слайды
             Перед анимацией выставляем слайдер на предыдущую позицию!*/
             if (prevState.children !== state.children){
-                updateSlideWidth(viewport.current, carousel.current, params.current.visible);
-                updateCarouselCoords(carousel.current, state.prevPosition); //prevPosition!!!
+                const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+
+                updateSlideWidth(viewport.current, carousel.current, params.current.visible, adjacentCorrect);
+                updateCarouselCoords(carousel.current, state.prevPosition, adjacentCorrect); //prevPosition!!!
             }
+
+            const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
 
             animateMove(params.current,
                 state, carousel.current,
                 animate.current,
-                animDuration.current);
+                animDuration.current,
+                adjacentCorrect);
         } else {
             updateWidthAndCoords();
         }
@@ -83,8 +88,10 @@ function Slider(props) {
     }
 
     function updateWidthAndCoords() {
-        updateSlideWidth(viewport.current, carousel.current, params.current.visible);
-        updateCarouselCoords(carousel.current, state.currentPosition);
+        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+
+        updateSlideWidth(viewport.current, carousel.current, params.current.visible, adjacentCorrect);
+        updateCarouselCoords(carousel.current, state.currentPosition, adjacentCorrect);
     }
 
     function buttonHandler(shift) {
@@ -100,23 +107,29 @@ function Slider(props) {
     }
 
     function startMouseHandler(e) {
+        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+
         mouseHandler(e,
             params.current,
             state, setState,
             viewport.current,
             carousel.current,
             animate.current,
-            animDuration);
+            animDuration,
+            adjacentCorrect);
     }
 
     function startTouchHandler(e) {
+        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+
         touchHandler(e,
             params.current,
             state, setState,
             viewport.current,
             carousel.current,
             animate.current,
-            animDuration);
+            animDuration,
+            adjacentCorrect);
     }
 
     return(
@@ -149,6 +162,7 @@ function Slider(props) {
 function createParams(sliderProps) {
     const defaults = {
         visible: 1,
+        adjacent: 0,
         prev: null,
         next: null,
         duration: 500,
@@ -160,4 +174,11 @@ function createParams(sliderProps) {
 
     return Object.assign({}, defaults, sliderProps);
 }
+
+function calcAdjacentCorrect(carousel, adjacent) {
+    if (carousel !== null && carousel.firstChild !== null) {
+        return Number(adjacent * carousel.firstChild.offsetWidth);
+    }
+}
+
 export default Slider;

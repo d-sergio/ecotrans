@@ -1,14 +1,14 @@
 import getVisible from "./get-visible";
 
 /**Задать ширину слайда*/
-function updateSlideWidth(viewport, carousel, visible) {
+function updateSlideWidth(viewport, carousel, visible, adjacentCorrect) {
     try{
         //Рефы могли обнулиться, если компонент был перерисован
         if (viewport !== null && carousel !== null) {
             const numberOfVisible = getVisible(visible, viewport, carousel);
             const viewportWidth = viewport.offsetWidth;
 
-            const slideWidth = viewportWidth/numberOfVisible;
+            const slideWidth = ( viewportWidth - adjacentCorrect * 2 ) / numberOfVisible;
 
             for (let i of carousel.children){
                 i.style.width = slideWidth + 'px';

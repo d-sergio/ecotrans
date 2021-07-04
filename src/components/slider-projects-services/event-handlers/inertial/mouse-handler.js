@@ -1,14 +1,14 @@
 import getVisible from '../../mechanics/get-visible';
 import setNewPosition from '../../mechanics/set-new-position';
 import searchInertialPosition from '../../new-position/search-inertial-position';
-import handleMouseEvents from './handle-mouse-events';
+import handleMouseEvents from '../handle-mouse-events';
 
-function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
-    const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
+function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
+    const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
     handleMouseEvents(mouseHandlerProperties);
 }
 
-function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
+function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
     const numberOFvisible = getVisible(params.visible, viewport, carousel);
     const carouselLength = state.children.length;
     
@@ -43,7 +43,8 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
             duration: params.duration,
             carousel: carousel,
             viewport: viewport,
-            currentPosition: state.currentPosition
+            currentPosition: state.currentPosition,
+            adjacentCorrect: adjacentCorrect
         };
 
         //получить новую позицию и время анимации

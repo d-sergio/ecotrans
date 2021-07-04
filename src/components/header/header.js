@@ -19,7 +19,7 @@ function Header(props) {
 
     const [mobileView, setMobileView] = useState(undefined);
 
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries));
+    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView]);
 
     if (mobileView === undefined) return null;
 

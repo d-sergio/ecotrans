@@ -1,14 +1,14 @@
 import getVisible from "../../mechanics/get-visible";
-import handleTouchEvents from "../inertial/handle-touch-events";
+import handleTouchEvents from "../handle-touch-events";
 import setNewPosition from '../../mechanics/set-new-position';
 import searchNewPosition from '../../new-position/search-new-position';
 
-function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
-    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
+function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
+    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
     handleTouchEvents(touchHandlerProperties);
 }
 
-function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
+function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
     const numberOfVisible = getVisible(params.visible, viewport, carousel);
     const carouselLength = state.children.length;
 
@@ -41,7 +41,8 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
             speed: speed,
             treshold: params.treshold,
             carousel: carousel,
-            currentPosition: state.currentPosition
+            currentPosition: state.currentPosition,
+            adjacentCorrect: adjacentCorrect
         };
 
         //получить новую позицию и время анимации

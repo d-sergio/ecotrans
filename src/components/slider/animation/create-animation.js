@@ -15,13 +15,13 @@ import {Animation, sliderDraw, invertedSliderDraw, changeStyleProperty} from "..
  *      @param {function} callback - необязательный коллбэк выполнится после анимации
  *      @param {number} animDuration - длительность анимации
  */
-export default function createAnimationObject({animDuration, carousel, callback, currentPosition}) {
+export default function createAnimationObject({animDuration, carousel, callback, currentPosition, adjacentCorrect}) {
     try{
         if (carousel !== null){
             const slideWidth = carousel.children[0].offsetWidth;
 
             const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
-            const targetMarginLeft = -currentPosition * slideWidth;
+            const targetMarginLeft = -currentPosition * slideWidth + adjacentCorrect;
 
             const timing = (targetMarginLeft < currentMarginLeft)
                             ? invertedSliderDraw //если листаем к следующему слайду

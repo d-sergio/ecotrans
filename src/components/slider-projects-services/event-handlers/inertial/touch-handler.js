@@ -1,14 +1,14 @@
 import getVisible from "../../mechanics/get-visible";
-import handleTouchEvents from "./handle-touch-events";
+import handleTouchEvents from "../handle-touch-events";
 import setNewPosition from '../../mechanics/set-new-position';
 import searchInertialPosition from '../../new-position/search-inertial-position';
 
-function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
-    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration);
+function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
+    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
     handleTouchEvents(touchHandlerProperties);
 }
 
-function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration) {
+function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
     const numberOfVisible = getVisible(params.visible, viewport, carousel);
     const carouselLength = state.children.length;
 
@@ -33,7 +33,7 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
     if (carousel !== null && viewport !== null){
         return touchHandlerProperties;
     } else {
-        console.log(`Slider. touchHandler(): sliderTouchHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
+        console.log(`Slider. configureTouchHandler(): configureTouchHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
     }
 
     function calcInertialMotion(speed) {
@@ -44,7 +44,8 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
             duration: params.duration,
             carousel: carousel,
             viewport: viewport,
-            currentPosition: state.currentPosition
+            currentPosition: state.currentPosition,
+            adjacentCorrect: adjacentCorrect
         };
 
         //получить новую позицию и время анимации

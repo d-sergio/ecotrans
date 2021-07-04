@@ -41,9 +41,9 @@ export default function createAnimationObject({animDuration, carousel, callback,
 
             return new Animation(animationProps);
         } else {
-            console.log(`Slider. animate-move() остановлен. refs: this.carousel.current is ${this.carousel.current}`);
+            console.log(`Slider. createAnimationObject() остановлен. refs: carousel is ${carousel}`);
         }
     } catch(e) {
-        console.log('Slider Ошибка animate-move(): ' + e.name + ":" + e.message + "\n" + e.stack);
+        console.log('Slider Ошибка createAnimationObject(): ' + e.name + ":" + e.message + "\n" + e.stack);
     }
 }

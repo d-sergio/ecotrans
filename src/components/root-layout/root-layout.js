@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import config from "../../config/config.json";
-import MobileView from "./view-context";
-import mediaQuery from './media-query';
+import config from '../../config/config-media-queries.json';
+import MobileView from './view-context';
+import mediaQuery from '../../libs/react/media-query';
 
 const queries = {
-    mobile: config.appQuery.mobile,
-    desktop: config.appQuery.desktop
+    mobile: config.app.mobile,
+    desktop: config.app.desktop
 };
 
 export default function RootLayout (props) {

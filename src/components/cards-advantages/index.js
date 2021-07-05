@@ -1,7 +1,7 @@
-import Ecologist from "./advantages-ecologist";
-import License from "./advantages-license";
-import Technologies from "./advantages-technologies";
-import Training from "./advantages-training";
+import Ecologist from "./card-adv-ecologist";
+import License from "./card-adv-license";
+import Technologies from "./card-adv-technologies";
+import Training from "./card-adv-training";
 
 const advantages = {
     Ecologist,

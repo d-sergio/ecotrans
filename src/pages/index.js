@@ -1,26 +1,23 @@
 import React from 'react';
 import Layout from '../components/layout/layout';
-import SliderMobile from '../components/slider-projects-services';
+import BlockServicesMobile from '../components/block-services/block-services-mobile/block-services-mobile';
 import Slider from '../components/slider/slider-mobile';
-import {mobileContainerGreen} from '../common-styles/containers.module.css';
-import {servMobile} from './pages-styles/index.module.css';
 
-const servicesStyle = [servMobile, mobileContainerGreen].join(" ");
+import BlockAdvantages from '../components/block-advantages/block-advantages';
+
+
 
 function Index() {
     return (
         <Layout>
-            <div style={{height: '30px'}}></div>
-                <div className={servicesStyle}>
-                    <SliderMobile.Services/>
-                </div>
-            <div style={{height: '30px'}}></div>
-            <div style={{height: '30px'}}></div>
+            <BlockServicesMobile/>
+            {/*<div style={{height: '30px'}}></div>
                 <div className={servicesStyle}>
                     <SliderMobile.Projects/>
-                </div>
+    </div>*/}
             <div style={{height: '30px'}}></div>
             <Slider/>
+            <BlockAdvantages/>
         </Layout>
     );
 };

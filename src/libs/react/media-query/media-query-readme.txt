@@ -1,7 +1,7 @@
 Медиа-запрос
 
 Позволяет обращаться к медиа-запросам из JavaScript. В сравнении с обработчиком
-события window.onresize меньше нагружает браузер, так как событие всплывает
+события window.onresize меньше загружает браузер, так как событие всплывает
 только на заданных размерах окна.
 
 Использование в своём компоненте:
@@ -30,7 +30,7 @@ const queries = {                                           //1
 
 const [mobileView, setMobileView] = useState(undefined);    //2
 
-useEffect(() => mediaQuery(mobileView, setMobileView, queries))   //3
+useEffect(() => mediaQuery(mobileView, setMobileView, queries));   //3
 
 if (mobileView === undefined) return null;                  //4
 

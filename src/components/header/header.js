@@ -1,12 +1,12 @@
 import React, {Suspense, useEffect, useState} from 'react';
 import logoImg from '../../../static/images/logo.png';
 import phoneImg from '../../../static/images/phone.png';
-import mediaQuery from '../root-layout/media-query';
-import config from '../../config/config.json';
+import mediaQuery from '../../libs/react/media-query';
+import config from '../../config/config-media-queries.json';
 
 const queries = {
-    mobile: config.headerQuery.mobile,
-    desktop: config.headerQuery.desktop
+    mobile: config.header.mobile,
+    desktop: config.header.desktop
 };
 
 /**Header

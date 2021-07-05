@@ -1,7 +1,7 @@
 import React from 'react';
-import Slider from '../slider/slider';
-import {text, cards} from './block-advantages-mobile.module.css';
-import Cards from '../cards-advantages';
+import Slider from '../../slider/slider';
+import {text} from './block-adv-mobile.module.css';
+import Cards from '../../cards-advantages';
 
 const advCards = [
     <Cards.Ecologist mobile={true}/>,
@@ -10,7 +10,7 @@ const advCards = [
     <Cards.Training mobile={true}/>
 ]
 
-function AdvMobile() {
+function BlockAdvMobile() {
     const sliderParams = {
         visible: 0,
         adjacent: 0.24
@@ -24,4 +24,4 @@ function AdvMobile() {
     );
 }
 
-export default AdvMobile;
+export default BlockAdvMobile;

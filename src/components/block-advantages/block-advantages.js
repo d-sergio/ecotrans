@@ -1,25 +1,15 @@
-import React, {Suspense, useEffect, useState} from 'react';
-import mediaQuery from '../root-layout/media-query';
-import config from '../../config/config.json';
-
-const queries = {
-    mobile: config.advantagesQuery.mobile,
-    desktop: config.advantagesQuery.desktop
-};
+import React, {Suspense, useContext} from 'react';
+import MobileView from '../root-layout/view-context';
 
 /**Header
  * Props:
  * @param {Boolean} mobile - мобильный вид, если true
  */
 function BlockAdvantages() {
-    const BlockAdvDesktop = React.lazy(() => import("./header-desktop"));
-    const BlockAdvMobile = React.lazy(() => import("./header-mobile"));
+    const BlockAdvDesktop = React.lazy(() => import("./block-adv-desktop/block-adv-desktop"));
+    const BlockAdvMobile = React.lazy(() => import("./block-adv-mobile/block-adv-mobile"));
 
-    const [mobileView, setMobileView] = useState(undefined);
-
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView]);
-
-    if (mobileView === undefined) return null;
+    const mobileView = useContext(MobileView);
 
     return(
         <Suspense fallback={'Загрузка...'}>

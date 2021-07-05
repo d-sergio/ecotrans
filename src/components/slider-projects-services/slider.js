@@ -10,7 +10,7 @@ import touchHandler from './event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
-import usePrevious from '../../libs/react-hooks/use-previous-hook';
+import usePrevious from '../../libs/react/react-hooks/use-previous-hook';
 import updateSlideWidth from './mechanics/update-slide-width';
 import updateCarouselCoords from './mechanics/update-carousel-coords';
 import animateMove from './animation/animate-move';

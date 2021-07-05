@@ -1,6 +1,6 @@
 /**Внешние импорты:
  * src/libs/animate/animate.js
- * src/libs/react-hooks/use-previous-hook.js
+ * src/libs/react/react-hooks/use-previous-hook.js
 */
 
 //Настраиваемые импорты
@@ -10,7 +10,7 @@ import touchHandler from './event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
-import usePrevious from '../../libs/react-hooks/use-previous-hook';
+import usePrevious from '../../libs/react/react-hooks/use-previous-hook';
 import updateSlideWidth from './mechanics/update-slide-width';
 import updateCarouselCoords from './mechanics/update-carousel-coords';
 import animateMove from './animation/animate-move';
@@ -26,9 +26,13 @@ function Slider(props) {
 
     /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
     Проще её сохранить здесь сразу, чем вычислять потом.*/
+    const initPosition = props.params.initPosition === undefined ||
+                        props.params.initPosition === null ?
+                        0: props.params.initPosition;
+
     const initState = {
         prevPosition: 0,
-        currentPosition: props.params.initPosition + children.length || 0 + children.length,
+        currentPosition: initPosition + children.length,
         children: children.concat(children)
     };
 
@@ -44,19 +48,17 @@ function Slider(props) {
     const viewport = useRef(null);
 
     const [state, setState] = useState(initState);
-    const [init, setInit] = useState(false);
     const prevState = usePrevious(state);
 
     /*Вызывается только один раз для инициализации params.current.children
     и установки размеров и начальных координат слайдера*/
-    useEffect(() => initialize(), [init]);
+    useEffect(() => initialize(), []);
 
     useEffect(() => updateComponent());
 
     function initialize() {
         params.current.children = children;
         updateWidthAndCoords();
-        setInit(true);
     }
 
     function updateComponent() {
@@ -107,6 +109,8 @@ function Slider(props) {
     }
 
     function startMouseHandler(e) {
+        if (params.current.freeze) return;
+
         const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
 
         mouseHandler(e,
@@ -120,6 +124,8 @@ function Slider(props) {
     }
 
     function startTouchHandler(e) {
+        if (params.current.freeze) return;
+
         const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
 
         touchHandler(e,
@@ -135,7 +141,7 @@ function Slider(props) {
     return(
         <div className={containerStyle}>
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
-                {params.current.prev}
+                {params.current.freeze ? null : params.current.prev}
             </div>
 
             <div className={viewportStyle} ref={viewport}>
@@ -152,7 +158,7 @@ function Slider(props) {
             </div>
 
             <div className={nextStyle} onClick={() => buttonHandler(1)}>
-                {params.current.next}
+                {params.current.freeze ? null : params.current.next}
             </div>
         </div>
     );
@@ -161,8 +167,10 @@ function Slider(props) {
 /**Если в объекте props.params заполнены не все поля, то меняем их на дефолтные*/
 function createParams(sliderProps) {
     const defaults = {
+        initPosition: 0,
         visible: 1,
         adjacent: 0,
+        freeze: false,
         prev: null,
         next: null,
         duration: 500,

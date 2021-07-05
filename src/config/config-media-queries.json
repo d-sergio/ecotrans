@@ -1,10 +1,14 @@
 {
-    "appQuery": {
+    "app": {
         "mobile": "screen and (min-width: 0px) and (max-width: 767px)",
         "desktop": "screen and (min-width: 768px)"
     },
-    "headerQuery": {
+    "header": {
         "mobile": "screen and (max-width: 1023px)",
         "desktop": "screen and (min-width: 1024px)"
+    },
+    "blockAdvDesktop": {
+        "mobile": "screen and (max-width: 1440px)",
+        "desktop": "screen and (min-width: 1441px)"
     }
 }

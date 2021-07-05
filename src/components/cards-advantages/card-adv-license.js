@@ -1,5 +1,5 @@
 import React from 'react';
-import {mobile, desktop} from './advantages.module.css';
+import {mobile, desktop} from './card-adv.module.css';
 
 function License(props) {
     const style = props.mobile ? mobile : desktop;

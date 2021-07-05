@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../slider/slider';
+import Slider from '../../slider';
 import {text} from './block-adv-mobile.module.css';
 import Cards from '../../cards-advantages';
 

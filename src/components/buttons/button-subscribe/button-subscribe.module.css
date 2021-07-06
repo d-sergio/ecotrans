@@ -3,6 +3,7 @@
     height: 48px;
 
     font-size: 1.25rem;
+    cursor: pointer;
 }
 
 .desktop {
@@ -11,4 +12,5 @@
 
     font-size: 1.375rem;
     text-transform: uppercase;
+    cursor: pointer;
 }

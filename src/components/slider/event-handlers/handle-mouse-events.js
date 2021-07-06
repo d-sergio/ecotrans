@@ -56,6 +56,7 @@ export default function handleMouseEvents({carousel, viewport, callback, event})
 
     //Вычисляем новую позицию
     function sliderMouseUpHandler() {
+        setTimeout(() => {
         window.removeEventListener('mouseup', sliderMouseUpHandler);
         window.removeEventListener('mousemove', sliderMouseMoveHandler);
         
@@ -63,6 +64,6 @@ export default function handleMouseEvents({carousel, viewport, callback, event})
 
         if (callback !== undefined && callback !== null) {
             callback(speed);
-        }
+        }})
     }
 }

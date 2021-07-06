@@ -19,3 +19,16 @@
 
     background-image: url(/images/button-arrow/arrow-small.svg);
 }
+
+/*
+@media screen and (min-width: 360px) and (max-width: 410px) {
+    .arrowMobile{
+        transform: scale(1.125, 1.125);
+    }
+}
+
+@media screen and (min-width: 411px) and (max-width: 768px) {
+    .arrowMobile{
+        transform: scale(1.28, 1.28);
+    }
+}*/

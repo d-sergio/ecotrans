@@ -3,8 +3,13 @@ import getVisible from './get-visible';
 /**Установить новую позицию. Также добавляет новые слайды по необходимости */
 function setNewPosition(destination, state, setState, params, viewport, carousel) {
     let prevPosition = state.currentPosition;   //текущая позиция станет предыдущей, после setState
+    let prevMargin = 0; //текущий сдвиг margin-left carousel станет предыдущим, после setState,
+                        //если количество слайдов изменилось
     let newPosition = destination;
     let newChildren = state.children;
+
+    const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
+    const correctMarginLeft = carousel.firstChild.offsetWidth * params.children.length;
 
     const visible = getVisible(params.visible, viewport, carousel);
 
@@ -20,16 +25,22 @@ function setNewPosition(destination, state, setState, params, viewport, carousel
         newChildren = newChildren.concat(params.children);
         prevPosition = params.children.length + state.currentPosition;
         newPosition = params.children.length + destination;
+
+        /*Если добавлены новые слайды слева, то надо компенсировать сдвиг
+        карусели в обратную сторону*/
+        prevMargin = currentMarginLeft - correctMarginLeft;
     }
     //Добавляем целую ленту params.children справа
     if (destination + visible >= state.children.length) {
         newChildren = newChildren.concat(params.children);
+
+        prevMargin = currentMarginLeft;
     }
 
     /*Чтобы не нагружать браузер бесконечно добавляемыми слайдами, они иногда
     удаляются. Поскольку добавляются целые ленты params.children, то удаление
     происходит тоже целыми лентами params.children. Для этого высчитывается
-    сколько их слева и справа от той целой ленты params.children, в которой
+    сколько таких лент слева и справа от видимой ленты params.children, в которой
     находится currentPosition. Смысл в том, что их должно быть не более одной
     слева и справа.
     */
@@ -42,17 +53,23 @@ function setNewPosition(destination, state, setState, params, viewport, carousel
         newChildren = newChildren.slice( (factorLeft - 1) * params.children.length );
         newPosition = newPosition - (factorLeft - 1) * params.children.length;
         prevPosition = prevPosition - (factorLeft - 1) * params.children.length;
+
+        /*Если удалены слайды слева, то надо компенсировать сдвиг
+        карусели в обратную сторону*/
+        prevMargin = currentMarginLeft + correctMarginLeft;
     }
 
     //Удаляем лишние справа
     if (factorRight >= 2) {
         newChildren = newChildren.slice(0, (factorLeft + 2) * params.children.length);
+        prevMargin = currentMarginLeft;
     }
 
     setState(
         {
             ...setState,
             prevPosition: prevPosition,
+            prevMargin: prevMargin,
             currentPosition: newPosition,
             children: newChildren
         }

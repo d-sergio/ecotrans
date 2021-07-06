@@ -1,7 +1,7 @@
 import getVisible from "../../mechanics/get-visible";
 import handleTouchEvents from "../handle-touch-events";
 import setNewPosition from '../../mechanics/set-new-position';
-import searchNewPosition from '../../new-position/search-new-position';
+import findNewPosition from '../../find-position/find-new-position';
 
 function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
     const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
@@ -46,7 +46,7 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
         };
 
         //получить новую позицию и время анимации
-        const newPosition = searchNewPosition(inertialParams);
+        const newPosition = findNewPosition(inertialParams);
     
         animDuration.current = params.duration;
     

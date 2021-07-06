@@ -13,7 +13,7 @@ const advCards = [
 function BlockAdvMobile() {
     const sliderParams = {
         visible: 0,
-        adjacent: 0.24
+        adjacent: true
     };
 
     return(

@@ -4,7 +4,7 @@ import BlockServices from '../components/block-services';
 import BlockProjects from '../components/block-projects';
 import Slider from '../components/slider/slider-mobile';
 import BlockAdvantages from '../components/block-advantages/block-advantages';
-
+import BlockInstagram from '../components/block-instagram';
 
 
 function Index() {
@@ -18,6 +18,10 @@ function Index() {
             <Slider/>
             <div style={{height: '30px'}}></div>
             <BlockAdvantages/>
+            <div style={{height: '30px'}}></div>
+            <div style={{marginBottom: '87px'}}>
+                <BlockInstagram/>
+            </div>
         </Layout>
     );
 };

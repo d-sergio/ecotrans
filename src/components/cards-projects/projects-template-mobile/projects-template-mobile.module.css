@@ -21,3 +21,15 @@
 
     font-size: 0.875rem;
 }
+
+@media screen and (min-width: 360px) and (max-width: 410px) {
+    .mobile{
+        transform: scale(1.125, 1.125);
+    }
+}
+
+@media screen and (min-width: 411px) and (max-width: 768px) {
+    .mobile{
+        transform: scale(1.28, 1.28);
+    }
+}

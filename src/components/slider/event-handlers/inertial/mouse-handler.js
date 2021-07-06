@@ -1,6 +1,6 @@
 import getVisible from '../../mechanics/get-visible';
 import setNewPosition from '../../mechanics/set-new-position';
-import searchInertialPosition from '../../new-position/search-inertial-position';
+import findInertialPosition from '../../find-position/find-inertial-position';
 import handleMouseEvents from '../handle-mouse-events';
 
 function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
@@ -48,7 +48,7 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
         };
 
         //получить новую позицию и время анимации
-        const newPosition = searchInertialPosition(inertialParams);
+        const newPosition = findInertialPosition(inertialParams);
     
         animDuration.current = newPosition.animDuration;
     

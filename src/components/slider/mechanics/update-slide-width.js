@@ -8,7 +8,7 @@ function updateSlideWidth(viewport, carousel, visible, adjacentCorrect) {
             const numberOfVisible = getVisible(visible, viewport, carousel);
             const viewportWidth = viewport.offsetWidth;
 
-            const slideWidth = ( viewportWidth - adjacentCorrect * 2 ) / numberOfVisible;
+            const slideWidth = ( viewportWidth - adjacentCorrect * 2) / numberOfVisible;
 
             for (let i of carousel.children){
                 i.style.width = slideWidth + 'px';

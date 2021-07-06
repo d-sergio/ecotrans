@@ -16,7 +16,7 @@ const advCards = [
 
 const activeMode = {
     visible: 0,
-    adjacent: 0.24,
+    adjacent: true,
     freeze: false
 };
 

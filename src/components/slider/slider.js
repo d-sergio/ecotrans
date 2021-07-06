@@ -15,6 +15,7 @@ import updateSlideWidth from './mechanics/update-slide-width';
 import updateCarouselCoords from './mechanics/update-carousel-coords';
 import animateMove from './animation/animate-move';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
+import getVisible from './mechanics/get-visible';
 
 import setNewPosition from './mechanics/set-new-position';
 import createSlides from './mechanics/create-slides';
@@ -24,17 +25,22 @@ import createSlides from './mechanics/create-slides';
 function Slider(props) {
     const children = React.Children.toArray(props.children);
 
-    /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
-    Проще её сохранить здесь сразу, чем вычислять потом.*/
     const initPosition = props.params.initPosition === undefined ||
                         props.params.initPosition === null ?
                         0: props.params.initPosition;
 
+    /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
+    prevMargin - положение carousel, перед изменением количества слайдов.
+    Проще и быстрее сохранять их в состоянии, чем вычислять потом.*/
     const initState = {
         prevPosition: 0,
+        prevMargin: 0,
         currentPosition: initPosition + children.length,
         children: children.concat(children)
     };
+
+    const [state, setState] = useState(initState);
+    const prevState = usePrevious(state);
 
     /*Инициализация params. Здесь не добавляется поле children. Оно
     будет определено в первом useEffect инициализации.*/
@@ -46,9 +52,6 @@ function Slider(props) {
     const animate = useRef();   //Здесь будет общедоступный объект анимации. 
     const carousel = useRef(null);
     const viewport = useRef(null);
-
-    const [state, setState] = useState(initState);
-    const prevState = usePrevious(state);
 
     /*Вызывается только один раз для инициализации params.current.children
     и установки размеров и начальных координат слайдера*/
@@ -66,16 +69,26 @@ function Slider(props) {
 
         //запуск анимации
         if (animDuration.current > 0) {
-            /*Корректировка слайдов и carousel, если добавились слайды
-            Перед анимацией выставляем слайдер на предыдущую позицию!*/
+            const adjacentCorrect = calcAdjacentCorrect(
+                viewport.current,
+                carousel.current,
+                params.current.visible,
+                params.current.freeze,
+                params.current.adjacent
+            );
+
             if (prevState.children !== state.children){
-                const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+                /*Корректировка слайдов и carousel, если добавились слайды*/
+                updateSlideWidth(
+                    viewport.current,
+                    carousel.current,
+                    params.current.visible,
+                    adjacentCorrect
+                );
 
-                updateSlideWidth(viewport.current, carousel.current, params.current.visible, adjacentCorrect);
-                updateCarouselCoords(carousel.current, state.prevPosition, adjacentCorrect); //prevPosition!!!
+                /*Перед анимацией сдвигаем carousel в предыдещее положение prevMargin*/
+                carousel.current.style.marginLeft = state.prevMargin + 'px';
             }
-
-            const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
 
             animateMove(params.current,
                 state, carousel.current,
@@ -90,10 +103,26 @@ function Slider(props) {
     }
 
     function updateWidthAndCoords() {
-        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+        const adjacentCorrect = calcAdjacentCorrect(
+            viewport.current,
+            carousel.current,
+            params.current.visible,
+            params.current.freeze,
+            params.current.adjacent
+        );
 
-        updateSlideWidth(viewport.current, carousel.current, params.current.visible, adjacentCorrect);
-        updateCarouselCoords(carousel.current, state.currentPosition, adjacentCorrect);
+        updateSlideWidth(
+            viewport.current,
+            carousel.current,
+            params.current.visible,
+            adjacentCorrect
+        );
+
+        updateCarouselCoords(
+            carousel.current,
+            state.currentPosition,
+            adjacentCorrect
+        );
     }
 
     function buttonHandler(shift) {
@@ -103,7 +132,14 @@ function Slider(props) {
         
         const destination = state.currentPosition + shift
 
-        setNewPosition(destination, state, setState, params.current, viewport.current, carousel.current);
+        setNewPosition(
+            destination,
+            state,
+            setState,
+            params.current,
+            viewport.current,
+            carousel.current
+        );
 
         //setNewPosition(shift, state, setState, params.current, viewport.current, carousel.current); //альтернативный вариант
     }
@@ -111,7 +147,13 @@ function Slider(props) {
     function startMouseHandler(e) {
         if (params.current.freeze) return;
 
-        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+        const adjacentCorrect = calcAdjacentCorrect(
+            viewport.current,
+            carousel.current,
+            params.current.visible,
+            params.current.freeze,
+            params.current.adjacent
+        );
 
         mouseHandler(e,
             params.current,
@@ -126,7 +168,13 @@ function Slider(props) {
     function startTouchHandler(e) {
         if (params.current.freeze) return;
 
-        const adjacentCorrect = calcAdjacentCorrect(carousel.current, params.current.adjacent);
+        const adjacentCorrect = calcAdjacentCorrect(
+            viewport.current,
+            carousel.current,
+            params.current.visible,
+            params.current.freeze,
+            params.current.adjacent
+        );
 
         touchHandler(e,
             params.current,
@@ -152,7 +200,7 @@ function Slider(props) {
                     {createSlides(state.children, slideStyle)
                     /*
                     //альтерантивный вариант
-                    createVisibleSlides(state.children, state.currentPosition, params.current.visible, viewport.current, carousel.current, slideStyle)
+                    createVisibleSlides(state.children, state.currentPosition, params.current.visible, viewport.current, carousel.current, slideStyle, adjacentCorrect)
                     */}
                 </div>
             </div>
@@ -169,7 +217,7 @@ function createParams(sliderProps) {
     const defaults = {
         initPosition: 0,
         visible: 1,
-        adjacent: 0,
+        adjacent: false,
         freeze: false,
         prev: null,
         next: null,
@@ -183,9 +231,17 @@ function createParams(sliderProps) {
     return Object.assign({}, defaults, sliderProps);
 }
 
-function calcAdjacentCorrect(carousel, adjacent) {
-    if (carousel !== null && carousel.firstChild !== null) {
-        return Number(adjacent * carousel.firstChild.offsetWidth);
+function calcAdjacentCorrect(viewport, carousel, visible, freeze, adjacent) {
+    if (freeze || !adjacent) return 0;
+
+    if (carousel !== null && carousel.firstChild !== null && viewport !== null) {
+        const slideWidth = carousel.firstChild.offsetWidth;
+        const viewportWidth = viewport.offsetWidth;
+        const widthOfVisible = getVisible(visible, viewport, carousel) * slideWidth;
+
+        return (viewportWidth - widthOfVisible) / 2;
+    } else {
+        console.log(`Slider: calcAdjacentCorrect() остановлен. refs: carousel is ${carousel}.`)
     }
 }
 

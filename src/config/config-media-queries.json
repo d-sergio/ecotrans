@@ -10,5 +10,9 @@
     "blockAdvDesktop": {
         "mobile": "screen and (max-width: 1440px)",
         "desktop": "screen and (min-width: 1441px)"
+    },
+    "blockInstagramDesktop": {
+        "mobile": "screen and (max-width: 1440px)",
+        "desktop": "screen and (min-width: 1441px)"
     }
 }

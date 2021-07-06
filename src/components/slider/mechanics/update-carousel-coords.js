@@ -1,5 +1,5 @@
 /**Задаём margin-left для carousel, соответствующий текущей позиции слайдера */
-function updateCarouselCoords(carousel, currentPosition, adjacentCorrect) {
+function updateCarouselCoords({carousel, currentPosition, adjacentCorrect}) {
     try{        
         if (carousel !== null){
 

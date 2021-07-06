@@ -1,7 +1,7 @@
 import createAnimation from './create-animation';
 
 /**Анимировать движение слайдера*/
-function animateMove(params, state, carousel, animate, animDuration, adjacentCorrect) {
+function animateMove({params, state, carousel, animate, animDuration, adjacentCorrect}) {
     if (animate) {
         animate.cancel();
     }

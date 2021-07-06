@@ -3,13 +3,19 @@ import setNewPosition from '../../mechanics/set-new-position';
 import findNewPosition from '../../find-position/find-new-position';
 import handleMouseEvents from '../handle-mouse-events';
 
-function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
+function mouseHandler(mouseArgs) {
+    const mouseHandlerProperties = configureMouseHandler(mouseArgs);
     handleMouseEvents(mouseHandlerProperties);
 }
 
-function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const numberOFvisible = getVisible(params.visible, viewport, carousel);
+function configureMouseHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect}) {
+    const visibleArgs = {
+        visible: params.visible,
+        viewport: viewport,
+        carousel: carousel
+    };
+
+    const numberOFvisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
     
     /*листать карусель есть смысл только, если число слайдов превышает ширину
@@ -49,7 +55,16 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
     
         animDuration.current = params.duration;
     
-        setNewPosition(newPosition, state, setState, params, viewport, carousel);
+        const positionArgs = {
+            params: params,
+            state: state,
+            setState: setState,
+            viewport: viewport,
+            carousel: carousel,
+            destination: newPosition
+        };
+
+        setNewPosition(positionArgs);
     }
 }
 

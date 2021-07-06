@@ -9,7 +9,13 @@ function mouseHandler(e, params, state, setState, viewport, carousel, animate, a
 }
 
 function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const numberOFvisible = getVisible(params.visible, viewport, carousel);
+    const visibleArgs = {
+        visible: params.visible,
+        viewport: viewport,
+        carousel: carousel
+    };
+
+    const numberOFvisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
     
     /*листать карусель есть смысл только, если число слайдов превышает ширину
@@ -51,8 +57,17 @@ function configureMouseHandler(e, params, state, setState, viewport, carousel, a
         const newPosition = findInertialPosition(inertialParams);
     
         animDuration.current = newPosition.animDuration;
+
+        const positionArgs = {
+            params: params,
+            state: state,
+            setState: setState,
+            viewport: viewport,
+            carousel: carousel,
+            destination: newPosition.newPosition
+        };
     
-        setNewPosition(newPosition.newPosition, state, setState, params, viewport, carousel);
+        setNewPosition(positionArgs);
     }
 }
 

@@ -1,7 +1,9 @@
 import getVisible from './get-visible';
 
-/**Установить новую позицию. Также добавляет новые слайды по необходимости */
-function setNewPosition(destination, state, setState, params, viewport, carousel) {
+/**Установить новую позицию. Также добавляет новые слайды по необходимости
+ * destination - новая позиция слайдера
+ */
+function setNewPosition({destination, state, setState, params, viewport, carousel}) {
     let prevPosition = state.currentPosition;   //текущая позиция станет предыдущей, после setState
     let prevMargin = 0; //текущий сдвиг margin-left carousel станет предыдущим, после setState,
                         //если количество слайдов изменилось
@@ -11,7 +13,12 @@ function setNewPosition(destination, state, setState, params, viewport, carousel
     const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
     const correctMarginLeft = carousel.firstChild.offsetWidth * params.children.length;
 
-    const visible = getVisible(params.visible, viewport, carousel);
+    const visibleArgs = {
+        visible: params.visible,
+        viewport: viewport,
+        carousel: carousel
+    };
+    const visible = getVisible(visibleArgs);
 
     /*Добавление слайдов в carousel слева или справа дублированием children.
     Смысл в том, что слева и справа от новой позиции всегда должен быть запас

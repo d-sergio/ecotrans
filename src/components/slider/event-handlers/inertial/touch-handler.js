@@ -9,7 +9,13 @@ function touchHandler(e, params, state, setState, viewport, carousel, animate, a
 }
 
 function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const numberOfVisible = getVisible(params.visible, viewport, carousel);
+    const visibleArgs = {
+        visible: params.visible,
+        viewport: viewport,
+        carousel: carousel
+    };
+
+    const numberOfVisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
 
     /*листать карусель есть смысл только, если число слайдов превышает ширину
@@ -52,8 +58,17 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
         const newPosition = findInertialPosition(inertialParams);
     
         animDuration.current = newPosition.animDuration;
+
+        const positionArgs = {
+            params: params,
+            state: state,
+            setState: setState,
+            viewport: viewport,
+            carousel: carousel,
+            destination: newPosition.newPosition
+        };
     
-        setNewPosition(newPosition.newPosition, state, setState, params, viewport, carousel);
+        setNewPosition(positionArgs);
     }
 }
 

@@ -7,7 +7,7 @@
  * create-visible-slides.js
  * set-new-position-alternative.js
 */
-function getVisible(visible, viewport, carousel) {
+function getVisible({visible, viewport, carousel}) {
     if (visible === 0) { //режим автоматического расчёта числа видимых слайдов
 
         return getAutoVisible(viewport, carousel);

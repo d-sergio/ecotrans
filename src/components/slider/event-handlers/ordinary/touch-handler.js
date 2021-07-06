@@ -3,13 +3,19 @@ import handleTouchEvents from "../handle-touch-events";
 import setNewPosition from '../../mechanics/set-new-position';
 import findNewPosition from '../../find-position/find-new-position';
 
-function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
+function touchHandler(touchArgs) {
+    const touchHandlerProperties = configureTouchHandler(touchArgs);
     handleTouchEvents(touchHandlerProperties);
 }
 
-function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const numberOfVisible = getVisible(params.visible, viewport, carousel);
+function configureTouchHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect}) {
+    const visibleArgs = {
+        visible: params.visible,
+        viewport: viewport,
+        carousel: carousel
+    };
+
+    const numberOfVisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
 
     /*листать карусель есть смысл только, если число слайдов превышает ширину
@@ -50,7 +56,16 @@ function configureTouchHandler(e, params, state, setState, viewport, carousel, a
     
         animDuration.current = params.duration;
     
-        setNewPosition(newPosition, state, setState, params, viewport, carousel);
+        const positionArgs = {
+            params: params,
+            state: state,
+            setState: setState,
+            viewport: viewport,
+            carousel: carousel,
+            destination: newPosition
+        };
+
+        setNewPosition(positionArgs);
     }
 }
 

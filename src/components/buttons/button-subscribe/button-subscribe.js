@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'gatsby';
 import {mobile, desktop} from './button-subscribe.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
 
@@ -12,7 +11,7 @@ function ButtonSubscribe (props) {
     const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-    return <Link to='https://www.instagram.com/ecotrans46/'><button className={cssStyle}>Подписаться</button></Link>;
+    return <a href='https://www.instagram.com/ecotrans46/' target="_blank"><button className={cssStyle}>Подписаться</button></a>;
 };
 
 export default ButtonSubscribe;

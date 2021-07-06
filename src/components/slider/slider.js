@@ -83,9 +83,9 @@ function Slider(props) {
             if (prevState.children !== state.children){
                 /*Корректировка слайдов и carousel, если добавились слайды*/
                 const slideArgs = {
-                    visible: viewport.current,
+                    visible: params.current.visible,
                     carousel: carousel.current,
-                    viewport: params.current.visible,
+                    viewport: viewport.current,
                     adjacentCorrect: adjacentCorrect
                 };
 
@@ -118,15 +118,15 @@ function Slider(props) {
             freeze: params.current.freeze,
             visible: params.current.visible,
             carousel: carousel.current,
-            viewport:viewport.current
+            viewport: viewport.current
         };
 
         const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
 
         const slideArgs = {
-            visible: viewport.current,
+            visible: params.current.visible,
             carousel: carousel.current,
-            viewport: params.current.visible,
+            viewport: viewport.current,
             adjacentCorrect: adjacentCorrect
         };
 
@@ -169,7 +169,7 @@ function Slider(props) {
             freeze: params.current.freeze,
             visible: params.current.visible,
             carousel: carousel.current,
-            viewport:viewport.current
+            viewport: viewport.current
         };
 
         const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
@@ -197,7 +197,7 @@ function Slider(props) {
             freeze: params.current.freeze,
             visible: params.current.visible,
             carousel: carousel.current,
-            viewport:viewport.current
+            viewport: viewport.current
         };
 
         const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
@@ -268,7 +268,11 @@ function calcAdjacentCorrect({adjacent, freeze, visible, carousel, viewport}) {
     if (freeze || !adjacent) return 0;
 
     if (carousel !== null && carousel.firstChild !== null && viewport !== null) {
-        const visibleArgs = {visible, viewport, carousel};
+        const visibleArgs = {
+            visible: visible,
+            viewport: viewport,
+            carousel: carousel
+        };
         
         const slideWidth = carousel.firstChild.offsetWidth;
         const viewportWidth = viewport.offsetWidth;

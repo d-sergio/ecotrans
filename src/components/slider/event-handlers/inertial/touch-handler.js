@@ -3,12 +3,12 @@ import handleTouchEvents from "../handle-touch-events";
 import setNewPosition from '../../mechanics/set-new-position';
 import findInertialPosition from '../../find-position/find-inertial-position';
 
-function touchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const touchHandlerProperties = configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
+function touchHandler(touchArgs) {
+    const touchHandlerProperties = configureTouchHandler(touchArgs);
     handleTouchEvents(touchHandlerProperties);
 }
 
-function configureTouchHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
+function configureTouchHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect}) {
     const visibleArgs = {
         visible: params.visible,
         viewport: viewport,

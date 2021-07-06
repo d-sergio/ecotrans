@@ -11,11 +11,11 @@ function Index() {
     return (
         <Layout>
             <div style={{height: '30px'}}></div>
-            {/*<BlockServices/>
+            <BlockServices/>
             <div style={{height: '30px'}}></div>
             <BlockProjects/>
             <div style={{height: '30px'}}></div>
-            <Slider/>*/}
+            <Slider/>
             <div style={{height: '30px'}}></div>
             <BlockAdvantages/>
             <div style={{height: '30px'}}></div>

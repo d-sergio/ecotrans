@@ -3,12 +3,12 @@ import setNewPosition from '../../mechanics/set-new-position';
 import findInertialPosition from '../../find-position/find-inertial-position';
 import handleMouseEvents from '../handle-mouse-events';
 
-function mouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
-    const mouseHandlerProperties = configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect);
+function mouseHandler(mouseArgs) {
+    const mouseHandlerProperties = configureMouseHandler(mouseArgs);
     handleMouseEvents(mouseHandlerProperties);
 }
 
-function configureMouseHandler(e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect) {
+function configureMouseHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect}) {
     const visibleArgs = {
         visible: params.visible,
         viewport: viewport,

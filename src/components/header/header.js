@@ -23,15 +23,21 @@ function Header() {
 
     if (mobileView === undefined) return null;
 
-    return(
-        <Suspense fallback={'Загрузка...'}>
-            {
-                mobileView ?
-                <HeaderMobile logo={logoImg} phone={phoneImg}/>
-                : <HeaderDesktop logo={logoImg} phone={phoneImg}/>
-            }
-        </Suspense>
+    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
+    const isSSR = typeof window === "undefined";
 
+    return(
+        <>
+            {!isSSR && (
+                <Suspense fallback={'Загрузка...'}>
+                    {
+                        mobileView ?
+                        <HeaderMobile logo={logoImg} phone={phoneImg}/>
+                        : <HeaderDesktop logo={logoImg} phone={phoneImg}/>
+                    }
+                </Suspense>
+            )}
+        </>
     );
 }
 

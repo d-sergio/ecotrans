@@ -173,7 +173,9 @@ function Slider(props) {
         };
 
         const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
-
+        
+        /*animDuration без current, так как задать новое значение можно будет
+        потом только через animDuration.current = ... */
         const mouseArgs = {
             e: e,
             params: params.current,

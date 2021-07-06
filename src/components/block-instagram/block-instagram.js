@@ -7,10 +7,17 @@ function BlockInstagram() {
 
     const mobileView = useContext(MobileView);
 
+    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
+    const isSSR = typeof window === "undefined";
+
     return(
-        <Suspense fallback={'Загрузка...'}>
-            {mobileView ? <BlockInstagramMobile/> : <BlockInstagramDesktop/>}
-        </Suspense>
+        <>
+            {!isSSR && (
+            <Suspense fallback={'Загрузка...'}>
+                {mobileView ? <BlockInstagramMobile/> : <BlockInstagramDesktop/>}
+            </Suspense>
+            )}
+        </>
     );
 }
 

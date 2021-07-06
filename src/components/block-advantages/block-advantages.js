@@ -11,15 +11,21 @@ function BlockAdvantages() {
 
     const mobileView = useContext(MobileView);
 
-    return(
-        <Suspense fallback={'Загрузка...'}>
-            {
-                mobileView ?
-                <BlockAdvMobile/>
-                : <BlockAdvDesktop/>
-            }
-        </Suspense>
+    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
+    const isSSR = typeof window === "undefined";
 
+    return(
+        <>
+            {!isSSR && (
+                <Suspense fallback={'Загрузка...'}>
+                    {
+                        mobileView ?
+                        <BlockAdvMobile/>
+                        : <BlockAdvDesktop/>
+                    }
+                </Suspense>
+            )}
+        </>
     );
 }
 

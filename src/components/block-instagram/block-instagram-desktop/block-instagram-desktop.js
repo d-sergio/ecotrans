@@ -15,10 +15,6 @@ const slides = [
     <div className={images}><img src={img1} alt="instagram1"/></div>,
     <div className={images}><img src={img2} alt="instagram2"/></div>,
     <div className={images}><img src={img3} alt="instagram3"/></div>,
-    <div className={images}><img src={img4} alt="instagram4"/></div>,
-    <div className={images}><img src={img1} alt="instagram1"/></div>,
-    <div className={images}><img src={img2} alt="instagram2"/></div>,
-    <div className={images}><img src={img3} alt="instagram3"/></div>,
     <div className={images}><img src={img4} alt="instagram4"/></div>
 ];
 

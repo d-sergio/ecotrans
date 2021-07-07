@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-//import BlockAdvSlider from './adv-desktop-slider';
 import Slider from '../../slider';
 import Cards from '../../cards-advantages';
 import mediaQuery from '../../../libs/react/media-query';
@@ -22,6 +21,7 @@ const activeMode = {
 
 const freezeMode = {
     visible: 4,
+    adjacent: false,
     freeze: true
 }
 

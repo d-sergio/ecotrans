@@ -31,12 +31,16 @@ function Slider(props) {
 
     /*prevPosition - предыдущая позиция, с учётом добавленных слайдов.
     prevMargin - положение carousel, перед изменением количества слайдов.
-    Проще и быстрее сохранять их в состоянии, чем вычислять потом.*/
+    Проще и быстрее сохранять их в состоянии, чем вычислять потом.
+        children копируются в состояние, так как для бесконечной прокрутки
+    надо менять их количество.
+        Слева и справа от текущей позиции при инициализации появляются дубликаты
+    children, поэтому currentPosition меняем, чтобы компенсировать этот сдвиг*/
     const initState = {
         prevPosition: 0,
         prevMargin: 0,
-        currentPosition: initPosition + children.length,
-        children: children.concat(children)
+        children: children.concat(children, children),
+        currentPosition: initPosition + children.length
     };
 
     const [state, setState] = useState(initState);
@@ -46,10 +50,10 @@ function Slider(props) {
     будет определено в первом useEffect инициализации.*/
     const params = useRef(createParams(props.params));
 
-    /*Длительность анимации также указывает, вызывать ли анимацию после
-    изменения состояния слайдера. Ноль - не вызывать анимацию.*/
-    const animDuration = useRef(); 
-    const animate = useRef();   //Здесь будет общедоступный объект анимации. 
+    /*Длительность анимации animDuration также указывает, вызывать ли анимацию
+    после изменения состояния слайдера. Ноль - не вызывать анимацию.*/
+    const animDuration = useRef(0); 
+    const animate = useRef(undefined);   //Здесь будет общедоступный объект анимации. 
     const carousel = useRef(null);
     const viewport = useRef(null);
 
@@ -70,15 +74,7 @@ function Slider(props) {
         //запуск анимации
         if (animDuration.current > 0) {
 
-            const adjacentArgs = {
-                adjacent: params.current.adjacent,
-                freeze: params.current.freeze,
-                visible: params.current.visible,
-                carousel: carousel.current,
-                viewport:viewport.current
-            };
-
-            const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
+            const adjacentCorrect = calcAdjacentCorrect();
 
             if (prevState.children !== state.children){
                 /*Корректировка слайдов и carousel, если добавились слайды*/
@@ -113,15 +109,8 @@ function Slider(props) {
     }
 
     function updateWidthAndCoords() {
-        const adjacentArgs = {
-            adjacent: params.current.adjacent,
-            freeze: params.current.freeze,
-            visible: params.current.visible,
-            carousel: carousel.current,
-            viewport: viewport.current
-        };
 
-        const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
+        const adjacentCorrect = calcAdjacentCorrect();
 
         const slideArgs = {
             visible: params.current.visible,
@@ -138,6 +127,31 @@ function Slider(props) {
 
         updateSlideWidth(slideArgs);
         updateCarouselCoords(coordsArgs);
+    }
+
+    /**Рассчитать то свободное пространство, которые могут заполнить соседние
+     * слайды, не попадающие в viewport */
+    function calcAdjacentCorrect() {
+        if (!params.current.adjacent) return 0;
+    
+        if (carousel.current !== null
+            && carousel.current.firstChild !== null
+            && viewport.current !== null) {
+
+            const visibleArgs = {
+                visible: params.current.visible,
+                viewport: viewport.current,
+                carousel: carousel.current
+            };
+            
+            const slideWidth = carousel.current.firstChild.offsetWidth;
+            const viewportWidth = viewport.current.offsetWidth;
+            const widthOfVisible = getVisible(visibleArgs) * slideWidth;
+    
+            return (viewportWidth - widthOfVisible) / 2;
+        } else {
+            console.log(`Slider: calcAdjacentCorrect() остановлен. refs: carousel is ${carousel}.`)
+        }
     }
 
     function buttonHandler(shift) {
@@ -164,16 +178,10 @@ function Slider(props) {
     function startMouseHandler(e) {
         if (params.current.freeze) return;
 
-        const adjacentArgs = {
-            adjacent: params.current.adjacent,
-            freeze: params.current.freeze,
-            visible: params.current.visible,
-            carousel: carousel.current,
-            viewport: viewport.current
-        };
-
-        const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
-
+        const adjacentCorrect = calcAdjacentCorrect();
+        
+        /*animDuration без current, так как задать новое значение в mouseHandler
+        можно будет только через animDuration.current = ... */
         const mouseArgs = {
             e: e,
             params: params.current,
@@ -192,18 +200,10 @@ function Slider(props) {
     function startTouchHandler(e) {
         if (params.current.freeze) return;
 
-        const adjacentArgs = {
-            adjacent: params.current.adjacent,
-            freeze: params.current.freeze,
-            visible: params.current.visible,
-            carousel: carousel.current,
-            viewport: viewport.current
-        };
+        const adjacentCorrect = calcAdjacentCorrect();
 
-        const adjacentCorrect = calcAdjacentCorrect(adjacentArgs);
-
-        /*animDuration без current, так как задать новое значение можно будет
-        потом только через animDuration.current = ... */
+        /*animDuration без current, так как задать новое значение в touchHandler
+        можно будет только через animDuration.current = ... */
         const touchArgs = {
             e: e,
             params: params.current,
@@ -262,26 +262,6 @@ function createParams(sliderProps) {
     };
 
     return Object.assign({}, defaults, sliderProps);
-}
-
-function calcAdjacentCorrect({adjacent, freeze, visible, carousel, viewport}) {
-    if (freeze || !adjacent) return 0;
-
-    if (carousel !== null && carousel.firstChild !== null && viewport !== null) {
-        const visibleArgs = {
-            visible: visible,
-            viewport: viewport,
-            carousel: carousel
-        };
-        
-        const slideWidth = carousel.firstChild.offsetWidth;
-        const viewportWidth = viewport.offsetWidth;
-        const widthOfVisible = getVisible(visibleArgs) * slideWidth;
-
-        return (viewportWidth - widthOfVisible) / 2;
-    } else {
-        console.log(`Slider: calcAdjacentCorrect() остановлен. refs: carousel is ${carousel}.`)
-    }
 }
 
 export default Slider;

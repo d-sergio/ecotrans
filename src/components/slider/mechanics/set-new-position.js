@@ -4,12 +4,14 @@ import getVisible from './get-visible';
  * destination - новая позиция слайдера
  */
 function setNewPosition({destination, state, setState, params, viewport, carousel}) {
-    let prevPosition = state.currentPosition;   //текущая позиция станет предыдущей, после setState
-    let prevMargin = 0; //текущий сдвиг margin-left carousel станет предыдущим, после setState,
-                        //если количество слайдов изменилось
-    let newPosition = destination;
-    let newChildren = state.children;
-
+    /**текущая позиция и сдвиг margin-left carousel станут предыдущими, после setState*/
+    let prevPosition = state.currentPosition;
+    let prevMargin = 0;
+    let newChildren = state.children;   //возможно, будут добавлены/удалены слайды
+    let newPosition = destination;  //возможно, будет корректироваться позиция из-за
+                                    //добавления/удаления слайдов
+    
+    //Заранее вычислим всё, что может потребоваться далее, в зависимости от условий
     const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
     const correctMarginLeft = carousel.firstChild.offsetWidth * params.children.length;
 
@@ -27,6 +29,7 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
     элементы, которые были получены компонентом Slider из props.children, а
     state.children - это те элементы, которые фактически отрендерены. Поэтому
     к фактически отреднеренным добавляются полученные из пропс.*/
+
     //Добавляем целую ленту params.children слева
     if (destination - visible < 0) {
         newChildren = newChildren.concat(params.children);
@@ -48,8 +51,8 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
     удаляются. Поскольку добавляются целые ленты params.children, то удаление
     происходит тоже целыми лентами params.children. Для этого высчитывается
     сколько таких лент слева и справа от видимой ленты params.children, в которой
-    находится currentPosition. Смысл в том, что их должно быть не более одной
-    слева и справа.
+    находится currentPosition. Смысл в том, что должно быть не более одной целой
+    ленты слева и справа от viewport.
     */
     //Целых лент params.children слева и справа
     const factorLeft = Math.floor( newPosition / params.children.length );

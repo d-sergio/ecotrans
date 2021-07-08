@@ -5,14 +5,14 @@ import BlockProjects from '../components/block-projects';
 import Slider from '../components/slider/slider-mobile';
 import BlockAdvantages from '../components/block-advantages/block-advantages';
 import BlockInstagram from '../components/block-instagram';
-
+import BlockStats from '../components/block-statistics';
 
 function Index() {
     return (
         <Layout>
             <div style={{height: '30px'}}></div>
             <BlockServices/>
-            <div style={{height: '30px'}}></div>
+            <BlockStats/>
             <BlockProjects/>
             <div style={{height: '30px'}}></div>
             <Slider/>

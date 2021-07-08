@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import MobileView from '../components/root-layout/view-context';
 import Layout from '../components/layout/layout';
-import BlockStatsDesktop from '../components/block-statistics/block-statistics-desktop/block-stats-desktop';
+import BlockStatsDesktop from '../components/block-statistics/block-stats-desktop';
 
 function Test() {
     const view = useContext(MobileView);

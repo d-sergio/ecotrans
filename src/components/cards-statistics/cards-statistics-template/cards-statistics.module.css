@@ -1,7 +1,11 @@
 .styleMobile{
-    width: 134px;
-    min-width: 134px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 150px;
+    height: 150px;
 
     transition: transform 0.5s;
 }
@@ -14,13 +18,19 @@
 }
 
 .textMobile{
+    text-align: center;
     font-size: 0.75rem;
     line-height: 1rem;
 }
 
 .styleDesktop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 220px;
-    text-align: center;
+    height: 160px;
 
     transition: transform 0.5s;
 }
@@ -33,6 +43,7 @@
 }
 
 .textDesktop{
+    text-align: center;
     font-size: 1.125rem;
     line-height: 1.5rem;
 }

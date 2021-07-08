@@ -7,7 +7,7 @@ function updateCarouselCoords({carousel, currentPosition, adjacentCorrect}) {
             
             carousel.style.marginLeft = carouselMarginLeft + adjacentCorrect + 'px';
         } else {
-            console.log(`Slider. updateCarouselCoords() остановлен. refs: carousel is ${carousel}.`);
+            console.log(`Slider. updateCarouselCoords() остановлен. Refs: carousel is ${carousel}.`);
         }
 
     } catch(e) {

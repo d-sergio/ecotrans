@@ -236,15 +236,7 @@ function Slider(props) {
         
         timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
-        /*Отключение автопрокрутки после touch-событий. Вешаем здесь, так как из render
-        не сработает*/
-        //container.current.addEventListener('touchstart', cancelAutoMove, {once: true});
-
-        return () => {
-            clearTimeout(timer.current);
-            
-            //container.current.removeEventListener('touchstart', cancelAutoMove, {once: true});
-        }
+        return () => clearTimeout(timer.current);
     }
 
     /**Отмена автопрокрутки карусели */
@@ -272,7 +264,8 @@ function Slider(props) {
     return(
         <div className={containerStyle} ref={container}
             onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
+            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

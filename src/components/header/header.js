@@ -1,4 +1,5 @@
-import React, {Suspense, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import GatsbySuspense from '../gatsby-suspense';
 import logoImg from '../../../static/images/logo.png';
 import phoneImg from '../../../static/images/phone.png';
 import mediaQuery from '../../libs/react/media-query';
@@ -23,21 +24,14 @@ function Header() {
 
     if (mobileView === undefined) return null;
 
-    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
-    const isSSR = typeof window === "undefined";
-
     return(
-        <>
-            {!isSSR && (
-                <Suspense fallback={'Загрузка...'}>
-                    {
-                        mobileView ?
-                        <HeaderMobile logo={logoImg} phone={phoneImg}/>
-                        : <HeaderDesktop logo={logoImg} phone={phoneImg}/>
-                    }
-                </Suspense>
-            )}
-        </>
+        <GatsbySuspense>
+            {
+                mobileView ?
+                <HeaderMobile logo={logoImg} phone={phoneImg}/>
+                : <HeaderDesktop logo={logoImg} phone={phoneImg}/>
+            }
+        </GatsbySuspense>
     );
 }
 

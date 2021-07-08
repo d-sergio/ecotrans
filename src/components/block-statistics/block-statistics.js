@@ -1,4 +1,5 @@
-import React, {Suspense, useContext} from 'react';
+import React, {useContext} from 'react';
+import GatsbySuspense from '../gatsby-suspense';
 import MobileView from '../root-layout/view-context';
 
 /**BlockStatistics
@@ -11,21 +12,14 @@ function BlockStatistics() {
 
     const mobileView = useContext(MobileView);
 
-    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
-    const isSSR = typeof window === "undefined";
-
     return(
-        <>
-            {!isSSR && (
-                <Suspense fallback={'Загрузка...'}>
-                    {
-                        mobileView ?
-                        <BlockStatisticsMobile/>
-                        : <BlockStatisticsDesktop/>
-                    }
-                </Suspense>
-            )}
-        </>
+        <GatsbySuspense>
+            {
+                mobileView ?
+                <BlockStatisticsMobile/>
+                : <BlockStatisticsDesktop/>
+            }
+        </GatsbySuspense>
     );
 }
 

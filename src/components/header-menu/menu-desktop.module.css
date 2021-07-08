@@ -4,16 +4,17 @@
     align-items: center;
 
     width: 463px;
-    /*margin-left: -45px;*/
 }
 
-.menu a{
-    /*margin-left: 45px;*/
+.link{
+    min-width: 100px;
+    text-align: center;
 
-    transition: all 0.3s;
+    transition: all 0.1s;
 }
 
-.menu span a:hover{
-    /*transform: scale(1.125, 1.125);*/
+.link:hover{
+    transform: scale(1.125, 1.125);
     font-family: "MontserratBold";
+    font-weight: 700;
 }

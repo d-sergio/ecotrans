@@ -11,10 +11,10 @@ function HeaderDesktop(props) {
     );
 
     const Phone = () => (
-        <div className={phone}>
-            <img src={props.phone} alt="phone"/>
-            +7 (906)577-49-34
-        </div>
+            <a className={phone} href="tel:+7 (906)577-49-34">
+                <img src={props.phone} alt="phone"/>
+                +7 (906)577-49-34
+            </a>
     );
 
     return(

@@ -1,4 +1,5 @@
-import React, {Suspense, useContext} from 'react';
+import React, {useContext} from 'react';
+import GatsbySuspense from '../gatsby-suspense';
 import MobileView from '../root-layout/view-context';
 
 /**BlockAdvantages
@@ -11,21 +12,14 @@ function BlockAdvantages() {
 
     const mobileView = useContext(MobileView);
 
-    //Защита для build, так как React.lazy и Suspense не совместимы с SSR
-    const isSSR = typeof window === "undefined";
-
     return(
-        <>
-            {!isSSR && (
-                <Suspense fallback={'Загрузка...'}>
-                    {
-                        mobileView ?
-                        <BlockAdvMobile/>
-                        : <BlockAdvDesktop/>
-                    }
-                </Suspense>
-            )}
-        </>
+        <GatsbySuspense>
+            {
+                mobileView ?
+                <BlockAdvMobile/>
+                : <BlockAdvDesktop/>
+            }
+        </GatsbySuspense>
     );
 }
 

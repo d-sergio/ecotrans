@@ -1,4 +1,5 @@
-import React, {useContext, Suspense} from 'react';
+import React, {useContext} from 'react';
+import GatsbySuspense from '../gatsby-suspense';
 import MobileView from '../root-layout/view-context';
 
 function BlockInstagram() {
@@ -11,13 +12,9 @@ function BlockInstagram() {
     const isSSR = typeof window === "undefined";
 
     return(
-        <>
-            {!isSSR && (
-            <Suspense fallback={'Загрузка...'}>
-                {mobileView ? <BlockInstagramMobile/> : <BlockInstagramDesktop/>}
-            </Suspense>
-            )}
-        </>
+        <GatsbySuspense>
+            {mobileView ? <BlockInstagramMobile/> : <BlockInstagramDesktop/>}
+        </GatsbySuspense>
     );
 }
 

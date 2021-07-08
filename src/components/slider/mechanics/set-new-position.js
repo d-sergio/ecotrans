@@ -77,7 +77,7 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
 
     setState(
         {
-            ...setState,
+            ...state,
             prevPosition: prevPosition,
             prevMargin: prevMargin,
             currentPosition: newPosition,

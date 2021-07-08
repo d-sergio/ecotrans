@@ -1,16 +1,19 @@
 .menu{
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
-    margin-left: -45px;
+    width: 463px;
+    /*margin-left: -45px;*/
 }
 
 .menu a{
-    margin-left: 45px;
+    /*margin-left: 45px;*/
 
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
-.menu a:hover{
-    color: #F97C08;
+.menu span a:hover{
+    /*transform: scale(1.125, 1.125);*/
+    font-family: "MontserratBold";
 }

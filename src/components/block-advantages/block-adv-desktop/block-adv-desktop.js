@@ -13,18 +13,6 @@ const advCards = [
     <Cards.Training/>
 ];
 
-const activeMode = {
-    visible: 0,
-    adjacent: true,
-    freeze: false
-};
-
-const freezeMode = {
-    visible: 4,
-    adjacent: false,
-    freeze: true
-}
-
 /**Блок "Преимущества работы с нами"
  * 
  * По смыслу в работе с mediaQuery тут active равен mobile
@@ -47,8 +35,8 @@ function BlockAdvDesktop() {
                 <div className={text}>Преимущества работы с нами</div>
             </div>
             {
-                active ? <Slider key={1} params={activeMode}>{advCards}</Slider>
-                : <Slider key={2} params={freezeMode}>{advCards}</Slider>
+                active ? <Slider key={1} visible={0} adjacent={true} freeze={false}>{advCards}</Slider>
+                : <Slider key={2} visible={4} adjacent={false} freeze={true}>{advCards}</Slider>
             }
         </>
     );

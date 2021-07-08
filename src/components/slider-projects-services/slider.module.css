@@ -1,12 +1,14 @@
 .containerStyle{
     display: flex;
-    position: relative;
+    position: relative; /*Модификация: кнопки перекрывают карусель*/
     width: 100%;
     height: 298px;  /*Модификация: фиксируем высоту*/
 }
 
 .prevStyle{
     display: flex;
+
+    /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
     left: 0;
@@ -15,6 +17,8 @@
 
 .nextStyle{
     display: flex;
+
+    /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
     right: 0;

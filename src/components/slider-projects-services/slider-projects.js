@@ -4,14 +4,7 @@ import Buttons from '../buttons';
 import Cards from '../cards-projects';
 
 function SliderProjects() {
-    const params = {
-        visible: 1,
-        treshold: 0.1,
-        prev: <ArrowLeft/>,
-        next: <ArrowRight/>
-    };
-    
-    return <Slider params={params}>{cards}</Slider>;
+    return <Slider visible={1} treshold={0.1} prev={<ArrowLeft/>} next={<ArrowRight/>}>{cards}</Slider>;
 }
 
 export default SliderProjects;

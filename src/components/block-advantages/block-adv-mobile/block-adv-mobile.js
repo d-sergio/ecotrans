@@ -11,15 +11,10 @@ const advCards = [
 ]
 
 function BlockAdvMobile() {
-    const sliderParams = {
-        visible: 0,
-        adjacent: true
-    };
-
     return(
         <div>
             <div className={text}>Наши преимущества</div>
-            <Slider params={sliderParams}>{advCards}</Slider>
+            <Slider visible={0} adjacent={true}>{advCards}</Slider>
         </div>
     );
 }

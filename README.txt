@@ -63,3 +63,16 @@ Ecologist, License, Technologies, Training
     import Cards from '../components/cards-advantages';
     ...
     <Cards.Ecologist mobile={true}/>
+
+6. cards-statistics
+
+Карточки статистики: 10 лет успешной работы, 2396 Контрагентов ТКО и т.д.:
+
+DangerClass, TenYears, Tko, WasteClass, MedicalWaste
+
+Пропс mobile={true} переключает на мобильный вариант.
+Пропс active={true} делает элемент больше (активный)
+
+    import Cards from '../components/cards-statistics
+    ...
+    <Cards.DangerClass mobile={true} active={true}/>

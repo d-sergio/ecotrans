@@ -18,17 +18,6 @@ const slides = [
     <div className={images}><img src={img4} alt="instagram4"/></div>
 ];
 
-const activeMode = {
-    visible: 0,
-    adjacent: true,
-    freeze: false
-};
-
-const freezeMode = {
-    visible: 4,
-    freeze: true
-}
-
 /**Блок Instagram (десктопный)
  * 
  * По смыслу в работе с mediaQuery тут active равен mobile
@@ -51,8 +40,8 @@ function BlockInstagramDesktop() {
                 <p className={title}>Будьте в курсе!</p><br/>
             </div>
                 {
-                    active ? <Slider key={1} params={activeMode}>{slides}</Slider>
-                    : <Slider key={2} params={freezeMode}>{slides}</Slider>
+                    active ? <Slider key={1} visible={0} adjacent={true} freeze={false}>{slides}</Slider>
+                    : <Slider key={2} visible={4} freeze={true}>{slides}</Slider>
                 }
             <div className={desktopContainer}>
                 <div className={subscribe}>

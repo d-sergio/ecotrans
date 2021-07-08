@@ -11,7 +11,7 @@ function SliderServices() {
         next: <ArrowRight/>
     };
     
-    return <Slider params={params}>{cards}</Slider>;
+    return <Slider visible={1} treshold={0.1} prev={<ArrowLeft/>} next={<ArrowRight/>}>{cards}</Slider>;
 }
 
 export default SliderServices;

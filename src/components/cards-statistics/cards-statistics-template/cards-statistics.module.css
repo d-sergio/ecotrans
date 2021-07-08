@@ -1,0 +1,38 @@
+.styleMobile{
+    width: 134px;
+    min-width: 134px;
+    text-align: center;
+
+    transition: transform 0.5s;
+}
+
+.numberMobile{
+    font-family: "MontserratBold";
+    font-size: 2.625rem;
+    color: #07C1A2;
+
+}
+
+.textMobile{
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.styleDesktop{
+    width: 220px;
+    text-align: center;
+
+    transition: transform 0.5s;
+}
+
+.numberDesktop{
+    font-family: "MontserratBold";
+    font-size: 2.625rem;
+    color: #07C1A2;
+
+}
+
+.textDesktop{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}

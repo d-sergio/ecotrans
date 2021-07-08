@@ -5,10 +5,10 @@ import {menu} from './menu-desktop.module.css';
 function MenuDesktop() {
     return (
         <div className={menu}>
-            <Link to='/'>Услуги</Link>
-            <Link to='/'>Проекты</Link>
-            <Link to='/'>Клиентам</Link>
-            <Link to='/'>Контакты</Link>
+            <span style={{minWidth: '70px', textAlign: 'center'}}><Link to='/'>Услуги</Link></span>
+            <span style={{minWidth: '90px', textAlign: 'center'}}><Link to='/'>Проекты</Link></span>
+            <span style={{minWidth: '100px', textAlign: 'center'}}><Link to='/'>Клиентам</Link></span>
+            <span style={{minWidth: '95px', textAlign: 'center'}}><Link to='/'>Контакты</Link></span>
         </div>
     );
 }

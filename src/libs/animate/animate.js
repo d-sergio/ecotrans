@@ -202,6 +202,12 @@ export function changeStylePropertyAbs(element, property, actualValue, units) {
     element.style[property] = Math.abs(actualValue) + units;
 }
 
+/**Функция отрисовки, изменяющая transform: scale(x, x). При этом два аргумента,
+ * получаемые scale равны друг другу, для пропорционального масштабирования */
+export function changeTransformScale(element, property, actualValue, units) {
+    element.style.transform = `scale(${actualValue}, ${actualValue})`;
+}
+
 /** Задержка, чтобы анимация исчезновения предыдущего слайда завершилась полностью,
  * прежде чем состояние компонента slides-viewer.js изменится и начнётся
  * следующая анимация

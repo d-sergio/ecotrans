@@ -14,5 +14,9 @@
     "blockInstagramDesktop": {
         "mobile": "screen and (max-width: 1440px)",
         "desktop": "screen and (min-width: 1441px)"
+    },
+    "blockStatsDesktop": {
+        "mobile": "screen and (max-width: 1099px)",
+        "desktop": "screen and (min-width: 1100px)"
     }
 }

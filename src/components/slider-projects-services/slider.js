@@ -16,6 +16,7 @@ import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
 import animateMove from '../slider/animation/animate-move';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 import getVisible from '../slider/mechanics/get-visible';
+import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
 import createSlides from '../slider/create-slides/create-slides';
@@ -65,6 +66,10 @@ function Slider(props) {
     function updateComponent() {
         window.addEventListener('resize', updateWidthAndCoords);
 
+        if (typeof(props.visible) === 'object' || props.visible === 0) {
+            window.addEventListener('resize', startCheckBounds);
+        }
+
         //запуск анимации
         if (animDuration.current > 0) {
 
@@ -82,7 +87,11 @@ function Slider(props) {
                 updateSlideWidth(slideArgs);
 
                 /*Перед анимацией сдвигаем carousel в предыдещее положение prevMargin*/
-                carousel.current.style.marginLeft = state.prevMargin + 'px';
+                if (carousel.current !== undefined || carousel.current !== null) {
+                    carousel.current.style.marginLeft = state.prevMargin + 'px';
+                } else {
+                    console.log(`Slider. updateComponent() остановлен: ref carousel is ${carousel.current}`);
+                }
             }
 
             const moveArgs = {
@@ -99,7 +108,13 @@ function Slider(props) {
             updateWidthAndCoords();
         }
 
-        return () => window.removeEventListener('resize', updateWidthAndCoords);
+        return () => {
+            window.removeEventListener('resize', updateWidthAndCoords);
+
+            if (typeof(props.visible) === 'object' || props.visible === 0) {
+                window.removeEventListener('resize', startCheckBounds);
+            }
+        };
     }
 
     function updateWidthAndCoords() {
@@ -219,14 +234,7 @@ function Slider(props) {
         
         timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
-        /*Отключение автопрокрутки после touch-событий. Вешаем здесь, так как из render
-        не сработает*/
-        container.current.addEventListener('touchstart', cancelAutoMove, {once: true});
-
-        return () => {
-            clearTimeout(timer.current);
-            container.current.removeEventListener('touchstart', cancelAutoMove, {once: true});
-        }
+        return () => clearTimeout(timer.current);
     }
 
     /**Отмена автопрокрутки карусели */
@@ -238,9 +246,23 @@ function Slider(props) {
         setState({...state, autoMove: false});
     }
 
+    function startCheckBounds() {
+        const boundsArgs = {
+            state: state,
+            setState: setState,
+            visible: props.visible,
+            viewport: viewport.current,
+            carousel: carousel.current,
+            animDuration: animDuration
+        };
+
+        checkBounds(boundsArgs);
+    }
+
     return(
         <div className={containerStyle} ref={container}
-            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
+            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

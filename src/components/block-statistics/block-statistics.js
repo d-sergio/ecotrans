@@ -7,8 +7,8 @@ import MobileView from '../root-layout/view-context';
  * @param {Boolean} mobile - мобильный вид, если true
  */
 function BlockStatistics() {
-    const BlockStatisticsDesktop = React.lazy(() => import("./block-adv-desktop/block-adv-desktop"));
-    const BlockStatisticsMobile = React.lazy(() => import("./block-adv-mobile/block-adv-mobile"));
+    const BlockStatsDesktop = React.lazy(() => import("./block-adv-desktop/block-adv-desktop"));
+    const BlockStatsMobile = React.lazy(() => import("./block-adv-mobile/block-adv-mobile"));
 
     const mobileView = useContext(MobileView);
 

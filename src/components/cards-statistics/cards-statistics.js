@@ -1,7 +1,7 @@
 import React from 'react';
 import CardsStatisticTemp from "./cards-statistics-template";
 
-function DangerClass(props) {
+export function DangerClass(props) {
     const number = '155';
     const text = <div>Контрагентов<br/>БВ класса опасности</div>;
 
@@ -10,7 +10,7 @@ function DangerClass(props) {
     );
 }
 
-function TenYears(props) {
+export function TenYears(props) {
     const number = '10';
     const text = <div>Лет успешной<br/>работы</div>;
 
@@ -19,7 +19,7 @@ function TenYears(props) {
     );
 }
 
-function Tko(props) {
+export function Tko(props) {
     const number = '2396';
     const text = <div>Контрагентов<br/>ТКО</div>;
 
@@ -28,7 +28,7 @@ function Tko(props) {
     );
 }
 
-function WasteClass(props) {
+export function WasteClass(props) {
     const number = '134';
     const text = <div>Контрагентов<br/>3 и 4 классов отходов</div>;
 
@@ -37,7 +37,7 @@ function WasteClass(props) {
     );
 }
 
-function MedicalWaste(props) {
+export function MedicalWaste(props) {
     const number = '281';
     const text = <div>Контрагентов<br/>медотходов</div>;
 
@@ -45,5 +45,3 @@ function MedicalWaste(props) {
         <CardsStatisticTemp mobile={props.mobile} active={props.active} number={number} text={text}/>
     );
 }
-
-export default {DangerClass, TenYears, Tko, WasteClass, MedicalWaste};

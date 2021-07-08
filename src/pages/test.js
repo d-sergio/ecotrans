@@ -1,8 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import MobileView from '../components/root-layout/view-context';
-import CardsStatistics from '../components/cards-statistics/cards-statistics';
 import Layout from '../components/layout/layout';
-import SliderStatistics from '../components/slider-statistics/slider';
+import BlockStatsDesktop from '../components/block-statistics/block-statistics-desktop/block-stats-desktop';
 
 function Test() {
     const view = useContext(MobileView);
@@ -19,15 +18,7 @@ function Test() {
 
     return (
         <Layout>
-            <div style={{display: 'flex'}}>
-                <SliderStatistics visible={5} autoMove={true} cancelAutoMove={true}>
-                    <CardsStatistics.DangerClass/>
-                    <CardsStatistics.TenYears/>
-                    <CardsStatistics.Tko/>
-                    <CardsStatistics.WasteClass/>
-                    <CardsStatistics.MedicalWaste/>
-                </SliderStatistics>
-            </div>
+            <BlockStatsDesktop/>
             {view ? 'mobile' : 'desktop'}
         </Layout>);
 };

@@ -66,7 +66,7 @@ Ecologist, License, Technologies, Training
 
 6. cards-statistics
 
-Карточки статистики: 10 лет успешной работы, 2396 Контрагентов ТКО и т.д.:
+Карточки статистики (10 лет успешной работы, 2396 Контрагентов ТКО и т.д.):
 
 DangerClass, TenYears, Tko, WasteClass, MedicalWaste
 
@@ -76,3 +76,22 @@ DangerClass, TenYears, Tko, WasteClass, MedicalWaste
     import Cards from '../components/cards-statistics
     ...
     <Cards.DangerClass mobile={true} active={true}/>
+
+Также переходят в активное состояние под курсором мыши. Но после этого теряют
+способность активироваться через пропс
+
+7. cards-partners
+
+Карточки Наши партнёры:
+
+EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia
+
+Пропс mobile={true} переключает на мобильный вариант.
+Пропс active={true} делает элемент больше и подсвечивает зелёным (активный)
+
+    import Cards from '../components/cards-partners
+    ...
+    <Cards.EcoFund mobile={true} active={true}/>
+
+Также переходят в активное состояние под курсором мыши. Но после этого теряют
+способность активироваться через пропс

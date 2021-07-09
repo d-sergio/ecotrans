@@ -8,7 +8,7 @@ const advCards = [
     <Cards.License mobile={true}/>,
     <Cards.Technologies mobile={true}/>,
     <Cards.Training mobile={true}/>
-]
+];
 
 function BlockAdvMobile() {
     return(

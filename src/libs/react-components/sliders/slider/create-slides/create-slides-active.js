@@ -11,7 +11,7 @@ function createSlidesActive({children, currentPosition, autoMove, slideStyle, vi
     const highlight = Math.ceil(numberOfVisible / 2);
 
     for (let i = 0; i < children.length; i++) {
-        const active = i === currentPosition + highlight - 1 ? true : false;
+        const active = autoMove && i === currentPosition + highlight - 1 ? true : false;
 
         /*overflow: 'visible' чтобы при transform: scale() содержимое slide
         не обрезалось*/

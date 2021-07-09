@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../../libs/react-components/sliders/slider-highlight/slider';
+import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-statistics';
 
 const cards = [

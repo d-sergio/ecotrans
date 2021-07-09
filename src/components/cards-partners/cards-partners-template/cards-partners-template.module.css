@@ -1,0 +1,53 @@
+.styleMobile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 160px;
+    height: 151px;
+
+    transition: all 0.5s;
+}
+
+.logoMobile {
+    height: 73px;
+}
+
+.textMobile{
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: #3D3D3D;
+
+    transition: all 0.5s;
+}
+
+.styleDesktop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 350px;
+    height: 202px;
+
+    transition: transform 0.5s;
+}
+
+.logoDesktop{
+    height: 94px;
+}
+
+.textDesktop{
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.8125rem;
+    color: #3D3D3D;
+
+    transition: all 0.5s;
+}
+
+.styleMobile svg path, .styleDesktop svg path{
+    transition: all 0.5s;
+}

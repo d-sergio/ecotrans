@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 import {mobileContainerWhite} from '../../../common-styles/containers.module.css';
 import {title, link, text, button, images} from './block-instagram-mobile.module.css';
 import Buttons from '../../buttons';
-import Slider from '../../slider';
+import Slider from '../../../libs/react-components/sliders/slider';
 
 import img1 from '../../../../static/images/instagram/mobile/1.png';
 import img2 from '../../../../static/images/instagram/mobile/2.png';

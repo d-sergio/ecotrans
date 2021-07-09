@@ -1,20 +1,19 @@
 import React from 'react';
 import Slider from './slider';
-import Buttons from '../buttons';
-import Cards from '../cards-services';
+import Buttons from '../../../../components/buttons';
+import Cards from '../../../../components/cards-services';
 
-function SliderServices() {
+function SliderMobile() {
     const params = {
         visible: 1,
-        treshold: 0.1,
         prev: <ArrowLeft/>,
         next: <ArrowRight/>
     };
     
-    return <Slider visible={1} treshold={0.1} prev={<ArrowLeft/>} next={<ArrowRight/>}>{cards}</Slider>;
+    return <Slider params={params}>{cards}</Slider>;
 }
 
-export default SliderServices;
+export default SliderMobile;
 
 const cards = [
     <Cards.Docs.Mobile/>,

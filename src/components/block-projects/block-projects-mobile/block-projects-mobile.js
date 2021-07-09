@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../slider-projects-services';
+import Slider from '../../../libs/react-components/sliders/slider-projects-services';
 import {mobileContainerGreen} from '../../../common-styles/containers.module.css';
 import {style, text} from './block-projects-mobile.module.css';
 

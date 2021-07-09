@@ -30,7 +30,7 @@
  * пропорционально скорректировать
  * 6. Вычисляем новую позицию
  */
-import {fullDecelerationTime, distanceToFullBraking} from "../../../libs/physics";
+import {fullDecelerationTime, distanceToFullBraking} from "../../../../physics/physics";
 
 export default function searchInertialPosition(initialParams) {
     try{

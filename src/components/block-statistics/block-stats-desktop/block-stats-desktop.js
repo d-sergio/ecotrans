@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Slider from '../../slider-highlight/slider';
+import Slider from '../../../libs/react-components/sliders/slider-highlight/slider';
 import Cards from '../../cards-statistics';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';

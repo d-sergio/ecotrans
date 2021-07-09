@@ -5,21 +5,21 @@
 
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
-import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
-import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
+import mouseHandler from './event-handlers/ordinary/mouse-handler';
+import touchHandler from './event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
-import usePrevious from '../../libs/react/react-hooks/use-previous-hook';
-import updateSlideWidth from '../slider/mechanics/update-slide-width';
-import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
-import animateMove from '../slider/animation/animate-move';
-import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from '../slider/slider.module.css';
-import getVisible from '../slider/mechanics/get-visible';
-import checkBounds from '../slider/mechanics/check-bounds';
+import usePrevious from '../../../react/react-hooks/use-previous-hook';
+import updateSlideWidth from './mechanics/update-slide-width';
+import updateCarouselCoords from './mechanics/update-carousel-coords';
+import animateMove from './animation/animate-move';
+import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
+import getVisible from './mechanics/get-visible';
+import checkBounds from './mechanics/check-bounds';
 
-import setNewPosition from '../slider/mechanics/set-new-position';
-import createSlidesActive from '../slider/create-slides/create-slides-active';
+import setNewPosition from './mechanics/set-new-position';
+import createSlides from './create-slides/create-slides';
 //import createVisibleSlides from './alternative/create-visible-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';
 
@@ -241,12 +241,7 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (
-            timer.current === undefined
-            || timer.current === null
-            || !props.cancelAutoMove
-            || props.cancelAutoMove === undefined
-            ) return;
+        if (timer.current === undefined || timer.current === null) return;
         
         clearTimeout(timer.current);
 
@@ -268,9 +263,9 @@ function Slider(props) {
 
     return(
         <div className={containerStyle} ref={container}
-            onMouseEnter={cancelAutoMove}
-            onTouchStart={cancelAutoMove}
-            onTouchMove={cancelAutoMove}>
+            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
+            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
+            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}
@@ -281,17 +276,11 @@ function Slider(props) {
                 ref={carousel}
                 onMouseDown={(e) => startMouseHandler(e)}
                 onTouchStart={(e) => startTouchHandler(e)}>
-                    {
-                        createSlidesActive({    /**********МОДИФИКАЦИЯ**********/
-                            children: state.children,
-                            currentPosition: state.currentPosition,
-                            autoMove: state.autoMove,
-                            slideStyle: slideStyle,
-                            viewport: viewport.current,
-                            carousel: carousel.current,
-                            visible: props.visible
-                        })
-                    }
+                    {createSlides(state.children, slideStyle)
+                    /*
+                    //альтерантивный вариант
+                    createVisibleSlides(state.children, state.currentPosition, props.visible, viewport.current, carousel.current, slideStyle, adjacentCorrect)
+                    */}
                 </div>
             </div>
 

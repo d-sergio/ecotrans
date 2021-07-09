@@ -5,23 +5,21 @@
 
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
-import mouseHandler from './event-handlers/ordinary/mouse-handler';
-import touchHandler from './event-handlers/ordinary/touch-handler';
+import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
+import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
-import usePrevious from '../../libs/react/react-hooks/use-previous-hook';
-import updateSlideWidth from './mechanics/update-slide-width';
-import updateCarouselCoords from './mechanics/update-carousel-coords';
-import animateMove from './animation/animate-move';
+import usePrevious from '../../../react/react-hooks/use-previous-hook';
+import updateSlideWidth from '../slider/mechanics/update-slide-width';
+import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
+import animateMove from '../slider/animation/animate-move';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
-import getVisible from './mechanics/get-visible';
-import checkBounds from './mechanics/check-bounds';
+import getVisible from '../slider/mechanics/get-visible';
+import checkBounds from '../slider/mechanics/check-bounds';
 
-import setNewPosition from './mechanics/set-new-position';
-import createSlides from './create-slides/create-slides';
-//import createVisibleSlides from './alternative/create-visible-slides';
-//import setNewPosition from './alternative/set-new-position-alternative';
+import setNewPosition from '../slider/mechanics/set-new-position';
+import createSlides from '../slider/create-slides/create-slides';
 
 function Slider(props) {
     const children = React.Children.toArray(props.children);

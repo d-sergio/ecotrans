@@ -10,16 +10,18 @@ import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
-import usePrevious from '../../libs/react/react-hooks/use-previous-hook';
+import usePrevious from '../../../react/react-hooks/use-previous-hook';
 import updateSlideWidth from '../slider/mechanics/update-slide-width';
 import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
 import animateMove from '../slider/animation/animate-move';
-import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
+import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from '../slider/slider.module.css';
 import getVisible from '../slider/mechanics/get-visible';
 import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
-import createSlides from '../slider/create-slides/create-slides';
+import createSlidesActive from '../slider/create-slides/create-slides-active';
+//import createVisibleSlides from './alternative/create-visible-slides';
+//import setNewPosition from './alternative/set-new-position-alternative';
 
 function Slider(props) {
     const children = React.Children.toArray(props.children);
@@ -239,7 +241,12 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (timer.current === undefined || timer.current === null) return;
+        if (
+            timer.current === undefined
+            || timer.current === null
+            || !props.cancelAutoMove
+            || props.cancelAutoMove === undefined
+            ) return;
         
         clearTimeout(timer.current);
 
@@ -261,9 +268,9 @@ function Slider(props) {
 
     return(
         <div className={containerStyle} ref={container}
-            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+            onMouseEnter={cancelAutoMove}
+            onTouchStart={cancelAutoMove}
+            onTouchMove={cancelAutoMove}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}
@@ -274,11 +281,17 @@ function Slider(props) {
                 ref={carousel}
                 onMouseDown={(e) => startMouseHandler(e)}
                 onTouchStart={(e) => startTouchHandler(e)}>
-                    {createSlides(state.children, slideStyle)
-                    /*
-                    //альтерантивный вариант
-                    createVisibleSlides(state.children, state.currentPosition, props.visible, viewport.current, carousel.current, slideStyle, adjacentCorrect)
-                    */}
+                    {
+                        createSlidesActive({    /**********МОДИФИКАЦИЯ**********/
+                            children: state.children,
+                            currentPosition: state.currentPosition,
+                            autoMove: state.autoMove,
+                            slideStyle: slideStyle,
+                            viewport: viewport.current,
+                            carousel: carousel.current,
+                            visible: props.visible
+                        })
+                    }
                 </div>
             </div>
 

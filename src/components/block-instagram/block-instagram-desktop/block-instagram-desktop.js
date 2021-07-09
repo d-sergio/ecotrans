@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Buttons from  '../../buttons'
 import {title, subscribe, text, button, images} from './block-instagram-desktop.module.css';
 import {desktopContainer} from '../../../common-styles/containers.module.css';
-import Slider from '../../slider';
+import Slider from '../../../libs/react-components/sliders/slider';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 

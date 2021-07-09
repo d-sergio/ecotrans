@@ -241,7 +241,12 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (timer.current === undefined || timer.current === null) return;
+        if (
+            timer.current === undefined
+            || timer.current === null
+            || !props.cancelAutoMove
+            || props.cancelAutoMove === undefined
+            ) return;
         
         clearTimeout(timer.current);
 
@@ -263,9 +268,9 @@ function Slider(props) {
 
     return(
         <div className={containerStyle} ref={container}
-            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+            onMouseEnter={cancelAutoMove}
+            onTouchStart={cancelAutoMove}
+            onTouchMove={cancelAutoMove}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

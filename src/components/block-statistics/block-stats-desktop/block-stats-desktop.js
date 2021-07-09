@@ -3,6 +3,7 @@ import Slider from '../../slider-highlight/slider';
 import Cards from '../../cards-statistics';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
+import {sliderDeskContainer} from '../../../common-styles/containers.module.css';
 
 const cards = [
     <Cards.DangerClass/>,
@@ -38,7 +39,7 @@ function BlockStatsDesktop() {
         <>
             {
                 active ? <Slider key={1} visible={visible} autoMove={true} cancelAutoMove={true} adjacent={true}>{cards}</Slider>
-                : <Slider key={2} visible={5} adjacent={false} freeze={true}>{cards}</Slider>
+                : <div className={sliderDeskContainer}><Slider key={2} visible={5} adjacent={false} freeze={true}>{cards}</Slider></div>
             }
         </>
     );

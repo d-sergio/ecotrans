@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import GatsbySuspense from '../gatsby-suspense';
+import GatsbySuspense from '../../libs/gatsby/gatsby-suspense';
 import MobileView from '../root-layout/view-context';
 
 function BlockInstagram() {

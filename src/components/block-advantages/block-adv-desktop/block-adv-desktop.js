@@ -36,7 +36,7 @@ function BlockAdvDesktop() {
             </div>
             {
                 active ? <Slider key={1} visible={0} adjacent={true} freeze={false}>{advCards}</Slider>
-                : <Slider key={2} visible={4} adjacent={false} freeze={true}>{advCards}</Slider>
+                : <div className={desktopContainer}><Slider key={2} visible={4} adjacent={false} freeze={true}>{advCards}</Slider></div>
             }
         </>
     );

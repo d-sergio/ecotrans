@@ -29,11 +29,11 @@ html {
 button {
     border: 0;
 }
-
+/*
 @media screen and (min-width: 1441px) {
     body {
         max-width: 1440px;
         margin-left: auto;
         margin-right: auto;
     }
-}
+}*/

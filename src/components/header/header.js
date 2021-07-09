@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import GatsbySuspense from '../gatsby-suspense';
+import GatsbySuspense from '../../libs/gatsby/gatsby-suspense';
 import logoImg from '../../../static/images/logo.png';
 import phoneImg from '../../../static/images/phone.png';
 import mediaQuery from '../../libs/react/media-query';

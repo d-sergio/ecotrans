@@ -13,6 +13,8 @@ function createSlidesActive({children, currentPosition, autoMove, slideStyle, vi
     for (let i = 0; i < children.length; i++) {
         const active = i === currentPosition + highlight - 1 ? true : false;
 
+        /*overflow: 'visible' чтобы при transform: scale() содержимое slide
+        не обрезалось*/
         let slide = (
             <div style={{overflow: 'visible'}} className={slideStyle}>
                 {React.cloneElement(children[i], {active: active})}

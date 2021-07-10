@@ -13,6 +13,7 @@ function Index() {
             <div style={{height: '30px'}}></div>
             <BlockServices/>
             <BlockStats/>
+            <div style={{height: '30px'}}></div>
             <BlockProjects/>
             <div style={{height: '30px'}}></div>
             <BlockAdvantages/>

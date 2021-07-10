@@ -5,21 +5,21 @@
 
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
-import mouseHandler from './event-handlers/ordinary/mouse-handler';
-import touchHandler from './event-handlers/ordinary/touch-handler';
+import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
+import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
 import usePrevious from '../../../react/react-hooks/use-previous-hook';
-import updateSlideWidth from './mechanics/update-slide-width';
-import updateCarouselCoords from './mechanics/update-carousel-coords';
-import animateMove from './animation/animate-move';
+import updateSlideWidth from '../slider/mechanics/update-slide-width';
+import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
+import animateMove from '../slider/animation/animate-move';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
-import getVisible from './mechanics/get-visible';
-import checkBounds from './mechanics/check-bounds';
+import getVisible from '../slider/mechanics/get-visible';
+import checkBounds from '../slider/mechanics/check-bounds';
 
-import setNewPosition from './mechanics/set-new-position';
-import createSlides from './create-slides/create-slides';
+import setNewPosition from '../slider/mechanics/set-new-position';
+import createAlwaysActive from '../slider/create-slides/create-always-active';
 //import createVisibleSlides from './alternative/create-visible-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';
 
@@ -52,6 +52,9 @@ function Slider(props) {
     const timer = useRef(undefined);    //Здесь будет setTimeout для автопрокрутки карусели
     const carousel = useRef(null);
     const viewport = useRef(null);
+    const container = useRef(null); /**********МОДИФИКАЦИЯ**********/
+    const prev = useRef(null);  /**********МОДИФИКАЦИЯ**********/
+    const next = useRef(null);  /**********МОДИФИКАЦИЯ**********/
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
@@ -136,7 +139,27 @@ function Slider(props) {
         };
 
         updateSlideWidth(slideArgs);
-        updateCarouselCoords(coordsArgs);
+        updateCarouselCoords(coordsArgs);   /**********МОДИФИКАЦИЯ**********/
+        updateArrowsCoords();
+    }
+
+    /**********МОДИФИКАЦИЯ**********/
+    /**Находим и устанавливаем координаты кнопок управления */
+    function updateArrowsCoords() {
+        if (container.current !== null && carousel.current !== null && prev.current !== null && next.current !== null) {
+            const left = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
+            prev.current.style.left = left;
+    
+            const right = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
+            next.current.style.right = right;
+        } else {
+            console.log(`Slider. updateArrowsCoords остановлен.
+            Refs:
+            container.current is ${container.current},
+            carousel.current is ${carousel.current},
+            prev.current is ${prev.current},
+            next.current is ${next.current}`);
+        }
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние
@@ -240,7 +263,12 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (timer.current === undefined || timer.current === null) return;
+        if (
+            timer.current === undefined
+            || timer.current === null
+            || !props.cancelAutoMove
+            || props.cancelAutoMove === undefined
+            ) return;
         
         clearTimeout(timer.current);
 
@@ -261,12 +289,12 @@ function Slider(props) {
     }
 
     return(
-        <div className={containerStyle}
-            onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+        <div className={containerStyle} ref={container}
+            onMouseEnter={() => state.autoMove ? cancelAutoMove() : null}
+            onTouchStart={() => state.autoMove ? cancelAutoMove() : null}
+            onTouchMove={() => state.autoMove ? cancelAutoMove() : null}>
 
-            <div className={prevStyle} onClick={() => buttonHandler((-1))}>
+            <div ref={prev} className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}
             </div>
 
@@ -275,15 +303,21 @@ function Slider(props) {
                 ref={carousel}
                 onMouseDown={(e) => startMouseHandler(e)}
                 onTouchStart={(e) => startTouchHandler(e)}>
-                    {createSlides(state.children, slideStyle)
-                    /*
-                    //альтерантивный вариант
-                    createVisibleSlides(state.children, state.currentPosition, props.visible, viewport.current, carousel.current, slideStyle, adjacentCorrect)
-                    */}
+                    {
+                        createAlwaysActive({    /**********МОДИФИКАЦИЯ**********/
+                            children: state.children,
+                            currentPosition: state.currentPosition,
+                            slideStyle: slideStyle,
+                            viewport: viewport.current,
+                            carousel: carousel.current,
+                            visible: props.visible,
+                            autoMove: state.autoMove
+                        })
+                    }
                 </div>
             </div>
 
-            <div className={nextStyle} onClick={() => buttonHandler(1)}>
+            <div ref={next} className={nextStyle} onClick={() => buttonHandler(1)}>
                 {props.freeze ? null : props.next}
             </div>
         </div>
@@ -304,7 +338,11 @@ Slider.defaultProps = {
     autoMove: false,
     cancelAutoMove: false,
     moveInterval: 3000,
-    callback: undefined
+    callback: undefined,
+    /**********МОДИФИКАЦИЯ**********/
+    /*на сколько пикселей влево и вправо от центрального слайда сместить кнопки
+    управления слайдером*/
+    buttonShift: 0
 };
 
 export default Slider;

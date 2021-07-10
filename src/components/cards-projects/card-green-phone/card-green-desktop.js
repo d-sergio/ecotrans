@@ -3,7 +3,7 @@ import ProjectsTemplateDesktop from '../projects-template-desktop';
 import img from '../../../../static/images/cards-projects/green-phone.svg';
 
 function CardGreenDesktop(props) {
-    const smallMode = props.smallMode !== undefined ? props.smallMode : false;
+    const active = props.active !== undefined ? props.active : false;
     const logo = <img src={img} alt='green-phone_logo' style={{height: '69px'}}/>;
     const nameSmall = <div>Зелёный<br/>телефон</div>;
     const nameLarge = 'Зелёный телефон';
@@ -15,7 +15,7 @@ function CardGreenDesktop(props) {
             nameSmall={nameSmall}
             nameLarge={nameLarge}
             description={description}
-            smallMode={smallMode}
+            active={active}
             />
     );
     

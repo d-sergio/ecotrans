@@ -30,7 +30,7 @@ const queries = {                                           //1
 
 const [mobileView, setMobileView] = useState(undefined);    //2
 
-useEffect(() => mediaQuery(mobileView, setMobileView, queries));   //3
+useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);   //3
 
 if (mobileView === undefined) return null;                  //4
 

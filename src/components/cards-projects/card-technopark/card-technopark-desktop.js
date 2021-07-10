@@ -3,7 +3,7 @@ import ProjectsTemplateDesktop from '../projects-template-desktop';
 import img from '../../../../static/images/cards-projects/technopark.svg';
 
 function CardTechnoDesktop(props) {
-    const smallMode = props.smallMode !== undefined ? props.smallMode : false;
+    const active = props.active !== undefined ? props.active : false;
     const logo = <img src={img} alt='technopark_logo' style={{height: '69px'}}/>;
     const nameSmall = <div>Собственный<br/>Экотехнопарк</div>;
     const nameLarge = nameSmall;
@@ -15,7 +15,7 @@ function CardTechnoDesktop(props) {
             nameSmall={nameSmall}
             nameLarge={nameLarge}
             description={description}
-            smallMode={smallMode}
+            active={active}
             />
     );
     

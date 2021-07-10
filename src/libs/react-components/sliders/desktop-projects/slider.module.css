@@ -1,0 +1,39 @@
+.containerStyle{
+    display: flex;
+    position: relative; /*Модификация: кнопки перекрывают карусель*/
+    width: 100%;
+}
+
+.prevStyle{
+    display: flex;
+
+    /*Модификация: кнопки перекрывают карусель*/
+    align-self: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.nextStyle{
+    display: flex;
+
+    /*Модификация: кнопки перекрывают карусель*/
+    align-self: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.viewportStyle{
+    overflow: hidden;
+    width: 100%;
+}
+
+.carouselStyle{
+    display: inline-flex;
+}
+
+.slideStyle{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    /**Модификация: карточка по центру*/
+    overflow: hidden;
+}

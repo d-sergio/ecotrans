@@ -1,0 +1,16 @@
+.textMobile {
+    margin-bottom: 0.5625rem;
+    padding-left: 8px;
+
+    font-family: "MontserratBold";
+    font-size: 1.25rem;
+    color: #219982;
+}
+
+.textDesktop {
+    padding-left: 80px;
+
+    font-family: "MontserratBold";
+    font-size: 2.25rem;
+    color: #219982;
+}

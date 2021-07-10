@@ -1,3 +1,5 @@
 import {EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia} from './cards-partners';
 
-export default {EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia};
+const Cards = {EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia};
+
+export default Cards;

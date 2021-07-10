@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import {desktopContainer} from '../../../common-styles/containers.module.css';
 import {text} from './block-partners-desktop.module.css';
@@ -21,17 +21,17 @@ const visible = {
     1440: 3
 };
 
-const queries = {
-    small: config.blockPartnersDesktop.small,
-    large: config.blockPartnersDesktop.large
-};
-
 
 /**Блок "Наши партнёры" (десктопный)*/
 function BlockPartnersDesktop() {
+    const queries = {
+        small: config.blockPartnersDesktop.small,
+        large: config.blockPartnersDesktop.large
+    };
+
     const [active, setActive] = useState(undefined);
 
-    useEffect(() => mediaQuery(active, setActive, queries), [active]);
+    useEffect(() => mediaQuery(active, setActive, queries), [active, queries]);
 
     if (active === undefined) return null;
 

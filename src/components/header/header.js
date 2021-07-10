@@ -5,22 +5,22 @@ import phoneImg from '../../../static/images/phone.png';
 import mediaQuery from '../../libs/react/media-query';
 import config from '../../config/config-media-queries.json';
 
-const queries = {
-    small: config.header.small,
-    large: config.header.large
-};
-
 /**Header
  * Props:
  * @param {Boolean} mobile - мобильный вид, если true
  */
 function Header() {
+    const queries = {
+        small: config.header.small,
+        large: config.header.large
+    };
+    
     const HeaderDesktop = React.lazy(() => import("./header-desktop"));
     const HeaderMobile = React.lazy(() => import("./header-mobile"));
 
     const [mobileView, setMobileView] = useState(undefined);
 
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView]);
+    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView, queries]);
 
     if (mobileView === undefined) return null;
 

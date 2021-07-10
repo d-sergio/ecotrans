@@ -3,14 +3,7 @@ import Slider from './slider';
 import Buttons from '../../../../components/buttons';
 import Cards from '../../../../components/cards-services';
 
-function SliderServices() {
-    const params = {
-        visible: 1,
-        treshold: 0.1,
-        prev: <ArrowLeft/>,
-        next: <ArrowRight/>
-    };
-    
+function SliderServices() {    
     return <Slider visible={1} treshold={0.1} prev={<ArrowLeft/>} next={<ArrowRight/>}>{cards}</Slider>;
 }
 

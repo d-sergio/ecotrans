@@ -39,10 +39,19 @@ function BlockInstagramDesktop() {
             <div className={desktopContainer}>
                 <p className={title}>Будьте в курсе!</p><br/>
             </div>
-                {
-                    active ? <Slider key={1} visible={0} adjacent={true} freeze={false}>{slides}</Slider>
-                    : <div className={desktopContainer}><Slider key={2} visible={4} freeze={true}>{slides}</Slider></div>
-                }
+
+            <div className={active ? null : desktopContainer}>
+                <Slider
+                    key={active}
+                    visible={active ? 0 : 4}
+                    freeze={active ? false : true}
+                    adjacent={active ? true : false}>
+
+                    {slides}
+
+                </Slider>
+            </div>
+
             <div className={desktopContainer}>
                 <div className={subscribe}>
                     <div className={text}>

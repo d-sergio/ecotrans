@@ -34,10 +34,16 @@ function BlockAdvDesktop() {
             <div className={desktopContainer}>
                 <div className={text}>Преимущества работы с нами</div>
             </div>
-            {
-                active ? <Slider key={1} visible={0} adjacent={true} freeze={false}>{advCards}</Slider>
-                : <div className={desktopContainer}><Slider key={2} visible={4} adjacent={false} freeze={true}>{advCards}</Slider></div>
-            }
+            <div className={active ? null : desktopContainer}>
+                <Slider
+                    visible={active ? 0: 4}
+                    adjacent={active ? true : false}
+                    freeze={active ? false : true}>
+
+                    {advCards}
+                    
+                </Slider>
+            </div>
         </>
     );
 }

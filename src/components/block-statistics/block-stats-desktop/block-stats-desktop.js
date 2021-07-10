@@ -36,12 +36,19 @@ function BlockStatsDesktop() {
     if (active === undefined) return null;
 
     return(
-        <>
-            {
-                active ? <Slider key={1} visible={visible} autoMove={true} cancelAutoMove={true} adjacent={true}>{cards}</Slider>
-                : <div className={sliderDeskContainer}><Slider key={2} visible={5} adjacent={false} freeze={true}>{cards}</Slider></div>
-            }
-        </>
+        <div className={active ? null : sliderDeskContainer}>
+            <Slider
+                key={active}
+                visible={active ? visible : 5}
+                adjacent={active ? true : false}
+                freeze={active ? false : true}
+                autoMove={active ? true : false}
+                cancelAutoMove={active ? true : false}>
+
+                {cards}
+
+            </Slider>
+        </div>
     );
 }
 

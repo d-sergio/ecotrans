@@ -11,7 +11,7 @@ export default function RootLayout (props) {
     
     const [mobileView, setMobileView] = useState(undefined);
 
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView, queries]);
+    useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
 
     return (
         <MobileView.Provider value={mobileView}>

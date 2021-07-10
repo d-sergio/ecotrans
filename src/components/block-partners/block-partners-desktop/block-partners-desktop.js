@@ -31,7 +31,7 @@ function BlockPartnersDesktop() {
 
     const [active, setActive] = useState(undefined);
 
-    useEffect(() => mediaQuery(active, setActive, queries), [active, queries]);
+    useEffect(() => mediaQuery(active, setActive, queries), []);
 
     if (active === undefined) return null;
 

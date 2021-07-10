@@ -14,13 +14,13 @@ function Header() {
         small: config.header.small,
         large: config.header.large
     };
-    
+
     const HeaderDesktop = React.lazy(() => import("./header-desktop"));
     const HeaderMobile = React.lazy(() => import("./header-mobile"));
 
     const [mobileView, setMobileView] = useState(undefined);
 
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), [mobileView, queries]);
+    useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
 
     if (mobileView === undefined) return null;
 

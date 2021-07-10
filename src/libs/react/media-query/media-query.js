@@ -4,8 +4,8 @@
  */
 function mediaQuery(mobileView, setMobileView, queries) {
     if (typeof window !== undefined) {
-        const queryMobile = window.matchMedia(queries.mobile);
-        const queryDesktop = window.matchMedia(queries.desktop);
+        const queryMobile = window.matchMedia(queries.small);
+        const queryDesktop = window.matchMedia(queries.large);
 
         if (mobileView === undefined) setMobileView(init);
 

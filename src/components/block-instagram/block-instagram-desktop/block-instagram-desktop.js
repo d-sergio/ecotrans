@@ -18,14 +18,11 @@ const slides = [
     <div className={images}><img src={img4} alt="instagram4"/></div>
 ];
 
-/**Блок Instagram (десктопный)
- * 
- * По смыслу в работе с mediaQuery тут active равен mobile
- */
+/**Блок Instagram (десктопный)*/
 function BlockInstagramDesktop() {
     const queries = {
-        mobile: config.blockInstagramDesktop.mobile,
-        desktop: config.blockInstagramDesktop.desktop
+        mobile: config.blockInstagramDesktop.small,
+        desktop: config.blockInstagramDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

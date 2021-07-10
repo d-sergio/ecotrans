@@ -13,14 +13,11 @@ const advCards = [
     <Cards.Training/>
 ];
 
-/**Блок "Преимущества работы с нами" (десктопный)
- * 
- * По смыслу в работе с mediaQuery тут active равен mobile
- */
+/**Блок "Преимущества работы с нами" (десктопный)*/
 function BlockAdvDesktop() {
     const queries = {
-        mobile: config.blockAdvDesktop.mobile,
-        desktop: config.blockAdvDesktop.desktop
+        mobile: config.blockAdvDesktop.small,
+        desktop: config.blockAdvDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

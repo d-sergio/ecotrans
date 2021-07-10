@@ -4,6 +4,7 @@ import {desktopContainer} from '../../../common-styles/containers.module.css';
 import {text} from './block-partners-desktop.module.css';
 import Partners from '../../cards-partners';
 import mediaQuery from '../../../libs/react/media-query';
+import config from '../../../config/config-media-queries.json';
 
 const cards = [
     <Partners.BuisnessRussia/>,
@@ -21,25 +22,25 @@ const visible = {
 };
 
 const queries = {
-    mobile: 'screen and (max-width: 1439px)',
-    desktop: 'screen and (min-width: 1440px)'
+    mobile: config.blockPartnersDesktop.small,
+    desktop: config.blockPartnersDesktop.large
 };
 
 
 /**Блок "Наши партнёры" (десктопный)*/
 function BlockPartnersDesktop() {
-    const [mobileView, setMobileView] = useState(undefined);
+    const [active, setActive] = useState(undefined);
 
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries));
+    useEffect(() => mediaQuery(active, setActive, queries), [active]);
 
-    if (mobileView === undefined) return null;
+    if (active === undefined) return null;
 
     return(
         <>
             <div className={desktopContainer}>
                 <div className={text}>Наши партнеры</div>
             </div>
-            <div className={mobileView ? null : desktopContainer}>
+            <div className={active ? null : desktopContainer}>
                 <Slider
                     key={1}
                     visible={visible}

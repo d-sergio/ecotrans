@@ -4,8 +4,8 @@ import MobileView from './view-context';
 import mediaQuery from '../../libs/react/media-query';
 
 const queries = {
-    mobile: config.app.mobile,
-    desktop: config.app.desktop
+    mobile: config.app.small,
+    desktop: config.app.large
 };
 
 export default function RootLayout (props) {

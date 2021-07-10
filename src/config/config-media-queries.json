@@ -1,22 +1,26 @@
 {
     "app": {
-        "mobile": "screen and (min-width: 0px) and (max-width: 767px)",
-        "desktop": "screen and (min-width: 768px)"
+        "small": "screen and (min-width: 0px) and (max-width: 767px)",
+        "large": "screen and (min-width: 768px)"
     },
     "header": {
-        "mobile": "screen and (max-width: 1023px)",
-        "desktop": "screen and (min-width: 1024px)"
+        "small": "screen and (max-width: 1023px)",
+        "large": "screen and (min-width: 1024px)"
     },
-    "blockAdvDesktop": {
-        "mobile": "screen and (max-width: 1440px)",
-        "desktop": "screen and (min-width: 1441px)"
+    "blockAdvlarge": {
+        "small": "screen and (max-width: 1440px)",
+        "large": "screen and (min-width: 1441px)"
     },
-    "blockInstagramDesktop": {
-        "mobile": "screen and (max-width: 1440px)",
-        "desktop": "screen and (min-width: 1441px)"
+    "blockInstagramlarge": {
+        "small": "screen and (max-width: 1440px)",
+        "large": "screen and (min-width: 1441px)"
     },
-    "blockStatsDesktop": {
-        "mobile": "screen and (max-width: 1099px)",
-        "desktop": "screen and (min-width: 1100px)"
+    "blockStatslarge": {
+        "small": "screen and (max-width: 1099px)",
+        "large": "screen and (min-width: 1100px)"
+    },
+    "blockPartnerslarge": {
+        "small": "screen and (max-width: 1439px)",
+        "large": "screen and (min-width: 1440px)"
     }
 }

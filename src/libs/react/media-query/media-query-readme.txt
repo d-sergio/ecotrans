@@ -23,8 +23,8 @@ mediaQuery сработает сразу, как только компонент
 Код:
 
 const queries = {                                           //1
-    mobile: 'screen and (max-width: 1023px)',
-    desktop: 'screen and (min-width: 1024px)'
+    small: 'screen and (max-width: 1023px)',
+    large: 'screen and (min-width: 1024px)'
 };
 
 

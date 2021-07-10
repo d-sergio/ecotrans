@@ -19,14 +19,11 @@ const visible = {
     1020: 5
 };
 
-/**Блок статистики (десктопный)
- * 
- * По смыслу в работе с mediaQuery тут active равен mobile
- */
+/**Блок статистики (десктопный)*/
 function BlockStatsDesktop() {
     const queries = {
-        mobile: config.blockStatsDesktop.mobile,
-        desktop: config.blockStatsDesktop.desktop
+        mobile: config.blockStatsDesktop.small,
+        desktop: config.blockStatsDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

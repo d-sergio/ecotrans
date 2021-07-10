@@ -22,8 +22,8 @@ const visible = {
 };
 
 const queries = {
-    mobile: config.blockPartnersDesktop.small,
-    desktop: config.blockPartnersDesktop.large
+    small: config.blockPartnersDesktop.small,
+    large: config.blockPartnersDesktop.large
 };
 
 

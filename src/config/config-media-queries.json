@@ -7,19 +7,19 @@
         "small": "screen and (max-width: 1023px)",
         "large": "screen and (min-width: 1024px)"
     },
-    "blockAdvlarge": {
+    "blockAdvDesktop": {
         "small": "screen and (max-width: 1440px)",
         "large": "screen and (min-width: 1441px)"
     },
-    "blockInstagramlarge": {
+    "blockInstagramDesktop": {
         "small": "screen and (max-width: 1440px)",
         "large": "screen and (min-width: 1441px)"
     },
-    "blockStatslarge": {
+    "blockStatsDesktop": {
         "small": "screen and (max-width: 1099px)",
         "large": "screen and (min-width: 1100px)"
     },
-    "blockPartnerslarge": {
+    "blockPartnersDesktop": {
         "small": "screen and (max-width: 1439px)",
         "large": "screen and (min-width: 1440px)"
     }

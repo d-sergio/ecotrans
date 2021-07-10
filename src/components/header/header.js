@@ -6,8 +6,8 @@ import mediaQuery from '../../libs/react/media-query';
 import config from '../../config/config-media-queries.json';
 
 const queries = {
-    mobile: config.header.small,
-    desktop: config.header.large
+    small: config.header.small,
+    large: config.header.large
 };
 
 /**Header

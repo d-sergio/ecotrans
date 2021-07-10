@@ -21,8 +21,8 @@ const slides = [
 /**Блок Instagram (десктопный)*/
 function BlockInstagramDesktop() {
     const queries = {
-        mobile: config.blockInstagramDesktop.small,
-        desktop: config.blockInstagramDesktop.large
+        small: config.blockInstagramDesktop.small,
+        large: config.blockInstagramDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

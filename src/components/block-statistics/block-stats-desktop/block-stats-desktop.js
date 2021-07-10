@@ -22,8 +22,8 @@ const visible = {
 /**Блок статистики (десктопный)*/
 function BlockStatsDesktop() {
     const queries = {
-        mobile: config.blockStatsDesktop.small,
-        desktop: config.blockStatsDesktop.large
+        small: config.blockStatsDesktop.small,
+        large: config.blockStatsDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

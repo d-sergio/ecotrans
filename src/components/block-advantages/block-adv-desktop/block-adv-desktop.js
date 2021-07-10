@@ -16,8 +16,8 @@ const advCards = [
 /**Блок "Преимущества работы с нами" (десктопный)*/
 function BlockAdvDesktop() {
     const queries = {
-        mobile: config.blockAdvDesktop.small,
-        desktop: config.blockAdvDesktop.large
+        small: config.blockAdvDesktop.small,
+        large: config.blockAdvDesktop.large
     };
 
     const [active, setActive] = useState(undefined);

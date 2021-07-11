@@ -1,21 +1,67 @@
+.size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 490px;
+    height: 490px;
+}
+
+.circleInActive {
+    height: 296px;
+    width: 296px;
+    min-width: 296px;
+    transition: all 0.5s;
+}
+
+.circleActive {
+    height: 448px;
+    width: 448px;
+    min-width: 448px;
+    transition: all 0.5s;
+}
+
+.largeActive {
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.largeInActive {
+    height: 0;
+    opacity: 0;
+}
+
+.smallInActive {
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.smallActive {
+    height: 0;
+    opacity: 0;
+}
+
 .image {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
-    /*height: 105px;*/
 }
 
-.nameSmall {
-    display: 'flex';
-    justify-content: center;
-    align-items: center;
-
-    font-size: 1.25rem;
-    line-height: 28px;
+.imageActive {
+    height: 151px;
 }
 
-.nameLarge {
+.imageInActive {
+    height: 121px;
+}
+
+.text {
+    height: 140px;
+}
+
+.nameActive {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -28,15 +74,18 @@
     line-height: 28px;
 }
 
-.description {
-    font-size: 1.125rem;
-}
-
-.size{
-    display: flex;
+.nameInActive {
+    display: 'flex';
     justify-content: center;
     align-items: center;
 
-    width: 490px;
-    height: 490px;
+    height: auto;
+    margin-top: 32px;
+
+    font-size: 1.25rem;
+    line-height: 28px;
+}
+
+.description {
+    font-size: 1.125rem;
 }

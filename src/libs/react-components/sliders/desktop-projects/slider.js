@@ -139,8 +139,8 @@ function Slider(props) {
         };
 
         updateSlideWidth(slideArgs);
-        updateCarouselCoords(coordsArgs);   /**********МОДИФИКАЦИЯ**********/
-        updateArrowsCoords();
+        updateCarouselCoords(coordsArgs);
+        updateArrowsCoords();   /**********МОДИФИКАЦИЯ**********/
     }
 
     /**********МОДИФИКАЦИЯ**********/

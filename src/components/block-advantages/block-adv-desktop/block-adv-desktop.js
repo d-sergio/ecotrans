@@ -4,7 +4,7 @@ import Cards from '../../cards-advantages';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 import {desktopContainer} from '../../../common-styles/containers.module.css';
-import {text} from './block-adv-desktop.module.css';
+import {titleDesktop} from '../../../common-styles/title.module.css';
 
 const advCards = [
     <Cards.Ecologist/>,
@@ -12,6 +12,8 @@ const advCards = [
     <Cards.Technologies/>,
     <Cards.Training/>
 ];
+
+const titleStyle = [titleDesktop, desktopContainer].join(" ");
 
 /**Блок "Преимущества работы с нами" (десктопный)*/
 function BlockAdvDesktop() {
@@ -28,9 +30,7 @@ function BlockAdvDesktop() {
 
     return(
         <>
-            <div className={desktopContainer}>
-                <div className={text}>Преимущества работы с нами</div>
-            </div>
+            <div className={titleStyle}>Преимущества работы с нами</div>
             <div className={active ? null : desktopContainer}>
                 <Slider
                     visible={active ? 0: 4}

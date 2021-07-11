@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Buttons from  '../../buttons'
-import {title, subscribe, text, button, images} from './block-instagram-desktop.module.css';
+import {subscribe, text, button, images} from './block-instagram-desktop.module.css';
 import {desktopContainer} from '../../../common-styles/containers.module.css';
+import {titleDesktop} from '../../../common-styles/title.module.css';
 import Slider from '../../../libs/react-components/sliders/slider';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
@@ -18,6 +19,9 @@ const slides = [
     <div className={images}><img src={img4} alt="instagram4"/></div>
 ];
 
+const titleStyle = [titleDesktop, desktopContainer].join(" ");
+
+
 /**Блок Instagram (десктопный)*/
 function BlockInstagramDesktop() {
     const queries = {
@@ -33,9 +37,7 @@ function BlockInstagramDesktop() {
 
     return(
         <>
-            <div className={desktopContainer}>
-                <p className={title}>Будьте в курсе!</p><br/>
-            </div>
+            <p className={titleStyle}>Будьте в курсе!</p><br/>
 
             <div className={active ? null : desktopContainer}>
                 <Slider

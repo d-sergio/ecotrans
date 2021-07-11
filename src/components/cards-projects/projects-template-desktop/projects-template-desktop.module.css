@@ -24,23 +24,25 @@
 .largeActive {
     height: auto;
     opacity: 1;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s 0.1s;
 }
 
 .largeInActive {
     height: 0;
     opacity: 0;
+    transition: opacity 0.1s;
 }
 
 .smallInActive {
     height: auto;
     opacity: 1;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s 0.1s;
 }
 
 .smallActive {
     height: 0;
     opacity: 0;
+    transition: opacity 0.1s;
 }
 
 .image {

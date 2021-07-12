@@ -24,7 +24,7 @@ function HeaderDesktop(props) {
         <div className={outer}>
             <div className={style}>
                 <Logo/>
-                <HeaderMenu.Desktop/>
+                <HeaderMenu mobile={false}/>
                 <Phone/>
             </div>
         </div>

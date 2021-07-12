@@ -3,10 +3,12 @@
 }
 
 .container{
-    max-width: 1440px;
+    /*max-width: 1440px;
     padding: 36px 83px 26px 83px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;*/
+    padding-top: 36px;
+    padding-bottom: 26px;
 }
 
 .flexContainer{
@@ -27,6 +29,7 @@
 }
 
 .address{
+    padding-right: 15px;
     font-size: 0.812rem;
 }
 
@@ -35,11 +38,12 @@
 }
 
 .docs{
-
+    padding-right: 15px;
     font-size: 0.812rem;
 }
 
 .menu{
+    padding-right: 15px;
     font-size: 0.875rem;}
 
 .links{

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import PageName from '../root-layout/page-name-context';
 import {Link} from 'gatsby';
-import {menuDesktop, menuMobile, link, mobileContainer} from './menu-desktop.module.css';
+import {menuDesktop, menuMobile, link, mobileContainer} from './header-menu.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
 
 /**Имя текущей страницы берётся из контекста.
@@ -159,7 +159,7 @@ function HeaderMenu(props) {
     );
 
     return props.mobile ?
-            <div className={mobileContStyle}>{menu}</div>
+            <div className={mobileContStyle}>{menu}</div>   //Дополнительная обёртка для мобильного
             : menu;
 }
 

@@ -34,7 +34,7 @@ function HeaderMobile(props) {
             <Phone/>
             <div onClick={onClick}>
                 <ButtonMenu open={isOpen}/>
-                {isOpen ? <HeaderMenu.Mobile/> : null}
+                {isOpen ? <HeaderMenu mobile={true}/> : null}
             </div>
         </div>
     );

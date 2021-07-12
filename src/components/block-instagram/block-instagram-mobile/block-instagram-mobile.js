@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'gatsby';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import {link, text, button, images} from './block-instagram-mobile.module.css';
@@ -25,7 +24,7 @@ function BlockInstagramMobile() {
             <div className={mainContainer}>
                 <div className={title}>Будьте на связи!</div>
                 <div className={text}>
-                    Подпишитесь на наш <span className={link}><Link to='https://www.instagram.com/ecotrans46/'>Instagram.</Link></span><br/>
+                    Подпишитесь на наш <span className={link}><a href='https://www.instagram.com/ecotrans46/'>Instagram.</a></span><br/>
                     Тут вся полезная информация!
                 </div>
             </div>

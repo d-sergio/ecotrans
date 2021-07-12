@@ -3,12 +3,24 @@ import {Link} from 'gatsby';
 import mapPin from '../../../static/images/address/map-pin.svg';
 import mail from '../../../static/images/address/mail.svg';
 import phone from '../../../static/images/address/phone.svg';
-import {outer, container, flexContainer, ecotrans, address, docs, menu, links} from './footer-desktop.module.css';
+import {
+    outer,
+    container,
+    flexContainer,
+    ecotrans,
+    address,
+    docs,
+    menu,
+    links
+} from './footer-desktop.module.css';
+import {mainContainer} from '../../common-styles/containers.module.css';
+
+const containerStyle = [container, mainContainer].join(" ");
 
 function FooterDesktop() {
     return(
         <div className={outer}>
-            <div className={container}>
+            <div className={containerStyle}>
                 <div className={ecotrans}>ООО “ЭКОТРАНС”</div>
                 <div className={flexContainer}>
                     <Address/>
@@ -48,16 +60,16 @@ const Address = () => (
 
 const Menu = () => (
     <div className={menu}>
-        <p><Link to='/'>Услуги</Link></p>
-        <p><Link to='/'>Проекты</Link></p>
-        <p><Link to='/'>Клиентам</Link></p>
-        <p><Link to='/'>Контакты</Link></p>
+        <p><Link to='/services'>Услуги</Link></p>
+        <p><Link to='/projects'>Проекты</Link></p>
+        <p><Link to='/clients'>Клиентам</Link></p>
+        <p><Link to='/contact'>Контакты</Link></p>
     </div>
 );
 
 const Links = () => (
     <div className={links}>
-        <p><Link to='/'>Instagram</Link></p>
+        <p><a href='https://www.instagram.com/ecotrans46/'>Instagram</a></p>
         <div>Сайт разработан we write</div>
         <div>© ООО “Экотранс” 2021</div>
     </div>

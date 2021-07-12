@@ -1,6 +1,3 @@
-import Mobile from './menu-mobile';
-import Desktop from './menu-desktop';
+import HeaderMenu from "./header-menu";
 
-const header = {Mobile, Desktop};
-
-export default header;
+export default HeaderMenu;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {outer, style, logo, phone} from "./header-desktop.module.css";
-import MenuDesktop from '../header-menu/menu-desktop';
+import HeaderMenu from '../header-menu';
 
 function HeaderDesktop(props) {
     const Logo = () => (
@@ -24,7 +24,7 @@ function HeaderDesktop(props) {
         <div className={outer}>
             <div className={style}>
                 <Logo/>
-                <MenuDesktop/>
+                <HeaderMenu.Desktop/>
                 <Phone/>
             </div>
         </div>

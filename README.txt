@@ -56,7 +56,7 @@ Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
 Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
 Menu - кнопка мобильного меню
 
-
+Кнопка мобильного меню Buttons.Menu меняет вид через пропс open (true / false)
 
 3. cards-services
 

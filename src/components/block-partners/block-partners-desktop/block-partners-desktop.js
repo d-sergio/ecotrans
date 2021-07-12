@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Slider from '../../../libs/react-components/sliders/slider-highlight';
-import {desktopContainer} from '../../../common-styles/containers.module.css';
-import {titleDesktop} from '../../../common-styles/title.module.css';
+import {mainContainer} from '../../../common-styles/containers.module.css';
+import {title} from '../../../common-styles/title.module.css';
 import Partners from '../../cards-partners';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
@@ -21,7 +21,7 @@ const visible = {
     1440: 3
 };
 
-const titleStyle = [titleDesktop, desktopContainer].join(" ");
+const titleStyle = [title, mainContainer].join(" ");
 
 /**Блок "Наши партнёры" (десктопный)*/
 function BlockPartnersDesktop() {
@@ -39,7 +39,7 @@ function BlockPartnersDesktop() {
     return(
         <>
             <div className={titleStyle}>Наши партнеры</div>
-            <div className={active ? null : desktopContainer}>
+            <div className={active ? null : mainContainer}>
                 <Slider
                     key={1}
                     visible={visible}

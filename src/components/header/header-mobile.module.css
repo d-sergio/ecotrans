@@ -6,6 +6,18 @@
     padding: 12px 8px 12px 8px;
 
     background-color: #EAFFE2;
+
+    z-index: 99;
+}
+
+.logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo a img {
+    height: 24px;
 }
 
 .phone{
@@ -14,4 +26,17 @@
 
     font-family: "MontserratLight";
     font-size: 0.625rem;
+}
+
+@media screen and (min-width: 541px) {
+    .style{
+        font-size: 1.125rem;
+    }
+
+    .phone{
+        display: flex;
+        align-items: center;
+    
+        font-family: "MontserratRegular";
+    }
 }

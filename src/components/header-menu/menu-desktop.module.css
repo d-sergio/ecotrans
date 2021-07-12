@@ -1,4 +1,4 @@
-.menu{
+.menuDesktop{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,13 +6,34 @@
     width: 517px;
 }
 
-.menu div{
-    flex: 1;
+.mobileContainer{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    z-index: 98;
+
+    width: 100%;
+    height: 50%;
+    left: 0;
+    top: 48px;
+
+    background-color: white;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.menuMobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 48px;
 }
 
 .link{
-    min-width: 100px;
     text-align: center;
+    flex: 1;
 
     /*transition: all 0.1s Добавляется в js*/
 }

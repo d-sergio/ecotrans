@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {mobileContainerWhite} from '../../../common-styles/containers.module.css';
-import {titleMobile} from '../../../common-styles/title.module.css';
+import {mainContainer} from '../../../common-styles/containers.module.css';
+import {title} from '../../../common-styles/title.module.css';
 import {link, text, button, images} from './block-instagram-mobile.module.css';
 import Buttons from '../../buttons';
 import Slider from '../../../libs/react-components/sliders/slider';
@@ -22,8 +22,8 @@ function BlockInstagramMobile() {
 
     return(
         <>
-            <div className={mobileContainerWhite}>
-                <div className={titleMobile}>Будьте на связи!</div>
+            <div className={mainContainer}>
+                <div className={title}>Будьте на связи!</div>
                 <div className={text}>
                     Подпишитесь на наш <span className={link}><Link to='https://www.instagram.com/ecotrans46/'>Instagram.</Link></span><br/>
                     Тут вся полезная информация!

@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Buttons from  '../../buttons'
 import {subscribe, text, button, images} from './block-instagram-desktop.module.css';
-import {desktopContainer} from '../../../common-styles/containers.module.css';
-import {titleDesktop} from '../../../common-styles/title.module.css';
+import {mainContainer} from '../../../common-styles/containers.module.css';
+import {title} from '../../../common-styles/title.module.css';
 import Slider from '../../../libs/react-components/sliders/slider';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
@@ -19,7 +19,7 @@ const slides = [
     <div className={images}><img src={img4} alt="instagram4"/></div>
 ];
 
-const titleStyle = [titleDesktop, desktopContainer].join(" ");
+const titleStyle = [title, mainContainer].join(" ");
 
 
 /**Блок Instagram (десктопный)*/
@@ -39,7 +39,7 @@ function BlockInstagramDesktop() {
         <>
             <p className={titleStyle}>Будьте в курсе!</p><br/>
 
-            <div className={active ? null : desktopContainer}>
+            <div className={active ? null : mainContainer}>
                 <Slider
                     key={active}
                     visible={active ? 0 : 4}
@@ -51,7 +51,7 @@ function BlockInstagramDesktop() {
                 </Slider>
             </div>
 
-            <div className={desktopContainer}>
+            <div className={mainContainer}>
                 <div className={subscribe}>
                     <div className={text}>
                         Мы освободили вашу почту от спам - рассылки с просьбой скинуть нам ваш email. <br/>

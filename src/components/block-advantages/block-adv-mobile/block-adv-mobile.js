@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from '../../../libs/react-components/sliders/slider';
 import Cards from '../../cards-advantages';
-import {mobileContainerWhite} from '../../../common-styles/containers.module.css';
-import {titleMobile} from '../../../common-styles/title.module.css';
+import {mainContainer} from '../../../common-styles/containers.module.css';
+import {title} from '../../../common-styles/title.module.css';
 
 
 const advCards = [
@@ -12,7 +12,7 @@ const advCards = [
     <Cards.Training mobile={true}/>
 ];
 
-const titleStyle = [titleMobile, mobileContainerWhite].join(" "); 
+const titleStyle = [title, mainContainer].join(" "); 
 
 function BlockAdvMobile() {
     return(

@@ -3,8 +3,8 @@ import Slider from '../../../libs/react-components/sliders/slider';
 import Cards from '../../cards-advantages';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
-import {desktopContainer} from '../../../common-styles/containers.module.css';
-import {titleDesktop} from '../../../common-styles/title.module.css';
+import {mainContainer} from '../../../common-styles/containers.module.css';
+import {title} from '../../../common-styles/title.module.css';
 
 const advCards = [
     <Cards.Ecologist/>,
@@ -13,7 +13,7 @@ const advCards = [
     <Cards.Training/>
 ];
 
-const titleStyle = [titleDesktop, desktopContainer].join(" ");
+const titleStyle = [title, mainContainer].join(" ");
 
 /**Блок "Преимущества работы с нами" (десктопный)*/
 function BlockAdvDesktop() {
@@ -31,9 +31,10 @@ function BlockAdvDesktop() {
     return(
         <>
             <div className={titleStyle}>Преимущества работы с нами</div>
-            <div className={active ? null : desktopContainer}>
+            <div className={active ? null : mainContainer}>
                 <Slider
-                    visible={active ? 0: 4}
+                    key={active}
+                    visible={active ? 0 : 4}
                     adjacent={active ? true : false}
                     freeze={active ? false : true}>
 

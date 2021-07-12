@@ -1,19 +1,41 @@
-import React from 'react';
-import {style, phone} from "./header-mobile.module.css";
+import React, { useState } from 'react';
+import {Link} from 'gatsby';
+import {style, phone, logo} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
+import HeaderMenu from '../header-menu';
 
 function HeaderMobile(props) {
-    const Phone = () => (
-        <div className={phone}>
-            <img src={props.phone} alt="phone"/>
-            +7 (906)577-49-34
+    const Logo = () => (
+        <div className={logo}>
+            <Link to='/'>
+                <img src={props.logo} alt="logo_ecotrans"/>
+            </Link>
         </div>
     );
+
+    const Phone = () => (
+        <a className={phone} href="tel:+7 (906)577-49-34">
+            <div className={phone}>
+                <img src={props.phone} alt="phone"/>
+                +7 (906)577-49-34
+            </div>
+        </a>
+    );
+
+    const [isOpen, setState] = useState(false);
+
+    function onClick() {
+        setState(!isOpen);
+    }
+
     return(
         <div className={style}>
-            <img src={props.logo} alt="logo_ecotrans"/>
+            <Logo/>
             <Phone/>
-            <ButtonMenu/>
+            <div onClick={onClick}>
+                <ButtonMenu open={isOpen}/>
+                {isOpen ? <HeaderMenu.Mobile/> : null}
+            </div>
         </div>
     );
 }

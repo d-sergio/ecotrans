@@ -2,12 +2,39 @@
 
 1. root-layout
 
-Корневой компонент root-layout управляет контекстом MobileView, принимающим
+Корневой компонент root-layout управляет контекстом.
+
+1.1 Контекст MobileView (view-context.js) принимает
 значения true/false. Параметры медиа-запросов, по которым может определяться
 мобильный/десктопный режим сайта, задаются в файле config/config-media-queries.json
 
 Кроме того, в некоторых случаях компоненты сами могут совершать медиа-запросы
 через media-query.js (смотри подробнее components/root-layout/media-query-readme.txt)
+
+1.2 Контекст PageName (page-name-context.js) содержит объект с именем текущей страницы и методом её изменения:
+
+    name - имя текущей страницы
+    changeName - метод изменения имени текущей страницы
+
+Требуется для корректной подсветки имени текущей страницы в меню навигации.
+
+Значения name:
+
+    /
+    /services
+    /projects
+    /clients
+    /contact
+
+Контекст PageName задаётся на каждой странице:
+
+    import PageName from '../components/root-layout/page-name-context';
+
+    const pageName = useContext(PageName);
+
+    useEffect(() => pageName.change('/services'), []);
+
+
 
 2. buttons
 
@@ -28,6 +55,8 @@ Subscribe.Mobile Subscribe.Desktop - Подписаться
 Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
 Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
 Menu - кнопка мобильного меню
+
+
 
 3. cards-services
 
@@ -52,6 +81,8 @@ Menu - кнопка мобильного меню
     ...
     <Cards.Green.Mobile/>
 
+
+
 5. cards-advantages
 
 Карточки Преимущества: 
@@ -63,6 +94,8 @@ Ecologist, License, Technologies, Training
     import Cards from '../components/cards-advantages';
     ...
     <Cards.Ecologist mobile={true}/>
+
+
 
 6. cards-statistics
 
@@ -79,6 +112,8 @@ DangerClass, TenYears, Tko, WasteClass, MedicalWaste
 
 Также переходят в активное состояние под курсором мыши. Но после этого теряют
 способность активироваться через пропс
+
+
 
 7. cards-partners
 

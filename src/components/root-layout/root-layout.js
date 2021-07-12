@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import config from '../../config/config-media-queries.json';
 import MobileView from './view-context';
+import PageName from './page-name-context';
 import mediaQuery from '../../libs/react/media-query';
 
 export default function RootLayout (props) {
@@ -13,9 +14,23 @@ export default function RootLayout (props) {
 
     useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
 
+    const [pageName, setPageName] = useState({
+        name: '/',
+        change: changeName
+    });
+
+    function changeName(currentPage) {
+        setPageName({
+            ...pageName,
+            name: currentPage
+        });
+    }
+
     return (
-        <MobileView.Provider value={mobileView}>
-            {props.children}
-        </MobileView.Provider>
+        <PageName.Provider value={pageName}>
+            <MobileView.Provider value={mobileView}>
+                {props.children}
+            </MobileView.Provider>
+        </PageName.Provider>
     );
 }

@@ -1,6 +1,16 @@
 import React from 'react';
 import CardsPartnersTemp from "./cards-partners-template";
 
+/**Карточки "Наши партнёры"
+ * Используют встроенный svg для управления цветом логотипов. Компонент
+ * CardsPartnersTemp задаёт цвет свойству fill всех path, являющихся
+ * прямыми потомками <svg>
+ * <svg>
+ *  <path d="..." fill="значение"></path>
+ *  <path d="..." fill="значение"></path>
+ *  <path d="..." fill="значение"></path>
+ * </svg>
+*/
 export function BuisnessRussia(props) {
     const height = props.mobile ? 55 : 69;
     const width = props.mobile ? 160 : 259;

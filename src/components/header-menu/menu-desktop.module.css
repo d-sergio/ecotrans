@@ -3,14 +3,18 @@
     justify-content: space-between;
     align-items: center;
 
-    width: 463px;
+    width: 517px;
+}
+
+.menu div{
+    flex: 1;
 }
 
 .link{
     min-width: 100px;
     text-align: center;
 
-    transition: all 0.1s;
+    /*transition: all 0.1s Добавляется в js*/
 }
 
 .link:hover{

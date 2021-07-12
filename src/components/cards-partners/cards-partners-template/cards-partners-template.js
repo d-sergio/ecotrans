@@ -1,6 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {styleMobile, logoMobile, textMobile, styleDesktop, logoDesktop, textDesktop} from './cards-partners-template.module.css';
 
+/**Шаблон карточек "Наши партнёры"
+ * Используют встроенный svg для управления цветом логотипов. Компонент
+ * CardsPartnersTemp задаёт цвет свойству fill всех path, являющихся
+ * прямыми потомками <svg>
+ * <svg>
+ *  <path d="..." fill="значение"></path>
+ *  <path d="..." fill="значение"></path>
+ *  <path d="..." fill="значение"></path>
+ * </svg>
+*/
 function CardsPartnersTemp(props) {
     const slide = useRef(null);
     const logo = useRef(null);

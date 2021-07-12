@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Layout from '../components/layout/layout';
 import BlockServices from '../components/block-services';
 import BlockProjects from '../components/block-projects';
@@ -6,8 +6,13 @@ import BlockAdvantages from '../components/block-advantages/block-advantages';
 import BlockInstagram from '../components/block-instagram';
 import BlockStats from '../components/block-statistics';
 import BlockPartners from '../components/block-partners/block-partners';
+import PageName from '../components/root-layout/page-name-context';
 
 function Index() {
+    const pageName = useContext(PageName);
+
+    useEffect(() => pageName.change('/'), []);
+
     return (
         <Layout>
             <div style={{height: '30px'}}></div>

@@ -1,10 +1,14 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import MobileView from '../components/root-layout/view-context';
+import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
 import Card from '../components/cards-projects';
 
-function Test() {
+function Services() {
     const view = useContext(MobileView);
+    const pageName = useContext(PageName);
+
+    useEffect(() => pageName.change('/services'), []);
 
     return (
         <Layout>
@@ -39,4 +43,4 @@ function Test() {
         </Layout>);
 };
 
-export default Test;
+export default Services;

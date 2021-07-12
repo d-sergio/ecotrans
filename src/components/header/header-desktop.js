@@ -1,12 +1,15 @@
 import React from 'react';
+import {Link} from 'gatsby';
 import {outer, style, logo, phone} from "./header-desktop.module.css";
 import MenuDesktop from '../header-menu/menu-desktop';
 
 function HeaderDesktop(props) {
     const Logo = () => (
         <div className={logo}>
-            <img src={props.logo} alt="logo_ecotrans"/>
-            Экотранс
+            <Link to='/'>
+                <img src={props.logo} alt="logo_ecotrans"/>
+                Экотранс
+            </Link>
         </div>
     );
 

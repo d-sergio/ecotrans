@@ -4,7 +4,6 @@ import Layout from '../components/layout/layout';
 import SpoilersProjects from '../components/spoilers-projects';
 import {mainContainer} from '../common-styles/containers.module.css';
 import {topBottomPaddings} from '../common-styles/pages.module.css';
-import SpoilerProjectsTemplate from '../components/spoilers-projects/spoilers-projects-temp/spoilers-projects-temp';
 
 function Services() {
     const pageName = useContext(PageName);

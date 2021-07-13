@@ -14,16 +14,16 @@
     margin-right: auto;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1440px) {
+@media screen and (min-width: 768px) and (max-width: 1277px) {
     .mainContainer{
         padding-left: 80px;
         padding-right: 80px;
     }
 }
 
-@media screen and (min-width: 1441px) {
+@media screen and (min-width: 1278px) {
     .mainContainer {
-        max-width: 1440px;
+        max-width: 1278px;
         padding-left: 80px;
         padding-right: 80px;
         margin-left: auto;
@@ -31,6 +31,6 @@
     }
 
     .sliderDeskContainer{
-        max-width: 1440px;
+        max-width: 1278px;
     }
 }

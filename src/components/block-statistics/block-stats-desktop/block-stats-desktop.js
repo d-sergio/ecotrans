@@ -3,11 +3,11 @@ import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-statistics';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
-import {sliderDeskContainer} from '../../../common-styles/containers.module.css';
+import {freezeContainer} from './block-stats-desktop.module.css';
 
 const cards = [
-    <Cards.DangerClass/>,
     <Cards.TenYears/>,
+    <Cards.DangerClass/>,
     <Cards.Tko/>,
     <Cards.WasteClass/>,
     <Cards.MedicalWaste/>
@@ -33,7 +33,7 @@ function BlockStatsDesktop() {
     if (active === undefined) return null;
 
     return(
-        <div className={active ? null : sliderDeskContainer}>
+        <div className={active ? null : freezeContainer}>
             <Slider
                 key={active}
                 visible={active ? visible : 5}

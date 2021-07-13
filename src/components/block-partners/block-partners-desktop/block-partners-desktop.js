@@ -6,12 +6,12 @@ import Partners from '../../cards-partners';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 
-const cards = [
-    <Partners.BuisnessRussia/>,
+const cards = [    
     <Partners.EcoSputnik/>,
     <Partners.EcoFund/>,
     <Partners.Leader/>,
     <Partners.Fillipov/>,
+    <Partners.BuisnessRussia/>,
     <Partners.EcoLab/>
 ];
 
@@ -41,7 +41,7 @@ function BlockPartnersDesktop() {
             <div className={titleStyle}>Наши партнеры</div>
             <div className={active ? null : mainContainer}>
                 <Slider
-                    key={1}
+                    key={visible}
                     visible={visible}
                     adjacent={true}
                     autoMove={true}

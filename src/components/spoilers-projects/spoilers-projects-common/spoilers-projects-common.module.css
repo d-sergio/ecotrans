@@ -1,0 +1,48 @@
+.green{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 2rem 2rem 2rem 2rem;
+
+    font-family: 'MontserratMedium';
+    background-color: #EAFFE2;
+}
+
+.paragraph p{
+    line-height: 1.4rem;
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+}
+
+.textJustify{
+    text-align: justify;
+}
+
+.image{
+    max-width: 100%;
+    height: auto;
+}
+
+.imageRight{
+    float: right;
+    max-width: 100%;
+    height: auto;
+}
+
+.imageLeft{
+    float: left;
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 1400px) {
+    .imageRight, .imageLeft{
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

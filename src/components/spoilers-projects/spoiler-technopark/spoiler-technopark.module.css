@@ -1,0 +1,8 @@
+.residents {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import ServicesSpoilerTemplate from "../services-spoilers-temp";
+import ServicesSpoilerTemplate from "../spoilers-services-temp";
 import pic from '../../../../static/images/services-spoilers/docs.png';
 
 function Docs() {

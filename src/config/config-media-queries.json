@@ -8,16 +8,16 @@
         "large": "screen and (min-width: 1024px)"
     },
     "blockAdvDesktop": {
-        "small": "screen and (max-width: 1440px)",
-        "large": "screen and (min-width: 1441px)"
+        "small": "screen and (max-width: 1439px)",
+        "large": "screen and (min-width: 1440px)"
     },
     "blockInstagramDesktop": {
-        "small": "screen and (max-width: 1440px)",
-        "large": "screen and (min-width: 1441px)"
+        "small": "screen and (max-width: 1439px)",
+        "large": "screen and (min-width: 1440px)"
     },
     "blockStatsDesktop": {
-        "small": "screen and (max-width: 1099px)",
-        "large": "screen and (min-width: 1100px)"
+        "small": "screen and (max-width: 1439px)",
+        "large": "screen and (min-width: 1440px)"
     },
     "blockPartnersDesktop": {
         "small": "screen and (max-width: 1439px)",

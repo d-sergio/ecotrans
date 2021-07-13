@@ -12,7 +12,6 @@ function ButtonContact(props) {
     const viewMode = props.mobile === true ? mobile: desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-    //const buttonText = props.desktop === true ? 'Связаться с нами' : 'Связаться';
     const buttonText = 'Связаться';
 
     return <button className={cssStyle}>{buttonText}</button>;

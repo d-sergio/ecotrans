@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Slider from '../../../libs/react-components/sliders/desktop-projects/slider';
-import {desktopContainer} from '../../../common-styles/containers.module.css';
+import {container} from './block-projects-desktop.module.css';
 import Cards from '../../cards-projects';
 import Buttons from '../../buttons';
 import mediaQuery from '../../../libs/react/media-query';
@@ -21,8 +21,8 @@ const ArrowRight = () => (
 
 function BlockProjectsDesktop() {
     const queries = {
-        small: "screen and (max-width: 1449px)",
-        large: "screen and (min-width: 1450px)"
+        small: "screen and (max-width: 1439px)",
+        large: "screen and (min-width: 1440px)"
     };
 
     const [smallView, setSmallView] = useState();
@@ -32,7 +32,7 @@ function BlockProjectsDesktop() {
     if (smallView === undefined) return null; 
 
     return(
-        <div className={smallView ? null : desktopContainer}>
+        <div className={smallView ? null : container}>
             <Slider
                 key={smallView}
                 visible={smallView ? 1 : 3}

@@ -5,8 +5,8 @@
 
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
-import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
-import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
+//import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
+//import touchHandler from '../slider/event-handlers/ordinary/touch-handler';
 
 //Остальные импорты
 import React, {useState, useRef, useEffect} from 'react';
@@ -208,14 +208,14 @@ function Slider(props) {
         //setNewPosition(shift, state, setState, props, viewport.current, carousel.current); //альтернативный вариант
     }
 
-    function startMouseHandler(e) {
+    /*function startMouseHandler(e) {
         if (props.freeze) return;
 
-        const adjacentCorrect = calcAdjacentCorrect();
+        const adjacentCorrect = calcAdjacentCorrect();*/
         
         /*animDuration без current, так как задать новое значение в mouseHandler
         можно будет только через animDuration.current = ... */
-        const mouseArgs = {
+        /*const mouseArgs = {
             e: e,
             params: props,
             state: state,
@@ -228,16 +228,16 @@ function Slider(props) {
         };
 
         mouseHandler(mouseArgs);
-    }
+    }*/
 
-    function startTouchHandler(e) {
+    /*function startTouchHandler(e) {
         if (props.freeze) return;
 
-        const adjacentCorrect = calcAdjacentCorrect();
+        const adjacentCorrect = calcAdjacentCorrect();*/
 
         /*animDuration без current, так как задать новое значение в touchHandler
         можно будет только через animDuration.current = ... */
-        const touchArgs = {
+        /*const touchArgs = {
             e: e,
             params: props,
             state: state,
@@ -250,7 +250,7 @@ function Slider(props) {
         };
 
         touchHandler(touchArgs);
-    }
+    }*/
 
     /**Старт автопрокрутки карусели */
     function autoMove() {
@@ -301,8 +301,8 @@ function Slider(props) {
             <div className={viewportStyle} ref={viewport}>
                 <div className={carouselStyle}
                 ref={carousel}
-                onMouseDown={(e) => startMouseHandler(e)}
-                onTouchStart={(e) => startTouchHandler(e)}>
+                /*onMouseDown={(e) => startMouseHandler(e)}*/
+                /*onTouchStart={(e) => startTouchHandler(e)}*/>
                     {
                         createAlwaysActive({    /**********МОДИФИКАЦИЯ**********/
                             children: state.children,

@@ -4,6 +4,7 @@ import Cards from '../../cards-advantages';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import {freezeContainer} from './block-adv-desktop.module.css';
 import {title} from '../../../common-styles/title.module.css';
 
 const advCards = [
@@ -31,7 +32,7 @@ function BlockAdvDesktop() {
     return(
         <>
             <div className={titleStyle}>Преимущества работы с нами</div>
-            <div className={active ? null : mainContainer}>
+            <div className={active ? null : freezeContainer}>
                 <Slider
                     key={active}
                     visible={active ? 0 : 4}

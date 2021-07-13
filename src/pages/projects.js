@@ -1,25 +1,24 @@
 import React, {useContext, useEffect} from 'react';
 import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
-import ServicesSpoilers from '../components/spoilers-services';
+import SpoilersProjects from '../components/spoilers-projects';
 import {mainContainer} from '../common-styles/containers.module.css';
 import {topBottomPaddings} from '../common-styles/pages.module.css';
+import SpoilerProjectsTemplate from '../components/spoilers-projects/spoilers-projects-temp/spoilers-projects-temp';
 
 function Services() {
     const pageName = useContext(PageName);
 
-    useEffect(() => pageName.change('/services'), []);
+    useEffect(() => pageName.change('/projects'), []);
 
     const pageStyle = [topBottomPaddings, mainContainer].join(" ");
 
     return (
         <Layout>
             <div className={pageStyle}>
-                <ServicesSpoilers.Transportation/>
-                <ServicesSpoilers.Neutralization/>
-                <ServicesSpoilers.MedicalWaste/>
-                <ServicesSpoilers.Training/>
-                <ServicesSpoilers.Docs/>
+                <SpoilersProjects.Technopark/>
+                <SpoilersProjects.GreenPhone/>
+                <SpoilersProjects.Education/>
             </div>
         </Layout>);
 };

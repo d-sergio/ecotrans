@@ -4,11 +4,15 @@ import Spoiler from '../../../libs/react-components/spoiler';
 import {title} from '../../../common-styles/title.module.css';
 import {green, button} from './services-spoilers-temp.module.css';
 import MobileView from '../../root-layout/view-context';
+import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 
 function ServicesSpoilerTemplate(props) {
     const mobileView = useContext(MobileView);
 
     const titleSpoiler = <div className={title}>{props.title}</div>;
+
+    const open = <img src={arrowPic} alt="spoiler arrow"/>;
+    const close = <img style={{transform: 'rotate(180deg'}} src={arrowPic} alt="spoiler arrow"/>;
 
     const bodySpoiler = (
         <div>
@@ -24,7 +28,7 @@ function ServicesSpoilerTemplate(props) {
         </div>
     );
 
-    return <Spoiler title={titleSpoiler} body={bodySpoiler}/>;
+    return <Spoiler title={titleSpoiler} body={bodySpoiler} open={open} close={close}/>;
 }
 
 export default ServicesSpoilerTemplate;

@@ -21,12 +21,16 @@ img{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    margin-bottom: 82px;
 }
 
 p {
     line-height: 1.4rem;
     margin-top: 1.875rem;
     margin-bottom: 1.875rem;
+
+    text-align: justify;
 }
 
 @media screen and (max-width: 650px) {

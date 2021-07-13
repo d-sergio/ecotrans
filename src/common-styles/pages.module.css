@@ -1,0 +1,9 @@
+.topBottomPaddings {
+    padding-top: 75px;
+}
+
+@media screen and (max-width: 1023px) {
+    .topBottomPaddings {
+        padding-top: 41px;
+    }
+}

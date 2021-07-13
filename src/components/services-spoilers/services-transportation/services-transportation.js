@@ -1,6 +1,6 @@
 import React from "react";
 import ServicesSpoilerTemplate from "../services-spoilers-temp";
-import pic from '../../../../static/images/services/transportation.png';
+import pic from '../../../../static/images/services-spoilers/transportation.png';
 
 function Transportation() {
     const title = (

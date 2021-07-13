@@ -4,6 +4,8 @@
     align-items: center;
 
     width: 517px;
+
+    font-size: 1.125rem;
 }
 
 .mobileContainer{
@@ -14,7 +16,7 @@
     z-index: 98;
 
     width: 100%;
-    height: 50%;
+    height: 60%;
     left: 0;
     top: 48px;
 
@@ -28,7 +30,8 @@
     align-items: center;
     flex-direction: column;
 
-    margin-top: 48px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .link{
@@ -42,4 +45,17 @@
     transform: scale(1.125, 1.125);
     font-family: "MontserratBold";
     font-weight: 700;
+}
+
+@media screen and (min-width: 651px) {
+    .menuMobile{
+        font-size: 1.125rem;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .link{
+        display: flex;
+        align-items: center;
+    }
 }

@@ -11,17 +11,17 @@
     padding: 30px 83px 0 83px;
     margin-right: auto;
     margin-left: auto;
-
-    font-size: 1.125rem;
 }
 
 .logo a{
     display: flex;
     align-items: center;
     font-family: "MontserratBold";
+    font-size: 1.125rem;
 }
 
 .phone{
     display: flex;
     align-items: center;
+    font-size: 1.125rem;
 }

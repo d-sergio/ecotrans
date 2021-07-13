@@ -47,6 +47,7 @@
 Все кнопки:
 Detailed - Подробнее
 Look - Смотреть
+Order.Desktop Order.Mobile - Заказать
 Contact.Mobile Contact.Desktop - Связаться (с нами)
 Choose.Mobile Choose.Desktop - Выбрать
 Call.Mobile Call.Desktop - Позвонить

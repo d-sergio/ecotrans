@@ -1,0 +1,36 @@
+img{
+    float: left;
+    max-width: 100%;
+    height: auto;
+}
+
+.green{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 1rem 2rem 1rem 2rem;
+
+    font-family: 'MontserratMedium';
+    background-color: #EAFFE2;
+}
+
+.button{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+p {
+    line-height: 1.4rem;
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+}
+
+@media screen and (max-width: 650px) {
+    .button{
+        align-items: center;
+    }
+}

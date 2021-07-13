@@ -7,6 +7,7 @@ import Send from "./button-send";
 import Subscribe from "./button-subscribe";
 import Arrow from "./button-arrow";
 import Menu from "./button-menu";
+import Order from './button-order';
 
 
 const buttons = {
@@ -18,7 +19,8 @@ const buttons = {
     Send,
     Subscribe,
     Arrow,
-    Menu
+    Menu,
+    Order
 };
 
 export default buttons;

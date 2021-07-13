@@ -1,0 +1,20 @@
+.titleStyle{
+    display: flex;
+    cursor: pointer;
+}
+
+.iconStyle{
+    display: flex;
+    margin-left: 30px;
+}
+
+.bodyStyle{
+    display: flex;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 690px) {
+    .iconStyle{
+        margin-left: 15px;
+    }
+}

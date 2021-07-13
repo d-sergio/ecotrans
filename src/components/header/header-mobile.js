@@ -1,10 +1,98 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import checkRef from '../../libs/react/check-refs';
 import {Link} from 'gatsby';
-import {style, phone, logo} from "./header-mobile.module.css";
+import {style, phone, logo, mobileMenu} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
 import HeaderMenu from '../header-menu';
+import { Animation, linear, invertedLinear, changeStyleProperty } from '../../libs/animate/animate';
 
 function HeaderMobile(props) {
+    const [isOpen, setState] = useState(false);
+    const [init, setInit] = useState(false);
+    const headerMenu = useRef(null);
+    const animate = useRef(undefined);  //Здесь будет объект анимации
+
+    //Инициализация
+    useEffect(() => {
+        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
+        if (!headerMenuExist) return;
+
+        headerMenu.current.style.display = 'none';
+        headerMenu.current.style.opacity = '0';
+
+        setInit(true);
+    }, []);
+
+    useEffect(() => {
+        //До инициализации меню пропускаем анимацию
+        if (!init) return; 
+        
+        if (isOpen) {
+            animateOpen();
+        } else {
+            animateClose();
+        }        
+    }, [isOpen]);
+
+    function onClick() {
+        setState(!isOpen);
+    }
+
+    function animateOpen() {
+        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
+        if (!headerMenuExist) return;
+
+        headerMenu.current.style.display = 'block';
+        headerMenu.current.style.opacity = '0';
+
+        if (animate.current) animate.current.cancel();
+
+        const animationProps = {
+            timing: linear,
+            duration: 300,
+            draw: changeStyleProperty,
+            element: headerMenu.current,
+            property: 'opacity',
+            startValue: 0,
+            finalValue: 1
+        };
+
+        animate.current = new Animation(animationProps);
+        animate.current.start();
+    }
+
+    function animateClose() {
+        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
+        if (!headerMenuExist) return;
+
+        headerMenu.current.style.display = 'block';
+        headerMenu.current.style.opacity = '0';
+
+        const callback = () => {
+            const headerMenuExist =
+                checkRef(headerMenu,'header-mobile.js (во время animate на анимации open)');
+            if (!headerMenuExist) return;
+
+            headerMenu.current.style.display = 'none';
+        };
+
+        if (animate.current) animate.current.cancel();
+
+        const animationProps = {
+            timing: invertedLinear,
+            duration: 300,
+            draw: changeStyleProperty,
+            element: headerMenu.current,
+            property: 'opacity',
+            startValue: 1,
+            finalValue: 0,
+            callback: callback
+        };
+
+        animate.current = new Animation(animationProps);
+        animate.current.start();
+    }
+
     const Logo = () => (
         <div className={logo}>
             <Link to='/'>
@@ -12,7 +100,7 @@ function HeaderMobile(props) {
             </Link>
         </div>
     );
-
+    
     const Phone = () => (
         <a className={phone} href="tel:+7 (906)577-49-34">
             <div className={phone}>
@@ -22,19 +110,15 @@ function HeaderMobile(props) {
         </a>
     );
 
-    const [isOpen, setState] = useState(false);
-
-    function onClick() {
-        setState(!isOpen);
-    }
-
     return(
         <div className={style}>
             <Logo/>
             <Phone/>
             <div onClick={onClick}>
                 <ButtonMenu open={isOpen}/>
-                {isOpen ? <HeaderMenu mobile={true}/> : null}
+                <div ref={headerMenu}>
+                   <HeaderMenu mobile={true}/>
+                </div>
             </div>
         </div>
     );

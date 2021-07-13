@@ -51,9 +51,11 @@ export function animate(timing, duration, draw, element, property, startValue, f
  * 
  * Как работает:
  * 1.   Создать объект анимации с параметрами по умолчанию:
- *      let obj = new CreateAnimation(animationProps);
+ *      const obj = new CreateAnimation();
  * 
- *      Без animationProps будет создана анимация по умолчанию, которую можно изменить в сеттере.
+ *      или с заранее установленным параметрами:
+ * 
+ *      const obj = new CreateAnimation(animationProps);
  * 
  * 2.   Изменить параметры анимации можно через сеттер:
  *      obj.set(animationProps);

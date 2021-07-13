@@ -31,6 +31,7 @@
 .address{
     padding-right: 15px;
     font-size: 0.812rem;
+    width: 320px;
 }
 
 .address img{
@@ -40,12 +41,16 @@
 .docs{
     padding-right: 15px;
     font-size: 0.812rem;
+    width: 230px;
 }
 
 .menu{
     padding-right: 15px;
-    font-size: 0.875rem;}
+    font-size: 0.875rem;
+    width: 87px;
+}
 
 .links{
     font-size: 0.812rem;
+    width: 245px;
 }

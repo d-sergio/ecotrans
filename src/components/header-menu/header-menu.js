@@ -40,7 +40,7 @@ function HeaderMenu(props) {
 
     /*Подключить анимацию через свойство transition */
     function setTransition() {
-        const resExist = checkRef('highlightPageOn');
+        const resExist = checkRef('setTransition');
         if (!resExist) return;
 
         services.current.style.transition = 'all 0.1s';
@@ -124,7 +124,6 @@ function HeaderMenu(props) {
     }
 
     const menuStyle = props.mobile ? menuMobile: menuDesktop;
-    const mobileContStyle = [mainContainer, mobileContainer].join(" ");
 
     const menu = (
         <nav className={menuStyle}>
@@ -159,7 +158,7 @@ function HeaderMenu(props) {
     );
 
     return props.mobile ?
-            <div className={mobileContStyle}>{menu}</div>   //Дополнительная обёртка для мобильного
+            <div className={mobileContainer}>{menu}</div>   //Дополнительная обёртка для мобильного
             : menu;
 }
 

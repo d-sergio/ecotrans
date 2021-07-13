@@ -1,4 +1,4 @@
-.image img{
+.image{
     float: left;
     max-width: 100%;
     height: auto;
@@ -17,26 +17,18 @@
     background-color: #EAFFE2;
 }
 
-.button{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    margin-bottom: 82px;
-}
-
 .paragraph{
     text-align: justify;
-}
-
-.paragraph p{
     line-height: 1.4rem;
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
 }
 
-@media screen and (max-width: 650px) {
-    .button{
-        align-items: center;
+@media screen and (max-width: 1023px) {
+    .image{
+        display: block;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

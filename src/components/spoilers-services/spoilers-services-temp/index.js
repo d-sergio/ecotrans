@@ -1,3 +1,3 @@
-import ServicesSpoilerTemplate from './services-spoilers-temp';
+import ServicesSpoilerTemplate from './spoilers-services-temp';
 
 export default ServicesSpoilerTemplate;

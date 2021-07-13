@@ -1,8 +1,8 @@
-import Transportation from "./services-transportation";
-import Docs from './services-docs';
-import Neutralization from "./services-neutralization";
-import MedicalWaste from './services-medical-waste';
-import Training from "./services-training";
+import Transportation from "./spoilers-transportation";
+import Docs from './spoilers-docs';
+import Neutralization from "./spoilers-neutralization";
+import MedicalWaste from './spoilers-medical-waste';
+import Training from "./spoilers-training";
 
 const spoilers = {
     Transportation,

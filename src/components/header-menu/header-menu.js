@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import PageName from '../root-layout/page-name-context';
 import {Link} from 'gatsby';
 import {menuDesktop, menuMobile, link, mobileContainer} from './header-menu.module.css';
-import {mainContainer} from '../../common-styles/containers.module.css';
 
 /**Имя текущей страницы берётся из контекста.
  * Смотри README.txt в корне проекта раздел "1.2 Контекст PageName"
+ * 
+ * Анимация появления/скрытия меню осуществляется в header-mobile.js
  * 
  * Props:
  * mobile - мобильный вид, если true*/

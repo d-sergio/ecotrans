@@ -6,6 +6,10 @@ import ButtonMenu from '../buttons/button-menu';
 import HeaderMenu from '../header-menu';
 import { Animation, linear, invertedLinear, changeStyleProperty } from '../../libs/animate/animate';
 
+/**HeaderMobile
+ * 
+ * Анимация появления/скрытия меню осуществляется здесь
+*/
 function HeaderMobile(props) {
     const [isOpen, setState] = useState(false);
     const [init, setInit] = useState(false);

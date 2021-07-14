@@ -38,8 +38,6 @@ function configureTouchHandler({e, params, state, setState, viewport, carousel, 
     
     if (carousel !== null && viewport !== null){
         return touchHandlerProperties;
-    } else {
-        console.log(`Slider. configureTouchHandler(): configureTouchHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
     }
 
     function calcNewPosition(speed) {

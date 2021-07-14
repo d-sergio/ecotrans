@@ -1,0 +1,31 @@
+.outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    margin-top: -48px;
+    height: 280px;
+    background-color: #EAFFE2;
+}
+
+.container{
+    margin-top: -16px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.ecotrans{
+    font-family: "MontserratBold";
+    font-size: 1.875rem;
+    line-height: 2.3125rem;
+
+    color: #219982;
+}
+
+.waste{
+    margin-bottom: 12px;
+
+    font-size: 0.75rem;
+    
+    line-height: 0.9375rem;
+}

@@ -12,7 +12,6 @@
     align-self: center;
     position: absolute;
     left: 0;
-    z-index: 1;
 }
 
 .nextStyle{
@@ -22,7 +21,6 @@
     align-self: center;
     position: absolute;
     right: 0;
-    z-index: 1;
 }
 
 .viewportStyle{

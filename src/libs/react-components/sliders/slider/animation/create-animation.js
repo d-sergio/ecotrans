@@ -17,32 +17,30 @@ import {Animation, sliderDraw, invertedSliderDraw, changeStyleProperty} from "..
  */
 export default function createAnimationObject({animDuration, carousel, callback, currentPosition, adjacentCorrect}) {
     try{
-        if (carousel !== null){
-            const slideWidth = carousel.children[0].offsetWidth;
+        if (!carousel) return;
+        
+        const slideWidth = carousel.children[0].offsetWidth;
 
-            const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
-            const targetMarginLeft = -currentPosition * slideWidth + adjacentCorrect;
+        const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
+        const targetMarginLeft = -currentPosition * slideWidth + adjacentCorrect;
 
-            const timing = (targetMarginLeft < currentMarginLeft)
-                            ? invertedSliderDraw //если листаем к следующему слайду
-                            : sliderDraw; //если листаем к предыдущему слайду
+        const timing = (targetMarginLeft < currentMarginLeft)
+                        ? invertedSliderDraw //если листаем к следующему слайду
+                        : sliderDraw; //если листаем к предыдущему слайду
 
-            const animationProps = {
-                timing: timing,
-                duration: animDuration,
-                draw: changeStyleProperty,
-                element: carousel,
-                property: 'marginLeft',
-                startValue: currentMarginLeft,
-                finalValue: targetMarginLeft,
-                units: 'px',
-                callback: callback
-            }
-
-            return new Animation(animationProps);
-        } else {
-            console.log(`Slider. createAnimationObject() остановлен. refs: carousel is ${carousel}`);
+        const animationProps = {
+            timing: timing,
+            duration: animDuration,
+            draw: changeStyleProperty,
+            element: carousel,
+            property: 'marginLeft',
+            startValue: currentMarginLeft,
+            finalValue: targetMarginLeft,
+            units: 'px',
+            callback: callback
         }
+
+        return new Animation(animationProps);
     } catch(e) {
         console.log('Slider Ошибка createAnimationObject(): ' + e.name + ":" + e.message + "\n" + e.stack);
     }

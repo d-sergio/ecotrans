@@ -1,14 +1,11 @@
 /**Задаём margin-left для carousel, соответствующий текущей позиции слайдера */
 function updateCarouselCoords({carousel, currentPosition, adjacentCorrect}) {
     try{        
-        if (carousel !== null){
+        if (!carousel) return;
 
-            const carouselMarginLeft = -carousel.children[0].offsetWidth * currentPosition;
-            
-            carousel.style.marginLeft = carouselMarginLeft + adjacentCorrect + 'px';
-        } else {
-            console.log(`Slider. updateCarouselCoords() остановлен. Refs: carousel is ${carousel}.`);
-        }
+        const carouselMarginLeft = -carousel.children[0].offsetWidth * currentPosition;
+        
+        carousel.style.marginLeft = carouselMarginLeft + adjacentCorrect + 'px';
 
     } catch(e) {
 

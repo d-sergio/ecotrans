@@ -89,8 +89,6 @@ function Slider(props) {
                 /*Перед анимацией сдвигаем carousel в предыдещее положение prevMargin*/
                 if (carousel.current !== undefined || carousel.current !== null) {
                     carousel.current.style.marginLeft = state.prevMargin + 'px';
-                } else {
-                    console.log(`Slider. updateComponent() остановлен: ref carousel is ${carousel.current}`);
                 }
             }
 
@@ -143,24 +141,19 @@ function Slider(props) {
     function calcAdjacentCorrect() {
         if (!props.adjacent) return 0;
     
-        if (carousel.current !== null
-            && carousel.current.firstChild !== null
-            && viewport.current !== null) {
+        if (!carousel.current || !carousel.current.firstChild || !viewport.current) return;
 
-            const visibleArgs = {
-                visible: props.visible,
-                viewport: viewport.current,
-                carousel: carousel.current
-            };
-            
-            const slideWidth = carousel.current.firstChild.offsetWidth;
-            const viewportWidth = viewport.current.offsetWidth;
-            const widthOfVisible = getVisible(visibleArgs) * slideWidth;
-    
-            return (viewportWidth - widthOfVisible) / 2;
-        } else {
-            console.log(`Slider: calcAdjacentCorrect() остановлен. refs: carousel is ${carousel}.`)
-        }
+        const visibleArgs = {
+            visible: props.visible,
+            viewport: viewport.current,
+            carousel: carousel.current
+        };
+        
+        const slideWidth = carousel.current.firstChild.offsetWidth;
+        const viewportWidth = viewport.current.offsetWidth;
+        const widthOfVisible = getVisible(visibleArgs) * slideWidth;
+
+        return (viewportWidth - widthOfVisible) / 2;
     }
 
     function buttonHandler(shift) {
@@ -239,7 +232,7 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (timer.current === undefined || timer.current === null) return;
+        if (!timer.current || !timer.current) return;
         
         clearTimeout(timer.current);
 

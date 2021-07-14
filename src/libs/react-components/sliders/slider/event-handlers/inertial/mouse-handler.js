@@ -37,8 +37,6 @@ function configureMouseHandler({e, params, state, setState, viewport, carousel, 
     
     if (carousel !== null && viewport !== null){
         return mouseHandlerProperties;
-    } else {
-        console.log(`Slider. configureMouseHandler(): configureMouseHandler() не будет выполнен. refs: viewport is ${viewport}, carousel is ${carousel}`);
     }
 
     function calcInertialMotion(speed) {

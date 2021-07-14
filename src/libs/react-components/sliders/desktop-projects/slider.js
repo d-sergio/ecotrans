@@ -93,8 +93,6 @@ function Slider(props) {
                 /*Перед анимацией сдвигаем carousel в предыдещее положение prevMargin*/
                 if (carousel.current !== undefined || carousel.current !== null) {
                     carousel.current.style.marginLeft = state.prevMargin + 'px';
-                } else {
-                    console.log(`Slider. updateComponent() остановлен: ref carousel is ${carousel.current}`);
                 }
             }
 
@@ -146,20 +144,13 @@ function Slider(props) {
     /**********МОДИФИКАЦИЯ**********/
     /**Находим и устанавливаем координаты кнопок управления */
     function updateArrowsCoords() {
-        if (container.current !== null && carousel.current !== null && prev.current !== null && next.current !== null) {
-            const left = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
-            prev.current.style.left = left;
-    
-            const right = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
-            next.current.style.right = right;
-        } else {
-            console.log(`Slider. updateArrowsCoords остановлен.
-            Refs:
-            container.current is ${container.current},
-            carousel.current is ${carousel.current},
-            prev.current is ${prev.current},
-            next.current is ${next.current}`);
-        }
+        if (!container.current || !carousel.current || !prev.current || !next.current) return;
+
+        const left = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
+        prev.current.style.left = left;
+
+        const right = container.current.offsetWidth * 0.5 - carousel.current.firstChild.offsetWidth * 0.5 - props.buttonShift + 'px';
+        next.current.style.right = right;
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние
@@ -167,24 +158,19 @@ function Slider(props) {
     function calcAdjacentCorrect() {
         if (!props.adjacent) return 0;
     
-        if (carousel.current !== null
-            && carousel.current.firstChild !== null
-            && viewport.current !== null) {
+        if (!carousel.current || !carousel.current.firstChild || !viewport.current) return;
 
-            const visibleArgs = {
-                visible: props.visible,
-                viewport: viewport.current,
-                carousel: carousel.current
-            };
-            
-            const slideWidth = carousel.current.firstChild.offsetWidth;
-            const viewportWidth = viewport.current.offsetWidth;
-            const widthOfVisible = getVisible(visibleArgs) * slideWidth;
-    
-            return (viewportWidth - widthOfVisible) / 2;
-        } else {
-            console.log(`Slider: calcAdjacentCorrect() остановлен. refs: carousel is ${carousel}.`)
-        }
+        const visibleArgs = {
+            visible: props.visible,
+            viewport: viewport.current,
+            carousel: carousel.current
+        };
+        
+        const slideWidth = carousel.current.firstChild.offsetWidth;
+        const viewportWidth = viewport.current.offsetWidth;
+        const widthOfVisible = getVisible(visibleArgs) * slideWidth;
+
+        return (viewportWidth - widthOfVisible) / 2;
     }
 
     function buttonHandler(shift) {
@@ -263,12 +249,7 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (
-            timer.current === undefined
-            || timer.current === null
-            || !props.cancelAutoMove
-            || props.cancelAutoMove === undefined
-            ) return;
+        if (!timer.current || !props.cancelAutoMove || !props.cancelAutoMove) return;
         
         clearTimeout(timer.current);
 

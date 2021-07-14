@@ -41,7 +41,7 @@ function HeaderMenu(props) {
 
     /*Подключить анимацию через свойство transition */
     function setTransition() {
-        const resExist = checkRef('setTransition');
+        const resExist = checkRef();
         if (!resExist) return;
 
         services.current.style.transition = 'all 0.1s';
@@ -54,7 +54,7 @@ function HeaderMenu(props) {
     function highlightPageOn() {
         if (currentPage === undefined) return;
 
-        const resExist = checkRef('highlightPageOn');
+        const resExist = checkRef();
         if (!resExist) return;
 
         const currentElement = getRef(currentPage);
@@ -69,7 +69,7 @@ function HeaderMenu(props) {
     function highlightPageOff(element) {
         if (element === currentPage) return;
 
-        const resExist = checkRef('highlightPageOff');
+        const resExist = checkRef();
         if (!resExist) return;
 
         const currentElement = getRef(currentPage);
@@ -105,21 +105,10 @@ function HeaderMenu(props) {
     }
 
     /**Проверить существуют ли рефы */
-    function checkRef(consumer) {
-        if (services.current === null
-            || projects.current === null
-            || clients.current === null
-            || contact.current === null) {
-
-                console.log(`MenuDesktop. ${consumer} остановлен. Refs:
-                services.current is ${services.current},
-                projects.current is ${projects.current},
-                clients.current is ${clients.current},
-                contact.current is ${contact.current}`);
-
-                return false;
+    function checkRef() {
+        if (!services.current || !projects.current || !clients.current || !contact.current) {
+            return false;
         } else {
-
             return true;
         }
     }

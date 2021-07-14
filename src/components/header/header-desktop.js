@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {outer, style, logo, phone} from "./header-desktop.module.css";
+import {style, logo, phone} from "./header-desktop.module.css";
 import HeaderMenu from '../header-menu';
 
 function HeaderDesktop(props) {
@@ -21,12 +21,10 @@ function HeaderDesktop(props) {
     );
 
     return(
-        <div className={outer}>
-            <div className={style}>
-                <Logo/>
-                <HeaderMenu mobile={false}/>
-                <Phone/>
-            </div>
+        <div className={style}>
+            <Logo/>
+            <HeaderMenu mobile={false}/>
+            <Phone/>
         </div>
     );
 }

@@ -4,23 +4,21 @@ import getVisible from "./get-visible";
 function updateSlideWidth({viewport, carousel, visible, adjacentCorrect}) {
     try{
         //Рефы могли обнулиться, если компонент был перерисован
-        if (viewport !== null && carousel !== null) {
-            const visibleArgs = {
-                visible: visible,
-                viewport: viewport,
-                carousel: carousel
-            };
+        if (!viewport || !carousel) return;
+        
+        const visibleArgs = {
+            visible: visible,
+            viewport: viewport,
+            carousel: carousel
+        };
 
-            const numberOfVisible = getVisible(visibleArgs);
-            const viewportWidth = viewport.offsetWidth;
+        const numberOfVisible = getVisible(visibleArgs);
+        const viewportWidth = viewport.offsetWidth;
 
-            const slideWidth = ( viewportWidth - adjacentCorrect * 2) / numberOfVisible;
+        const slideWidth = ( viewportWidth - adjacentCorrect * 2) / numberOfVisible;
 
-            for (let i of carousel.children){
-                i.style.width = slideWidth + 'px';
-            }
-        }else {
-            console.log(`Slider. updateSlideWidth() остановлен. Refs: viewport is ${viewport}, carousel is ${carousel}.`);
+        for (let i of carousel.children){
+            i.style.width = slideWidth + 'px';
         }
     } catch(e) {
         console.log('Slider Ошибка updateSlideWidth(): ' + e.name + ":" + e.message + "\n" + e.stack);

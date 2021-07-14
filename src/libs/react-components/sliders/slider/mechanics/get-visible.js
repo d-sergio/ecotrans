@@ -25,17 +25,14 @@ export default getVisible;
 
 function getAutoVisible(viewport, carousel) {
     try{
-        if (viewport !== null && carousel !== null){    
+        if (!viewport || !carousel) return;
 
-            const viewportWidth = viewport.offsetWidth;
-            
-            //Берём ширину вложенного содержимого, а не обёртки frame
-            const slideWidth = carousel.children[0].firstChild.offsetWidth;
-            
-            return Math.floor(viewportWidth/slideWidth);
-        } else {
-            console.log(`Slider. getAutoVisible() остановлен. refs: viewport is ${viewport}, carousel is ${carousel}`);
-        }
+        const viewportWidth = viewport.offsetWidth;
+        
+        //Берём ширину вложенного содержимого, а не обёртки frame
+        const slideWidth = carousel.children[0].firstChild.offsetWidth;
+        
+        return Math.floor(viewportWidth/slideWidth);
 
     } catch(e) {
         console.log('Slider Ошибка getAutoVisible(): ' + e.name + ":" + e.message + "\n" + e.stack);

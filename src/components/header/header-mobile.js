@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import checkRef from '../../libs/react/check-refs';
 import {Link} from 'gatsby';
 import {style, phone, logo, mobileMenu} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
@@ -18,8 +17,7 @@ function HeaderMobile(props) {
 
     //Инициализация
     useEffect(() => {
-        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
-        if (!headerMenuExist) return;
+        if (!headerMenu.current) return;
 
         headerMenu.current.style.display = 'none';
         headerMenu.current.style.opacity = '0';
@@ -43,8 +41,7 @@ function HeaderMobile(props) {
     }
 
     function animateOpen() {
-        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
-        if (!headerMenuExist) return;
+        if (!headerMenu.current) return;
 
         headerMenu.current.style.display = 'block';
         headerMenu.current.style.opacity = '0';
@@ -66,16 +63,13 @@ function HeaderMobile(props) {
     }
 
     function animateClose() {
-        const headerMenuExist = checkRef(headerMenu, 'header-mobile.js (animateOpen)');
-        if (!headerMenuExist) return;
+        if (!headerMenu.current) return;
 
         headerMenu.current.style.display = 'block';
         headerMenu.current.style.opacity = '0';
 
         const callback = () => {
-            const headerMenuExist =
-                checkRef(headerMenu,'header-mobile.js (во время animate на анимации open)');
-            if (!headerMenuExist) return;
+            if (!headerMenu.current) return;
 
             headerMenu.current.style.display = 'none';
         };

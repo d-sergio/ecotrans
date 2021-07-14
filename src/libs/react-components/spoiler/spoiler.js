@@ -24,8 +24,7 @@ function Spoiler(props) {
 
     //инициализация
     useEffect(() => {
-        const bodyExist = checkRef(body, 'useEffect (инициализация), реф body');
-        if (!bodyExist) return;
+        if (!body.current) return;
 
         if (!props.isOpen) {
             body.current.style.height = '0';
@@ -37,8 +36,7 @@ function Spoiler(props) {
         //хук не должен работать при инициализации
         if (prevState === undefined) return;
 
-        const bodyExist = checkRef(body, 'useEffect (новое состояние), реф body');
-        if (!bodyExist) return;
+        if (!body.current) return;
 
         if (open) {
             animateOpen();
@@ -48,8 +46,7 @@ function Spoiler(props) {
     }, [open]);
 
     function animateClose() {
-        const bodyExist = checkRef(body, 'animateClose, реф body');
-        if (!bodyExist) return;
+        if (!body.current) return;
 
         if (animate.current) animate.current.cancel();
 
@@ -70,8 +67,7 @@ function Spoiler(props) {
     }
 
     function animateOpen() {
-        const bodyExist = checkRef(body, 'animateOpen, реф body');
-        if (!bodyExist) return;
+        if (!body.current) return;
 
         if (animate.current) animate.current.cancel();
         
@@ -80,8 +76,7 @@ function Spoiler(props) {
         body.current.style.height = '0';    //и снова закроем
 
         const callback = () => {    //после анимации высота должна быть автоматической
-            const bodyExist = checkRef(body, 'animateOpen (из animate), реф body');
-            if (!bodyExist) return;
+            if (!body.current) return;
 
             body.current.style.height = 'auto';
         };
@@ -101,19 +96,6 @@ function Spoiler(props) {
         animate.current = new Animation();
         animate.current.set(animationProps);
         animate.current.start();
-    }
-
-    /**Существуют ли рефы?
-     * ref- проверяемый реф
-     * consumer - имя запрашивающей функции или другая информация
-    */
-    function checkRef(ref, consumer) {
-        if (!ref.current) {
-            console.log(`Spoiler. Остановлен в ${consumer}: ref is ${ref.current}`);
-            return false;
-        } else {
-            return true;
-        }
     }
 
     return(

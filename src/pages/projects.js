@@ -19,6 +19,7 @@ function Services() {
                 <SpoilersProjects.GreenPhone/>
                 <SpoilersProjects.Education/>
             </div>
+            <div style={{flex: '1 0 auto'}}></div>
         </Layout>);
 };
 

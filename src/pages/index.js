@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/layout/layout';
+import Title from '../components/block-title';
 import BlockServices from '../components/block-services';
 import BlockProjects from '../components/block-projects';
 import BlockAdvantages from '../components/block-advantages/block-advantages';
@@ -15,6 +16,7 @@ function Index() {
 
     return (
         <Layout>
+            <Title/>
             <div style={{height: '30px'}}></div>
             <BlockServices/>
             <BlockStats/>

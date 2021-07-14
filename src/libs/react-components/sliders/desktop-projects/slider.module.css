@@ -10,7 +10,6 @@
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
-    z-index: 1;
 }
 
 .nextStyle{
@@ -19,7 +18,6 @@
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
-    z-index: 1;
 }
 
 .viewportStyle{

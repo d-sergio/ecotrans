@@ -2,7 +2,7 @@ import React from 'react';
 import Buttons from '../../buttons';
 import {outer, container, ecotrans, waste} from './block-title-mobile.module.css';
 
-function TitleMobile() {
+function BlockTitleMobile() {
     return(
         <div className={outer}>
             <div className={container}>
@@ -14,4 +14,4 @@ function TitleMobile() {
     );
 }
 
-export default TitleMobile;
+export default BlockTitleMobile;

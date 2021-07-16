@@ -1,3 +1,21 @@
+.container{
+    position: relative;
+}
+
+.svgStyle{
+    position: absolute;
+    /*top: -5%;
+    left: 24%;
+    width: 57%;
+    height: 100%;*/
+    z-index: -1;
+}
+
+.stayInformed {
+    display: inline;
+    line-height: 5.75rem;
+}
+
 .subscribe{
     display: flex;
     justify-content: space-between;
@@ -40,7 +58,6 @@
     }
 
     .button{
-        display: flex;
         align-items: center;
     }
 }

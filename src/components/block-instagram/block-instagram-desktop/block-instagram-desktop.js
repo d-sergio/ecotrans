@@ -51,9 +51,11 @@ function BlockInstagramDesktop() {
 
     useEffect(() => mediaQuery(active, setActive, queries), []);
 
-    useEffect(() => {
-        drawSvgLine();
+    /*Сначала хук с mediaQuery. После него рисуем кривую. Поэтому
+    ждём, когда значение active перестанет быть undefined*/
+    useEffect(() => drawSvgLine(), [active]);
 
+    useEffect(() => {
         if (typeof window !== undefined) {
             window.addEventListener('resize', drawSvgLine);
         }
@@ -63,17 +65,18 @@ function BlockInstagramDesktop() {
                 window.removeEventListener('resize', drawSvgLine);
             }
         }
-    });
+    }, []);
 
     if (active === undefined) return null;
 
+    /**Рассчитать множители для масштабирования пунктирной кривой*/
     function drawSvgLine() {
         if (!buttonRef || !subscribeRef || !containerRef || typeof window === undefined) return;
-
+        
         try{
             /*correct
             При размере < 1440px линия около кнопки немного смещается вправо из-за того,
-            что линия просто масштабируется по своей сути, а исходник адаптирован под
+            что линия просто масштабируется, а исходник адаптирован под
             полный размер*/
             const correct = document.documentElement.clientWidth < 1440 ? 30 : 0;
             const width = subscribeRef.current.offsetWidth - shift - correct;
@@ -82,7 +85,7 @@ function BlockInstagramDesktop() {
 
             const scaleFactorX = width / 916 >= 1 ? 1 : width / 916;
             const scaleFactorY = height / 467;
-    
+
             setScaleSvgFactor([scaleFactorX, scaleFactorY]);
         } catch(e) {
             /*Ничего страшного. Просто рефы могли быть пока не созданы*/

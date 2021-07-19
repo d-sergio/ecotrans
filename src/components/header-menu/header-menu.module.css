@@ -47,7 +47,7 @@
     font-weight: 700;
 }
 
-@media screen and (min-width: 651px) {
+@media screen and (min-width: 576px) {
     .menuMobile{
         font-size: 1.125rem;
     }

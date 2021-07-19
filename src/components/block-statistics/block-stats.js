@@ -2,10 +2,7 @@ import React, {useContext} from 'react';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import MobileView from '../root-layout/view-context';
 
-/**BlockStatistics
- * Props:
- * @param {Boolean} mobile - мобильный вид, если true
- */
+/**BlockStatistics - статистика (2396 Контрагентов ТКО и т.д.) */
 function BlockStatistics() {
     const BlockStatsDesktop = React.lazy(() => import("./block-stats-desktop"));
     const BlockStatsMobile = React.lazy(() => import("./block-stats-mobile"));

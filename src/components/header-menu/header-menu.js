@@ -82,31 +82,27 @@ function HeaderMenu(props) {
 
     /**Получить реф */
     function getRef(element) {
-        let ref;
-
         switch(element) {
             case '/services':
-                ref = services;
-                break;
+                return services;
             case '/projects':
-                ref = projects;
-                break;
+                return projects;
             case '/clients':
-                ref = clients;
-                break;
+                return clients;
             case '/contact':
-                ref = contact;
-                break;
+                return contact;
             default:
-                ref = '/';
+                return '/';
         }
-
-        return ref;
     }
 
     /**Проверить существуют ли рефы */
     function checkRef() {
-        if (!services.current || !projects.current || !clients.current || !contact.current) {
+        if (!services.current
+            || !projects.current
+            || !clients.current
+            || !contact.current) {
+                
             return false;
         } else {
             return true;

@@ -12,6 +12,14 @@ import img2 from '../../../../static/images/instagram/desktop/2.png';
 import img3 from '../../../../static/images/instagram/desktop/3.png';
 import img4 from '../../../../static/images/instagram/desktop/4.png';
 
+//Сдвиг пунктирной кривой от левого края родительского блока
+const getShift = () => document.documentElement.clientWidth < 1024 ? 300 : 350;
+/*getCorrect
+При размере < 1440px линия около кнопки немного смещается вправо из-за того,
+что линия просто масштабируется, а исходник адаптирован под
+полный размер*/
+const getCorrect = () => document.documentElement.clientWidth <= 1024 ? 80 : 30;
+
 const slides = [
     <div className={images}><img src={img1} alt="instagram1"/></div>,
     <div className={images}><img src={img2} alt="instagram2"/></div>,
@@ -34,8 +42,7 @@ const titleStyle = [title, stayInformed].join(" ");
  *  scaleSvgFactor[1] - по оси Y
 */
 function BlockInstagramDesktop() {
-    //Сдвиг пунктирной кривой от левого края родительского блока
-    const shift = 330;
+
 
     const queries = {
         small: config.blockInstagramDesktop.small,
@@ -74,12 +81,7 @@ function BlockInstagramDesktop() {
         if (!buttonRef || !subscribeRef || !containerRef || typeof window === undefined) return;
         
         try{
-            /*correct
-            При размере < 1440px линия около кнопки немного смещается вправо из-за того,
-            что линия просто масштабируется, а исходник адаптирован под
-            полный размер*/
-            const correct = document.documentElement.clientWidth < 1440 ? 30 : 0;
-            const width = subscribeRef.current.offsetWidth - shift - correct;
+            const width = subscribeRef.current.offsetWidth - getShift() - getCorrect();
 
             const height = buttonRef.current.firstChild.getBoundingClientRect().top - containerRef.current.getBoundingClientRect().top;
 
@@ -98,7 +100,7 @@ function BlockInstagramDesktop() {
         <div style={{position: 'relative'}} className={mainContainer}>
                 <svg className={svgStyle}
 
-                style={{left: shift}}
+                style={{left: getShift()}}
                 
                 width={`${916 * scaleSvgFactor[0]}`}
                 height={`${467 * scaleSvgFactor[1]}`}

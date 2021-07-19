@@ -1,11 +1,15 @@
 {
     "app": {
-        "small": "screen and (min-width: 0px) and (max-width: 650px)",
-        "large": "screen and (min-width: 651px)"
+        "small": "screen and (min-width: 0px) and (max-width: 575px)",
+        "large": "screen and (min-width: 576px)"
     },
     "header": {
         "small": "screen and (max-width: 1023px)",
         "large": "screen and (min-width: 1024px)"
+    },
+    "footer": {
+        "small": "screen and (max-width: 654px)",
+        "large": "screen and (min-width: 655px)"
     },
     "blockAdvDesktop": {
         "small": "screen and (max-width: 1439px)",
@@ -22,5 +26,9 @@
     "blockPartnersDesktop": {
         "small": "screen and (max-width: 1439px)",
         "large": "screen and (min-width: 1440px)"
+    },
+    "blockProjects": {
+        "small": "screen and (max-width: 650px)",
+        "large": "screen and (min-width: 651px)"
     }
 }

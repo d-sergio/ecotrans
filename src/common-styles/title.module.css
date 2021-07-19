@@ -1,16 +1,3 @@
-.titleMobile {
-    font-family: "MontserratBold";
-    font-size: 1.25rem;
-    color: #219982;
-}
-
-
-.titleDesktop {
-    font-family: "MontserratBold";
-    font-size: 2.25rem;
-    color: #219982;
-}
-
 .title {
     font-family: "MontserratBold";
     font-size: 1.25rem;
@@ -23,7 +10,7 @@
     color: #219982;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 576px) {
     .title {
         font-size: 2.25rem;
     }

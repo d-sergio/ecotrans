@@ -1,0 +1,28 @@
+.text{
+    margin-top: 17px;
+    margin-bottom: 38px;
+    font-size: 1.125rem;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    background-image: url(/images/block-cost/email.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media screen and (max-width: 575px) {
+    .main{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    .main{
+        justify-content: center;
+        background-image: none;
+    }
+}

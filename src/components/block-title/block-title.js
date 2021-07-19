@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import MobileView from '../root-layout/view-context';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 
+/**BlockTitle - титульный блок */
 function BlockTitle() {
     const mobileView = useContext(MobileView);
 

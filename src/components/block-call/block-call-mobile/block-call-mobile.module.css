@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.floatImage{
+    width: 100%;
+}
+
+.text{
+    margin-top: 11px;
+    margin-bottom: 16px;
+    
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.image{
+    max-width: 47.5%;
+    height: auto;
+
+    float: right;
+}
+
+.button{
+    text-align: center;
+}
+
+@media screen and (max-width: 449px) {
+    .image{
+        shape-outside: url(/images/block-call/call-mobile.png);
+    }
+}

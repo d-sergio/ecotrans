@@ -12,3 +12,8 @@
     font-size: 1.5rem;
     text-transform: uppercase;
 }
+
+.common{
+    border: 0;
+    outline: none;
+}

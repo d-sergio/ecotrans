@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    max-width: 50%;
+}
+
+.text{
+    margin-top: 8px;
+    margin-bottom: 39px;
+
+    font-size: 1.125rem;
+    line-height: 1.5625rem;
+}
+
+.image img{
+    max-width: 100%;
+    height: auto;
+}

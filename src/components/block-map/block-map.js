@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import LeafletMap from '../leaflet-map/leaflet-map';
+import LeafletMap from '../../libs/react-components/leaflet-map';
 import {title} from '../../common-styles/title.module.css';
 import pin from '../../../static/images/address/map-pin.svg';
 import {image, address, text} from './block-map.module.css';

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
-import LeafletMap from '../libs/react-components/leaflet-map/leaflet-map';
+import BlockContact from '../components/block-contact/block-contact';
 
 function Contact() {
     const pageName = useContext(PageName);
@@ -10,7 +10,7 @@ function Contact() {
 
     return (
         <Layout>
-            <LeafletMap height={800}/>
+            <BlockContact/>
         </Layout>);
 };
 

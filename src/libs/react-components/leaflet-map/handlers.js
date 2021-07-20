@@ -1,4 +1,6 @@
 export function onMouseOver(mymap) {
+    document.getElementById('mapid').focus();
+
     document.addEventListener(
         'keydown',
         (e) => onKeyDown(e, mymap),
@@ -10,22 +12,25 @@ export function onMouseOver(mymap) {
 
 export function onMouseLeave(mymap) {
 
-    mymap.current.dragging.disable();
+    if (mymap.current) mymap.current.dragging.disable();
 }
 
 function onKeyDown(e, mymap) {
     if (e.key === "Shift") {
         e.preventDefault();
 
-        mymap.current.scrollWheelZoom.enable();
-        document.addEventListener(
-            'keyup',
-            () => onKeyUp(mymap),
-            {once: true}
-        );
+        if (mymap.current) {
+            mymap.current.scrollWheelZoom.enable();
+            
+            document.addEventListener(
+                'keyup',
+                () => onKeyUp(mymap),
+                {once: true}
+            );
+        }
     }
 }
 
 function onKeyUp(mymap) {
-    mymap.current.scrollWheelZoom.disable();
+    if (mymap.current) mymap.current.scrollWheelZoom.disable();
 }

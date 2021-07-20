@@ -27,7 +27,14 @@ function BlockMap() {
                     <p className={text}>г. Курск, пр. Ленинского комсомола, д. 1Б</p>
                 </div>
             </div>
-            <LeafletMap height={height}/>
+
+            <LeafletMap
+                height={height}
+                view={[51.662725, 36.134059]}
+                zoom={15}
+                marker={[51.662725, 36.134059]}
+                popup={"<b>этаж 2, комната 17</b>"}
+            />
         </>
     );
 }

@@ -131,3 +131,8 @@ EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia
 
 Также переходят в активное состояние под курсором мыши. Но после этого теряют
 способность активироваться через пропс
+
+> Вёрстка
+
+Компонент block-contact сдвигается вверх под header. При этом margin-top зависит
+от высоты header.

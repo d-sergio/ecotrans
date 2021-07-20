@@ -8,6 +8,16 @@ import initMap from './init-map';
  * Токен лежит в config.js
  * Все настройки карты в initMap.
  * 
+ * Props:
+ * 
+ * height - высота должна быть задана явно
+ * view - координаты, где будет установлен центр карты, в виде
+ * массива [широта, долгота]
+ * zoom - зум
+ * marker - координаты маркера
+ * popup - текст над маркером передаётся как node в строке.
+ * Например: popup={"<div>Hello, world!</>"}
+ * 
  * Зум колесом мыши и перетаскивание карты заблокированы в initMap.
  * 
  * На сенсорных устройствах зум и перетаскивание двумя пальцами.
@@ -29,9 +39,9 @@ function LeafletMap(props) {
         if (!scriptLoaded) {
             const script = loadScript();
 
-            script.onload = () => initMap(mounted, mymap);
+            script.onload = () => initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
 
-        } else initMap(mounted, mymap);
+        } else initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
 
         //подключить стили, если надо
         if (!linkLoaded) loadLink();
@@ -52,7 +62,11 @@ function LeafletMap(props) {
 }
 
 LeafletMap.defaultProps = {
-    height: 257
+    height: 257,
+    zoom: 15,
+    view: [51.66849, 36.13614],
+    marker: [51.662725, 36.134059],
+    popup: "<div>popup</div>"
 };
 
 export default LeafletMap;

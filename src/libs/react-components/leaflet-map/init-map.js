@@ -1,9 +1,9 @@
 import config from './config.json';
 
-function initMap(mounted, mymap) {
+function initMap(mounted, mymap, view, zoom, marker, popup) {
     if (!mounted.current) return;   //ничего не делать, если размонтирован
 
-    mymap.current = window.L.map('mapid').setView([51.662725, 36.134059], 18);
+    mymap.current = window.L.map('mapid').setView(view, zoom);
 
     window.L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${config.accessToken}`, {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -13,8 +13,8 @@ function initMap(mounted, mymap) {
         accessToken: config.accessToken
     }).addTo(mymap.current);
 
-    window.L.marker([51.662725, 36.134059])
-    .addTo(mymap.current).bindPopup("<b>этаж 2, комната 17</b>");
+    window.L.marker(marker)
+    .addTo(mymap.current).bindPopup(popup);
 
     /*Блокируется зум колесом мыши и перетаскивание карты.
     Однако её можно перетаксивать двумя пальцами на сенсорных устройствах*/

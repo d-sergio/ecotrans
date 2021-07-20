@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {Link} from 'gatsby';
-import {style, phone, logo, mobileMenu} from "./header-mobile.module.css";
+import {style, phone, logo} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
 import HeaderMenu from '../header-menu';
 import { Animation, linear, invertedLinear, changeStyleProperty } from '../../libs/animate/animate';

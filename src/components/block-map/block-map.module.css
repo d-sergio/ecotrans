@@ -1,0 +1,18 @@
+.image{
+    float: left;
+    height: 20px;
+    width: auto;
+
+    margin-right: 11px;
+}
+
+.text{
+    font-size: 0.75rem;
+}
+
+.address{
+    margin-top: 6px;
+    margin-bottom: 16px;
+
+    line-height: 20px;
+}

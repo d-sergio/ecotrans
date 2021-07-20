@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {container, onClose, line, cross} from './button-menu.module.css';
 
 /**Кнопка мобильного меню*/

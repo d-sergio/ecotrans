@@ -6,17 +6,21 @@
     padding: 12px 8px 12px 8px;
 
     /*background-color: #EAFFE2;*/
-    z-index: 99;
+    z-index: 100000;
 }
 
 .logo a {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    z-index: 100000;
 }
 
 .logo a img {
     height: 24px;
+
+    z-index: 100000;
 }
 
 .phone{
@@ -25,6 +29,8 @@
 
     font-family: "MontserratLight";
     font-size: 0.625rem;
+
+    z-index: 100000;
 }
 
 @media screen and (min-width: 541px) {

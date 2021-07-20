@@ -109,7 +109,7 @@ function HeaderMenu(props) {
         }
     }
 
-    const menuStyle = props.mobile ? menuMobile: menuDesktop;
+    const menuStyle = props.mobile ? menuMobile : menuDesktop;
 
     const menu = (
         <nav className={menuStyle}>

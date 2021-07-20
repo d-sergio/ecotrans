@@ -20,7 +20,6 @@ function Services() {
                 <ServicesSpoilers.MedicalWaste/>
                 <ServicesSpoilers.Training/>
                 <ServicesSpoilers.Docs/>
-                <div style={{display: 'flex', flex: '1'}}></div>
             </div>
         </Layout>);
 };

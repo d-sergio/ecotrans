@@ -10,9 +10,14 @@ import BlockPartners from '../components/block-partners/block-partners';
 import BlockCall from '../components/block-call';
 import BlockCost from '../components/block-cost/block-cost';
 import PageName from '../components/root-layout/page-name-context';
+import MobileView from '../components/root-layout/view-context';
+import GatsbySuspense from '../libs/gatsby-components/gatsby-suspense';
 
 function Index() {
     const pageName = useContext(PageName);
+    const mobileView = useContext(MobileView);
+
+    const BlockMap = React.lazy(() => import('../components/block-map'));
 
     useEffect(() => pageName.change('/'), []);
 
@@ -36,6 +41,11 @@ function Index() {
             <div style={{marginBottom: '87px'}}>
                 <BlockInstagram/>
             </div>
+            <GatsbySuspense>
+                {
+                    mobileView ? <BlockMap/> : null
+                }
+            </GatsbySuspense>
         </Layout>
     );
 };

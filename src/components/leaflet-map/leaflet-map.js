@@ -5,7 +5,8 @@ import {loadLink, loadScript} from './load-script-style';
 import initMap from './init-map';
 
 /**Карты Leaflet
- * токен лежит в config.js
+ * Токен лежит в config.js
+ * Все настройки карты в initMap.
  * 
  * Зум колесом мыши и перетаскивание карты заблокированы в initMap.
  * 
@@ -43,6 +44,8 @@ function LeafletMap(props) {
     return(
         <div onMouseOver={() => onMouseOver(mymap)}
         onMouseLeave={() => onMouseLeave(mymap)}
+        onTouchEnd={() => onMouseLeave(mymap)}
+        onPointerCancel={() => onMouseLeave(mymap)}
         id="mapid"
         style={{height: props.height + 'px'}}></div>
     );

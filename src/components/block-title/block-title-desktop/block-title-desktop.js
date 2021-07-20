@@ -11,7 +11,7 @@ function TitleDesktop() {
         <div className={green}>
             <div className={containerStyle}>
                 <p className={about}>Транспортировка, утилизация и переработка отходов</p>
-                <h className={ecotrans}>ЭКОТРАНС</h>
+                <h1 className={ecotrans}>ЭКОТРАНС</h1>
                 <p className={waste}>Отходы это не мусор</p>
                 <Buttons.Contact.Desktop/>
             </div>

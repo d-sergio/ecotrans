@@ -1,6 +1,4 @@
 export function onMouseOver(mymap) {
-    document.getElementById('mapid').focus();
-
     document.addEventListener(
         'keydown',
         (e) => onKeyDown(e, mymap),

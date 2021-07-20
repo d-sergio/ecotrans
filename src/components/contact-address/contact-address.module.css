@@ -1,0 +1,81 @@
+.address{
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 49px 0 0 110px;
+
+    background-color: #07c1a2;
+    color: white;
+}
+
+.title{
+    margin-bottom: 28px;
+
+    font-size: 1.5625rem;
+    font-family: "MontserratBold";
+}
+
+.line{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.line > p{
+    align-self: center;
+    margin-left: 29px;
+
+    font-size: 1.125rem;
+    line-height: 1.3125rem;
+}
+
+.social{
+    margin-top: 48px;
+}
+
+.instagram{
+    display: flex;
+}
+
+.instagram > p{
+    margin-left: 29px;
+
+    font-size: 1.125rem;
+    line-height: 1.3125rem;
+}
+
+.instagram > img{
+    align-self: flex-start;
+}
+
+@media screen and (max-width: 575px) {
+    .address{
+        padding: 24px 8px 24px 8px;
+    }
+
+    .instagram > p{
+        margin-left: 12px;
+    }
+
+    .instagram > img{
+        width: 24px;
+        height: auto;
+    }
+
+    .line > img{
+        width: 24px;
+        height: auto;
+    }
+
+    .line > p{
+        margin-left: 12px;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 1023px) {
+    .address{
+        padding: 24px 30px 24px 30px;
+    }
+}
+

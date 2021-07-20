@@ -6,7 +6,7 @@ function BlockTitleMobile() {
     return(
         <div className={outer}>
             <div className={container}>
-                <h className={ecotrans}>Экотранс</h>
+                <h1 className={ecotrans}>Экотранс</h1>
                 <p className={waste}>Отходы это не мусор</p>
                 <Buttons.Contact.Mobile/>
             </div>

@@ -1,0 +1,88 @@
+.feedback{
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 49px 32px 0 110px;
+
+    background-color: white;
+}
+
+.feedbackTitle{
+    font-size: 1.5625rem;
+    font-family: "MontserratBold";
+    color: #219982;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 43px;
+}
+
+.input{
+    height: 25px;
+
+    margin-bottom: 32px;
+
+    border: 0;
+    border-bottom: 3px solid #F5F5F5;
+
+    font-size: 1.125rem;
+    line-height: 1.3125rem;
+    color: #B0B0B0;
+
+    outline: none;
+}
+
+.agree{
+    font-size: 0.75rem;
+    color: #C4C4C4;
+}
+
+.message{
+    height: 25px;
+
+    margin-top: 76px;
+
+    border: 0;
+    border-bottom: 3px solid #F5F5F5;
+
+    font-size: 1.125rem;
+    line-height: 1.3125rem;
+    color: #B0B0B0;
+
+    outline: none;
+}
+
+.button{
+    width: 100%;
+    text-align: right;
+}
+
+@media screen and (max-width: 767px) {
+    .button{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .button{
+        margin-top: 30px;
+    }
+}
+
+
+@media screen and (max-width: 575px) {
+    .feedback{
+        padding: 24px 8px 24px 8px;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 1023px) {
+    .feedback{
+        padding: 24px 32px 24px 24px;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
-import {green, paragraph, imageLeft, textJustify} from '../spoilers-projects-common/spoilers-projects-common.module.css';
+import {green, paragraph, imageLeft} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/education.png';
 
 function Education() {
@@ -8,7 +8,7 @@ function Education() {
 
     const body = (
         <div className={paragraph}>
-            <p className={textJustify}>
+            <p>
                 В нашем центре работают опытные педагоги, в совершенстве
                 владеющие тонкостями работы в сфере экологической безопасности.
                 В процессе обучения мы познакомим Вас с последними изменениями
@@ -25,7 +25,7 @@ function Education() {
 
             <img className={imageLeft} src={pic} alt="education"/>
 
-            <span className={textJustify}>
+            <span>
                 <p>
                     Удостоверение подтверждает факт прохождения курсов
                     по программам, требования к содержанию которых утверждены

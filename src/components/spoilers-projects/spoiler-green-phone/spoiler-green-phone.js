@@ -1,6 +1,6 @@
 import React from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
-import {green, paragraph, imageRight, textJustify} from '../spoilers-projects-common/spoilers-projects-common.module.css';
+import {green, paragraph, imageRight} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/green-phone.png';
 
 function GreenPhone() {
@@ -8,7 +8,7 @@ function GreenPhone() {
 
     const body = (
         <div className={paragraph}>
-            <span className={textJustify}>
+            <span>
                 <p>
                     «Зелёный телефон» — телефонная линия для тех, кто хочет
                     решить проблемные вопросы в сфере экологии.  Возникли
@@ -46,7 +46,7 @@ function GreenPhone() {
                 Наш телефон работает каждые понедельник, среду и пятницу<br/>
                 с 10.00 до 18.00 по номеру 89606948939
             </div>
-            <span className={textJustify}>
+            <span>
                 <p>
                     «Зелёный телефон» фиксирует каждое поступившее обращение.
                     Наши операторы собирают контактную информацию, которая

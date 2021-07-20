@@ -1,8 +1,40 @@
-.residents {
+.residentsDesktop {
+    display: none;
+}
+
+.residentsDesktop > div{
+    text-align: center;
+}
+
+.residentsMobile{
+    display: block;
+}
+
+.residentsMobile > div{
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 10px;
+    margin-bottom: 16px;
+}
+
+.residentsMobile > div > div{
+    align-self: center;
+}
+
+.residentsMobile img{
+    height: 32px;
+    margin-right: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .residentsDesktop{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        margin-right: auto;
+        margin-left: auto;
+        padding-top: 10px;
+    }
+
+    .residentsMobile{
+        display: none;
+    }
 }

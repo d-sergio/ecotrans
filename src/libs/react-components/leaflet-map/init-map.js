@@ -20,6 +20,9 @@ function initMap(mounted, mymap, view, zoom, marker, popup) {
     Однако её можно перетаксивать двумя пальцами на сенсорных устройствах*/
     mymap.current.scrollWheelZoom.disable();
     mymap.current.dragging.disable();
+
+    //Скрыть кнопки управления масштабом
+    mymap.current.removeControl(mymap.current.zoomControl);
 }
 
 export default initMap;

@@ -4,6 +4,7 @@ import {container, title, address, feedback} from './block-contact-mobile.module
 import Feedback from '../../contact-feedback';
 import Address from '../../contact-address';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import LeafletTooltip from '../../../libs/react-components/leaflet-tooltip';
 
 const titleStyle = [mainContainer, title].join(" ");
 
@@ -36,13 +37,15 @@ function BlockContactMobile() {
 
 
             <div>
-                <LeafletMap
-                    height={height}
-                    view={[51.662725, 36.134059]}
-                    zoom={15}
-                    marker={[51.662725, 36.134059]}
-                    popup={"<b>этаж 2, комната 17</b>"}
-                />
+                <LeafletTooltip>
+                    <LeafletMap
+                        height={height}
+                        view={[51.662725, 36.134059]}
+                        zoom={15}
+                        marker={[51.662725, 36.134059]}
+                        popup={"<b>этаж 2, комната 17</b>"}
+                    />
+                </LeafletTooltip>
             </div>
         </div>
     );

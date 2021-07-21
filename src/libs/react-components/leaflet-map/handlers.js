@@ -1,19 +1,12 @@
 export function onMouseOver(mymap) {
-    document.addEventListener(
-        'keydown',
-        (e) => onKeyDown(e, mymap),
-        {once: true}
-    );
-
     if (mymap.current) mymap.current.dragging.enable();
 }
 
 export function onMouseLeave(mymap) {
-
     if (mymap.current) mymap.current.dragging.disable();
 }
 
-function onKeyDown(e, mymap) {
+export function onKeyDown(e, mymap) {
     if (e.key === "Shift") {
         e.preventDefault();
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import {onMouseOver, onMouseLeave} from './handlers';
+import {onMouseOver, onMouseLeave, onKeyDown} from './handlers';
 import {checkLinks, checkScripts} from './checks';
 import {loadLink, loadScript} from './load-script-style';
 import initMap from './init-map';
@@ -39,17 +39,29 @@ function LeafletMap(props) {
         if (!scriptLoaded) {
             const script = loadScript();
 
-            script.onload = () => initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
+            script.onload = () => {
+                initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
+                document.addEventListener('keydown', waitShift);
+            }
 
-        } else initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
+        } else {
+            initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
+            document.addEventListener('keydown', waitShift);
+        }
 
         //подключить стили, если надо
         if (!linkLoaded) loadLink();
 
         return () => {
             mounted.current = false;
+            document.removeEventListener('keydown', waitShift);
         }
     }, []);
+
+    /**Ждём нажатия Shift, чтобы разрешить зум колесом мыши*/
+    function waitShift(e) {
+        onKeyDown(e, mymap);
+    }
 
     return(
         <div

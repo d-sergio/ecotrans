@@ -4,7 +4,7 @@ import {title} from '../../common-styles/title.module.css';
 import pin from '../../../static/images/address/map-pin.svg';
 import {image, address, text} from './block-map.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
-import LeafletTooltip from '../../libs/react-components/leaflet-tooltip/leaflet-tooltip';
+import LeafletTooltip from '../../libs/react-components/leaflet-tooltip';
 
 /**Карта на главной странице (только для мобильных) */
 function BlockMap() {
@@ -32,7 +32,7 @@ function BlockMap() {
                 </div>
             </div>
 
-            <div style={{position: 'relative'}}>
+            <LeafletTooltip>
                 <LeafletMap
                     height={height}
                     view={[51.662725, 36.134059]}
@@ -40,10 +40,7 @@ function BlockMap() {
                     marker={[51.662725, 36.134059]}
                     popup={"<b>этаж 2, комната 17</b>"}
                 />
-
-                <LeafletTooltip/>
-            </div>
-
+            </LeafletTooltip>
         </>
     );
 }

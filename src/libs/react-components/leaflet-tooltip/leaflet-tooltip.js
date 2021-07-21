@@ -34,7 +34,7 @@ function LeafletTooltip(props) {
     const animateBack = useRef(undefined);  //здесь будет анимация тёмной подложки
     const animateTooltip = useRef(undefined);   //здесь будет анимация текста
 
-    /*Chrome может вызвать событие scroll без реальной прокрутки при mousedown на карте,
+    /*На mousedown карта может установить фокус на себя, при этом вызвав прокрутку scroll
     если она не центрирована в окне браузера. Тогда произойдёт лишнее появление подсказки.
     Поэтому запомним текущий scroll, чтобы потом сравнить с новым. Так станет ясно
     был ли это настоящий scroll или только лишь событие без прокрутки документа*/
@@ -77,7 +77,7 @@ function LeafletTooltip(props) {
         mobile.current = false;
     }
 
-    function tooltipOn() {
+    function tooltipOn(e) {
         if (!tooltipDesktop.current || !tooltipMobile.current || !back.current) return;
 
         //Это был настоящий scroll?

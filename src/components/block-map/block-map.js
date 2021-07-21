@@ -4,18 +4,22 @@ import {title} from '../../common-styles/title.module.css';
 import pin from '../../../static/images/address/map-pin.svg';
 import {image, address, text} from './block-map.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
+import LeafletTooltip from '../../libs/react-components/leaflet-tooltip/leaflet-tooltip';
 
 /**Карта на главной странице (только для мобильных) */
 function BlockMap() {
-    const [height, setHeight] = useState(document.documentElement.clientWidth);
+    const [height, setHeight] = useState(calcHeight());
 
-    useEffect(() => {
-        if (typeof window === undefined) return;
+    /**Высота компонента LeafletMap в зависимости от ориентации экрана*/
+    function calcHeight() {
+        if (document.documentElement.clientHeight >= document.documentElement.clientWidth) {
 
-        window.addEventListener('resize', setHeight(document.documentElement.clientWidth));
-
-        return () => window.removeEventListener('resize', setHeight(document.documentElement.clientWidth));
-    });
+            return document.documentElement.clientWidth;
+        } else {
+            
+            return document.documentElement.clientHeight;
+        }
+    }
 
     return (
         <>
@@ -28,13 +32,18 @@ function BlockMap() {
                 </div>
             </div>
 
-            <LeafletMap
-                height={height}
-                view={[51.662725, 36.134059]}
-                zoom={15}
-                marker={[51.662725, 36.134059]}
-                popup={"<b>этаж 2, комната 17</b>"}
-            />
+            <div style={{position: 'relative'}}>
+                <LeafletMap
+                    height={height}
+                    view={[51.662725, 36.134059]}
+                    zoom={15}
+                    marker={[51.662725, 36.134059]}
+                    popup={"<b>этаж 2, комната 17</b>"}
+                />
+
+                <LeafletTooltip/>
+            </div>
+
         </>
     );
 }

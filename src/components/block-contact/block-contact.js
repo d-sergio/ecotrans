@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import BlockContactDesktop from './block-contact-desktop/block-contact-desktop';
-import BlockContactMobile from './block-contact-mobile/block-contact-mobile';
+import BlockContactDesktop from './block-contact-desktop';
+import BlockContactMobile from './block-contact-mobile';
 import mediaQuery from '../../libs/react/media-query';
 
 const queries = {

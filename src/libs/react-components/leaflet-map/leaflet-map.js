@@ -52,12 +52,14 @@ function LeafletMap(props) {
     }, []);
 
     return(
-        <div onMouseOver={() => onMouseOver(mymap)}
+        <div
+        onMouseOver={() => onMouseOver(mymap)}
         onMouseLeave={() => onMouseLeave(mymap)}
         onTouchEnd={() => onMouseLeave(mymap)}
         onPointerCancel={() => onMouseLeave(mymap)}
         id="mapid"
-        style={{height: props.height + 'px'}}></div>
+        style={{height: props.height + 'px'}}>
+        </div>
     );
 }
 

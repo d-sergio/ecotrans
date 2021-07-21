@@ -185,7 +185,11 @@ export function invertedSpoilerDraw(timeFraction) {
  * @param {number} actualValue - рассчитанное значение, полученое из animate()
  */
 export function changeStyleProperty(element, property, actualValue, units) {
-    element.style[property] = actualValue + units;
+    try{
+        element.style[property] = actualValue + units;
+    } catch(e) {
+        //console.log('animate.js: анимация прервана')
+    }
 }
 
 /** Функция отрисовки, изменяющая значения свойства стиля элемента по модулю
@@ -201,13 +205,21 @@ export function changeStyleProperty(element, property, actualValue, units) {
  * а затем снова появится (opacity от 0 до 1)
  */
 export function changeStylePropertyAbs(element, property, actualValue, units) {
-    element.style[property] = Math.abs(actualValue) + units;
+    try{
+        element.style[property] = Math.abs(actualValue) + units;
+    } catch(e) {
+        //console.log('animate.js: анимация прервана')
+    }
 }
 
 /**Функция отрисовки, изменяющая transform: scale(x, x). При этом два аргумента,
  * получаемые scale равны друг другу, для пропорционального масштабирования */
 export function changeTransformScale(element, property, actualValue, units) {
-    element.style.transform = `scale(${actualValue}, ${actualValue})`;
+    try{
+        element.style.transform = `scale(${actualValue}, ${actualValue})`;
+    } catch(e) {
+        //console.log('animate.js: анимация прервана')
+    }
 }
 
 /** Задержка, чтобы анимация исчезновения предыдущего слайда завершилась полностью,

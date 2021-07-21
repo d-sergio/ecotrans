@@ -112,7 +112,7 @@ function HeaderMobile(props) {
         <div className={style}>
             <Logo/>
             <Phone/>
-            <div onClick={onClick}>
+            <div style={{height: '24px'}} onClick={onClick}>
                 <ButtonMenu open={isOpen}/>
                 <div ref={headerMenu}>
                    <HeaderMenu mobile={true}/>

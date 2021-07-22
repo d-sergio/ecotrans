@@ -38,7 +38,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 && Math.abs(shift) > disableScrollingOn) {
 
                 document.body.style.overflow = 'hidden';
-                event.preventDefault();
             }
 
             const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);

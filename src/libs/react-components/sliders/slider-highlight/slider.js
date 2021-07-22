@@ -258,7 +258,7 @@ function Slider(props) {
         <div className={containerStyle} ref={container}
             onMouseEnter={() => state.autoMove ? cancelAutoMove() : null}
             onTouchStart={() => state.autoMove ? cancelAutoMove() : null}
-            onTouchMove={() => state.autoMove ? cancelAutoMove() : null}>
+            onTouchMoveCapture={() => state.autoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

@@ -249,7 +249,7 @@ function Slider(props) {
 
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
-        if (!timer.current || !props.cancelAutoMove || !props.cancelAutoMove) return;
+        if (!timer.current || !props.cancelAutoMove) return;
         
         clearTimeout(timer.current);
 

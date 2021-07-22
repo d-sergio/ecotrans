@@ -31,7 +31,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
-/*
+
             if (disableScrollingOn !== undefined
                 && disableScrollingOn !== null
                 && disableScrollingOn !== false
@@ -39,7 +39,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
                 document.body.style.overflow = 'hidden';
                 
-            }*/
+            }
 
             const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
             const targetMarginLeft = currentMarginLeft + shift;
@@ -69,7 +69,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        //document.body.style.overflow = overflow;
+        document.body.style.overflow = overflow;
 
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);

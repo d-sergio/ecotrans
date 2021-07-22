@@ -39,8 +39,7 @@ function BlockProjectsDesktop() {
                 adjacent={smallView ? true : false}
                 prev={<ArrowLeft/>}
                 next={<ArrowRight/>}
-                buttonShift={60}
-                disableScrollingOn={3}>
+                buttonShift={60}>
 
                 {cards}
 

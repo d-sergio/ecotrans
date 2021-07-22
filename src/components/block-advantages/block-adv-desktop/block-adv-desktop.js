@@ -37,8 +37,7 @@ function BlockAdvDesktop() {
                     key={active}
                     visible={active ? 0 : 4}
                     adjacent={active ? true : false}
-                    freeze={active ? false : true}
-                    disableScrollingOn={3}>
+                    freeze={active ? false : true}>
 
                     {advCards}
                     

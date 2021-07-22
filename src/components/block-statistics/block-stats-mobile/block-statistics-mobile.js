@@ -24,8 +24,7 @@ function BlockStatsDesktop() {
             visible={visible}
             autoMove={true}
             cancelAutoMove={true}
-            adjacent={true}
-            disableScrollingOn={3}>
+            adjacent={true}>
 
                 {cards}
 

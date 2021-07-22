@@ -8,8 +8,7 @@ function SliderServices() {
             visible={1}
             treshold={0.1}
             prev={<ArrowLeft/>}
-            next={<ArrowRight/>}
-            disableScrollingOn={3}>
+            next={<ArrowRight/>}>
                 
                 {cards}
         

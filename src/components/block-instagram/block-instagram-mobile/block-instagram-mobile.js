@@ -31,8 +31,7 @@ function BlockInstagramMobile() {
 
             <Slider
             visible={0}
-            adjacent={true}
-            disableScrollingOn={3}>
+            adjacent={true}>
 
                 {slides}
                 

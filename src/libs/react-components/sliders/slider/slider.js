@@ -38,11 +38,11 @@ function Slider(props) {
         prevPosition: 0,
         prevMargin: 0,
         children: children.concat(children, children),
-        currentPosition: props.initPosition + children.length,
-        autoMove: props.autoMove    //Автопрокрутка карусели
+        currentPosition: props.initPosition + children.length
     };
 
     const [state, setState] = useState(initState);
+    const [autoMove, setAutoMove] = useState(props.autoMove);   //Автопрокрутка карусели
     const prevState = usePrevious(state);
 
     /*Длительность анимации animDuration также указывает, вызывать ли анимацию
@@ -56,9 +56,9 @@ function Slider(props) {
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
 
-    useEffect(() => updateComponent());
+    useEffect(() => updateComponent(), [state]);
 
-    useEffect(() => autoMove(), [state.currentPosition]);
+    useEffect(() => autoMoveStart(), [state.currentPosition]);
     
     function initialize() {
         updateWidthAndCoords();
@@ -223,8 +223,8 @@ function Slider(props) {
     }
 
     /**Старт автопрокрутки карусели */
-    function autoMove() {
-        if (!state.autoMove) return;
+    function autoMoveStart() {
+        if (!autoMove) return;
         
         timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
@@ -237,7 +237,7 @@ function Slider(props) {
         
         clearTimeout(timer.current);
 
-        setState({...state, autoMove: false});
+        setAutoMove(false);
     }
 
     function startCheckBounds() {
@@ -256,8 +256,7 @@ function Slider(props) {
     return(
         <div className={containerStyle}
             onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}>
+            onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

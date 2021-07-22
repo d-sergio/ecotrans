@@ -39,10 +39,11 @@ function Slider(props) {
         prevMargin: 0,
         children: children.concat(children, children),
         currentPosition: props.initPosition + children.length,
-        autoMove: props.autoMove    //Автопрокрутка карусели
+        //autoMove: props.autoMove
     };
 
     const [state, setState] = useState(initState);
+    const [autoMove, setAutoMove] = useState(props.autoMove); //Автопрокрутка карусели
     const prevState = usePrevious(state);
 
     /*Длительность анимации animDuration также указывает, вызывать ли анимацию
@@ -57,9 +58,9 @@ function Slider(props) {
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
 
-    useEffect(() => updateComponent());
+    useEffect(() => updateComponent(), [state]);
 
-    useEffect(() => autoMove(), [state.currentPosition]);
+    useEffect(() => autoMoveStart(), [state.currentPosition]);
     
     function initialize() {
         updateWidthAndCoords();
@@ -224,8 +225,8 @@ function Slider(props) {
     }
 
     /**Старт автопрокрутки карусели */
-    function autoMove() {
-        if (!state.autoMove) return;
+    function autoMoveStart() {
+        if (!autoMove) return;
         
         timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
@@ -238,7 +239,7 @@ function Slider(props) {
         
         clearTimeout(timer.current);
 
-        setState({...state, autoMove: false});
+       setAutoMove(false);
     }
 
     function startCheckBounds() {
@@ -256,8 +257,8 @@ function Slider(props) {
 
     return(
         <div className={containerStyle} ref={container}
-            onMouseEnter={() => state.autoMove ? cancelAutoMove() : null}
-            onTouchStart={() => state.autoMove ? cancelAutoMove() : null}>
+            onMouseEnter={() => autoMove ? cancelAutoMove() : null}
+            onTouchStart={() => autoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}
@@ -272,12 +273,11 @@ function Slider(props) {
                         createSlidesActive({    /**********МОДИФИКАЦИЯ**********/
                             children: state.children,
                             currentPosition: state.currentPosition,
-                            autoMove: state.autoMove,
+                            autoMove: autoMove,
                             slideStyle: slideStyle,
                             viewport: viewport.current,
                             carousel: carousel.current,
-                            visible: props.visible,
-                            autoMove: state.autoMove
+                            visible: props.visible
                         })
                     }
                 </div>

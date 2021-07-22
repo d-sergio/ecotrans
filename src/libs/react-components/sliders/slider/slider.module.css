@@ -6,10 +6,12 @@
 
 .prevStyle{
     display: flex;
+    outline: none;
 }
 
 .nextStyle{
     display: flex;
+    outline: none;
 }
 
 .viewportStyle{

@@ -7,6 +7,7 @@
 
 .prevStyle{
     display: flex;
+    outline: none;
 
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
@@ -16,6 +17,7 @@
 
 .nextStyle{
     display: flex;
+    outline: none;
 
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;

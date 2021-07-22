@@ -33,12 +33,6 @@ function LeafletTooltip(props) {
     const mobile = useRef(false);   //сенсорное устройство?
     const animateBack = useRef(undefined);  //здесь будет анимация тёмной подложки
     const animateTooltip = useRef(undefined);   //здесь будет анимация текста
-
-    /*На mousedown карта может установить фокус на себя, при этом вызвав прокрутку scroll
-    если она не центрирована в окне браузера. Тогда произойдёт лишнее появление подсказки.
-    Поэтому запомним текущий scroll, чтобы потом сравнить с новым. Так станет ясно
-    был ли это настоящий scroll или только лишь событие без прокрутки документа*/
-    const currentScroll = useRef(document.documentElement.scrollTop);
     
     //Отключить подсказку
     useEffect(() => {
@@ -56,18 +50,38 @@ function LeafletTooltip(props) {
     useEffect(() => {
         if (typeof window === undefined) return;
 
-        window.addEventListener('scroll', tooltipOn);
+        /*Порядок обработчиков имеет значение!
+        1. wheel - сразу понятно, что это мышь, поэтому десктопная подсказка
+        2. 3. - touchstart и touchmove укажут, что это сенсорное устройство
+        4. На scroll подсказка появляется только для сенсорных устройств.
+        На этом обработчике уже можно быть уверенным в типе устройства
+        
+        Зачем для десктопа wheel, а для сенсора scroll?
+        
+        В некоторых десктопных браузерах клик на карте или кнопках масштабирования
+        может вызвать на ней событие focus с последующим scroll. Это вызовет лишнюю
+        подсказку, поэтому wheel лучше здесь подходит. В мобильных браузерах такой
+        проблемы нет, поэтому подходит scroll*/
+        window.addEventListener('wheel', tooltipOn);
         window.addEventListener('touchstart', setMobile);
+        window.addEventListener('touchmove', setMobile);
+        window.addEventListener('scroll', onScroll);
         window.addEventListener('mousedown', setDesktop);
         window.addEventListener('mousemove', setDesktop);
 
         return () => {
-            window.removeEventListener('scroll', tooltipOn);
+            window.removeEventListener('wheel', tooltipOn);
             window.removeEventListener('touchstart', setMobile);
+            window.removeEventListener('touchmove', setMobile);
+            window.removeEventListener('scroll', onScroll);
             window.removeEventListener('mousedown', setDesktop);
             window.removeEventListener('mousemove', setDesktop);
         };
     }, []);
+
+    function onScroll() {
+        if (mobile.current) tooltipOn();
+    }
 
     function setMobile() {
         mobile.current = true;
@@ -79,12 +93,6 @@ function LeafletTooltip(props) {
 
     function tooltipOn(e) {
         if (!tooltipDesktop.current || !tooltipMobile.current || !back.current) return;
-
-        //Это был настоящий scroll?
-        if (currentScroll.current === document.documentElement.scrollTop) return;
-
-        //Обновить значение
-        currentScroll.current = document.documentElement.scrollTop;
 
         /**Обновление timer, если подсказка уже активна*/
         if (active.current) {

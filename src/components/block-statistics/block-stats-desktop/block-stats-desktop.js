@@ -40,7 +40,8 @@ function BlockStatsDesktop() {
                 adjacent={active ? true : false}
                 freeze={active ? false : true}
                 autoMove={active ? true : false}
-                cancelAutoMove={active ? true : false}>
+                cancelAutoMove={active ? true : false}
+                disableScrollingOn={3}>
 
                 {cards}
 

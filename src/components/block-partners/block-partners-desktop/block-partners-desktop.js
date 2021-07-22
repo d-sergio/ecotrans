@@ -45,7 +45,8 @@ function BlockPartnersDesktop() {
                     visible={visible}
                     adjacent={true}
                     autoMove={true}
-                    cancelAutoMove={true}>
+                    cancelAutoMove={true}
+                    disableScrollingOn={3}>
 
                     {cards}
                     

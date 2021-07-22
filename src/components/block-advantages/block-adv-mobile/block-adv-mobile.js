@@ -18,7 +18,14 @@ function BlockAdvMobile() {
     return(
         <>
             <div className={titleStyle}>Наши преимущества</div>
-            <Slider visible={0} adjacent={true}>{advCards}</Slider>
+            <Slider
+            visible={0}
+            adjacent={true}
+            disableScrollingOn={3}>
+
+                {advCards}
+                
+            </Slider>
         </>
     );
 }

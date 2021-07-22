@@ -28,7 +28,16 @@ function BlockInstagramMobile() {
                     Тут вся полезная информация!
                 </div>
             </div>
-            <Slider visible={0} adjacent={true}>{slides}</Slider>
+
+            <Slider
+            visible={0}
+            adjacent={true}
+            disableScrollingOn={3}>
+
+                {slides}
+                
+            </Slider>
+            
             <div className={button}>
                 <Buttons.Subscribe.Mobile/>
             </div>

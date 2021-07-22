@@ -19,7 +19,17 @@ const visible = {
 /**Блок статистики (мобильный)*/
 function BlockStatsDesktop() {
 
-    return <Slider key={1} visible={visible} autoMove={true} cancelAutoMove={true} adjacent={true}>{cards}</Slider>;
+    return <Slider
+            key={1}
+            visible={visible}
+            autoMove={true}
+            cancelAutoMove={true}
+            adjacent={true}
+            disableScrollingOn={3}>
+
+                {cards}
+
+            </Slider>;
 
 }
 

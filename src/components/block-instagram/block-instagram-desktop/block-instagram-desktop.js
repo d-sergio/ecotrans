@@ -131,7 +131,8 @@ function BlockInstagramDesktop() {
                     key={active}
                     visible={active ? 0 : 4}
                     freeze={active ? false : true}
-                    adjacent={active ? true : false}>
+                    adjacent={active ? true : false}
+                    disableScrollingOn={3}>
 
                     {slides}
 

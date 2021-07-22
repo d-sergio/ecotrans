@@ -21,7 +21,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     const overflow = window.getComputedStyle(document.body).overflow;
     
-    //event.preventDefault();
+    event.preventDefault();
     window.addEventListener('touchcancel', sliderTouchEndHandler);
     window.addEventListener('touchend', sliderTouchEndHandler);
     window.addEventListener('touchmove', sliderTouchMoveHandler);

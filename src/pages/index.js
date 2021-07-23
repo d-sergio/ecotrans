@@ -24,23 +24,22 @@ function Index() {
     return (
         <Layout>
             <Title/>
-            <div style={{height: '30px'}}></div>
             <BlockServices/>
+            <div style={{height: '50px'}}></div>
             <BlockStats/>
             <div style={{height: '60px'}}></div>
             <BlockCall/>
-            <div style={{height: '80px'}}></div>
+            <div style={{height: '84px'}}></div>
             <BlockProjects/>
-            <div style={{height: '30px'}}></div>
+            <div style={{height: '130px'}}></div>
             <BlockAdvantages/>
-            <div style={{height: '30px'}}></div>
+            <div style={{height: '142px'}}></div>
             <BlockCost/>
-            <div style={{height: '30px'}}></div>
+            <div style={{height: '128px'}}></div>
             <BlockPartners/>
-            <div style={{height: '30px'}}></div>
-            <div style={{marginBottom: '87px'}}>
-                <BlockInstagram/>
-            </div>
+            <div style={{height: '120px'}}></div>
+            <BlockInstagram/>
+            <div style={{height: '87px'}}></div>
             <GatsbySuspense>
                 {
                     mobileView ? <BlockMap/> : null

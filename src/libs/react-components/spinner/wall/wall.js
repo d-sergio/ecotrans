@@ -1,6 +1,6 @@
 import React from 'react';
 import {wall, rectangle, wallImg} from './wall.module.css';
-import wallPic from '../../../../../static/images/spinner/spinner.svg';
+import wallPic from '../../../../../static/images/spinner/1440.svg';
 
 /**Стена, за которой прячутся миниатюрки */
 function Wall() {

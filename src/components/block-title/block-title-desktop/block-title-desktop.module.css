@@ -1,5 +1,5 @@
 .green{
-    background-color: #EAFFE2;
+    /*background-color: #EAFFE2;*/
 }
 
 .outer{
@@ -8,7 +8,8 @@
     justify-content: center;
     
     margin-top: -78px;
-    height: 700px;
+    height: 708px;
+    background-color: #EAFFE2; /**/
 }
 
 .about{

@@ -1,6 +1,9 @@
 .container{
     position: relative;
-    height: 752px;
+    display: flex;
+    justify-content: center;
+
+    height: 708px;
 }
 
 .thumbnailsStyle{

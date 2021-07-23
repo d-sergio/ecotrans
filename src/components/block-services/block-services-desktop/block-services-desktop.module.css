@@ -1,4 +1,9 @@
 .container{
     width: 100%;
-    background-color: #EAFFE2;
+}
+
+.titleAbsolute{
+    position: absolute;
+    z-index: 1;
+    margin-top: -44px;
 }

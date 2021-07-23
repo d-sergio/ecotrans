@@ -54,7 +54,7 @@ function Spinner(props) {
 
         /**Прокрутка слайдов зацикливается*/
         function calcNewPosition(estimatedPosition) {
-            const childrenLength = getChildren().length / 2;
+            const childrenLength = props.children.length;
 
             /*Не выходит ли предполагаемая позиция estimatedPosition за пределы
             массива? Корректирка, если это так */

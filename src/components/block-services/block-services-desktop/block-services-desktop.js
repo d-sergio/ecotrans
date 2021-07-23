@@ -12,6 +12,11 @@ function BlockServicesDesktop() {
         [<Cards.Neutral.Small/>, <Cards.Neutral.Large/>],
         [<Cards.Transport.Small/>, <Cards.Transport.Large/>],
         [<Cards.Medical.Small/>, <Cards.Medical.Large/>],
+        [<Cards.Training.Small/>, <Cards.Training.Large/>],
+        [<Cards.Docs.Small/>, <Cards.Docs.Large/>],
+        [<Cards.Neutral.Small/>, <Cards.Neutral.Large/>],
+        [<Cards.Transport.Small/>, <Cards.Transport.Large/>],
+        [<Cards.Medical.Small/>, <Cards.Medical.Large/>],
         [<Cards.Training.Small/>, <Cards.Training.Large/>]
     ];
 
@@ -22,7 +27,7 @@ function BlockServicesDesktop() {
 
     return(
         <div className={container}>
-                        <div className={mainContainer}>
+            <div className={mainContainer}>
                 <div className={titleStyle}>
                     Выберите услугу 
                 </div>

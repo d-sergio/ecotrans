@@ -8,13 +8,11 @@
     height: 100%;
 
     overflow: hidden;
-
-    background-color: #EAFFE2;  /*Основной фон компонента*/
 }
 
 /*Прямоугольник - нижняя часть стены*/
 .rectangle{
-    height: 176px;
+    height: 156px;
     width: 100%;
 
     background-color: white;

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import {container, thumbnailsStyle, controlStyle, prev, next} from './spinner.module.css';
+import React, { useRef, useState } from 'react';
+import {container} from './spinner.module.css';
 import Slider from './slider';
 import Wall from './wall';
+import Thumbnails from './thumbnails';
+import Controls from './controls';
 
 /**Spinner
  * 
@@ -17,10 +19,18 @@ import Wall from './wall';
  *  ]
  * </Spinner>
  * 
+ * radius - радиус окружности с миниатюрами
  * prev - кнопка к предыдущему слайду
  * next - кнопка к следующему слайду
+ * 
+ * slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
+ * thumbsTopCorrect - сдвиг миниатюр вниз от обычной позиции в px
+ * slideTopCorrect и thumbsTopCorrect полезны, если надо, например, оставить
+ * место для теней от элементов. Иначе они могут быть скрыты за границами блока
  */
 function Spinner(props) {
+    const containerRef = useRef(null);
+
     const [currentPosition, setCurrentPosition] = useState(0);
 
     /**Быстрый доступ к children, предназначенным для Spinner */
@@ -75,33 +85,31 @@ function Spinner(props) {
     }
 
     return(
-        <div className={container}>
-            <div className={thumbnailsStyle}></div>
+        <div ref={containerRef} className={container}>
+            <Thumbnails
+            radius={props.radius}
+            thumbsTopCorrect={30}>
+                {getThumbnailsChildren()}    
+            </Thumbnails>
 
             <Wall/>
 
-            <Slider currentPosition={currentPosition}>
+            <Slider
+            currentPosition={currentPosition}
+            slideTopCorrect={30}>
                 {getSliderChildren()}
             </Slider>
 
-            <div className={controlStyle}>
-
-                <div
-                className={prev}
-                onClick={() => setNewPosition(-1)}>
-
-                    {props.prev}
-
-                </div>
-
-                <div
-                className={next}
-                onClick={() => setNewPosition(1)}>
-
-                    {props.next}
-
-                </div>
-            </div>
+            <Controls
+            prev={props.prev}
+            next={props.next}
+            setNewPosition={setNewPosition}
+            radius={props.radius}
+            nextTopCorrect={150}
+            nextLeftCorrect={24}
+            prevTopCorrect={150}
+            prevLeftCorrect={24}
+            />
         </div>
     );
 }
@@ -110,5 +118,8 @@ export default Spinner;
 
 Spinner.defaultProps={
     prev: <div>Влево</div>,
-    next: <div>Вправо</div>
+    next: <div>Вправо</div>,
+    radius: 410,
+    slideTopCorrect: 0,
+    thumbsTopCorrect: 0
 }

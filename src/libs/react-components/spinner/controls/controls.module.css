@@ -1,0 +1,13 @@
+.controlStyle{
+    position: absolute;
+}
+
+.prev{
+    outline: none;
+    position: absolute;
+}
+
+.next{
+    outline: none;
+    position: absolute;
+}

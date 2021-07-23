@@ -2,26 +2,7 @@
     position: relative;
     display: flex;
     justify-content: center;
-
-    height: 708px;
-}
-
-.thumbnailsStyle{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.controlStyle{
-    position: absolute;
-    top: 20%;
-    left: 0;
-}
-
-.prev{
-    outline: none;
-}
-
-.next{
-    outline: none;
+    
+    height: 768px;
+    overflow: hidden;
 }

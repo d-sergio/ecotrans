@@ -5,7 +5,7 @@ import ButtonChoose from '../../buttons/button-choose/button-choose';
 
 const styles = [commonStyle, large].join(" ");
 
-/**Шаблон карточки слайдера Услуги (мобильная версия)
+/**Шаблон карточки слайдера Услуги (большая для десктопа)
  * 
  * Props:
  * @param {Node} logo - элемент <img> с логотипом карточки

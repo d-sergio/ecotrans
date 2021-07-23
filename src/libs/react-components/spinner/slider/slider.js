@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import {container} from './slider.module.css';
 
+/**Слайдер в центре
+ * 
+ * Props:
+ * currentPosition - текущая позиция
+ * slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
+*/
 function Slider(props) {
     const containerRef = useRef(null);
 
@@ -30,5 +36,6 @@ function Slider(props) {
 export default Slider;
 
 Slider.defaultProps = {
-    slideTopCorrect: 0
+    slideTopCorrect: 0,
+    currentPosition: 0
 };

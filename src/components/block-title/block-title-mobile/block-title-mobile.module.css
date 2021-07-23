@@ -6,10 +6,14 @@
     margin-top: -48px;
     height: 280px;
     background-color: #EAFFE2;
+    background-image: url(/images/spinner/320.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
 }
 
 .container{
-    margin-top: -16px;
+    margin-top: -26px;
     padding-left: 8px;
     padding-right: 8px;
 }

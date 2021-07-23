@@ -222,6 +222,15 @@ export function changeTransformScale(element, property, actualValue, units) {
     }
 }
 
+/**Функция отрисовки, изменяющая transform: rotate(x).*/
+ export function changeTransformRotate(element, property, actualValue, units) {
+    try{
+        element.style.transform = `rotate(${actualValue}deg)`;
+    } catch(e) {
+        //console.log('animate.js: анимация прервана')
+    }
+}
+
 /** Задержка, чтобы анимация исчезновения предыдущего слайда завершилась полностью,
  * прежде чем состояние компонента slides-viewer.js изменится и начнётся
  * следующая анимация

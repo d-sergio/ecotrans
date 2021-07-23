@@ -13,14 +13,20 @@
 
 .circleStyle{
     position: absolute;
+
+    transition: transform 0.3s;
 }
 
 .thumbsStyle{
     position: absolute;
     /*top: 30px;*/
     top: 0;
+
+    transition: transform 0.3s;
 }
 
 .wrapThumbStyle{
     position: absolute;
+
+    transition: transform 0.3s;
 }

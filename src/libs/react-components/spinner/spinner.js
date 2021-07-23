@@ -47,7 +47,7 @@ function Spinner(props) {
      * 2. из больших карточек по index 1
      */
     function getChildrenArray(index) {
-        const children = getChildren();
+        const children = React.Children.toArray(props.children);
 
         let newChildren = [];
 
@@ -78,17 +78,13 @@ function Spinner(props) {
         }
     }
 
-    /**Немного уменьшит количество символов, когда нужен
-     * доступ к плоскому массиву children */
-    function getChildren() {
-        return React.Children.toArray(props.children);
-    }
-
     return(
         <div ref={containerRef} className={container}>
             <Thumbnails
+            currentPosition={currentPosition}
             radius={props.radius}
-            thumbsTopCorrect={30}>
+            thumbsTopCorrect={30}
+            angleFactor={3.5}>
                 {getThumbnailsChildren()}    
             </Thumbnails>
 

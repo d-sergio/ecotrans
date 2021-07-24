@@ -11,6 +11,10 @@ import {controlStyle, prev, next} from './controls.module.css';
  * nextLeftCorrect - сдвиг кнопки next влево от позиции по умолчанию
  * prevTopCorrect - сдвиг кнопки prev вниз от позиции по умолчанию
  * prevLeftCorrect - сдвиг кнопки prev влево от позиции по умолчанию
+ * controlsPadding - когда размер родительского блока или окна становится
+ * меньше ширины слайдера, кнопки управления начинают сдвигаться к центру.
+ * Этот параметр позволяет сдвинуть их больше на указанное значение, чтобы
+ * они не упирались в границы окна/блока
 */
 function Controls(props) {
     const prevRef = useRef(null);
@@ -18,14 +22,25 @@ function Controls(props) {
 
     useEffect(() => setButtonsCoords(), []);
 
+    useEffect(() => {
+        if (typeof window === undefined) return;
+
+        window.addEventListener('resize', setButtonsCoords);
+
+        return () => window.removeEventListener('resize', setButtonsCoords);
+    }, []);
+
     function setButtonsCoords() {
-        if (!prevRef || !nextRef) return;
+        if (!prevRef.current || !nextRef.current) return;
+
+        const docWidth = document.documentElement.clientWidth;
+        const shift = docWidth / 2 - prevRef.current.offsetWidth / 2 - props.controlsPadding;
 
         nextRef.current.style.top = props.radius + props.nextTopCorrect + 'px';
-        nextRef.current.style.left = props.radius - props.nextLeftCorrect + 'px';
+        nextRef.current.style.left = Math.min(props.radius, shift) - props.nextLeftCorrect + 'px';
 
         prevRef.current.style.top = props.radius + props.prevTopCorrect + 'px';
-        prevRef.current.style.left = - props.radius - props.prevLeftCorrect + 'px';
+        prevRef.current.style.left = - Math.min(props.radius, shift) - props.prevLeftCorrect + 'px';
     }
 
     return(
@@ -58,5 +73,6 @@ Controls.defaultProps = {
     nextTopCorrect: 0,
     nextLeftCorrect: 0,
     prevTopCorrect: 0,
-    prevLeftCorrect: 0
+    prevLeftCorrect: 0,
+    controlsPadding: 8
 };

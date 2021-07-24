@@ -9,7 +9,6 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
     //угол поворота на одну позицию
     const fi = 360 / props.children.length;
 
-    //startAngle - фактическое текущее значение
     const startAngle = calcStartAngle();
     const finalAngle = calcFinalAngle();
 

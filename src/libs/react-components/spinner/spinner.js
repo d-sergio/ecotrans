@@ -134,5 +134,5 @@ Spinner.defaultProps={
     radius: 410,
     slideTopCorrect: 0,
     thumbsTopCorrect: 0,
-    duration: 300
+    duration: 800
 }

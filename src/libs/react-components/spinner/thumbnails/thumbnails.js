@@ -3,8 +3,8 @@ import {container, circleStyle, thumbsStyle, wrapThumbStyle} from './thumbnails.
 import circlePic from '../../../../../static/images/spinner/circle.svg';
 import usePrevious from '../../../react/react-hooks/use-previous-hook';
 import startAnimation from './animation/start-animation';
-import createThumbsCircle from './create-thumbs-circle';
-import setBlockSizes from './set-block-sizes';
+import createThumbsCircle from './mechanics/create-thumbs-circle';
+import setBlockSizes from './mechanics/set-block-sizes';
 
 /**Миниатюры
  * 
@@ -70,6 +70,6 @@ Thumbnails.defaultProps = {
     radius: 410,
     thumbsTopCorrect: 0,
     defaultAngle: 0,
-    duration: 10,
+    duration: 800,
     outside: false
 }

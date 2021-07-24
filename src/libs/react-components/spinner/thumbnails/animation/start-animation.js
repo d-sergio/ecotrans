@@ -1,6 +1,5 @@
 import AnimationObject from './animation-object';
 import BatchControl from '../../../../animate/batch-control';
-import getTransformRotate from '../../../../get-transform-rotate';
 
 function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, duration}) {
     if (!circleRef.current || !thumbsRef.current) return;
@@ -33,11 +32,11 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
     function calcStartAngle() {
         if (!props.outside) {    //1
 
-            return getTransformRotate(circleRef.current);
+            return prevPosition * fi;
 
         } else if (props.outside && props.currentPosition > prevPosition) { //2
 
-            return getTransformRotate(circleRef.current);
+            return prevPosition * fi;
 
         } else if (props.outside && props.currentPosition < prevPosition) { //3
             

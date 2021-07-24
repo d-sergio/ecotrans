@@ -6,6 +6,7 @@ import {container} from './slider.module.css';
  * Props:
  * currentPosition - текущая позиция
  * slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
+ * duration - длительность анимации
 */
 function Slider(props) {
     const containerRef = useRef(null);
@@ -37,5 +38,6 @@ export default Slider;
 
 Slider.defaultProps = {
     slideTopCorrect: 0,
-    currentPosition: 0
+    currentPosition: 0,
+    duration: 10
 };

@@ -6,38 +6,24 @@ import Thumbnails from './thumbnails';
 import Controls from './controls';
 
 /**Spinner
- * 
- * Props:
- * children принимает как двумерный массив соответствующих друг другу миниатюрок
- * и слайдов.
- * 
- * <Spinner>
- *  [
- *      [thumbnail1, slide1],
- *      [thumbnail2, slide2],
- *      [thumbnail3, slide3],
- *  ]
- * </Spinner>
- * 
- * radius - радиус окружности с миниатюрами
- * prev - кнопка к предыдущему слайду
- * next - кнопка к следующему слайду
- * 
- * slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
- * thumbsTopCorrect - сдвиг миниатюр вниз от обычной позиции в px
- * slideTopCorrect и thumbsTopCorrect полезны, если надо, например, оставить
- * место для теней от элементов. Иначе они могут быть скрыты за границами блока
+ * Описание смотри в spinner-readme.txt
  */
 function Spinner(props) {
     const containerRef = useRef(null);
 
-    const [currentPosition, setCurrentPosition] = useState(0);
+    const [state, setState] = useState(
+        {
+            currentPosition: 0,
+            outside: false
+        }
+    );
 
-    /**Быстрый доступ к children, предназначенным для Spinner */
+    /**Быстрый доступ к children, предназначенным для Thumbnails */
     function getThumbnailsChildren() {
         return getChildrenArray(0);
     }
 
+    /**Быстрый доступ к children, предназначенным для Slider */
     function getSliderChildren() {
         return getChildrenArray(1);
     }
@@ -58,41 +44,71 @@ function Spinner(props) {
         return newChildren;
     }
 
+    /**Не выходит ли предполагаемая позиция estimatedPosition за пределы
+     * массива? Если это так, то корректирка и инверсия анимации. Прокрутка
+     * зацикливается*/
     function setNewPosition(shift) {
-        const newPosition = calcNewPosition(currentPosition + shift);
-        setCurrentPosition(newPosition);
 
-        /**Прокрутка слайдов зацикливается*/
-        function calcNewPosition(estimatedPosition) {
-            const childrenLength = props.children.length;
+        const estimatedPosition = state.currentPosition + shift;
+        const childrenLength = props.children.length;
 
-            /*Не выходит ли предполагаемая позиция estimatedPosition за пределы
-            массива? Корректирка, если это так */
-            if (estimatedPosition >= childrenLength) {
-                return (estimatedPosition - childrenLength);
-            } else if (estimatedPosition < 0) {
-                return (childrenLength - 1);
-            } else {
-                return estimatedPosition;
-            }
+
+        if (estimatedPosition >= childrenLength) {
+
+            setState(
+                {
+                    ...state,
+                    currentPosition: estimatedPosition - childrenLength,
+                    outside: true
+                }
+            );
+
+            return;
+
+        } else if (estimatedPosition < 0) {
+            
+            setState(
+                {
+                    ...state,
+                    currentPosition: childrenLength - 1,
+                    outside: true
+                }
+            );
+
+            return;
+
+        } else {
+
+            setState(
+                {
+                    ...state,
+                    currentPosition: estimatedPosition,
+                    outside: false
+                }
+            );
+
+            return;
         }
     }
 
     return(
         <div ref={containerRef} className={container}>
             <Thumbnails
-            currentPosition={currentPosition}
+            currentPosition={state.currentPosition}
+            outside={state.outside}
             radius={props.radius}
             thumbsTopCorrect={30}
-            angleFactor={3.5}>
+            defaultAngle={3.5}
+            duration={props.duration}>
                 {getThumbnailsChildren()}    
             </Thumbnails>
 
             <Wall/>
 
             <Slider
-            currentPosition={currentPosition}
-            slideTopCorrect={30}>
+            currentPosition={state.currentPosition}
+            slideTopCorrect={30}
+            duration={props.duration}>
                 {getSliderChildren()}
             </Slider>
 
@@ -117,5 +133,6 @@ Spinner.defaultProps={
     next: <div>Вправо</div>,
     radius: 410,
     slideTopCorrect: 0,
-    thumbsTopCorrect: 0
+    thumbsTopCorrect: 0,
+    duration: 300
 }

@@ -9,13 +9,13 @@ import setBlockSizes from './mechanics/set-block-sizes';
 /**Миниатюры
  * 
  * Props:
- * radius - радиус окружности с миниатюрами
- * duration - длительность анимации
- * thumbsTopCorrect - сдвиг миниатюр вниз от обычной позиции в px
- * defaultAngle - на сколько позиций повернуть круг миниатюр по умолчанию
+ * @param {number} radius - радиус окружности с миниатюрами
+ * @param {number} duration - длительность анимации
+ * @param {number} thumbsTopCorrect - сдвиг миниатюр вниз от обычной позиции в px
+ * @param {number} defaultAngle - на сколько позиций повернуть круг миниатюр по умолчанию
  * по часовой стрелке. Например, для 10 миниатюр можно установить значение
  * 3.5, чтобы первый элемент оказался наверху
- * outside - true, если в Spinner произошёл выход за пределы children.length
+ * @param {boolean} outside - true, если в Spinner произошёл выход за пределы children.length
  * (подробнее смотри описание state.outside в spinner-readme.txt)
  */
 function Thumbnails(props) {

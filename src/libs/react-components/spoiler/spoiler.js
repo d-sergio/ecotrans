@@ -7,13 +7,13 @@ import {titleStyle, iconStyle, bodyStyle} from "./spoiler.module.css";
  * 
  * Props:
  * 
- * title - заголовок спойлера 
- * close - иконка закрытия
- * open - иконка открытия
- * body - основное содержимое спойлера
- * isOpen - первоначальное состояние спойлера: true - раскрыт,
- * false - закрыт (по умолчанию true)
- * duration - время анимации раскрытия/закрытия спойлера
+ * @param {node} title - заголовок спойлера 
+ * @param {node} close - иконка закрытия
+ * @param {node} open - иконка открытия
+ * @param {node} body - основное содержимое спойлера
+ * @param {boolean} isOpen - первоначальное состояние спойлера: true - раскрыт,
+ * @param {boolean} false - закрыт (по умолчанию true)
+ * @param {number} duration - время анимации раскрытия/закрытия спойлера
  * в мс (300 по умолчанию)
  */
 function Spoiler(props) {

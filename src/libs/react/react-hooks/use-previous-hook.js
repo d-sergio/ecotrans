@@ -1,7 +1,7 @@
 import {useEffect, useRef} from "react";
 
 /**Хук для сохранения предыдущего состояния/пропс
- * 
+ * Использование: см. readme.txt
  */
 function usePrevious(value) {
     //В рефах можно хранить что угодно. Это универсальный контейнер

@@ -5,13 +5,13 @@ import {controlStyle, prev, next} from './controls.module.css';
  * 
  * Props
  * 
- * radius - радиус окружности с миниатюрами
- * setNewPosition - коллбэк, изменяющий текущую позицию
- * nextTopCorrect - сдвиг кнопки next вниз от позиции по умолчанию
- * nextLeftCorrect - сдвиг кнопки next влево от позиции по умолчанию
- * prevTopCorrect - сдвиг кнопки prev вниз от позиции по умолчанию
- * prevLeftCorrect - сдвиг кнопки prev влево от позиции по умолчанию
- * controlsPadding - когда размер родительского блока или окна становится
+ * @param {number} radius - радиус окружности с миниатюрами
+ * @param {function} setNewPosition - коллбэк, изменяющий текущую позицию
+ * @param {number} nextTopCorrect - сдвиг кнопки next вниз от позиции по умолчанию
+ * @param {number} nextLeftCorrect - сдвиг кнопки next влево от позиции по умолчанию
+ * @param {number} prevTopCorrect - сдвиг кнопки prev вниз от позиции по умолчанию
+ * @param {number} prevLeftCorrect - сдвиг кнопки prev влево от позиции по умолчанию
+ * @param {number} controlsPadding - когда размер родительского блока или окна становится
  * меньше ширины слайдера, кнопки управления начинают сдвигаться к центру.
  * Этот параметр позволяет сдвинуть их больше на указанное значение, чтобы
  * они не упирались в границы окна/блока

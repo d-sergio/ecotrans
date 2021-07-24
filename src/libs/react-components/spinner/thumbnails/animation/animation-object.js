@@ -1,10 +1,10 @@
 import {Animation, sliderDraw, invertedSliderDraw, changeTransformRotate} from '../../../../animate/animate';
 
 /**Быстрое создание объекта анимации по шаблону
- * element - анимируемый элемент
- * startValue - начальное значение
- * finalValue - финальное значение
- * duration - длительность анимации
+ * @param {node} element - анимируемый элемент
+ * @param {number} startValue - начальное значение
+ * @param {number} finalValue - финальное значение
+ * @param {number} duration - длительность анимации
  * 
  * Чтобы увеличить угол поворота
  * const obj = new AnimationObject(element, startValue, finalValue, duration).increaseAngle();

@@ -6,9 +6,9 @@ import startAnimation from './start-animation';
 /**Слайдер в центре
  * 
  * Props:
- * currentPosition - текущая позиция
- * slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
- * duration - длительность анимации
+ * @param {number} currentPosition - текущая позиция
+ * @param {number} slideTopCorrect - сдвиг слайдера вниз от обычной позиции в px
+ * @param {number} duration - длительность анимации
 */
 function Slider(props) {
     const containerRef = useRef(null);

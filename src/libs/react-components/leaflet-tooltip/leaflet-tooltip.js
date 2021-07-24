@@ -14,13 +14,13 @@ import {Animation, changeStyleProperty, sliderDraw, invertedSliderDraw} from '..
  * 
  * Props:
  * 
- * timerOff (3000) - через сколько мс отключится подсказка
- * duration (300) - длительность анимации мс
- * textOpacity (1) - прозрачность текста подсказки
- * backOpacity (1) - прозрачность тёмной подложки
- * textMobile - текст мобильной подсказки
+ * @param {number} timerOff (3000) - через сколько мс отключится подсказка
+ * @param {number} duration (300) - длительность анимации мс
+ * @param {number} textOpacity (1) - прозрачность текста подсказки
+ * @param {number} backOpacity (1) - прозрачность тёмной подложки
+ * @param {node} textMobile - текст мобильной подсказки
  *  (<p>Перемещайте карту, проводя по ней двумя пальцами<br/>(коснитесь, чтобы скрыть подсказку)</p>)
- * textDesktop - текст десктопной подсказки
+ * @param {node} textDesktop - текст десктопной подсказки
  *  (<p>Меняйте масштаб карты колесом мыши, удерживая Shift<br/>(клик, чтобы скрыть подсказку)</p>)
  */
 

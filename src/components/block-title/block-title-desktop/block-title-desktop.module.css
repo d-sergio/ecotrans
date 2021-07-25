@@ -1,11 +1,8 @@
-.green{
-    /*background-color: #EAFFE2;*/
-}
-
-.outer{
+.outer{    
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     
     margin-top: -78px;
     height: 708px;
@@ -32,4 +29,13 @@
     font-size: 2.25rem;
     
     line-height: 2.75rem;
+}
+
+.image{
+    width: 733px;
+}
+
+.image img{
+    max-width: 100%;
+    height: auto;
 }

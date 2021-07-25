@@ -20,7 +20,9 @@ function Slider(props) {
 
     useEffect(() => setSlideCoords(), []);
 
-    useEffect(() => startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, props}),
+    useEffect(() => {
+        startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, props})
+    },
     [props.currentPosition]);
 
     /**По горизонтали слайд центрируется в Spinner, а координаты по

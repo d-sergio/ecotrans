@@ -1,4 +1,5 @@
-import {Animation, sliderDraw, invertedSliderDraw, changeTransformRotate} from '../../../../animate/animate';
+import {Animation, sliderDraw, invertedSliderDraw} from '../../../../animate/animate';
+import changeTransformRotate from '../../../../animate/draw-functions/spinner-draw-function';
 
 /**Быстрое создание объекта анимации по шаблону
  * @param {node} element - анимируемый элемент

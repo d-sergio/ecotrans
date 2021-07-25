@@ -23,6 +23,7 @@ function Thumbnails(props) {
     const containerRef = useRef(null);
     const circleRef = useRef(null);
     const animate = useRef(undefined); //Здесь будут объекты анимации
+    const minusAngle = useRef(false);
 
     const prevPosition = usePrevious(props.currentPosition);
 
@@ -38,7 +39,8 @@ function Thumbnails(props) {
             props: props,
             prevPosition: prevPosition,
             animate: animate,
-            duration: props.duration
+            duration: props.duration,
+            minusAngle: minusAngle
         }
     ), [props.currentPosition]);
 

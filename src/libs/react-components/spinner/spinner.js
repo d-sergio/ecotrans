@@ -70,7 +70,7 @@ function Spinner(props) {
             setState(
                 {
                     ...state,
-                    currentPosition: childrenLength - 1,
+                    currentPosition: childrenLength + estimatedPosition,//
                     outside: true
                 }
             );

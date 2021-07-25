@@ -1,4 +1,7 @@
-/**Получить значение transform: rotate(deg) элемента */
+/**Получить значение transform: rotate(deg) элемента
+ * 
+ * Значения всегда приводятся в пределы 0 - 360 градусов!
+ */
 function getTransformRotate(element) {
     if (typeof window === undefined || !element) return;
 
@@ -8,10 +11,10 @@ function getTransformRotate(element) {
 
     const values = transform.split('(')[1].split(')')[0].split(',');
 
-    const a = values[0];
-    const b = values[1];
+    const cos = values[0];
+    const sin = values[1];
 
-    let radians = Math.atan2(b, a);
+    let radians = Math.atan2(sin, cos);
 
     if ( radians < 0 ) {
         radians += (2 * Math.PI);

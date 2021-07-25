@@ -55,12 +55,13 @@ export class Animation{
             this.duration = 1;
         }
 
-        //Внутренние параметры для анимации
+        //Внутренние параметры для анимации, которые можно отслеживать
         this.requestId = undefined;
         this.timeFraction = 0;
         this.progress = 0;
         this.actualValue = this.startValue;
         this.startTime = 0;
+        this.completed = false; //завершена ли анимация
 
         //Методы
         this.set = this.set.bind(this);
@@ -94,6 +95,7 @@ export class Animation{
         
         } else if (this.callback !== undefined && this.callback !== null) {
             this.callback();    //коллбэк после завершения анимации
+            this.completed = true;
         }
     }
 
@@ -183,15 +185,6 @@ export function changeStylePropertyAbs(element, property, actualValue, units) {
 export function changeTransformScale(element, property, actualValue, units) {
     try{
         element.style.transform = `scale(${actualValue}, ${actualValue})`;
-    } catch(e) {
-        //console.log('animate.js: анимация прервана')
-    }
-}
-
-/**Функция отрисовки, изменяющая transform: rotate(x).*/
- export function changeTransformRotate(element, property, actualValue, units) {
-    try{
-        element.style.transform = `rotate(${actualValue}deg)`;
     } catch(e) {
         //console.log('animate.js: анимация прервана')
     }

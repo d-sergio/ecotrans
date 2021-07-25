@@ -16,6 +16,14 @@ class BatchControl{
     cancel() {
         this.animations.forEach( animation => animation.cancel() );
     }
+
+    isCompleted() { //все ли анимации выполнены
+        for (let animation of this.animations) {
+            if (!animation.completed) return false;
+        }
+
+        return true;
+    }
 }
 
 export default BatchControl;

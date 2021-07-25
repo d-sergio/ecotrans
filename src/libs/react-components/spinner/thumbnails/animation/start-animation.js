@@ -1,8 +1,14 @@
 import AnimationObject from './animation-object';
 import BatchControl from '../../../../animate/batch-control';
+import getTransformRotate from '../../../../get-transform-rotate';
 
-function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, duration}) {
-    if (!circleRef.current || !thumbsRef.current) return;
+/** Подробности смотри в start-animation-readme.txt */
+
+function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, duration, minusAngle}) {
+    if (!circleRef.current || !thumbsRef.current || prevPosition === undefined) return;
+
+    //@1
+    const actualAngle = animate.current ? animate.current.animations[0].actualValue : 0;
 
     if (animate.current) animate.current.cancel();
 
@@ -12,59 +18,78 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
     const startAngle = calcStartAngle();
     const finalAngle = calcFinalAngle();
 
+    console.log(`start ${startAngle}, final ${finalAngle}`);
+
     animate.current = createAnimationBatch();
     animate.current.start();
 
     /**С какого угла начинается поворот
      * 
-     * //1 - поворот в пределах children.length
+     * //#1 - поворот в пределах children.length
      * 
-     * //2 - листая обратно,
+     * //#2 - листая обратно,
      * вернулись от index0 к последней миниатюре ...8, 9 <- 0, 1, 2...
      * 
-     * //3 - листая вперёд, от последней миниатюры вернулись к первой
+     * //#3 - листая вперёд, от последней миниатюры вернулись к первой
      * ...8, 9 -> 0, 1, 2...
      * В этом случае сначала установится отрицательное значение поворота
      * для circleRef и thumbsRef (для миниатюр - положительное), чтобы движение
      * было в положительную сторону
     */
     function calcStartAngle() {
-        if (!props.outside) {    //1
+        if (!props.outside) {    //#1
+            console.log('1');
 
-            return prevPosition * fi;
+            //@3
+            if (actualAngle < 0 && minusAngle.current) {
+                return actualAngle;
+            }
 
-        } else if (props.outside && props.currentPosition > prevPosition) { //2
+            minusAngle.current = false;
 
-            return prevPosition * fi;
+            return getTransformRotate(thumbsRef.current);
+            //return prevPosition * fi;
 
-        } else if (props.outside && props.currentPosition < prevPosition) { //3
-            
-            return (prevPosition - props.children.length) * fi;
+        } else if (props.outside && props.currentPosition > prevPosition) { //#2
+            console.log('2');
+
+            minusAngle.current = false;
+
+            return getTransformRotate(thumbsRef.current);
+            //return prevPosition * fi;
+
+        } else if (props.outside && props.currentPosition < prevPosition) { //#3
+            console.log('3');
+
+            minusAngle.current = true;  //@2
+
+            return getTransformRotate(thumbsRef.current) - 360;
+            //return (prevPosition - props.children.length) * fi;
         }
     }
 
     /**До какого угла поворачиваем. Отталкивается от предыдущего угла поворота
-     * //1 - поворот в пределах children.length 
+     * //#1 - поворот в пределах children.length 
      * 
-     * //2 - листая обратно,
+     * //#2 - листая обратно,
      * вернулись от index0 к последней миниатюре ...8, 9 <- 0, 1, 2...
      * 
-     * //3 - листая вперёд, от последней миниатюры вернулись к первой
+     * //#3 - листая вперёд, от последней миниатюры вернулись к первой
      * ...8, 9 -> 0, 1, 2...
      * В этом случае сначала установится отрицательное значение поворота
      * для circleRef и thumbsRef (для миниатюр - положительное), чтобы движение
      * было в положительную сторону
      */
     function calcFinalAngle() {
-        if (!props.outside) {    //1
+        if (!props.outside) {    //#1
 
             return props.currentPosition * fi;
 
-        } else if (props.outside && props.currentPosition > prevPosition) { //2
+        } else if (props.currentPosition > prevPosition && props.outside) { //#2
 
-            return (prevPosition + props.children.length - props.currentPosition) * fi;
+            return (props.currentPosition - prevPosition - props.children.length) * fi;
 
-        } else if (props.outside && props.currentPosition < prevPosition) {//3
+        } else if (props.currentPosition < prevPosition && props.outside) {//#3
 
             return props.currentPosition * fi;
 
@@ -81,7 +106,7 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
         const circleAnimation = createAnimationObject(circleRef.current);
         const thumbsItemsAnimation = createItemsAnimation(thumbsRef.current);
 
-        const animationBatch = new BatchControl([thumbsAnimation, circleAnimation, ...thumbsItemsAnimation])
+        const animationBatch = new BatchControl([thumbsAnimation, circleAnimation, ...thumbsItemsAnimation]);
 
         return animationBatch;
     }
@@ -92,24 +117,33 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
      * 
      * callback возвращает значение угла поворота к положительному
      * (всегда от 0 до 360deg)
+     * 
+     * //#1 - поворот в пределах children.length 
+     * 
+     * //#2 - листая обратно,
+     * вернулись от index0 к последней миниатюре ...8, 9 <- 0, 1, 2...
+     * 
+     * //#3 - листая вперёд, от последней миниатюры вернулись к первой
+     * ...8, 9 -> 0, 1, 2...
+     * 
     */
     function createAnimationObject(element) {
-        const callback = props.outside && props.currentPosition > prevPosition ?
-            () => {element.style.transform = `rotate(${props.currentPosition * fi}deg)`}
-            : undefined;
+        /*Если будут какие-то баги, колбэк, как минимум, гарантирует, что
+        миниатюры остановятся там, где надо*/
+        const resetTransform = () => element.style.transform = `rotate(${props.currentPosition * fi}deg)`;
 
-        const animationObject = new AnimationObject(element, startAngle, finalAngle, duration, callback);
+        const animationObject = new AnimationObject(element, startAngle, finalAngle, duration, resetTransform);
 
-        if (props.currentPosition > prevPosition && !props.outside) {
+        if (props.currentPosition > prevPosition && !props.outside) {   //#1
             return animationObject.increaseAngle();
 
-        } else if (props.currentPosition < prevPosition && !props.outside) {
+        } else if (props.currentPosition < prevPosition && !props.outside) {    //#1
             return animationObject.decreaseAngle();
 
-        } if (props.currentPosition > prevPosition && props.outside) {
+        } if (props.currentPosition > prevPosition && props.outside) {  //#2
             return animationObject.decreaseAngle();
 
-        } else if (props.currentPosition < prevPosition && props.outside) {
+        } else if (props.currentPosition < prevPosition && props.outside) { //#3
             return animationObject.increaseAngle();
 
         } else {
@@ -137,27 +171,38 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
      * thumbsRef или circleRef, чтобы быть правильно ориентированными.
      * 
      * callback возвращает значение угла поворота к отрицательному
-     * (всегда от -360 до 0deg)*/
+     * (всегда от -360 до 0deg)
+     * 
+     * //#1 - поворот в пределах children.length
+     * 
+     * //#2 - листая обратно,
+     * вернулись от index0 к последней миниатюре ...8, 9 <- 0, 1, 2...
+     * 
+     * //#3 - листая вперёд, от последней миниатюры вернулись к первой
+     * ...8, 9 -> 0, 1, 2...
+     *  
+     * */
     function createInvertedAnimation(element) {
-        const callback = props.outside && props.currentPosition > prevPosition ?
-        () => {element.style.transform = `rotate(${- props.currentPosition * fi}deg)`}
-        : undefined;
+        /*Если будут какие-то баги, колбэк, как минимум, гарантирует, что
+        миниатюры остановятся там, где надо. А в случае #3 возвращает угол
+        каждой из них к отрицательному значению*/
+        const resetTransform = () => element.style.transform = `rotate(${- props.currentPosition * fi}deg)`;
 
-        const animationObject = finalAngle >= 0 ?
-            new AnimationObject(element, - startAngle, - finalAngle, duration, callback)
-            : new AnimationObject(element, - startAngle, finalAngle, duration, callback);
+        const animationObject = finalAngle < 0 ?
+            new AnimationObject(element, - startAngle, - finalAngle, duration, resetTransform)
+            : new AnimationObject(element, - startAngle, - finalAngle, duration, resetTransform);
 
-        if (props.currentPosition < prevPosition && !props.outside) {
+        if (props.currentPosition < prevPosition && !props.outside) {   //#1
             return animationObject.increaseAngle();
 
-        } else if (props.currentPosition < prevPosition && !props.outside) {
+        } else if (props.currentPosition > prevPosition && !props.outside) {    //#1
             return animationObject.decreaseAngle();
 
-        } else if (props.currentPosition < prevPosition && props.outside) {
-            return animationObject.decreaseAngle();
-
-        } else if (props.currentPosition > prevPosition && props.outside) {
+        } else if (props.currentPosition > prevPosition && props.outside) { //#2
             return animationObject.increaseAngle();
+
+        } else if (props.currentPosition < prevPosition && props.outside) { //#3
+            return animationObject.decreaseAngle();
 
         } else {
             return animationObject.decreaseAngle();

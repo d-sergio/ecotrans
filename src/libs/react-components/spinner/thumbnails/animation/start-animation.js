@@ -18,8 +18,6 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
     const startAngle = calcStartAngle();
     const finalAngle = calcFinalAngle();
 
-    console.log(`start ${startAngle}, final ${finalAngle}`);
-
     animate.current = createAnimationBatch();
     animate.current.start();
 
@@ -38,7 +36,6 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
     */
     function calcStartAngle() {
         if (!props.outside) {    //#1
-            console.log('1');
 
             //@3
             if (actualAngle < 0 && minusAngle.current) {
@@ -51,7 +48,6 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
             //return prevPosition * fi;
 
         } else if (props.outside && props.currentPosition > prevPosition) { //#2
-            console.log('2');
 
             minusAngle.current = false;
 
@@ -59,7 +55,6 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
             //return prevPosition * fi;
 
         } else if (props.outside && props.currentPosition < prevPosition) { //#3
-            console.log('3');
 
             minusAngle.current = true;  //@2
 

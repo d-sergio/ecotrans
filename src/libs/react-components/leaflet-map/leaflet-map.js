@@ -11,10 +11,10 @@ import initMap from './init-map';
  * Props:
  * 
  * @param {number} height - высота должна быть задана явно
- * @param {number} view - координаты, где будет установлен центр карты, в виде
+ * @param {[number, number]} view - координаты, где будет установлен центр карты, в виде
  * массива [широта, долгота]
  * @param {number} zoom - зум
- * @param {number} marker - координаты маркера
+ * @param {[number, number]} marker - координаты маркера [широта, долгота]
  * @param {string} popup - текст над маркером передаётся как node в строке.
  * Например: popup={"<div>Hello, world!</>"}
  * 

@@ -40,12 +40,16 @@ const Address = () => (
             г. Курск, пр-т Ленинского комсомола 1Б
         </div>
         <div>
-        <img src={mail} alt="mail"/>
-            +7 (906)577-49-34
+            <a href="tel: +7 (906)577-49-34">
+                <img src={phone} alt="mail"/>
+                +7 (906)577-49-34
+            </a>
         </div>
         <div>
-        <img src={phone} alt="phone"/>
-            ecotranskursk@yandex.ru
+            <a href="mailto: ecotranskursk@yandex.ru">
+                <img src={mail} alt="phone"/>
+                ecotranskursk@yandex.ru
+            </a>
         </div>
     </div>
 );
@@ -69,7 +73,12 @@ const Menu = () => (
 
 const Links = () => (
     <div className={links}>
-        <p><a href='https://www.instagram.com/ecotrans46/'>Instagram</a></p>
+        <p>
+            <a href='https://www.instagram.com/ecotrans46/'>
+                Instagram
+            </a>
+        </p>
+        
         <div>Сайт разработан we write</div>
         <div>© ООО “Экотранс” 2021</div>
     </div>

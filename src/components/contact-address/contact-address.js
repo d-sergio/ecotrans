@@ -20,15 +20,15 @@ function Address() {
                 <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
             </div>
 
-            <div className={line}>
+            <a className={line} href="tel: +7 (906)577-49-34">
                 <img src={phonePic} alt="phone"/>
                 <p>+ 7 (906) 577 49 34</p>
-            </div>
+            </a>
 
-            <div className={line}>
+            <a className={line} href="mailto: ecotranskursk@yandex.ru">
                 <img src={emailPic} alt="email"/>
                 <p>ecotranskursk@yandex.ru</p>
-            </div>
+            </a>
 
             <div className={line}>
                 <img src={clockPic} alt="clock"/>
@@ -39,7 +39,7 @@ function Address() {
                 <p className={social}>Социальные сети</p>
             </div>
 
-            <div className={instagram}>
+            <a className={instagram} href='https://www.instagram.com/ecotrans46/'>
                 <img src={instagramPic} alt="instagram"/>
                 <p>
                     Все самые свежие новости доступны
@@ -47,7 +47,7 @@ function Address() {
                     Подпишитесь сейчас и оставайтесь с 
                     нами рядом ;)
                 </p>
-            </div>
+            </a>
         </div>
     );
 }

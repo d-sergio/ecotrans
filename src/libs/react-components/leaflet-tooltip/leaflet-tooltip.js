@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {tooltip, tooltipBack} from './leaflet-tooltip.module.css';
-import {Animation, changeStyleProperty, sliderDraw, invertedSliderDraw} from '../../animate/animate';
+import tooltipAnimation from './tooltip-animation';
 
 /**Всплывающая подсказка для карты.
  * 
@@ -30,11 +30,12 @@ function LeafletTooltip(props) {
     const back = useRef(null);
     const timer = useRef(0);    //здесь будет setTimeout
     const active = useRef(false);   //подсказка активна?
-    const mobile = useRef(false);   //сенсорное устройство?
-    const animateBack = useRef(undefined);  //здесь будет анимация тёмной подложки
-    const animateTooltip = useRef(undefined);   //здесь будет анимация текста
+    const mobileDevice = useRef(false);   //сенсорное устройство?
+    const animate = useRef(undefined);  //здесь будут объекты анимации
+
+    const [touchScrollOn, setTouchScrollOn] = useState(false);
     
-    //Отключить подсказку
+    //Сначала отключить подсказку
     useEffect(() => {
         if (!tooltipDesktop.current || !tooltipMobile.current || !back.current) return;
 
@@ -51,9 +52,9 @@ function LeafletTooltip(props) {
         if (typeof window === undefined) return;
 
         /*Порядок обработчиков имеет значение!
-        1. wheel - сразу понятно, что это мышь, поэтому десктопная подсказка
-        2. 3. - touchstart и touchmove укажут, что это сенсорное устройство
-        4. На scroll подсказка появляется только для сенсорных устройств.
+        #1. wheel - сразу понятно, что это мышь, поэтому десктопная подсказка
+        #2. #3. - touchstart и touchmove укажут, что это сенсорное устройство
+        #4. На scroll подсказка появляется только для сенсорных устройств.
         На этом обработчике уже можно быть уверенным в типе устройства
         
         Зачем для десктопа wheel, а для сенсора scroll?
@@ -62,10 +63,10 @@ function LeafletTooltip(props) {
         может вызвать на ней событие focus с последующим scroll. Это вызовет лишнюю
         подсказку, поэтому wheel лучше здесь подходит. В мобильных браузерах такой
         проблемы нет, поэтому подходит scroll*/
-        window.addEventListener('wheel', tooltipOn);
-        window.addEventListener('touchstart', setMobile);
-        window.addEventListener('touchmove', setMobile);
-        window.addEventListener('scroll', onScroll);
+        window.addEventListener('wheel', tooltipOn);    //#1
+        window.addEventListener('touchstart', setMobile);   //#2
+        window.addEventListener('touchmove', setMobile);    //#3
+        window.addEventListener('scroll', onScroll);    //#4
         window.addEventListener('mousedown', setDesktop);
         window.addEventListener('mousemove', setDesktop);
 
@@ -79,21 +80,23 @@ function LeafletTooltip(props) {
         };
     }, []);
 
+    /**Если scroll на мобильном, то сразу выводится подсказка*/
     function onScroll() {
-        if (mobile.current) tooltipOn();
+        if (mobileDevice.current) tooltipOn();
     }
 
+    /**Событие указывает, что это сенсорное устройство*/
     function setMobile() {
-        mobile.current = true;
+        mobileDevice.current = true;
     }
 
+    /**Событие указывает, что это устройство с мышью*/
     function setDesktop() {
-        mobile.current = false;
+        mobileDevice.current = false;
     }
 
+    /**Включить подсказку */
     function tooltipOn(e) {
-        if (!tooltipDesktop.current || !tooltipMobile.current || !back.current) return;
-
         /**Обновление timer, если подсказка уже активна*/
         if (active.current) {
             clearTimeout(timer.current);
@@ -103,51 +106,16 @@ function LeafletTooltip(props) {
             return;
         }
 
-        cancelAnimation();
-
-        //Включить подсказку
-        back.current.style.display = 'block';
-
-        if (mobile.current) {
-            tooltipMobile.current.style.display = 'flex';
-
-            //Если предыдущая анимация прервана, сбросим значения на всякий случай
-            tooltipDesktop.current.style.display = 'none';
-            tooltipDesktop.current.style.opacity = 0;
-        } else {
-            tooltipDesktop.current.style.display = 'flex';
-
-            //Если предыдущая анимация прервана, сбросим значения на всякий случай
-            tooltipMobile.current.style.display = 'none';
-            tooltipMobile.current.style.opacity = 0;
-        }
-
-        //Анимировать появление подсказки
-        const propsBack = {
-            timing: sliderDraw,
-            duration: props.duration,
-            draw: changeStyleProperty,
-            element: back.current,
-            property: 'opacity',
-            startValue: 0,
-            finalValue: props.backOpacity
-        };
-
-        const propsTooltip = {
-            timing: sliderDraw,
-            duration: props.duration,
-            draw: changeStyleProperty,
-            element: mobile.current ? tooltipMobile.current : tooltipDesktop.current,
-            property: 'opacity',
-            startValue: 0,
-            finalValue: props.textOpacity
-        };
-
-        animateBack.current = new Animation(propsBack);
-        animateTooltip.current = new Animation(propsTooltip);
-
-        animateBack.current.start();
-        animateTooltip.current.start();
+        tooltipAnimation.turnOn(
+            {
+                back,
+                tooltipMobile,
+                tooltipDesktop,
+                mobileDevice,
+                animate,
+                props
+            }
+        );
 
         if (timer.current > 0) clearTimeout(timer.current);
         timer.current = setTimeout(tooltipOff, props.timerOff);
@@ -155,93 +123,49 @@ function LeafletTooltip(props) {
         active.current = true;
     }
 
+    /**Отключить подсказку */
     function tooltipOff() {
-        if (!tooltipDesktop.current || !tooltipMobile.current || !back.current) return;
-
-        //Колбэки установят display: "none" для всех элементов подсказки
-        const callbackBack = () => {
-            if (!back.current) return;
-
-            back.current.style.display = 'none';
-        };
-
-        const callbackDesktop = () => {
-            if (!tooltipDesktop.current) return;
-
-            tooltipDesktop.current.style.display = 'none';
-        };
-
-        const callbackMobile = () => {
-            if (!tooltipMobile.current) return;
-
-            tooltipMobile.current.style.display = 'none';
-        };
-
-        cancelAnimation();
-
-        /*Надо знать точно какой из вариантов подсказки активирован,
-        чтобы его убрать. Так как к планшету может быть подключена
-        мышь и пользователь может их использовать одновременно,
-        что приведёт к некорректной анимации*/
-        const mobileActive = tooltipMobile.current.style.display !== 'none' ? true : false;
-
-        //Если предыдущая анимация прервана, сбросим значения на всякий случай
-        if (mobileActive) {
-            tooltipDesktop.current.style.display = 'none';
-            tooltipDesktop.current.style.opacity = 0;
-        } else {
-            tooltipMobile.current.style.display = 'none';
-            tooltipMobile.current.style.opacity = 0;
-        }
-
-        //Анимировать исчезновение подсказки
-        const propsBack = {
-            timing: invertedSliderDraw,
-            duration: props.duration,
-            draw: changeStyleProperty,
-            element: back.current,
-            property: 'opacity',
-            startValue: props.backOpacity,
-            finalValue: 0,
-            callback: callbackBack
-        };
-
-        const propsTooltip = {
-            timing: invertedSliderDraw,
-            duration: props.duration,
-            draw: changeStyleProperty,
-            element: mobileActive ? tooltipMobile.current : tooltipDesktop.current,
-            property: 'opacity',
-            startValue: props.textOpacity,
-            finalValue: 0,
-            callback: mobileActive ? callbackMobile : callbackDesktop
-        };
-
-        animateBack.current = new Animation(propsBack);
-        animateTooltip.current = new Animation(propsTooltip);
-
-        animateBack.current.start();
-        animateTooltip.current.start();
+        tooltipAnimation.turnOff(
+            {
+                back,
+                tooltipMobile,
+                tooltipDesktop,
+                mobileDevice,
+                animate,
+                props
+            }
+        );
 
         timer.current = 0;
         active.current = false;
     }
 
-    /**Отмена текущей анимации */
-    function cancelAnimation() {
-        if (animateBack.current) {
-            animateBack.current.cancel();
-            animateBack.current = undefined;
-        }
-
-        if (animateTooltip.current) {
-            animateTooltip.current.cancel();
-            animateTooltip.current = undefined;
-        }
+    /**Пользователь может коснуться экрана, чтобы скрыть подсказку, а может
+     * коснуться экрана, чтобы листать страницу.
+     * 
+     * #1 Начинаем отслеживать события touch
+     * #2 Если пользователь начал листать, отметим это в touchScrollOn
+     * #3 Проверяем был ли скролл и соответственно решаем скрывать подсказку
+     * или нет
+     * #4 Скрываем подсказку
+     */
+    function onTouchStart() {   //#1
+        document.addEventListener('touchmove', onTouchMove, {once: true});
+        document.addEventListener('touchend', onTouchEnd, {once: true});
     }
 
-    /**Отмена активной анимации */
-    function cancelTooltip(e) {
+    function onTouchMove() {    //#2
+        setTouchScrollOn(true);
+    }
+
+    function onTouchEnd() { //#3
+        if (touchScrollOn) return;
+
+        setTouchScrollOn(false);
+        cancelTooltip();
+    }
+
+    function cancelTooltip() { //#4
         //e.preventDefault();
         
         if (active.current) {
@@ -256,7 +180,7 @@ function LeafletTooltip(props) {
             {props.children}
 
             <div
-            onTouchStart={cancelTooltip}
+            onTouchStart={onTouchStart}
             onMouseDown={cancelTooltip}>
                 <div ref={back} className={tooltipBack}></div>
 

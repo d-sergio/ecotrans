@@ -1,7 +1,8 @@
 //Используется в animate-move.js
 
-import {Animation, sliderDraw, invertedSliderDraw, changeStyleProperty} from "../../../../animate/animate";
-
+import {Animation} from "../../../../animate/animate";
+import changeStyleProperty from '../../../../animate/draw-functions/change-style-property';
+import sliderTimeFunction from '../../../../animate/time-functions/slider-time-functions';
 /**Создать и вернуть объект анимации
  * 
  * Функция "ловит" текущий currentMarginLeft ленты слайдов и создаёт объект
@@ -25,8 +26,8 @@ export default function createAnimationObject({animDuration, carousel, callback,
         const targetMarginLeft = -currentPosition * slideWidth + adjacentCorrect;
 
         const timing = (targetMarginLeft < currentMarginLeft)
-                        ? invertedSliderDraw //если листаем к следующему слайду
-                        : sliderDraw; //если листаем к предыдущему слайду
+                        ? sliderTimeFunction.inverted //если листаем к следующему слайду
+                        : sliderTimeFunction.straight; //если листаем к предыдущему слайду
 
         const animationProps = {
             timing: timing,

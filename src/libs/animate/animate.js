@@ -1,9 +1,12 @@
+import changeStyleProperty from './draw-functions/change-style-property';
+import linear from './time-functions/linear';
+
 /**Объект для анимации
  * 
  * Принимаемые параметры:
  * @param {object} animationProps - объект, содержащий следующие значения (в скобках - по умолчанию):
  * 
- *      @param {function} timing - функция расчёта времени (linear)
+ *      @param {function} timing - функция расчёта времени (linear.straight)
  *      @param {number} duration - длительность анимации (500)
  *      @param {function} draw - функция отрисовки (changeStyleProperty)
  *      @param {node} element - анимируемый элемент (document.body)
@@ -37,7 +40,7 @@ export class Animation{
     constructor(animationProps) { 
         //Принимаемые параметры по умолчанию
         const defaults = {
-            timing: linear,
+            timing: linear.straight,
             duration: 500,
             draw: changeStyleProperty,
             element: document.body,
@@ -119,81 +122,4 @@ export class Animation{
             this.actualValue = this.startValue;
         }
     }
-}
-
-/**Функции расчёта времени*/
-export function linear(timeFraction) {
-    return timeFraction;
-}
-
-export function invertedLinear(timeFraction) {
-    return -timeFraction;
-}
-
-export function sliderDraw(timeFraction) {
-    return 1 - Math.pow(1 - timeFraction, 4);
-}
-
-export function invertedSliderDraw(timeFraction) {
-    return -(1 - Math.pow(1 - timeFraction, 4));
-}
-
-export function spoilerDraw(timeFraction) {
-    return 1 - Math.pow(1 - timeFraction, 1.5);
-}
-
-export function invertedSpoilerDraw(timeFraction) {
-    return -(1 - Math.pow(1 - timeFraction, 1.5));
-}
-
-/** Функция отрисовки, изменяющая значения свойства стиля элемента
- * 
- * @param {node} element - элемент, прозрачность которого меняем
- * @param {string} property - изменяемое анимацией свойство стиля
- * @param {number} actualValue - рассчитанное значение, полученое из animate()
- */
-export function changeStyleProperty(element, property, actualValue, units) {
-    try{
-        element.style[property] = actualValue + units;
-    } catch(e) {
-        //console.log('animate.js: анимация прервана')
-    }
-}
-
-/** Функция отрисовки, изменяющая значения свойства стиля элемента по модулю
- * 
- * @param {node} element - элемент, прозрачность которого меняем
- * @param {string} property - изменяемое анимацией свойство стиля
- * @param {number} actualValue - рассчитанное значение, полученое из animate()
- * 
- * Например, в animate можно передать
- * property = 'opacity', startValue = -1, finalValue = 1.
- * 
- * Тогда анимируемый элемент сначала исчезнет (opacity от 1 до 0),
- * а затем снова появится (opacity от 0 до 1)
- */
-export function changeStylePropertyAbs(element, property, actualValue, units) {
-    try{
-        element.style[property] = Math.abs(actualValue) + units;
-    } catch(e) {
-        //console.log('animate.js: анимация прервана')
-    }
-}
-
-/**Функция отрисовки, изменяющая transform: scale(x, x). При этом два аргумента,
- * получаемые scale равны друг другу, для пропорционального масштабирования */
-export function changeTransformScale(element, property, actualValue, units) {
-    try{
-        element.style.transform = `scale(${actualValue}, ${actualValue})`;
-    } catch(e) {
-        //console.log('animate.js: анимация прервана')
-    }
-}
-
-/** Задержка, чтобы анимация исчезновения предыдущего слайда завершилась полностью,
- * прежде чем состояние компонента slides-viewer.js изменится и начнётся
- * следующая анимация
- */
-export function delay(duration) {
-    return new Promise(resolve => setTimeout(resolve, duration));
 }

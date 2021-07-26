@@ -1,5 +1,6 @@
-import {Animation, sliderDraw, invertedSliderDraw} from '../../../../animate/animate';
-import changeTransformRotate from '../../../../animate/draw-functions/spinner-draw-function';
+import {Animation} from '../../../../animate/animate';
+import changeTransformRotate from '../../../../animate/draw-functions/spinner-transform-rotate';
+import sliderTimeFunction from '../../../../animate/time-functions/slider-time-functions';
 
 /**Быстрое создание объекта анимации по шаблону
  * @param {node} element - анимируемый элемент
@@ -26,7 +27,7 @@ class AnimationObject{
 
     increaseAngle() {
         const animationProps = {
-            timing: sliderDraw,
+            timing: sliderTimeFunction.straight,
             duration: this.duration,
             draw: changeTransformRotate,
             element: this.element,
@@ -40,7 +41,7 @@ class AnimationObject{
 
     decreaseAngle() {
         const animationProps = {
-            timing: invertedSliderDraw,
+            timing: sliderTimeFunction.inverted,
             duration: this.duration,
             draw: changeTransformRotate,
             element: this.element,

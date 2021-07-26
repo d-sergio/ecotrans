@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import usePrevious from '../../react/react-hooks/use-previous-hook';
-import {Animation, spoilerDraw, invertedSpoilerDraw, changeStyleProperty} from "../../animate/animate";
+import {Animation} from "../../animate/animate";
+import spoilerTimeFunctions from '../../animate/time-functions/spoiler-time-function';
+import changeStyleProperty from '../../animate/draw-functions/change-style-property';
 import {titleStyle, iconStyle, bodyStyle} from "./spoiler.module.css";
 
 /**Спойлер
@@ -51,7 +53,7 @@ function Spoiler(props) {
         if (animate.current) animate.current.cancel();
 
         const animationProps = {
-            timing: invertedSpoilerDraw,
+            timing: spoilerTimeFunctions.inverted,
             duration: props.duration,
             draw: changeStyleProperty,
             element: body.current,
@@ -82,7 +84,7 @@ function Spoiler(props) {
         };
 
         const animationProps = {
-            timing: spoilerDraw,
+            timing: spoilerTimeFunctions.straight,
             duration: props.duration,
             draw: changeStyleProperty,
             element: body.current,

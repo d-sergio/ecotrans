@@ -1,5 +1,7 @@
-import {Animation, changeStyleProperty, sliderDraw, invertedSliderDraw, changeTransformScale}
-from '../../../animate/animate';
+import {Animation} from '../../../animate/animate';
+import sliderTimeFunction from '../../../animate/time-functions/slider-time-functions';
+import changeStyleProperty from '../../../animate/draw-functions/change-style-property';
+import changeTransformScale from '../../../animate/draw-functions/change-transform-scale';
 import BatchControl from '../../../animate/batch-control';
 
 function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, props}) {
@@ -21,7 +23,7 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
 
     //Объекты анимации
     const currentTransform = {
-        timing: sliderDraw,
+        timing: sliderTimeFunction.straight,
         duration: props.duration,
         draw: changeTransformScale,
         element: currentSlideRef.current,
@@ -30,7 +32,7 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
     };
 
     const currentOpacity = {
-        timing: sliderDraw,
+        timing: sliderTimeFunction.straight,
         duration: props.duration,
         draw: changeStyleProperty,
         element: currentSlideRef.current,
@@ -40,7 +42,7 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
     }
 
     const prevTransform = {
-        timing: invertedSliderDraw,
+        timing: sliderTimeFunction.inverted,
         duration: props.duration,
         draw: changeTransformScale,
         element: prevSlideRef.current,
@@ -49,7 +51,7 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
     };
 
     const prevOpacity = {
-        timing: invertedSliderDraw,
+        timing: sliderTimeFunction.inverted,
         duration: props.duration,
         draw: changeStyleProperty,
         element: prevSlideRef.current,

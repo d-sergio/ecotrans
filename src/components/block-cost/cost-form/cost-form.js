@@ -40,37 +40,39 @@ function CostForm() {
             className={form}
             validate={validate}
         >
-            <Forms.Input
+            <Forms.Fields.Input
                 classNames={inputClasses}
                 name='inn'
                 fieldName={fieldNames.inn}
                 error={<CostError/>}
             />
 
-            <Forms.Input
+            <Forms.Fields.Input
                 classNames={inputClasses}
                 name='fkko'
                 fieldName={fieldNames.fkko}
                 error={<CostError/>}
             />
 
-            <Forms.Input
+            <Forms.Fields.Input
                 classNames={inputClasses}
                 name='phone'
                 fieldName={fieldNames.phone}
                 error={<CostError/>}
             />
 
-            <Forms.Input
+            <Forms.Fields.Input
                 classNames={inputClasses}
                 name='email'
                 fieldName={fieldNames.email}
                 error={<CostError/>}
             />
-
-            <label className={passportStyle}>{fieldNames.passport}
-                <input accept={fileTypes} className={passportHide} type="file"/>
-            </label>
+            
+            <Forms.Fields.File
+                className={passportStyle}
+                fieldName={fieldNames.passport}
+                accept={fileTypes}
+            />
 
             <div className={button}>
                 {

@@ -1,14 +1,9 @@
-import React from 'react';
-import Field from "./field";
 import Form from './form';
 import Validate from './validate';
-
-const Textarea = (props) => <Field fieldType='textarea' {...props}/>
-const Input = Field;
+import Fields from './fields';
 
 const Forms = {
-    Input,
-    Textarea,
+    Fields,
     Form,
     Validate
 };

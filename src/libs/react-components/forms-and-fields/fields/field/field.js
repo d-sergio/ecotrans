@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import {container, errorStyle} from './field.module.css';
-import Errors from '../context/errors';
-import ErrorMessage from '../error-message';
+import Errors from '../../context/errors';
+import ErrorMessage from '../../error-message';
 
 /**Для корректной работы компоненту Field потребуется key
  * 

@@ -55,25 +55,25 @@ function Feedback() {
                 className={form}
                 validate={validate}
             >
-                <Forms.Input
+                <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'initials'}
                     fieldName={fieldNames.initials}
                     error={<ContactError/>}
                 />
-                <Forms.Input
+                <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'email'}
                     fieldName={fieldNames.email}
                     error={<ContactError/>}
                 />
-                <Forms.Input
+                <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'phone'}
                     fieldName={fieldNames.phone}
                     error={<ContactError/>}
                 />
-                <Forms.Textarea
+                <Forms.Fields.Textarea
                     classNames={textareaClasses}
                     name={'message'}
                     error={<ContactError/>}

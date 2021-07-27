@@ -6,9 +6,9 @@ import Errors from '../context/errors';
  * Props:
  * 
  * @param { {function} } validate - объект, в котором ключ - имя проверяемого поля,
- * значение - функция валидации, возвращающая true, если валидация прошла успешно,
- * и false, если не успешно.
- * @param {[className]} className - стиль CSS
+ * значение - функция валидации, возвращающая текст с описанием ошибки или undefined,
+ * если ошибок нет
+ * @param {className} className - стиль CSS
  */
 function Form(props) {
     const formRef = useRef(null);
@@ -20,17 +20,36 @@ function Form(props) {
 
         if (!formRef.current) return;
 
-        let valids = {};
+        //валидация формы
+        const validationErrors = validateFields();
+
+        setErrors(validationErrors);
+
+        //выход, если есть хотя бы одна ошибка
+        for (let value of Object.values(validationErrors)) {
+            if (value !== undefined) {
+                return;
+            }
+        }
+
+        const formData = new FormData(formRef.current);
+    }
+
+    /**Значения полей проходят проверку через соответствующие их имени валидаторы*/
+    function validateFields() {
+        if (!formRef.current) return;
+
+        let validationErrors = {};
 
         for (let elem of formRef.current) {
             if (typeof props.validate[elem.name] === 'function') {
                 const validationResult = props.validate[elem.name](elem.value);
 
-                valids[elem.name] = validationResult;
+                validationErrors[elem.name] = validationResult;
             }
         }
 
-        setErrors(valids);
+        return validationErrors;
     }
     
     return(

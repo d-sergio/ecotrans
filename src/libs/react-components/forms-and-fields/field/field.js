@@ -125,7 +125,7 @@ function Field(props) {
         setValue(e.target.value);
 
         /**Скрыть сообщение об ошибке валидации */
-        if (!errorRef.current) return;
+        if (!errorRef.current || !errors) return;
 
         if (errors[props.name]) {
             errorRef.current.style.opacity = 0;

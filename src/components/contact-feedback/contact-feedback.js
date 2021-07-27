@@ -3,7 +3,6 @@ import Button from '../buttons';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ContactError from './contact-error-message';
-import checkEmail from '../../libs/check-email';
 import {
     feedback,
     feedbackTitle,
@@ -15,29 +14,28 @@ import {
     inputInActive,
     agree,
     textarea,
-    button,
-    error} from './contact-feedback.module.css';
-
-//Имена полей формы
-const fieldNames = {
-    initials : 'ФИО',
-    email: 'e-mail',
-    phone: 'Телефон'
-};
+    button} from './contact-feedback.module.css';
 
 /**Окно "Обратная связь" страницы Контакты*/
 function Feedback() {
-    const messageDefault = 'Ваше сообщение';
-    
-    const validate = {
-        initials: validateInitials,
-        email: validateEmail,
-        phone: validatePhone,
-        message: validateMessage,
-    }    
-
     const mobileView = useContext(MobileView);
+
+    const messageDefault = 'Ваше сообщение';
+
+    //Имена полей формы
+    const fieldNames = {
+        initials : 'ФИО',
+        email: 'e-mail',
+        phone: 'Телефон'
+    };
     
+    //Функции валидации
+    const validate = {
+        initials: (value) => Forms.Validate.notEmpty(value, fieldNames.initials),
+        email: (value) => Forms.Validate.email(value, fieldNames.email),
+        phone: (value) => Forms.Validate.notEmpty(value, fieldNames.phone),
+        message: (value) => Forms.Validate.notEmpty(value, '')
+    }        
     //Стили Input
     const inputInActiveStyle = [inputInActive, input].join(" ");
     const inputActiveStyle = [inputActive, input].join(" ");
@@ -57,75 +55,46 @@ function Feedback() {
                 className={form}
                 validate={validate}
             >
-                    <Forms.Input
-                        classNames={inputClasses}
-                        name={'initials'}
-                        fieldName={fieldNames.initials}
-                        error={<ContactError/>}
-                    />
-                    <Forms.Input
-                        classNames={inputClasses}
-                        name={'email'}
-                        fieldName={fieldNames.email}
-                        error={<ContactError/>}
-                    />
-                    <Forms.Input
-                        classNames={inputClasses}
-                        name={'phone'}
-                        fieldName={fieldNames.phone}
-                        error={<ContactError/>}
-                    />
-                    <Forms.Textarea
-                        classNames={textareaClasses}
-                        name={'message'}
-                        error={<ContactError/>}
-                    />
+                <Forms.Input
+                    classNames={inputClasses}
+                    name={'initials'}
+                    fieldName={fieldNames.initials}
+                    error={<ContactError/>}
+                />
+                <Forms.Input
+                    classNames={inputClasses}
+                    name={'email'}
+                    fieldName={fieldNames.email}
+                    error={<ContactError/>}
+                />
+                <Forms.Input
+                    classNames={inputClasses}
+                    name={'phone'}
+                    fieldName={fieldNames.phone}
+                    error={<ContactError/>}
+                />
+                <Forms.Textarea
+                    classNames={textareaClasses}
+                    name={'message'}
+                    error={<ContactError/>}
+                />
 
-                    <div className={agree}>
-                        Отправляя форму, я даю согласие<br/>
-                        на обработку персональных<br/>
-                        данных.
-                    </div>
+                <div className={agree}>
+                    Отправляя форму, я даю согласие<br/>
+                    на обработку персональных<br/>
+                    данных.
+                </div>
 
-                    <div className={button}>
-                        {
-                            mobileView ?
-                            <Button.Send.Mobile/>
-                            : <Button.Send.Desktop/>
-                        }
-                    </div>
+                <div className={button}>
+                    {
+                        mobileView ?
+                        <Button.Send.Mobile/>
+                        : <Button.Send.Desktop/>
+                    }
+                </div>
             </Forms.Form>
         </div>
     );
 }
 
 export default Feedback;
-
-function validateEmail(email) {
-    if (email === '' || email === fieldNames.email) {
-        
-        return '*Обязательное поле';
-
-    } else if (!checkEmail(email))  {
-
-        return 'Некорректный email';
-    }
-}
-
-function validateInitials(value) {
-    if (value === fieldNames.initials || value === '') {
-        return '*Обязательное поле';
-    }
-}
-
-function validatePhone(value) {
-    if (value === fieldNames.phone || value === '') {
-        return '*Обязательное поле';
-    }
-}
-
-function validateMessage(value) {
-    if (value === '') {
-        return '*Обязательное поле';
-    }
-}

@@ -82,15 +82,6 @@
     text-align: right;
 }
 
-.error{
-    height: 13px;
-
-    margin-bottom: 19px;
-
-    color: #F97C08;
-    font-size: 0.8125rem;
-}
-
 @media screen and (max-width: 767px) {
     .button{
         text-align: center;

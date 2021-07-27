@@ -17,11 +17,14 @@ li {
 
 body {
     height: 100%; /*Прижать футер к низу*/
-
-    font-family: "MontserratRegular";
+    
     font-weight: 400;
     background-color: white;
     color: #3D3D3D;
+}
+
+input, textarea, body {
+    font-family: "MontserratRegular";
 }
 
 html {

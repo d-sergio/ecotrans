@@ -18,8 +18,10 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "gatsby": "^3.6.2",
+    "formik": "^2.2.9",
+    "gatsby": "^3.10.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "yup": "^0.32.9"
   }
 }

@@ -113,33 +113,33 @@ function HeaderMenu(props) {
 
     const menu = (
         <nav className={menuStyle}>
-            <div ref={services} className={link}
+            <Link to='/services' ref={services} className={link}
                 onMouseEnter={() => highlightPageOff('/services')}
                 onMouseLeave={highlightPageOn}>
 
-                    <Link to='/services'>Услуги</Link>
-            </div>
+                    Услуги
+            </Link>
 
-            <div ref={projects} className={link}
+            <Link to='/projects' ref={projects} className={link}
                 onMouseEnter={() => highlightPageOff('/projects')}
                 onMouseLeave={highlightPageOn}>
 
-                    <Link to='/projects'>Проекты</Link>
-            </div>
+                    Проекты
+            </Link>
 
-            <div ref={clients} className={link}
+            <Link to='/clients' ref={clients} className={link}
                 onMouseEnter={() => highlightPageOff('/clients')}
                 onMouseLeave={highlightPageOn}>
 
-                    <Link to='/clients'>Клиентам</Link>
-            </div>
+                    Клиентам
+            </Link>
 
-            <div ref={contact} className={link}
+            <Link to='/contact' ref={contact} className={link}
                 onMouseEnter={() => highlightPageOff('/contact')}
                 onMouseLeave={highlightPageOn}>
 
-                    <Link to='/contact'>Контакты</Link>
-            </div>
+                    Контакты
+            </Link>
         </nav>
     );
 

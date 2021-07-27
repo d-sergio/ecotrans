@@ -19,7 +19,9 @@ function BlockContact() {
 
     return(
         <>
-            {mobileView ? <BlockContactMobile/> : <BlockContactDesktop/>}
+            {mobileView ?
+                <BlockContactMobile/>
+                : <BlockContactDesktop/>}
         </>
     );
 }

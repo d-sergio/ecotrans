@@ -5,7 +5,13 @@
     width: 515px;
 }
 
+.passportHide{
+    display: none;
+}
+
 .input{
+    box-sizing: border-box;
+
     height: 55px;
     width: 100%;
 
@@ -19,19 +25,32 @@
 
     font-size: 0.875rem;
     line-height: 1.75rem;
-    color: #ABABAB;
+
 
     outline: none;
+    background-color: white;
+}
+
+.inputActive{
+    color: #3D3D3D;
+}
+
+.inputInActive{
+    color: #B0B0B0;
+}
+
+.passport{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .button{
     align-self: flex-start;
-    margin-left: -30px;
 }
 
 .attach{
     padding-left: 45px;
-    width: 97.087%;
 
     background-image: url(/images/block-cost/attach.svg);
     background-repeat: no-repeat;

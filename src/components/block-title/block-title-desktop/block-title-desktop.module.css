@@ -9,6 +9,10 @@
     background-color: #EAFFE2; /**/
 }
 
+.text{
+    width: 497px;
+}
+
 .about{
     color: #219982;
 
@@ -32,7 +36,7 @@
 }
 
 .image{
-    width: 733px;
+    /*width: 733px;*/
 }
 
 .image img{

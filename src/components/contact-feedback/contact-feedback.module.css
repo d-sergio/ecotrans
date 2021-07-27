@@ -13,17 +13,18 @@
     font-size: 1.5625rem;
     font-family: "MontserratBold";
     color: #219982;
+
+    margin-bottom: 43px;
 }
 
 .form{
     display: flex;
     flex-direction: column;
-
-    margin-top: 43px;
 }
 
 .input{
     height: 25px;
+    width: 100%;
 
     margin-bottom: 32px;
 
@@ -32,34 +33,62 @@
 
     font-size: 1.125rem;
     line-height: 1.3125rem;
-    color: #B0B0B0;
+
+    opacity: 1;
 
     outline: none;
 }
+
+.inputInActive{
+    color: #B0B0B0;
+}
+
+
+.inputActive{
+    color: #3D3D3D;
+}
+
 
 .agree{
     font-size: 0.75rem;
     color: #C4C4C4;
 }
 
-.message{
-    height: 25px;
-
-    margin-top: 76px;
+.textarea{
+    height: 101px;
+    width: 100%;
+    vertical-align: bottom;
+    resize: none;
 
     border: 0;
     border-bottom: 3px solid #F5F5F5;
 
     font-size: 1.125rem;
     line-height: 1.3125rem;
-    color: #B0B0B0;
 
     outline: none;
+}
+
+.textareaActive{
+    color: #3D3D3D;
+}
+
+.textareaInActive{
+    color: #B0B0B0;
 }
 
 .button{
     width: 100%;
     text-align: right;
+}
+
+.error{
+    height: 13px;
+
+    margin-bottom: 19px;
+
+    color: #F97C08;
+    font-size: 0.8125rem;
 }
 
 @media screen and (max-width: 767px) {

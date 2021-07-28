@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import Buttons from '../../buttons';
-import { form, input, attach, button, passportHide, passport, inputInActive, inputActive } from './cost-form.module.css';
+import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './cost-form.module.css';
 import MobileView from '../../root-layout/view-context';
 import Forms from '../../../libs/react-components/forms-and-fields';
 import CostError from './cost-error-message';
@@ -10,13 +10,26 @@ function CostForm() {
 
     //Доступные для загрузки типы файлов
     const fileTypes = '.*';
-    //Стиль для input type='file'
-    const passportStyle = [attach, input, inputInActive, passport].join(" ");
+    //Стиль File
+    const passportInActiveStyle = [attach, input, inputInActive, passport].join(" ");
+    const passportActiveStyle = [attach, input, inputActive, passport].join(" ");
+    const passportErrorStyle = [attach, input, inputError, passport].join(" ");
+    
+    const passportClasses = [
+        passportInActiveStyle,
+        passportActiveStyle,
+        passportErrorStyle
+    ];
 
     //Стили Input
     const inputActiveStyle = [input, inputActive].join(" ");
     const inputInActiveStyle = [input, inputInActive].join(" ");
-    const inputClasses = [inputInActiveStyle, inputActiveStyle];
+    const inputErrorStyle = [input, inputError].join(" ");
+    const inputClasses = [
+        inputInActiveStyle,
+        inputActiveStyle,
+        inputErrorStyle
+    ];
 
     /**Имена полей формы */
     const fieldNames = {
@@ -24,7 +37,7 @@ function CostForm() {
         fkko: '*ФККО',
         phone: '*+7 (909) 000 00 00',
         email: '*e-mail',
-        passport:'Паспорт отходов'
+        passport: 'Паспорт отходов'
     };
 
     //Функции валидации
@@ -32,7 +45,8 @@ function CostForm() {
         inn: (value) => Forms.Validate.notEmpty(value, fieldNames.inn),
         fkko: (value) => Forms.Validate.notEmpty(value, fieldNames.fkko),
         phone: (value) => Forms.Validate.notEmpty(value, fieldNames.phone),
-        email: (value) => Forms.Validate.email(value, fieldNames.email)
+        email: (value) => Forms.Validate.email(value, fieldNames.email),
+        passport: (value) => Forms.Validate.notEmpty(value, fieldNames.phone)
     };
 
     return(
@@ -44,34 +58,36 @@ function CostForm() {
                 classNames={inputClasses}
                 name='inn'
                 fieldName={fieldNames.inn}
-                error={<CostError/>}
+                error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='fkko'
                 fieldName={fieldNames.fkko}
-                error={<CostError/>}
+                error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='phone'
                 fieldName={fieldNames.phone}
-                error={<CostError/>}
+                error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='email'
                 fieldName={fieldNames.email}
-                error={<CostError/>}
+                error='none'
             />
             
             <Forms.Fields.File
-                className={passportStyle}
+                classNames={passportClasses}
+                name='passport'
                 fieldName={fieldNames.passport}
                 accept={fileTypes}
+                error='none'
             />
 
             <div className={button}>

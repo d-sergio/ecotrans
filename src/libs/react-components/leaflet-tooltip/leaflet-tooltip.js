@@ -33,7 +33,6 @@ function LeafletTooltip(props) {
     const mobileDevice = useRef(false);   //сенсорное устройство?
     const animate = useRef(undefined);  //здесь будут объекты анимации
     const touchScrollOn= useRef(false);
-    //const [touchScrollOn, setTouchScrollOn] = useState(false);
     
     //Сначала отключить подсказку
     useEffect(() => {

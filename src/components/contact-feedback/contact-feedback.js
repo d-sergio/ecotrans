@@ -20,13 +20,12 @@ import {
 function Feedback() {
     const mobileView = useContext(MobileView);
 
-    const messageDefault = 'Ваше сообщение';
-
     //Имена полей формы
     const fieldNames = {
         initials : 'ФИО',
         email: 'e-mail',
-        phone: 'Телефон'
+        phone: 'Телефон',
+        message: 'Ваше сообщение'
     };
     
     //Функции валидации
@@ -34,7 +33,7 @@ function Feedback() {
         initials: (value) => Forms.Validate.notEmpty(value, fieldNames.initials),
         email: (value) => Forms.Validate.email(value, fieldNames.email),
         phone: (value) => Forms.Validate.notEmpty(value, fieldNames.phone),
-        message: (value) => Forms.Validate.notEmpty(value, '')
+        message: (value) => Forms.Validate.notEmpty(value, fieldNames.message)
     }        
     //Стили Input
     const inputInActiveStyle = [inputInActive, input].join(" ");
@@ -76,6 +75,7 @@ function Feedback() {
                 <Forms.Fields.Textarea
                     classNames={textareaClasses}
                     name={'message'}
+                    fieldName={fieldNames.message}
                     error={<ContactError/>}
                 />
 

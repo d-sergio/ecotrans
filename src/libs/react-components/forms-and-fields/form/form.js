@@ -21,35 +21,53 @@ function Form(props) {
         if (!formRef.current) return;
 
         //валидация формы
-        const validationErrors = validateFields();
+        const validResults = validateFields();
 
-        setErrors(validationErrors);
+        const noErrors = checkResults(validResults);
 
-        //выход, если есть хотя бы одна ошибка
-        for (let value of Object.values(validationErrors)) {
-            if (value !== undefined) {
-                return;
-            }
+        if (noErrors) {
+            sendForm();
+
+            return;
         }
 
-        const formData = new FormData(formRef.current);
+        setErrors(validResults);
     }
 
     /**Значения полей проходят проверку через соответствующие их имени валидаторы*/
     function validateFields() {
         if (!formRef.current) return;
 
-        let validationErrors = {};
+        let validResults = {};
 
         for (let elem of formRef.current) {
             if (typeof props.validate[elem.name] === 'function') {
-                const validationResult = props.validate[elem.name](elem.value);
+                const validResult = props.validate[elem.name](elem.value);
 
-                validationErrors[elem.name] = validationResult;
+                validResults[elem.name] = validResult;
             }
         }
 
-        return validationErrors;
+        return validResults;
+    }
+
+    /**Проверить нет ли ошибок валидации */
+    function checkResults(validResults) {
+        //выход, если есть хотя бы одна ошибка
+        for (let value of Object.values(validResults)) {
+            if (value !== undefined) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function sendForm() {
+        if (!formRef.current) return;
+
+        console.log('Form Ok');
+        const formData = new FormData(formRef.current);
     }
     
     return(

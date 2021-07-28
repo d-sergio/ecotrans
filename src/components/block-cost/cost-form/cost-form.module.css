@@ -5,10 +5,6 @@
     width: 515px;
 }
 
-.passportHide{
-    display: none;
-}
-
 .input{
     box-sizing: border-box;
 
@@ -37,6 +33,10 @@
 
 .inputInActive{
     color: #B0B0B0;
+}
+
+.inputError{
+    color: #EF2649;
 }
 
 .passport{

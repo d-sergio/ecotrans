@@ -32,8 +32,8 @@ function LeafletTooltip(props) {
     const active = useRef(false);   //подсказка активна?
     const mobileDevice = useRef(false);   //сенсорное устройство?
     const animate = useRef(undefined);  //здесь будут объекты анимации
-
-    const [touchScrollOn, setTouchScrollOn] = useState(false);
+    const touchScrollOn= useRef(false);
+    //const [touchScrollOn, setTouchScrollOn] = useState(false);
     
     //Сначала отключить подсказку
     useEffect(() => {
@@ -155,13 +155,13 @@ function LeafletTooltip(props) {
     }
 
     function onTouchMove() {    //#2
-        setTouchScrollOn(true);
+        touchScrollOn.current = true;
     }
 
     function onTouchEnd() { //#3
-        if (touchScrollOn) return;
+        if (touchScrollOn.current) return;
 
-        setTouchScrollOn(false);
+        touchScrollOn.current = false;
         cancelTooltip();
     }
 

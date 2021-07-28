@@ -57,17 +57,9 @@
     background-position: 30px;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 825px) {
     .form{
-        width: 92%;
-        margin-left: 30px;
-    }    
-}
-
-@media screen and (min-width: 576px) and (max-width: 825px) {
-    .form{
-        width: 91.6551%;
-        margin-left: 30px;
+        width: 100%;
     }
 }
 

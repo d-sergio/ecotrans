@@ -180,9 +180,9 @@ function Field(props) {
     function onChange(e) {
         /**Скрыть сообщение об ошибке валидации */
         if (errorRef.current
-            && errors[props.name]) {
-
-                errorRef.current.style.opacity = 0;
+            && errors) {
+                
+                if (errors[props.name]) errorRef.current.style.opacity = 0;
         }
 
         setValue(e.target.value);

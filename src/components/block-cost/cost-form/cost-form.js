@@ -1,9 +1,8 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext} from 'react';
 import Buttons from '../../buttons';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './cost-form.module.css';
 import MobileView from '../../root-layout/view-context';
 import Forms from '../../../libs/react-components/forms-and-fields';
-import CostError from './cost-error-message';
 
 function CostForm() {
     const mobileView = useContext(MobileView);

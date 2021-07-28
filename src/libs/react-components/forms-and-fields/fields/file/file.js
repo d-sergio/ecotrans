@@ -43,9 +43,9 @@ function File(props) {
 
         /**Скрыть сообщение об ошибке валидации */
         if (errorRef.current
-            && errors[props.name]) {
+            && errors) {
 
-                errorRef.current.style.opacity = 0;
+                if (errors[props.name]) errorRef.current.style.opacity = 0;
         }
 
         const name = getFileName(fileRef.current.value);
@@ -145,6 +145,8 @@ function File(props) {
     /**Показать сообщение об ошибке валидации */
     function showError() {
         if (!errorRef.current) return;
+
+        if (!errors) errorRef.current.style.opacity = 0;
 
         if (errors[props.name]) {
             

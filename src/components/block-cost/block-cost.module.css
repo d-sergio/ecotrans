@@ -1,0 +1,28 @@
+.formMobile{
+    display: block;
+    width: 100%;
+    margin-top: 19px;
+}
+
+.formDesktop{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    background-image: url(/images/block-cost/email.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media screen and (max-width: 575px) {
+    .formDesktop{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    .formDesktop{
+        justify-content: center;
+        background-image: none;
+    }
+}

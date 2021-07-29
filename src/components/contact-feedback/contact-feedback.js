@@ -3,6 +3,7 @@ import Button from '../buttons';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ContactError from './contact-error-message';
+import sendFeedbackForm from '../../send-form-callback/send-feedback-form';
 import {
     feedback,
     feedbackTitle,
@@ -53,6 +54,7 @@ function Feedback() {
             <Forms.Form
                 className={form}
                 validate={validate}
+                onSubmit={sendFeedbackForm}
             >
                 <Forms.Fields.Input
                     classNames={inputClasses}

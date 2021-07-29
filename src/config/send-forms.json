@@ -1,0 +1,4 @@
+{
+    "feedback": "http://localhost:3000/feedback",
+    "cost": "http://localhost:3000/cost"
+}

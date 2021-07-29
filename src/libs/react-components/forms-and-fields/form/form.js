@@ -9,6 +9,7 @@ import Errors from '../context/errors';
  * значение - функция валидации, возвращающая текст с описанием ошибки или undefined,
  * если ошибок нет
  * @param {className} className - стиль CSS
+ * @param {function} onSubmit - колбэк в случае успешной валидации формы
  */
 function Form(props) {
     const formRef = useRef(null);
@@ -66,15 +67,18 @@ function Form(props) {
     function sendForm() {
         if (!formRef.current) return;
 
-        console.log('Form Ok');
         const formData = new FormData(formRef.current);
+        
+        if (props.onSubmit) props.onSubmit(formData);
     }
     
     return(
         <form
             ref={formRef}
             className={props.className}
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            enctype="multipart/form-data"
+        >
 
             <Errors.Provider value={errors}>
                 {props.children}
@@ -87,5 +91,6 @@ function Form(props) {
 export default Form;
 
 Form.defaultProps = {
-    validate: {}
+    validate: {},
+    onSubmit: () => console.log('Form is ok')
 };

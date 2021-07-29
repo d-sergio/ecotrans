@@ -176,20 +176,23 @@ function LeafletTooltip(props) {
 
     return(
         <div style={{position: 'relative'}}>
+            
             {props.children}
 
             <div
-            onTouchStart={onTouchStart}
-            onMouseDown={cancelTooltip}>
-                <div ref={back} className={tooltipBack}></div>
+            
+                onTouchStart={onTouchStart}
+                onMouseDown={cancelTooltip}>
 
-                <div ref={tooltipDesktop} className={tooltip}>
-                    {props.textDesktop}
-                </div>
+                    <div ref={back} className={tooltipBack}></div>
 
-                <div ref={tooltipMobile} className={tooltip}>
-                    {props.textMobile}
-                </div>
+                    <div ref={tooltipDesktop} className={tooltip}>
+                        {props.textDesktop}
+                    </div>
+
+                    <div ref={tooltipMobile} className={tooltip}>
+                        {props.textMobile}
+                    </div>
             </div>
         </div>
     );

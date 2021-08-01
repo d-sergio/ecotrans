@@ -32,7 +32,7 @@ function CostForm() {
     ];
 
     /**Имена полей формы */
-    const fieldNames = {
+    const initialValues = {
         inn: '*ИНН',
         fkko: '*ФККО',
         phone: '*+7 (909) 000 00 00',
@@ -42,11 +42,11 @@ function CostForm() {
 
     //Функции валидации
     const validate = {
-        inn: (value) => Forms.Validate.notEmpty(value, fieldNames.inn),
-        fkko: (value) => Forms.Validate.notEmpty(value, fieldNames.fkko),
-        phone: (value) => Forms.Validate.notEmpty(value, fieldNames.phone),
-        email: (value) => Forms.Validate.email(value, fieldNames.email),
-        passport: (value) => Forms.Validate.notEmpty(value, fieldNames.phone)
+        inn: (value) => Forms.Validate.notEmpty(value, initialValues.inn),
+        fkko: (value) => Forms.Validate.notEmpty(value, initialValues.fkko),
+        phone: (value) => Forms.Validate.notEmpty(value, initialValues.phone),
+        email: (value) => Forms.Validate.email(value, initialValues.email),
+        passport: (value) => Forms.Validate.notEmpty(value, initialValues.phone)
     };
 
     return(
@@ -54,39 +54,35 @@ function CostForm() {
             className={form}
             validate={validate}
             onSubmit={sendCostForm}
+            initialValues={initialValues}
         >
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='inn'
-                fieldName={fieldNames.inn}
                 error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='fkko'
-                fieldName={fieldNames.fkko}
                 error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='phone'
-                fieldName={fieldNames.phone}
                 error='none'
             />
 
             <Forms.Fields.Input
                 classNames={inputClasses}
                 name='email'
-                fieldName={fieldNames.email}
                 error='none'
             />
             
             <Forms.Fields.File
                 classNames={passportClasses}
                 name='passport'
-                fieldName={fieldNames.passport}
                 accept={fileTypes}
                 error='none'
             />

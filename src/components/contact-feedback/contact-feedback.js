@@ -22,7 +22,7 @@ function Feedback() {
     const mobileView = useContext(MobileView);
 
     //Имена полей формы
-    const fieldNames = {
+    const initialValues = {
         initials : 'ФИО',
         email: 'e-mail',
         phone: 'Телефон',
@@ -31,10 +31,10 @@ function Feedback() {
     
     //Функции валидации
     const validate = {
-        initials: (value) => Forms.Validate.notEmpty(value, fieldNames.initials),
-        email: (value) => Forms.Validate.email(value, fieldNames.email),
-        phone: (value) => Forms.Validate.notEmpty(value, fieldNames.phone),
-        message: (value) => Forms.Validate.notEmpty(value, fieldNames.message)
+        initials: (value) => Forms.Validate.notEmpty(value, initialValues.initials),
+        email: (value) => Forms.Validate.email(value, initialValues.email),
+        phone: (value) => Forms.Validate.notEmpty(value, initialValues.phone),
+        message: (value) => Forms.Validate.notEmpty(value, initialValues.message)
     }        
     //Стили Input
     const inputInActiveStyle = [inputInActive, input].join(" ");
@@ -55,29 +55,26 @@ function Feedback() {
                 className={form}
                 validate={validate}
                 onSubmit={sendFeedbackForm}
+                initialValues = {initialValues}
             >
                 <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'initials'}
-                    fieldName={fieldNames.initials}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'email'}
-                    fieldName={fieldNames.email}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Input
                     classNames={inputClasses}
                     name={'phone'}
-                    fieldName={fieldNames.phone}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Textarea
                     classNames={textareaClasses}
                     name={'message'}
-                    fieldName={fieldNames.message}
                     error={<ContactError/>}
                 />
 

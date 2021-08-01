@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import {container, file, errorStyle} from './file.module.css';
 import Errors from '../../context/errors';
+import Values from '../../context/values';
 import ErrorMessage from '../../error-message';
 
 /**Поле загрузки файлов
@@ -11,16 +12,24 @@ import ErrorMessage from '../../error-message';
  * Элемент [0] - стиль неактивного поля
  * Элемент [1] - стиль активного поля
  * Элемент [2] - стиль поля с ошибкой
- *  * 
+ *
  * Также можно передать один стиль без массива.
  * 
- * @param {string} fieldName - имя поля, которое увидит пользователь
  * @param {string} name - имя поля для формы
  * @param {string} accept - типы файлов, доступные для загрузки
  * Например 'image/jpeg,image/png'. Так же, как с обычным <input type="file"/>
  * @param {node} error - элемент, в который будет помещено сообщение об ошибке
  * валидации. По умолчанию используется <ErrorMessage.Default/>
  * Значение error='none' указывает, что текст ошибки пользователью не показывается.
+ * 
+ * Context:
+ * Values - объект, в поле values[props.name] которого хранится значение для текущего
+ * компонента Field. Компонент рассматривает его как название, которое увидит
+ * пользователь прямо в поле ввода текста. Название будет скрываться при фокусировке
+ * на компоненте
+ * 
+ * Errors - объект, в поле errors[props.name] которого хранится текст сообщения об
+ * ошибке валидации
 */
 function File(props) {
     const inputRef = useRef(null);
@@ -30,6 +39,7 @@ function File(props) {
     const [fileName, setFileName] = useState();
     const [errorMessage, setErrorMessage] = useState();
     const errors = useContext(Errors);
+    const values = useContext(Values);
 
     useEffect(() => initErrors(), []);
     useEffect(() => updateFieldStyle(), [fileName]);
@@ -164,7 +174,7 @@ function File(props) {
             <input
                 ref={inputRef}
                 className={getFieldStyle()}
-                value={fileName ? fileName : props.fieldName}
+                value={fileName ? fileName : values[props.name]}
                 type="text"
             />
 

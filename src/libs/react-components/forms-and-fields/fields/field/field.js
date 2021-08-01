@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import {container, errorStyle} from './field.module.css';
 import Errors from '../../context/errors';
+import Values from '../../context/values';
 import ErrorMessage from '../../error-message';
 
 /**Поле input или textarea
@@ -8,9 +9,6 @@ import ErrorMessage from '../../error-message';
  * Props:
  * @param {string} name - имя поля
  * @param {string} fieldType - 'input' / 'textarea' - соответствующий вид поля
- * @param {string} fieldName - название поля, которое отображается внутри Field,
- * если пользователь ничего не напечатал. И скрываться при фокусировке и при
- * наборе текста
  * @param {[className]} classNames - className массив стилей CSS.
  * Элемент [0] - стиль неактивного поля
  * Элемент [1] - стиль активного поля
@@ -21,14 +19,24 @@ import ErrorMessage from '../../error-message';
  * @param {node} error - элемент, в который будет помещено сообщение об ошибке
  * валидации. По умолчанию используется <ErrorMessage.Default/>
  * Значение error='none' указывает, что текст ошибки пользователью не показывается.
+ * 
+ * Context:
+ * Values - объект, в поле values[props.name] которого хранится значение для текущего
+ * компонента Field. Компонент рассматривает его как название, которое увидит
+ * пользователь прямо в поле ввода текста. Название будет скрываться при фокусировке
+ * на компоненте
+ * 
+ * Errors - объект, в поле errors[props.name] которого хранится текст сообщения об
+ * ошибке валидации
 */
 function Field(props) {
     const fieldRef = useRef(null);
     const errorRef = useRef(false);
 
-    const [value, setValue] = useState(props.fieldName);
     const [errorMessage, setErrorMessage] = useState();
     const errors = useContext(Errors);
+    const values = useContext(Values);
+    const [value, setValue] = useState(values[props.name]);
 
     useEffect(() => initField(), []);
     useEffect(() => initErrors(), []);
@@ -104,7 +112,7 @@ function Field(props) {
         if (fieldRef.current
         && Array.isArray(props.classNames)
         && props.classNames.length > 1
-        && (value === '' || value === props.fieldName)) {
+        && (value === '' || value === values[props.name])) {
             
             fieldRef.current.className = props.classNames[0];
 
@@ -120,14 +128,24 @@ function Field(props) {
         //Поле активно, есть ошибки и массив стилей
         if (Array.isArray(props.classNames) && errors) {
 
-            //Подсветка поля с ошибкой
+            //Подсветка поля с ошибкой, есть стиль для этого случая
             if (errors[props.name] && props.classNames[2] !== undefined) {
 
                 return props.classNames[2];
 
             } else {
                 //Нет стиля для подсветки поля с ошибкой или ошибки нет
-                return props.classNames[1];
+
+                if (value === '' || value === values[props.name]) {
+
+                    //поле пустое - неактивный стиль
+                    return props.classNames[0];
+                } else {
+
+                    //поле не пустое - активный стиль
+                    return props.classNames[1];
+                }
+                
             }
 
         } else {
@@ -166,7 +184,7 @@ function Field(props) {
 
         setActiveField();
 
-        if (value === props.fieldName) setValue('');
+        if (value === values[props.name]) setValue('');
     }
 
     /**Если поле осталось пустым, вернуть неактивный вид и название */
@@ -174,7 +192,7 @@ function Field(props) {
         
         setInActiveField();
 
-        if (value === '') setValue(props.fieldName);
+        if (value === '') setValue(values[props.name]);
     }
 
     function onChange(e) {
@@ -207,5 +225,6 @@ export default Field;
 
 Field.defaultProps = {
     fieldType: 'input',
-    error: <ErrorMessage.Default/>
+    error: <ErrorMessage.Default/>,
+    name: ''
 };

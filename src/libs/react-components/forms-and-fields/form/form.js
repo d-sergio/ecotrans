@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Errors from '../context/errors';
+import Values from '../context/values';
 
 /**Форма работает через контекст
  * 
@@ -10,11 +11,14 @@ import Errors from '../context/errors';
  * если ошибок нет
  * @param {className} className - стиль CSS
  * @param {function} onSubmit - колбэк в случае успешной валидации формы
+ * @param {Object} initialValues - объект, в котором ключ - имя поля, значение равно
+ * начальному значению поля
  */
 function Form(props) {
     const formRef = useRef(null);
 
     const [errors, setErrors] = useState();
+    const [key, setKey] = useState(0);
 
     function onSubmit(e) {
         e.preventDefault();
@@ -68,8 +72,16 @@ function Form(props) {
         if (!formRef.current) return;
 
         const formData = new FormData(formRef.current);
+
+        resetForm();
         
         if (props.onSubmit) props.onSubmit(formData);
+    }
+    
+    /**Сброс формы */
+    function resetForm() {
+        setErrors(undefined);
+        setKey(key + 1);
     }
     
     return(
@@ -80,9 +92,11 @@ function Form(props) {
             enctype="multipart/form-data"
         >
 
-            <Errors.Provider value={errors}>
-                {props.children}
-            </Errors.Provider>            
+            <Values.Provider key={key} value={props.initialValues}>
+                <Errors.Provider value={errors}>
+                    {props.children}
+                </Errors.Provider>    
+            </Values.Provider>        
 
         </form>
     );

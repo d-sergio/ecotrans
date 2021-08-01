@@ -251,6 +251,8 @@ function Slider(props) {
     /**Отмена автопрокрутки карусели */
     function cancelAutoMove() {
         if (!timer.current || !props.cancelAutoMove) return;
+
+        if (animate.current) animate.current.cancel();
         
         clearTimeout(timer.current);
 

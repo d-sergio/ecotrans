@@ -120,7 +120,7 @@ DangerClass, TenYears, Tko, WasteClass, MedicalWaste
 
 Карточки Наши партнёры:
 
-EcoFund, EcoLab, EcoSputnik, Fillipov, Leader, BuisnessRussia
+EcoFund, EcoLab, EcoSputnik, Filippov, Leader, BuisnessRussia
 
 Пропс mobile={true} переключает на мобильный вариант.
 Пропс active={true} делает элемент больше и подсвечивает зелёным (активный)

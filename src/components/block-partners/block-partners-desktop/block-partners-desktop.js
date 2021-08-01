@@ -10,7 +10,7 @@ const cards = [
     <Partners.EcoSputnik/>,
     <Partners.EcoFund/>,
     <Partners.Leader/>,
-    <Partners.Fillipov/>,
+    <Partners.Filippov/>,
     <Partners.BuisnessRussia/>,
     <Partners.EcoLab/>
 ];

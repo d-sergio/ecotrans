@@ -11,7 +11,8 @@ import CardsPartnersTemp from "./cards-partners-template";
  *  <path d="..." fill="значение"></path>
  * </svg>
 */
-export function BuisnessRussia(props) {
+
+function BuisnessRussia(props) {
     const height = props.mobile ? 55 : 69;
     const width = props.mobile ? 160 : 259;
     const propStyle = props.mobile ? {marginTop: '0.5rem'} : false;    
@@ -31,95 +32,4 @@ export function BuisnessRussia(props) {
     );
 }
 
-export function EcoFund(props) {
-    const height = props.mobile ? 65 : 83;
-    const width = props.mobile ? 65 : 83;
-
-    const logo = (
-        <svg width={width} height={height} viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M93.7243 10.835C93.5933 8.07656 92.4386 5.46603 90.4859 3.51333C88.5332 1.56062 85.9227 0.406001 83.1642 0.275001C79.3142 0.110001 75.6292 0 72.0542 0C44.3892 0 25.1943 5.335 14.5243 16.005C-5.71574 36.245 -2.80075 64.955 15.0193 81.455H15.0743C22.5387 60.5847 37.604 43.2999 57.2592 33.055C56.1042 34.045 31.4093 52.745 26.9543 89.43C32.7292 92.07 39.0542 93.555 45.4342 93.555C56.7092 93.555 68.3142 89.155 77.9942 79.53C90.0392 67.43 95.2643 44.55 93.7243 10.835Z" fill="#3D3D3D"/>
-        </svg>
-    );
-
-    const text = props.mobile ? 
-        <div>Фонд по защите<br/>экологии<br/>Курской области</div>
-       : <div>Фонд по защите экологии<br/>Курской области</div>;
-
-    return(
-        <CardsPartnersTemp propStyle={{marginTop: '1rem'}} mobile={props.mobile} active={props.active} logo={logo} text={text}/>
-    );
-}
-
-export function EcoLab(props) {
-    const height = props.mobile ? 73 : 94;
-    const width = props.mobile ? 73 : 94;
-
-    const logo = (
-        <svg width={width} height={height} viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M46.9998 5.22232C28.1998 4.43899 12.5331 19.0612 11.7498 37.8612C10.9665 56.6612 25.5887 72.3279 44.3887 73.1112V59.5334L30.8109 45.9557C29.7665 44.9112 29.7665 43.3445 30.8109 42.3001C31.8553 41.2557 33.422 41.2557 34.4665 42.3001L44.3887 52.2223V36.0334L37.3387 28.9834C36.2942 27.939 36.2942 26.3723 37.3387 25.3279C38.3831 24.2834 39.9498 24.2834 40.9942 25.3279L49.6109 33.9445V41.7779L58.2276 33.1612C59.272 32.1168 60.8387 32.1168 61.8831 33.1612C62.9276 34.2057 62.9276 35.7723 61.8831 36.8168L49.6109 49.089V73.1112C68.4109 72.3279 83.0331 56.6612 82.2498 37.8612C81.4664 19.0612 65.7998 4.43899 46.9998 5.22232Z" fill="#3D3D3D"/>
-            <path d="M46.9998 73.1111H44.3887V86.1666C44.3887 87.7333 45.4331 88.7777 46.9998 88.7777C48.5665 88.7777 49.6109 87.7333 49.6109 86.1666V73.1111H46.9998Z" fill="#3D3D3D"/>
-        </svg>
-    );
-    const text = <div>Эколаборатория</div>;
-
-    return(
-        <CardsPartnersTemp mobile={props.mobile} active={props.active} logo={logo} text={text}/>
-    );
-}
-
-export function EcoSputnik(props) {
-    const height = props.mobile ? 58 : 74;
-    const width = props.mobile ? 58 : 74;
-
-    const logo = (
-        <svg width={width} height={height} viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M57.79 27.2552C59.3486 28.8184 65.6016 22.5562 64.043 21.0022L50.2466 7.20119C48.6834 5.63794 42.4304 11.9002 43.9844 13.4542L57.79 27.2552Z" fill="#3D3D3D"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.208 50.3985C14.209 49.3949 12.0121 49.9591 10.3147 51.6519C8.61733 53.3539 8.0577 55.5415 9.06133 56.5544L14.9536 62.442C15.9572 63.4502 18.1402 62.886 19.8376 61.1886C21.5442 59.4959 22.1038 57.2944 21.1002 56.2954L15.208 50.3985Z" fill="#3D3D3D"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M-1.08643 14.7583L15.1473 -1.46619L21.5344 4.92094L5.3007 21.1547L-1.08643 14.7583Z" fill="#3D3D3D"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M55.9078 38.7296L49.2894 45.3341L45.8716 41.9162L53.3872 34.4052C53.6856 34.1008 53.921 33.7404 54.0798 33.3447C54.2386 32.9491 54.3177 32.526 54.3125 32.0997C54.3074 31.6734 54.2181 31.2523 54.0498 30.8606C53.8814 30.4689 53.6374 30.1144 53.3317 29.8172L41.7692 18.2594C41.1679 17.6494 40.3495 17.3025 39.493 17.2947C38.6366 17.2869 37.812 17.6188 37.1997 18.2177L29.6887 25.7334L26.2893 22.334L32.8985 15.7295L26.4466 9.28223L10.2729 25.4512L16.7156 31.8985L23.2553 25.3634L26.6547 28.7627L19.1206 36.3015C18.519 36.9127 18.1846 37.7377 18.1907 38.5952C18.1968 39.4528 18.5428 40.2729 19.1529 40.8756L30.7155 52.4288C31.3172 53.0425 32.1381 53.3921 32.9976 53.4008C33.857 53.4095 34.6848 53.0765 35.2988 52.4751L42.8376 44.941L46.2555 48.3588L39.7065 54.894L46.0982 61.2811L62.2718 45.1075L55.9078 38.7296Z" fill="#3D3D3D"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M50.6533 63.5289L66.8871 47.2674L73.3667 53.7378L57.1329 69.9993L50.6533 63.5289Z" fill="#3D3D3D"/>
-            <defs>
-                <clipPath id="clip0">
-                    <rect width="74" height="74" fill="white"/>
-                </clipPath>
-            </defs>
-        </svg>
-    );
-    const text = <div>ЭкоСпутник</div>;
-
-    return(
-        <CardsPartnersTemp mobile={props.mobile} active={props.active} logo={logo} text={text}/>
-    );
-}
-
-export function Fillipov(props) {
-    const height = props.mobile ? 54 : 69;
-    const width = props.mobile ? 53 : 68;
-
-    const logo = (
-        <svg width={width} height={height} viewBox="0 0 69 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M69 24.0059C69 10.5985 58.0873 -0.202849 44.6772 0.0028911C31.5751 0.208631 20.765 11.5586 21.1413 24.6574C21.2921 30.2109 23.364 35.5392 27.0022 39.7302C30.6405 43.9213 35.6189 46.7145 41.0853 47.6317V61.142H13.6837V50.855H15.3941C16.352 50.855 17.1046 50.1006 17.1046 49.1405V37.139C17.1046 35.253 15.5652 33.71 13.6837 33.71H3.42092C1.53941 33.71 0 35.253 0 37.139V49.1405C0 50.1006 0.752603 50.855 1.71046 50.855H3.42092V64.571C3.42092 66.4569 4.96034 68 6.84184 68H54.7348C56.6163 68 58.1557 66.4569 58.1557 64.571C58.1557 62.685 56.6163 61.142 54.7348 61.142H47.8929V47.8375C53.7105 47.1411 59.0716 44.3311 62.9613 39.9393C66.851 35.5475 68.9995 29.8787 69 24.0059Z" fill="#3D3D3D"/>
-        </svg>
-    );
-    const text = <div>ИП Филиппов</div>;
-
-    return(
-        <CardsPartnersTemp mobile={props.mobile} active={props.active} logo={logo} text={text}/>
-    );
-}
-
-export function Leader(props) {
-    const height = props.mobile ? 54 : 69;
-    const width = props.mobile ? 54 : 69;
-
-    const logo = (
-        <svg width={width} height={height} viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M33.8018 0.000963903C17.127 0.0149942 1.79774 13.932 0.224555 30.5795C-1.46356 44.7586 6.5033 59.5787 19.5064 65.6014C31.582 71.5129 47.0813 69.6421 57.0966 60.5398C67.2867 51.7078 71.7392 36.6536 67.263 23.8103C63.0065 10.7074 50.4441 0.67617 36.6085 0.0689509C35.6742 0.00775509 34.7378 -0.00373771 33.8017 0.000926609L33.8018 0.000963903ZM34.4848 10.8122C46.7649 10.4545 58.0233 21.3026 58.1673 33.6075C58.6984 44.8643 50.255 55.9182 39.0551 57.8054C28.2172 59.9799 16.197 53.7062 12.4035 43.1676C8.31957 32.746 12.4861 19.567 22.4266 14.0971C26.0612 11.9596 30.269 10.8069 34.4848 10.8122ZM34.5089 17.3742C29.0325 21.3557 23.5565 25.3377 18.0802 29.3195C20.1719 35.762 22.2637 42.2044 24.3554 48.6468H44.6623L50.9375 29.3195L34.5089 17.3742Z" fill="#3D3D3D"/>
-        </svg>
-    );
-    const text = <div>ООО “Лидер”</div>;
-
-    return(
-        <CardsPartnersTemp mobile={props.mobile} active={props.active} logo={logo} text={text}/>
-    );
-}
+export default BuisnessRussia;

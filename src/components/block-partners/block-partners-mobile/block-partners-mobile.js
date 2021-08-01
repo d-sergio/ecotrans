@@ -7,7 +7,7 @@ const cards = [
     <Partners.EcoSputnik mobile={true}/>,
     <Partners.EcoFund mobile={true}/>,
     <Partners.Leader mobile={true}/>,
-    <Partners.Fillipov mobile={true}/>,
+    <Partners.Filippov mobile={true}/>,
     <Partners.EcoLab mobile={true}/>
 ];
 

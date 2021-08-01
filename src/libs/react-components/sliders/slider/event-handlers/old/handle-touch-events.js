@@ -19,17 +19,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
-    const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
-
-    /*Прокрутка слайдера началась, потому что модуль cumulativeShift
-    превысил disableScrollingOn*/
-    let scrollingStarted = false;
-
-    /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
-    движении. При достижении disableScrollingOn блокируется вертикальная прокрутка
-    стариницы и начинается прокрутка слайдера*/
-    let cumulativeShift = 0;
-
     const overflow = window.getComputedStyle(document.body).overflow;
     
     //event.preventDefault();
@@ -42,28 +31,23 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
-            cumulativeShift += shift;
-            
-            if (Math.abs(cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
 
             if (disableScrollingOn !== undefined
                 && disableScrollingOn !== null
                 && disableScrollingOn !== false
-                && Math.abs(cumulativeShift) >= disableScrollingOn) {
+                && Math.abs(shift) > disableScrollingOn) {
 
                 document.body.style.overflow = 'hidden';
             }
 
-            const targetMarginLeft = startMarginLeft + cumulativeShift;
+            const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
+            const targetMarginLeft = currentMarginLeft + shift;
 
             const carouselWidth = carousel.offsetWidth;
             const maxCarouselPosition = -carouselWidth + viewport.offsetWidth;
 
             requestAnimationFrame(function move(){
-                //допустимые границы движения ленты слайдов и cumulativeShift
-                if (targetMarginLeft <= 0
-                    && targetMarginLeft >= maxCarouselPosition
-                    && scrollingStarted) {
+                if (targetMarginLeft <= 0 && targetMarginLeft >= maxCarouselPosition) { //допустимые границы движения ленты слайдов
                     carousel.style.marginLeft = targetMarginLeft + 'px';
                 }
             });

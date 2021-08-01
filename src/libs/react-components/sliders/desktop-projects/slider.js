@@ -3,6 +3,7 @@
  * src/libs/react/react-hooks/use-previous-hook.js
 */
 
+import defaultProps from '../slider/default-props';
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
 //import mouseHandler from '../slider/event-handlers/ordinary/mouse-handler';
@@ -305,21 +306,21 @@ function Slider(props) {
 }
 
 Slider.defaultProps = {
-    initPosition: 0,
-    visible: 1,
-    adjacent: false,
-    freeze: false,
-    prev: null,
-    next: null,
-    duration: 500,
-    treshold: 0.2,
-    friction: 5,
-    disableScrollingOn: 10,
-    autoMove: false,
-    cancelAutoMove: false,
-    moveInterval: 3000,
-    callback: undefined,
-    /**********МОДИФИКАЦИЯ**********/
+    initPosition: defaultProps.initPosition,
+    visible: defaultProps.visible,
+    adjacent: defaultProps.adjacent,
+    freeze: defaultProps.freeze,
+    prev: defaultProps.prev,
+    next: defaultProps.next,
+    duration: defaultProps.duration,
+    treshold: defaultProps.treshold,
+    friction: defaultProps.friction,
+    disableScrollingOn: defaultProps.disableScrollingOn,
+    autoMove: defaultProps.autoMove,
+    cancelAutoMove: defaultProps.cancelAutoMove,
+    moveInterval: defaultProps.moveInterval,
+    callback: defaultProps.callback,
+        /**********МОДИФИКАЦИЯ**********/
     /*на сколько пикселей влево и вправо от центрального слайда сместить кнопки
     управления слайдером*/
     buttonShift: 0

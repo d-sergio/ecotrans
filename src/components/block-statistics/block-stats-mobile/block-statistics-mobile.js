@@ -3,11 +3,11 @@ import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-statistics';
 
 const cards = [
-    <Cards.DangerClass mobile={true}/>,
-    <Cards.TenYears mobile={true}/>,
-    <Cards.Tko mobile={true}/>,
-    <Cards.WasteClass mobile={true}/>,
-    <Cards.MedicalWaste mobile={true}/>
+    <Cards.DangerClass key={1} mobile={true}/>,
+    <Cards.TenYears key={2} mobile={true}/>,
+    <Cards.Tko key={3} mobile={true}/>,
+    <Cards.WasteClass key={4} mobile={true}/>,
+    <Cards.MedicalWaste key={5} mobile={true}/>
 ];
 
 const visible = {

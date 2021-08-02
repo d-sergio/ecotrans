@@ -4,7 +4,7 @@ import getVisible from '../mechanics/get-visible';
 /**Рендер слайдов с подсветкой во время автопрокрутки
  * Передаёт в центральный (относительно viewport) слайд пропс active={true}.
  * Так слайд узнаёт, что он должен изменить своё состояние. Подсветка
- * работает только с autoMove={true}, , в отличие от create-always-active.js
+ * работает только с autoMove={true}, в отличие от create-always-active.js
 */
 function createSlidesActive({children, currentPosition, autoMove, slideStyle, viewport, carousel, visible}) {
     let slides = [];

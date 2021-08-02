@@ -65,6 +65,16 @@ function Slider(props) {
     
     function initialize() {
         updateWidthAndCoords();
+
+        if (carousel.current) {
+            carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
+        }
+
+        return () => {
+            if (carousel.current) {
+                carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+            }
+        }
     }
 
     function updateComponent() {
@@ -272,7 +282,7 @@ function Slider(props) {
                 <div className={carouselStyle}
                 ref={carousel}
                 onMouseDown={(e) => startMouseHandler(e)}
-                onTouchStart={(e) => startTouchHandler(e)}>
+                >
                     {
                         createSlidesActive({    /**********МОДИФИКАЦИЯ**********/
                             children: state.children,

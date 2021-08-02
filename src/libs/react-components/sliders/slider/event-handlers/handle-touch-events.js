@@ -11,7 +11,7 @@
  *      @param {event} event - событие touch
 */
 export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event}) {
-
+    event.preventDefault();
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -40,7 +40,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
         event.preventDefault();
-
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
@@ -53,7 +52,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 && disableScrollingOn !== false
                 && Math.abs(cumulativeShift) >= disableScrollingOn) {
 
-                    blockVerticalScrolling();
+                    blockVerticalScrolling(event);
             }
 
             const targetMarginLeft = startMarginLeft + cumulativeShift;
@@ -61,14 +60,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             const carouselWidth = carousel.offsetWidth;
             const maxCarouselPosition = -carouselWidth + viewport.offsetWidth;
 
-            requestAnimationFrame(function move(){
-                //допустимые границы движения ленты слайдов и cumulativeShift
-                if (targetMarginLeft <= 0
-                    && targetMarginLeft >= maxCarouselPosition
-                    && scrollingStarted) {
-                    carousel.style.marginLeft = targetMarginLeft + 'px';
-                }
-            });
+            if (targetMarginLeft <= 0
+                && targetMarginLeft >= maxCarouselPosition
+                && scrollingStarted) {
+                    requestAnimationFrame(function move(){
+                    //допустимые границы движения ленты слайдов и cumulativeShift
+                        carousel.style.marginLeft = targetMarginLeft + 'px';
+                    });
+            }
 
             let movementTime = Date.now() - startTime;
 
@@ -97,8 +96,9 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         }
     }
 
+    function blockVerticalScrolling(event) {
+        event.preventDefault();
 
-    function blockVerticalScrolling() {
         document.body.style.overflow = 'hidden';
         
         document.body.style.height = bodyHeight;

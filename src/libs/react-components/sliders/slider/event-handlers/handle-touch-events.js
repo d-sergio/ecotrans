@@ -100,7 +100,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     function blockVerticalScrolling() {
         document.body.style.overflow = 'hidden';
         
-        document.body.style.height = window.innerHeight + 'px';
+        document.body.style.height = bodyHeight;
     }
 
     function unlockVerticalScrolling() {

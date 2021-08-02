@@ -1,5 +1,8 @@
 /**Обработчик touch-событий для Slider
  * 
+ * @1 - для блокировки вертикальной прокрутки страницы во время прокрутки слайдера
+ * необходимо установить обработчику событий {passive: false}
+ * 
  * Принимаемые параметры:
  * @param {object} должен содержать следующие поля:
  *      @param {node} carousel - лента слайдов
@@ -11,7 +14,7 @@
  *      @param {event} event - событие touch
 */
 export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event}) {
-    event.preventDefault();
+    event.preventDefault(); //@1
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -39,7 +42,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
-        event.preventDefault();
+        event.preventDefault(); //@1
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
@@ -47,13 +50,13 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             
             if (Math.abs(cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
 
-            if (disableScrollingOn !== undefined
+            /*if (disableScrollingOn !== undefined
                 && disableScrollingOn !== null
                 && disableScrollingOn !== false
                 && Math.abs(cumulativeShift) >= disableScrollingOn) {
 
                     blockVerticalScrolling(event);
-            }
+            }*/
 
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -85,7 +88,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        unlockVerticalScrolling();
+        //unlockVerticalScrolling();
 
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);

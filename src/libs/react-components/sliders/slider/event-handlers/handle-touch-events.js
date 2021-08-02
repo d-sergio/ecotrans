@@ -40,6 +40,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
+        event.preventDefault();
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;

@@ -14,7 +14,6 @@
  *      @param {event} event - событие touch
 */
 export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event}) {
-    event.preventDefault(); //@1
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -33,8 +32,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     стариницы и начинается прокрутка слайдера*/
     let cumulativeShift = 0;
 
-    const bodyOverflow = window.getComputedStyle(document.body).overflow;
-    const bodyHeight = window.getComputedStyle(document.body).height;
+    /*const bodyOverflow = window.getComputedStyle(document.body).overflow;
+    const bodyHeight = window.getComputedStyle(document.body).height;*/
     
     window.addEventListener('touchcancel', sliderTouchEndHandler);
     window.addEventListener('touchend', sliderTouchEndHandler);
@@ -42,7 +41,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
-        event.preventDefault(); //@1
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
@@ -50,13 +48,16 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             
             if (Math.abs(cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
 
-            /*if (disableScrollingOn !== undefined
+            /**Блокировка вертикальной прокрутки страницы */
+            if (disableScrollingOn !== undefined
                 && disableScrollingOn !== null
                 && disableScrollingOn !== false
                 && Math.abs(cumulativeShift) >= disableScrollingOn) {
 
-                    blockVerticalScrolling(event);
-            }*/
+                    //blockVerticalScrolling(event);
+                    event.preventDefault(); //@1
+
+            }
 
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -99,7 +100,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         }
     }
 
-    function blockVerticalScrolling(event) {
+    /*function blockVerticalScrolling(event) {
         event.preventDefault();
 
         document.body.style.overflow = 'hidden';
@@ -111,5 +112,5 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         document.body.style.overflow = bodyOverflow;
 
         document.body.style.height = '';
-    }
+    }*/
 }

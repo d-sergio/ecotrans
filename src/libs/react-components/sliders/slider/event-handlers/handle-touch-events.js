@@ -30,7 +30,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     стариницы и начинается прокрутка слайдера*/
     let cumulativeShift = 0;
 
-    const overflow = window.getComputedStyle(document.body).overflow;
+    const bodyOverflow = window.getComputedStyle(document.body).overflow;
+    const bodyHeight = window.getComputedStyle(document.body).height;
     
     //event.preventDefault();
     window.addEventListener('touchcancel', sliderTouchEndHandler);
@@ -51,7 +52,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 && disableScrollingOn !== false
                 && Math.abs(cumulativeShift) >= disableScrollingOn) {
 
-                document.body.style.overflow = 'hidden';
+                    blockVerticalScrolling();
             }
 
             const targetMarginLeft = startMarginLeft + cumulativeShift;
@@ -84,7 +85,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        document.body.style.overflow = overflow;
+        unlockVerticalScrolling();
 
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
@@ -93,5 +94,18 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         if (callback !== undefined && callback !== null) {
             callback(speed);
         }
+    }
+
+
+    function blockVerticalScrolling() {
+        document.body.style.overflow = 'hidden';
+        
+        document.body.style.height = window.innerHeight + 'px';
+    }
+
+    function unlockVerticalScrolling() {
+        document.body.style.overflow = bodyOverflow;
+
+        document.body.style.height = '';
     }
 }

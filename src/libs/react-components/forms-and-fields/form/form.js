@@ -89,7 +89,7 @@ function Form(props) {
             ref={formRef}
             className={props.className}
             onSubmit={onSubmit}
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
         >
 
             <Values.Provider key={key} value={props.initialValues}>

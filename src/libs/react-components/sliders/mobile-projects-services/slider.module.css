@@ -9,6 +9,8 @@
     display: flex;
     outline: none;
 
+    padding-left: 8px;
+
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
@@ -18,6 +20,8 @@
 .nextStyle{
     display: flex;
     outline: none;
+
+    padding-right: 8px;
 
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;

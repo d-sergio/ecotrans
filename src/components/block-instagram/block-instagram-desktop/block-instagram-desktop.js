@@ -120,7 +120,7 @@ function BlockInstagramDesktop() {
                         ${889.194 * scaleSvgFactor[0]} ${88.582}
                         ${915.472 * scaleSvgFactor[0]} ${470.055 * scaleSvgFactor[1]}`}
                         
-                        stroke="#E87F1E" stroke-width="2" stroke-dasharray="10 20"/>
+                        stroke="#E87F1E" strokeWidth="2" strokeDasharray="10 20"/>
                 </svg>
             </div>
 

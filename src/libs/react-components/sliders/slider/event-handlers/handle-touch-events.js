@@ -33,14 +33,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     const bodyOverflow = window.getComputedStyle(document.body).overflow;
     const bodyHeight = window.getComputedStyle(document.body).height;
     
-    //event.preventDefault();
     window.addEventListener('touchcancel', sliderTouchEndHandler);
     window.addEventListener('touchend', sliderTouchEndHandler);
-    window.addEventListener('touchmove', sliderTouchMoveHandler);
+    window.addEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
         event.preventDefault();
+
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;

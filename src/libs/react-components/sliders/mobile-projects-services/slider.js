@@ -51,32 +51,32 @@ function Slider(props) {
     const timer = useRef(undefined);    //Здесь будет setTimeout для автопрокрутки карусели
     const carousel = useRef(null);
     const viewport = useRef(null);
-    const container = useRef(null);
-    const stateRef = useRef(state);/** */
+    const stateRef = useRef(state); /** #1 актуальное состояние для  startTouchHandler*/
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
 
-    useEffect(() => addTouchHandler(), []);/** */
+    useEffect(() => addTouchHandler(), []); /** #1 */
 
-    useEffect(() => updateComponent(), [state]);
+    useEffect(() => updateComponent());
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
+    
+    function initialize() {
+        updateWidthAndCoords();
+    }
 
-    function addTouchHandler() {/** */
+    /** #1 startTouchHandler с опцией {passive: false}*/
+    function addTouchHandler() {
         if (!carousel.current) return;
 
         carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
 
         return () => carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
     }
-    
-    function initialize() {
-        updateWidthAndCoords();
-    }
 
     function updateComponent() {
-        stateRef.current = state;/** */
+        stateRef.current = state;/** #1 актуальное состояние для startTouchHandler */
 
         window.addEventListener('resize', updateWidthAndCoords);
 
@@ -223,7 +223,7 @@ function Slider(props) {
         const touchArgs = {
             e: e,
             params: props,
-            state: stateRef.current,/** */
+            state: stateRef.current,/** #1 актуальное состояние*/
             setState: setState,
             animate: animate.current,
             animDuration: animDuration,
@@ -269,7 +269,7 @@ function Slider(props) {
     }
 
     return(
-        <div className={containerStyle} ref={container}
+        <div className={containerStyle}
             onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
             onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 

@@ -1,4 +1,7 @@
 /**Обработчик touch-событий для Slider
+ * 
+ * Этот обработчик должен иметь опцию {passive: false} в addEventListener.
+ * Иначе не будет блокироваться вертикальный скролл страницы при прокрутке слайдера!
  *  
  * Принимаемые параметры:
  * @param {object} должен содержать следующие поля:
@@ -20,10 +23,11 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
-    /*Прокрутка слайдера началась, потому что модуль cumulativeShift
+    /*Горизонтальная прокрутка слайдера началась, потому что модуль cumulativeShift
     превысил disableScrollingOn*/
-    let scrollingStarted = false;
+    let horizontalScrolling = false;
 
+    /*Пользователь просто прокручивает страницу вниз. Прокрутка слайдера не нужна*/
     let verticalScrolling = false;
 
     const startScrollY = document.documentElement.scrollTop;
@@ -40,29 +44,29 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
         try{
-            //console.log(`#1 verticalScrolling ${verticalScrolling}`);
             if (verticalScrolling) return;
 
+            /**Пользователь прокручивает страницу, а не слайдер?
+             * Да - отмена всех дальнейших действий
+            */
             const currentScrollY = document.documentElement.scrollTop;
     
-            //console.log(`#2 currentScrollY ${currentScrollY}, startScrollY ${startScrollY}, scrollingStarted ${scrollingStarted}`);
-            if (currentScrollY !== startScrollY && !scrollingStarted) {
+            if (currentScrollY !== startScrollY && !horizontalScrolling) {
+
                 verticalScrolling = true;
-                
-                console.log(`#3 currentScrollY ${currentScrollY}, startScrollY ${startScrollY}, verticalScrolling ${verticalScrolling}`);
-    
+                    
                 return;
-            } else if (currentScrollY !== startScrollY && scrollingStarted) {
-                //console.log('!!!!!!!!!!!!!');
-                sliderTouchEndHandler();
+
+            } else if (currentScrollY !== startScrollY && horizontalScrolling) {
+                /*Такое вряд ли случится, но на всякий случай отменим вертикальную
+                прокрутку*/
+                preventDefaultEvent(moveEvent);
             }
 
-            //console.log(`#4 scrollingStarted ${scrollingStarted}, verticalScrolling ${verticalScrolling}`);
-            if (scrollingStarted) moveEvent.preventDefault();
+            //Начинаем прокрутку слайдера
+            if (Math.abs(!horizontalScrolling && cumulativeShift) >= disableScrollingOn) horizontalScrolling = true;
 
-            //console.log(`#5 scrollingStarted ${scrollingStarted}`);
-            if (Math.abs(!scrollingStarted && cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
-            //console.log(`#6 scrollingStarted ${scrollingStarted}`);
+            if (horizontalScrolling) preventDefaultEvent(moveEvent);
 
             currentMoveX = moveEvent.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
@@ -75,8 +79,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             if (targetMarginLeft <= 0
                 && targetMarginLeft >= maxCarouselPosition
-                && scrollingStarted) {
-                    //console.log(`sliderTouchMoveHandler: scrollingStarted ${scrollingStarted}, verticalScrolling ${verticalScrolling}`);
+                && horizontalScrolling) {
 
                     requestAnimationFrame(function move(){
                     //допустимые границы движения ленты слайдов и cumulativeShift
@@ -93,6 +96,16 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             startMoveX = currentMoveX;  //Последняя точка текущего движения становится стартовой для нового движения
             startTime = Date.now(); //Время последней точки становится стратовым временем следующей точки
 
+            function preventDefaultEvent(e) {
+                if (e.cancelable) {
+
+                    e.preventDefault();
+
+                } else {
+
+                    sliderTouchEndHandler();
+                }
+            }
         } catch(e) {
             console.log('Slider Ошибка sliderTouchMoveHandler(): ' + e.name + ":" + e.message + "\n" + e.stack);
         }

@@ -53,11 +53,14 @@ function Slider(props) {
     const timer = useRef(undefined);    //Здесь будет setTimeout для автопрокрутки карусели
     const carousel = useRef(null);
     const viewport = useRef(null);
+    const stateRef = useRef(state); /** #1 актуальное состояние для  startTouchHandler*/
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
 
-    useEffect(() => updateComponent(), [state]);
+    useEffect(() => addTouchHandler(), []); /** #1 */
+
+    useEffect(() => updateComponent());
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
     
@@ -65,7 +68,19 @@ function Slider(props) {
         updateWidthAndCoords();
     }
 
+    /** #1 startTouchHandler с опцией {passive: false}*/
+    function addTouchHandler() {
+        if (!carousel.current) return;
+
+        carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
+
+        return () => carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+    }
+    
+
     function updateComponent() {
+        stateRef.current = state;/** #1 актуальное состояние для startTouchHandler */
+
         window.addEventListener('resize', updateWidthAndCoords);
 
         if (typeof(props.visible) === 'object' || props.visible === 0) {
@@ -211,7 +226,7 @@ function Slider(props) {
         const touchArgs = {
             e: e,
             params: props,
-            state: state,
+            state: stateRef.current,/** #1 актуальное состояние*/
             setState: setState,
             animate: animate.current,
             animDuration: animDuration,

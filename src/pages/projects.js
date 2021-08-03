@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import { navigate } from '@reach/router';
 import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
 import SpoilersProjects from '../components/spoilers-projects';

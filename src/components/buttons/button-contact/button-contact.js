@@ -14,7 +14,7 @@ function ButtonContact(props) {
 
     const buttonText = 'Связаться';
 
-    return <button className={cssStyle}>{buttonText}</button>;
+    return <a href="mailto: ecotranskursk@yandex.ru"><button className={cssStyle}>{buttonText}</button></a>;
 };
 
 export default ButtonContact;

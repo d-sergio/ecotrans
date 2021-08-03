@@ -1,8 +1,5 @@
 /**Обработчик touch-событий для Slider
- * 
- * @1 - для блокировки вертикальной прокрутки страницы во время прокрутки слайдера
- * необходимо установить обработчику событий {passive: false}
- * 
+ *  
  * Принимаемые параметры:
  * @param {object} должен содержать следующие поля:
  *      @param {node} carousel - лента слайдов
@@ -31,9 +28,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     движении. При достижении disableScrollingOn блокируется вертикальная прокрутка
     стариницы и начинается прокрутка слайдера*/
     let cumulativeShift = 0;
-
-    /*const bodyOverflow = window.getComputedStyle(document.body).overflow;
-    const bodyHeight = window.getComputedStyle(document.body).height;*/
     
     window.addEventListener('touchcancel', sliderTouchEndHandler);
     window.addEventListener('touchend', sliderTouchEndHandler);
@@ -41,23 +35,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(event){
+        if (scrollingStarted) event.preventDefault();
+
         try{
             currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
             
             if (Math.abs(cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
-
-            /**Блокировка вертикальной прокрутки страницы */
-            if (disableScrollingOn !== undefined
-                && disableScrollingOn !== null
-                && disableScrollingOn !== false
-                && Math.abs(cumulativeShift) >= disableScrollingOn) {
-
-                    //blockVerticalScrolling(event);
-                    event.preventDefault(); //@1
-
-            }
 
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -89,7 +74,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        //unlockVerticalScrolling();
 
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
@@ -99,18 +83,4 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             callback(speed);
         }
     }
-
-    /*function blockVerticalScrolling(event) {
-        event.preventDefault();
-
-        document.body.style.overflow = 'hidden';
-        
-        document.body.style.height = bodyHeight;
-    }
-
-    function unlockVerticalScrolling() {
-        document.body.style.overflow = bodyOverflow;
-
-        document.body.style.height = '';
-    }*/
 }

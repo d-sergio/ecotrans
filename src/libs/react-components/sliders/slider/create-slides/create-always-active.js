@@ -17,7 +17,10 @@ function createAlwaysActive({children, currentPosition, slideStyle, viewport, ca
         /*overflow: 'visible' чтобы при transform: scale() содержимое slide
         не обрезалось*/
         let slide = (
-            <div style={{overflow: 'visible'}} className={slideStyle}>
+            <div
+                style={{overflow: 'visible'}}
+                className={slideStyle}
+            >
                 {React.cloneElement(children[i], {active: active})}
             </div>);
 

@@ -13,6 +13,7 @@ import Values from '../context/values';
  * @param {function} onSubmit - колбэк в случае успешной валидации формы
  * @param {Object} initialValues - объект, в котором ключ - имя поля, значение равно
  * начальному значению поля
+ * @param {String} name - имя формы
  */
 function Form(props) {
     const formRef = useRef(null);
@@ -87,6 +88,7 @@ function Form(props) {
     return(
         <form
             ref={formRef}
+            name={props.name ? props.name : null}
             className={props.className}
             onSubmit={onSubmit}
             encType="multipart/form-data"

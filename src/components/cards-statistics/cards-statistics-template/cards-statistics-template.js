@@ -1,6 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {styleMobile, numberMobile, textMobile, styleDesktop, numberDesktop, textDesktop} from './cards-statistics.module.css';
 
+/**Чтобы изменять вид карточек на активный наведением мыши или касанием,
+ * надо раскомментировать обработчики в return
+ */
+
 function CardsStatisticTemp(props) {
     const slide = useRef(null);
     const [activeState, setActive] = useState(undefined);
@@ -27,8 +31,8 @@ function CardsStatisticTemp(props) {
     return(
         <div ref={slide}
         className={style}
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}
+        /*onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}*/
         >
             <div className={number}>{props.number}</div>
             <div className={text}>{props.text}</div>

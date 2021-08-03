@@ -41,8 +41,8 @@ function File(props) {
     const errors = useContext(Errors);
     const values = useContext(Values);
 
+    useEffect(() => initFieldStyle(), []);
     useEffect(() => initErrors(), []);
-    useEffect(() => updateFieldStyle(), [fileName]);
     useEffect(() => {
         if (errors !== undefined) showError();
     }, [errors]);
@@ -50,6 +50,8 @@ function File(props) {
     /**Показать название файла */
     function onChange() {
         if (!fileRef.current || !fileRef.current.value) return;
+
+        setActiveField();
 
         /**Скрыть сообщение об ошибке валидации */
         if (errorRef.current
@@ -91,57 +93,63 @@ function File(props) {
         }
     }
 
-    /**Установить стиль поля */
-    function updateFieldStyle() {
+    /**Стиль неактивного поля */
+    function initFieldStyle() {
+        if (!props.classNames || !inputRef.current) return;
 
-        if (!inputRef.current || !props.classNames) return;
-
-        const initStyle = getFieldStyle();
-        
-        inputRef.current.className = initStyle;
-    }
-
-    /**Взять стиль поля из пропс */
-    function getFieldStyle() {
-
-        if (!props.classNames) return;
-
-        //Массив стилей?
         if (Array.isArray(props.classNames)) {
 
-            return changeFieldStyle();
+            inputRef.current.className = props.classNames[0];
 
         } else if (typeof props.classNames === 'string') {
             
-            return props.classNames;
+            inputRef.current.className = props.classNames;
+        }   
+    }
+
+    /**Активный вид поля*/
+    function setActiveField() {  
+
+        if (inputRef.current
+            && Array.isArray(props.classNames)
+            && props.classNames[1] !== undefined) {
+
+                inputRef.current.className = props.classNames[1];
         }
     }
 
-    /**Если получен массив стилей, то вернуть тот, который
-     * соответствует состоянию и контексту
-     */
-    function changeFieldStyle() {
+    /**Применить к полю стиль, соответствующий ошибке, если такой стиль
+     * получен из пропс
+    */
+    function setErrorStyle() {
+        if (!props.classNames) return;
+        
+        //Поле активно, есть ошибки и массив стилей
+        if (Array.isArray(props.classNames) && errors) {
 
-        if (fileName){
-
-            //Файл выбран
-            return props.classNames[1];
-
-        } else if (errors) {
-
-            //Подсветка поля с ошибкой
+            //Подсветка поля с ошибкой, есть стиль для этого случая
             if (errors[props.name] && props.classNames[2] !== undefined) {
 
                 return props.classNames[2];
 
             } else {
-                //Нет стиля для подсветки поля с ошибкой
-                return props.classNames[0];
+                //Нет стиля для подсветки поля с ошибкой или ошибки нет
+
+                if (fileName === '' || fileName === values[props.name]) {
+
+                    //поле пустое - неактивный стиль
+                    return props.classNames[0];
+                } else {
+
+                    //поле не пустое - активный стиль
+                    return props.classNames[1];
+                }
+                
             }
 
         } else {
-            //Файл не выбран, ошибок нет
-            return props.classNames[0];
+            //Стиль не является массивом
+            return props.classNames;
         }
     }
 
@@ -152,16 +160,18 @@ function File(props) {
         errorRef.current.style.opacity = 0;
     }
 
-    /**Показать сообщение об ошибке валидации */
+    /**Показать сообщение об ошибке валидации
+     * Подсветить поле соответствующим стилем
+    */
     function showError() {
-        if (!errorRef.current) return;
-
-        if (!errors) errorRef.current.style.opacity = 0;
+        if (!inputRef.current) return;
 
         if (errors[props.name]) {
             
+            if (inputRef.current) inputRef.current.className = setErrorStyle();
+
             if (props.error !== 'none') errorRef.current.style.opacity = 1;
-            
+
             setErrorMessage(errors[props.name]);
 
         } else {
@@ -173,13 +183,12 @@ function File(props) {
         <div className={container}>
             <input
                 ref={inputRef}
-                className={getFieldStyle()}
                 value={fileName ? fileName : values[props.name]}
                 type="text"
             />
 
             <input
-            ref={fileRef}
+                ref={fileRef}
                 className={file}
                 name={props.name}
                 accept={props.accept}

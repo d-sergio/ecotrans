@@ -4,9 +4,14 @@ import { form, input, attach, button, passport, inputInActive, inputActive, inpu
 import MobileView from '../../root-layout/view-context';
 import Forms from '../../../libs/react-components/forms-and-fields';
 import sendCostForm from '../../../send-form-callback/send-cost-form';
+import checkFileSize from '../../../libs/react-components/forms-and-fields/validate/file-size';
 
 function CostForm() {
     const mobileView = useContext(MobileView);
+
+    const formName = 'cost';
+    const inputFileName = 'passport';
+    const maxFileSize = 52428800; //bytes
 
     //Доступные для загрузки типы файлов
     const fileTypes = '.*';
@@ -37,7 +42,7 @@ function CostForm() {
         fkko: '*ФККО',
         phone: '*+7 (909) 000 00 00',
         email: '*e-mail',
-        passport: 'Паспорт отходов'
+        passport: `Паспорт отходов (не более ${maxFileSize / 1048576}Мб)`
     };
 
     //Функции валидации
@@ -46,7 +51,7 @@ function CostForm() {
         fkko: (value) => Forms.Validate.notEmpty(value, initialValues.fkko),
         phone: (value) => Forms.Validate.notEmpty(value, initialValues.phone),
         email: (value) => Forms.Validate.email(value, initialValues.email),
-        passport: (value) => Forms.Validate.notEmpty(value, initialValues.phone)
+        passport: () => Forms.Validate.fileSize(formName, inputFileName, maxFileSize)
     };
 
     return(
@@ -55,6 +60,7 @@ function CostForm() {
             validate={validate}
             onSubmit={sendCostForm}
             initialValues={initialValues}
+            name={formName}
         >
             <Forms.Fields.Input
                 classNames={inputClasses}
@@ -82,7 +88,7 @@ function CostForm() {
             
             <Forms.Fields.File
                 classNames={passportClasses}
-                name='passport'
+                name={inputFileName}
                 accept={fileTypes}
                 error='none'
             />

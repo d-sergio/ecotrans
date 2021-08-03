@@ -20,7 +20,8 @@ import getVisible from '../slider/mechanics/get-visible';
 import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
-import createSlidesActive from '../slider/create-slides/create-slides-active';
+import createAlwaysActive from '../slider/create-slides/create-always-active';
+//import createSlidesActive from '../slider/create-slides/create-slides-active';
 //import createVisibleSlides from './alternative/create-visible-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';
 
@@ -55,12 +56,9 @@ function Slider(props) {
     const carousel = useRef(null);
     const viewport = useRef(null);
     const container = useRef(null);
-    const stateRef = useRef(state);
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
-
-    useEffect(() => addTouchListener(), []);
 
     useEffect(() => updateComponent(), [state]);
 
@@ -70,21 +68,7 @@ function Slider(props) {
         updateWidthAndCoords();
     }
 
-    function addTouchListener() {
-        if (carousel.current) {
-            carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
-        }
-
-        return () => {
-            if (carousel.current) {
-                carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
-            }
-        }
-    }
-
     function updateComponent() {
-        stateRef.current = state;
-        
         window.addEventListener('resize', updateWidthAndCoords);
 
         if (typeof(props.visible) === 'object' || props.visible === 0) {
@@ -230,7 +214,7 @@ function Slider(props) {
         const touchArgs = {
             e: e,
             params: props,
-            state: stateRef.current,
+            state: state,
             setState: setState,
             animate: animate.current,
             animDuration: animDuration,
@@ -289,9 +273,10 @@ function Slider(props) {
                 <div className={carouselStyle}
                     ref={carousel}
                     onMouseDown={(e) => startMouseHandler(e)}
+                    onTouchStart={(e) => startTouchHandler(e)}
                 >
                     {
-                        createSlidesActive({    /**********МОДИФИКАЦИЯ**********/
+                        createAlwaysActive({    /**********МОДИФИКАЦИЯ**********/
                             children: state.children,
                             currentPosition: state.currentPosition,
                             autoMove: autoMove,

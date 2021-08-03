@@ -6,11 +6,11 @@ import checkEmail from "../../../check-email";
  * Использование:
  * 
  * <Forms.Form validate={
- *     fieldName: (value) => Forms.Validate.email(value, fieldName)
+ *     initialValue: (value) => Forms.Validate.email(value, initialValue)
  * }>...</Forms.Form>
 */
-function validateEmail(email, fieldName) {
-    if (email === '' || email === fieldName) {
+function validateEmail(email, initialValue) {
+    if (email === '' || email === initialValue) {
         
         return '*Обязательное поле';
 

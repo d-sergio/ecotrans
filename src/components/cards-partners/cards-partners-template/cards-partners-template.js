@@ -1,6 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {styleMobile, logoMobile, textMobile, styleDesktop, logoDesktop, textDesktop} from './cards-partners-template.module.css';
 
+/**Чтобы изменять вид карточек на активный наведением мыши или касанием,
+ * надо раскомментировать обработчики в return
+ */
+
+
 /**Шаблон карточек "Наши партнёры"
  * Используют встроенный svg для управления цветом логотипов. Компонент
  * CardsPartnersTemp задаёт цвет свойству fill всех path, являющихся
@@ -77,8 +82,8 @@ function CardsPartnersTemp(props) {
     return(
         <div ref={slide}
         className={style}
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}
+        /*onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}*/
         style={propStyle}
         >
             <div ref={logo} className={logoStyle}>{props.logo}</div>

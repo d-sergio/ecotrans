@@ -3,11 +3,11 @@
  * Использование:
  * 
  * <Forms.Form validate={
- *     fieldName: (value) => Forms.Validate.notEmpty(value, fieldName)
+ *     initialValue: (value) => Forms.Validate.notEmpty(value, initialValue)
  * }>...</Forms.Form>
 */
-function notEmpty(value, fieldName) {
-    if (value === fieldName || value === '') {
+function notEmpty(value, initialValue) {
+    if (value === initialValue || value === '') {
         return '*Обязательное поле';
     }
 }

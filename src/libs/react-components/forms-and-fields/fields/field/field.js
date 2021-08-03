@@ -94,7 +94,9 @@ function Field(props) {
     }
 
     /**Активный вид поля*/
-    function setActiveField() {  
+    function setActiveField() { 
+        
+        if (!props.classNames) return;
 
         if (fieldRef.current
             && Array.isArray(props.classNames)
@@ -122,7 +124,7 @@ function Field(props) {
     /**Применить к полю стиль, соответствующий ошибке, если такой стиль
      * получен из пропс
     */
-    function setErrorField() {
+    function setErrorStyle() {
         if (!props.classNames) return;
         
         //Поле активно, есть ошибки и массив стилей
@@ -168,7 +170,7 @@ function Field(props) {
 
         if (errors[props.name]) {
             
-            if (fieldRef.current) fieldRef.current.className = setErrorField();
+            if (fieldRef.current) fieldRef.current.className = setErrorStyle();
 
             if (props.error !== 'none') errorRef.current.style.opacity = 1;
 

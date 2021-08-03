@@ -35,6 +35,7 @@ html {
 
 button {
     border: 0;
+    cursor: pointer;
 }
 
 #___gatsby{ /*Прижать футер к низу*/

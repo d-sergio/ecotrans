@@ -24,10 +24,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     превысил disableScrollingOn*/
     let scrollingStarted = false;
 
-    let verticalScrolling = false;
-
-    const startScrollY = document.documentElement.scrollTop;
-
     /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
     движении. При достижении disableScrollingOn блокируется вертикальная прокрутка
     стариницы и начинается прокрутка слайдера*/
@@ -38,36 +34,16 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     window.addEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
     //Двигаем ленту слайдов
-    function sliderTouchMoveHandler(moveEvent){
+    function sliderTouchMoveHandler(event){
+        if (scrollingStarted) event.preventDefault();
+
         try{
-            //console.log(`#1 verticalScrolling ${verticalScrolling}`);
-            if (verticalScrolling) return;
-
-            const currentScrollY = document.documentElement.scrollTop;
-    
-            //console.log(`#2 currentScrollY ${currentScrollY}, startScrollY ${startScrollY}, scrollingStarted ${scrollingStarted}`);
-            if (currentScrollY !== startScrollY && !scrollingStarted) {
-                verticalScrolling = true;
-                
-                console.log(`#3 currentScrollY ${currentScrollY}, startScrollY ${startScrollY}, verticalScrolling ${verticalScrolling}`);
-    
-                return;
-            } else if (currentScrollY !== startScrollY && scrollingStarted) {
-                //console.log('!!!!!!!!!!!!!');
-                sliderTouchEndHandler();
-            }
-
-            //console.log(`#4 scrollingStarted ${scrollingStarted}, verticalScrolling ${verticalScrolling}`);
-            if (scrollingStarted) moveEvent.preventDefault();
-
-            //console.log(`#5 scrollingStarted ${scrollingStarted}`);
-            if (Math.abs(!scrollingStarted && cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
-            //console.log(`#6 scrollingStarted ${scrollingStarted}`);
-
-            currentMoveX = moveEvent.changedTouches[0].pageX;
+            currentMoveX = event.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
             
+            if (Math.abs(cumulativeShift) >= disableScrollingOn) scrollingStarted = true;
+
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
             const carouselWidth = carousel.offsetWidth;
@@ -76,8 +52,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (targetMarginLeft <= 0
                 && targetMarginLeft >= maxCarouselPosition
                 && scrollingStarted) {
-                    //console.log(`sliderTouchMoveHandler: scrollingStarted ${scrollingStarted}, verticalScrolling ${verticalScrolling}`);
-
                     requestAnimationFrame(function move(){
                     //допустимые границы движения ленты слайдов и cumulativeShift
                         carousel.style.marginLeft = targetMarginLeft + 'px';
@@ -103,7 +77,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
-        window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
+        window.removeEventListener('touchmove', sliderTouchMoveHandler);
 
         if (callback !== undefined && callback !== null) {
             callback(speed);

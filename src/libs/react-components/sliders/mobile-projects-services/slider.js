@@ -52,19 +52,32 @@ function Slider(props) {
     const carousel = useRef(null);
     const viewport = useRef(null);
     const container = useRef(null);
+    const stateRef = useRef(state);/** */
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
 
+    useEffect(() => addTouchHandler(), []);/** */
+
     useEffect(() => updateComponent(), [state]);
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
+
+    function addTouchHandler() {/** */
+        if (!carousel.current) return;
+
+        carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
+
+        return () => carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+    }
     
     function initialize() {
         updateWidthAndCoords();
     }
 
     function updateComponent() {
+        stateRef.current = state;/** */
+
         window.addEventListener('resize', updateWidthAndCoords);
 
         if (typeof(props.visible) === 'object' || props.visible === 0) {
@@ -210,7 +223,7 @@ function Slider(props) {
         const touchArgs = {
             e: e,
             params: props,
-            state: state,
+            state: stateRef.current,/** */
             setState: setState,
             animate: animate.current,
             animDuration: animDuration,
@@ -268,7 +281,6 @@ function Slider(props) {
                 <div className={carouselStyle}
                     ref={carousel}
                     onMouseDown={(e) => startMouseHandler(e)}
-                    onTouchStart={(e) => startTouchHandler(e)}
                 >
                     {createSlides(state.children, slideStyle)
                     /*

@@ -7,7 +7,7 @@ import {text, image, floatImage, container, button} from './block-call-mobile.mo
 
 function BlockCallMobile() {
     return(
-        <div className={mainContainer}>
+        <section className={mainContainer}>
             <div className={container}>
                 
             <div className={title}>
@@ -31,7 +31,7 @@ function BlockCallMobile() {
             </div>
 
             </div>
-        </div>
+        </section>
     );
 }
 

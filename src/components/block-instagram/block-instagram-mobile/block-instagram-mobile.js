@@ -1,7 +1,7 @@
 import React from 'react';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
-import {link, text, button, images} from './block-instagram-mobile.module.css';
+import {link, text, button, images, container} from './block-instagram-mobile.module.css';
 import Buttons from '../../buttons';
 import Slider from '../../../libs/react-components/sliders/slider';
 
@@ -20,7 +20,7 @@ function BlockInstagramMobile() {
     ];
 
     return(
-        <>
+        <section className={container}>
             <div className={mainContainer}>
                 <div className={title}>Будьте на связи!</div>
                 <div className={text}>
@@ -40,7 +40,7 @@ function BlockInstagramMobile() {
             <div className={button}>
                 <Buttons.Subscribe.Mobile/>
             </div>
-        </>
+        </section>
     );
 }
 

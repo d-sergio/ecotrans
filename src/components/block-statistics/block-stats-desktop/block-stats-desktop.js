@@ -3,7 +3,7 @@ import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-statistics';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
-import {freezeContainer} from './block-stats-desktop.module.css';
+import {freezeContainer, marginBottom} from './block-stats-desktop.module.css';
 
 const cards = [
     <Cards.TenYears/>,
@@ -32,8 +32,10 @@ function BlockStatsDesktop() {
 
     if (active === undefined) return null;
 
+    const freezeStyle = [marginBottom, freezeContainer].join(" ");
+
     return(
-        <div className={active ? null : freezeContainer}>
+        <section className={active ? marginBottom : freezeStyle}>
             <Slider
                 key={active}
                 visible={active ? visible : 5}
@@ -45,7 +47,7 @@ function BlockStatsDesktop() {
                 {cards}
 
             </Slider>
-        </div>
+        </section>
     );
 }
 

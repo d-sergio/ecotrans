@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Slider from '../../../libs/react-components/sliders/desktop-projects/slider';
-import {container} from './block-projects-desktop.module.css';
+import {container, marginBottom} from './block-projects-desktop.module.css';
 import Cards from '../../cards-projects';
 import Buttons from '../../buttons';
 import mediaQuery from '../../../libs/react/media-query';
@@ -31,8 +31,10 @@ function BlockProjectsDesktop() {
 
     if (smallView === undefined) return null; 
 
+    const containerStyle = [marginBottom, container].join(" ");
+
     return(
-        <div className={smallView ? null : container}>
+        <section className={smallView ? marginBottom : containerStyle}>
             <Slider
                 key={smallView}
                 visible={smallView ? 1 : 3}
@@ -45,7 +47,7 @@ function BlockProjectsDesktop() {
 
             </Slider>
             {smallView}
-        </div>
+        </section>
 );
 }
 

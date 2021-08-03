@@ -7,7 +7,7 @@ const containerStyle = [mainContainer, outer].join(" ");
 
 function TitleDesktop() {
     return(
-        <div className={containerStyle}>
+        <section className={containerStyle}>
             <div>
                 <p className={about}>Транспортировка, утилизация и переработка отходов</p>
                 <h1 className={ecotrans}>ЭКОТРАНС</h1>
@@ -18,7 +18,7 @@ function TitleDesktop() {
             <div className={image}>
                 <img src={titleImg} alt="title_image"/>
             </div>
-        </div>
+        </section>
     );
 }
 

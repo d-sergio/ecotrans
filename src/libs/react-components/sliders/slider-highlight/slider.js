@@ -3,6 +3,8 @@
  * src/libs/react/react-hooks/use-previous-hook.js
 */
 
+//import useForceUpdate from '../../../react/react-hooks/use-force-update';   /**********МОДИФИКАЦИЯ**********/
+
 import defaultProps from '../slider/default-props';
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
@@ -48,6 +50,8 @@ function Slider(props) {
     const [autoMove, setAutoMove] = useState(props.autoMove); //Автопрокрутка карусели
     const prevState = usePrevious(state);
 
+    //const forceUpdate = useForceUpdate();   /**********МОДИФИКАЦИЯ**********/
+
     /*Длительность анимации animDuration также указывает, вызывать ли анимацию
     после изменения состояния слайдера. Ноль - не вызывать анимацию.*/
     const animDuration = useRef(0); 
@@ -62,7 +66,7 @@ function Slider(props) {
 
     useEffect(() => addTouchHandler(), []); /** #1 */
 
-    useEffect(() => updateComponent());
+    useEffect(() => updateComponent()/*, [state.currentPosition]*/);
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
     
@@ -76,7 +80,11 @@ function Slider(props) {
 
         carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
 
-        return () => carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+        return () => {
+            if (carousel.current) {
+                carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+            }
+        }
     }    
 
     function updateComponent() {
@@ -152,6 +160,7 @@ function Slider(props) {
 
         updateSlideWidth(slideArgs);
         updateCarouselCoords(coordsArgs);
+        //forceUpdate();  /**********МОДИФИКАЦИЯ**********/
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние

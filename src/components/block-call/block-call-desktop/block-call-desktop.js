@@ -7,7 +7,7 @@ import {container, main, text, image} from './block-call-desktop.module.css';
 
 function BlockCallDesktop() {
     return(
-        <div className={mainContainer}>
+        <section className={mainContainer}>
             <div className={container}>
                 <div className={main}>
                     <div className={title}>
@@ -28,7 +28,7 @@ function BlockCallDesktop() {
                     <img src={pic} alt="call"/>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

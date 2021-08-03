@@ -13,7 +13,7 @@
  * calculatedPosition > currentPosition движение к предыдущим слайдам
  * calculatedPosition < currentPosition движение к следующим слайдам
  */
-function searchNewPosition(initialParams) {
+function findNewPosition(initialParams) {
     try{
         //значения по умолчанию
         const defaults = {
@@ -56,8 +56,8 @@ function searchNewPosition(initialParams) {
             }
         }
     } catch(e) {
-        console.log('Slider Ошибка searchNewPosition(): ' + e.name + ":" + e.message + "\n" + e.stack);
+        console.log('Slider Ошибка findNewPosition(): ' + e.name + ":" + e.message + "\n" + e.stack);
     }
 }
 
-export default searchNewPosition;
+export default findNewPosition;

@@ -1,3 +1,9 @@
 import usePrevious from "./use-previous-hook";
+import useForceUpdate from "./use-force-update";
 
-export default {usePrevious};
+const hooks = {
+    usePrevious,
+    useForceUpdate
+};
+
+export default hooks;

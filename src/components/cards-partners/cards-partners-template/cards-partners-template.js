@@ -93,3 +93,7 @@ function CardsPartnersTemp(props) {
 }
 
 export default CardsPartnersTemp;
+
+CardsPartnersTemp.defaultProps = {
+    active: false
+}

@@ -26,7 +26,7 @@ function BlockServicesDesktop() {
     const titleStyle = [title, titleAbsolute].join(" ");
 
     return(
-        <div className={container}>
+        <section className={container}>
             <div className={mainContainer}>
                 <div className={titleStyle}>
                     Выберите услугу 
@@ -43,7 +43,7 @@ function BlockServicesDesktop() {
 
 
 
-        </div>
+        </section>
     );
 }
 

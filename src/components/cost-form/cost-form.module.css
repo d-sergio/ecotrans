@@ -52,7 +52,7 @@
 .attach{
     padding-left: 45px;
 
-    background-image: url(/images/block-cost/attach.svg);
+    background-image: url(/images/block-cost/paperclip.png);
     background-repeat: no-repeat;
     background-position: 30px;
 }
@@ -66,5 +66,19 @@
 @media screen and (max-width: 825px) {
     .button{
         align-self: center;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .input{
+        margin-bottom: 13px;
+
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+    }
+
+    .attach{
+        background-position: 95%;
+        padding-left: 30px;
     }
 }

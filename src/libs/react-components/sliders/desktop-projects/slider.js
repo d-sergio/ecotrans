@@ -77,7 +77,11 @@ function Slider(props) {
 
         carousel.current.addEventListener('touchstart', startTouchHandler, {passive: false});
 
-        return () => carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+        return () => {
+            if (carousel.current) {
+                carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
+            }
+        }
     }*/
 
     function updateComponent() {

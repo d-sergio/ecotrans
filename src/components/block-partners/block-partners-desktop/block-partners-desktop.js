@@ -37,7 +37,7 @@ function BlockPartnersDesktop() {
     if (active === undefined) return null;
 
     return(
-        <>
+        <section style={{marginBottom: '120px'}}>
             <div className={titleStyle}>Наши партнеры</div>
             <div className={active ? null : mainContainer}>
                 <Slider
@@ -52,7 +52,7 @@ function BlockPartnersDesktop() {
                 </Slider>
             </div>
 
-        </>
+        </section>
     );
 }
 

@@ -97,7 +97,7 @@ function BlockInstagramDesktop() {
     }
 
     return(
-        <div ref={containerRef}>
+        <section ref={containerRef} className={container}>
 
             <div style={{position: 'relative'}} className={mainContainer}>
                 <svg
@@ -153,7 +153,7 @@ function BlockInstagramDesktop() {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

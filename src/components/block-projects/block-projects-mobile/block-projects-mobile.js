@@ -8,9 +8,9 @@ function BlockProjectsMobile() {
 
     return(
         <>
-            <div className={servicesStyle}>
+            <section className={servicesStyle}>
                 <Slider.Projects/>
-            </div>
+            </section>
         </>
     );
 }

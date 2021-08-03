@@ -4,7 +4,7 @@ import Cards from '../../cards-advantages';
 import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 import {mainContainer} from '../../../common-styles/containers.module.css';
-import {freezeContainer} from './block-adv-desktop.module.css';
+import {freezeContainer, container} from './block-adv-desktop.module.css';
 import {title} from '../../../common-styles/title.module.css';
 
 const advCards = [
@@ -30,7 +30,7 @@ function BlockAdvDesktop() {
     if (active === undefined) return null;
 
     return(
-        <>
+        <section className={container}>
             <div className={titleStyle}>Преимущества работы с нами</div>
             <div className={active ? null : freezeContainer}>
                 <Slider
@@ -43,7 +43,7 @@ function BlockAdvDesktop() {
                     
                 </Slider>
             </div>
-        </>
+        </section>
     );
 }
 

@@ -16,7 +16,7 @@ const titleStyle = [title, mainContainer].join(" ");
 
 function BlockAdvMobile() {
     return(
-        <>
+        <section style={{marginBottom: '12px'}}>
             <div className={titleStyle}>Наши преимущества</div>
             <Slider
             visible={0}
@@ -25,7 +25,7 @@ function BlockAdvMobile() {
                 {advCards}
                 
             </Slider>
-        </>
+        </section>
     );
 }
 

@@ -18,7 +18,19 @@ const visible = {
 };
 
 function BlockPartnersMobile() {
-    return <Slider visible={visible} adjacent={true} autoMove={true} cancelAutoMove={true}>{cards}</Slider>;
+    return (
+        <section>
+            <Slider
+                visible={visible}
+                adjacent={true}
+                autoMove={true}
+                cancelAutoMove={true}>
+
+                {cards}
+
+            </Slider>
+        </section>
+    );
 }
 
 export default BlockPartnersMobile;

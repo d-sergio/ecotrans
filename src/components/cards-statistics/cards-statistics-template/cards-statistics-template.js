@@ -14,15 +14,15 @@ function CardsStatisticTemp(props) {
     const text = props.mobile ? textMobile : textDesktop;
 
     useEffect(() => {
-        if (props.active && !props.mobile && activeState === undefined) {
+        if (props.active && !props.mobile/* && activeState === undefined*/) {
             slide.current.style.transform = 'scale(1.7, 1.7)';
-        } else if (props.active && props.mobile && activeState === undefined) {
+        } else if (props.active && props.mobile/* && activeState === undefined*/) {
             slide.current.style.transform = 'scale(1.18, 1.18)';
-        } else if (activeState === true && !props.mobile) {
+        }/* else if (activeState === true && !props.mobile) {
             slide.current.style.transform = 'scale(1.7, 1.7)';
         }else if (activeState === true && props.mobile) {
             slide.current.style.transform = 'scale(1.18, 1.18)';
-        }
+        }*/
          else {
             slide.current.style.transform = 'scale(1, 1)';
         }

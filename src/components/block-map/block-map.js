@@ -22,7 +22,7 @@ function BlockMap() {
     }
 
     return (
-        <>
+        <section>
             <div className={mainContainer}>
                 <div className={title}>Наш адрес</div>
 
@@ -41,7 +41,7 @@ function BlockMap() {
                     popup={"<b>этаж 2, комната 17</b>"}
                 />
             </LeafletTooltip>
-        </>
+        </section>
     );
 }
 

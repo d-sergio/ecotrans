@@ -1,40 +1,29 @@
-.residentsDesktop {
-    display: none;
+.residentsItems{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10px;
 }
 
-.residentsDesktop > div{
+.residentsTitle{
+    font-family: 'MontserratBold';
     text-align: center;
 }
 
-.residentsMobile{
-    display: block;
+.residentsImage{
+    max-width: 100%;
+    height: auto;
 }
 
-.residentsMobile > div{
-    display: flex;
-    margin-bottom: 16px;
-}
-
-.residentsMobile > div > div{
-    align-self: center;
-}
-
-.residentsMobile img{
-    height: 32px;
-    margin-right: 16px;
-}
-
-@media screen and (min-width: 768px) {
-    .residentsDesktop{
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        margin-right: auto;
-        margin-left: auto;
-        padding-top: 10px;
+@media screen and (max-width: 575px) {
+    .residentsTitle{
+        text-align: unset;
     }
 
-    .residentsMobile{
-        display: none;
+    .residentsImage{
+        width: 121px;
+        height: 121px;
     }
 }

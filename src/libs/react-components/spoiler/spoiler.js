@@ -10,6 +10,11 @@ import {titleStyle, iconStyle, bodyStyle} from "./spoiler.module.css";
  * Props:
  * 
  * @param {node} title - заголовок спойлера 
+ * @param {String} titleClass - стили CSS для заголовка. По умолчанию:
+ * 
+ *     display: flex;
+ *     cursor: pointer;
+ * 
  * @param {node} close - иконка закрытия
  * @param {node} open - иконка открытия
  * @param {node} body - основное содержимое спойлера
@@ -102,7 +107,7 @@ function Spoiler(props) {
 
     return(
         <>
-            <div className={titleStyle} onClick={() => setOpen(!open)}>
+            <div className={props.titleClass || titleStyle} onClick={() => setOpen(!open)}>
                 {props.title}
                 <div className={iconStyle}>{open ? props.open : props.close}</div>
             </div>

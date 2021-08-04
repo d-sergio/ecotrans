@@ -3,7 +3,6 @@ import { navigate } from '@reach/router';
 import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
 import SpoilersProjects from '../components/spoilers-projects';
-import {mainContainer} from '../common-styles/containers.module.css';
 import {topBottomPaddings} from '../common-styles/pages.module.css';
 
 function Services() {
@@ -11,11 +10,9 @@ function Services() {
 
     useEffect(() => pageName.change('/projects'), []);
 
-    const pageStyle = [topBottomPaddings, mainContainer].join(" ");
-
     return (
         <Layout>
-            <div className={pageStyle}>
+            <div className={topBottomPaddings}>
                 <SpoilersProjects.Technopark/>
                 <SpoilersProjects.GreenPhone/>
                 <SpoilersProjects.Education/>

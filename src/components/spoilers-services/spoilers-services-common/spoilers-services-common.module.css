@@ -1,11 +1,4 @@
-.image{
-    float: left;
-    max-width: 100%;
-    height: auto;
-}
-
 .green{
-    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -17,10 +10,24 @@
     background-color: #EAFFE2;
 }
 
+.greenDesktop{
+    display: flex;
+}
+
+.greenMobile{
+    display: none;
+}
+
 .paragraph{
     line-height: 1.4rem;
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
+}
+
+.image{
+    float: left;
+    max-width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 1023px) {
@@ -29,5 +36,15 @@
         float: none;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .greenDesktop{
+        display: none;
+    }
+
+    .greenMobile{
+        display: flex;
     }
 }

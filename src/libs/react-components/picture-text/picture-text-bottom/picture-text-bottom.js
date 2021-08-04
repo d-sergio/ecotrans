@@ -1,7 +1,20 @@
 import React from 'react';
 import {container, imageContainer, image, text} from './picture-text-bottom.module.css';
 
-/**Картинка с текстом внизу */
+/**Картинка с текстом внизу
+ * 
+ * Props:
+ * @param {Object} imgSrc - импортированная картинка
+ * @param {String | Node} text - текст
+ * 
+ * Использование:
+ * 
+ * import img from '../image.jpg';
+ * ...
+ * const text = <p>Текст</p>;
+ * 
+ * <PictureTextBottom image={img} text={}/>
+ */
 function PictureTextBottom(props) {
     return(
         <div className={container}>

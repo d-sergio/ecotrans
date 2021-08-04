@@ -1,0 +1,19 @@
+.container{
+    width: 405px;
+    margin-bottom: 10px;
+    margin-top: 26px;
+}
+
+.day{
+    font-family: 'MontserratBold';
+}
+
+.name{
+    text-align: center;
+}
+
+@media screen and (max-width: 575px) {
+    .container{
+        width: 100%;
+    }
+}

@@ -10,12 +10,21 @@
     color: #219982;
 }
 
+.calendarMonth{
+    font-family: "MontserratBold";
+    font-size: 1.25rem;
+}
+
 @media screen and (min-width: 576px) {
     .title {
         font-size: 2.25rem;
     }
 
     .spoilerTitle{
+        font-size: 1.625rem;
+    }
+
+    .calendarMonth{
         font-size: 1.625rem;
     }
 }

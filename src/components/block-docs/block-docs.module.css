@@ -1,0 +1,27 @@
+.container{
+    margin-top: 81px;
+    margin-bottom: 45px;
+}
+
+.text{
+    margin-top: 19px;
+}
+
+.docTextStyle{
+    font-family: "MontserratBold";
+    font-size: 0.875rem;
+    margin-top: 16px;
+    width: 114px;
+}
+
+.docCardStyle{
+    display: inline-flex;
+    height: 152px;
+}
+
+.files{
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 39px;
+}

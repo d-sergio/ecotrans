@@ -8,7 +8,7 @@ import throttle from '../../throttle';
 
 /**Кнопка прокрутки в начало страницы */
 function ScrollUp(props) {
-    const throttling = 300;
+    const throttling = 100;
     const buttonRef = useRef(null);
     const animate = useRef(); //здесь будет объект анимации
 
@@ -26,7 +26,8 @@ function ScrollUp(props) {
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
 
-        setCoords();
+        //ждём, когда загрузятся шрифты
+        document.fonts.ready.then(() => setCoords());
 
         return () => {
             if (typeof window === undefined) return;
@@ -59,21 +60,21 @@ function ScrollUp(props) {
 
         const docWidth = window.innerWidth;
         const buttonWidth = buttonRef.current.offsetWidth;
-        
+
         if (window.innerWidth > props.outside) {
 
             const x = docWidth / 2 + props.contentWidth / 2 + props.shiftX;
 
             return x;
 
-        } else if (window.innerWidth < props.outside && window.innerWidth > props.contentWidth) {
+        } else if (window.innerWidth <= props.outside && window.innerWidth > props.contentWidth) {
             
             const paddings = docWidth - props.contentWidth;
 
             const x = docWidth - props.shiftX - buttonWidth - paddings / 2;
 
             return x;
-        } else {
+        } else if (window.innerWidth <= props.outside && window.innerWidth <= props.contentWidth) {
 
             const x = docWidth - props.shiftX - buttonWidth;
 
@@ -85,16 +86,15 @@ function ScrollUp(props) {
      * высота контента - прокрутка документа - высота кнопки
     */
     function calcVisibleHeight() {
-        if (!buttonRef.current || typeof window === undefined) return;
+        if (typeof window === undefined) return;
 
         const footer = document.getElementsByTagName('footer')[0];
 
         const docHeight = getDocumentHeight();
         const docScroll = window.pageYOffset;
         const footerHeight = footer.scrollHeight;
-        //const buttonHeight = buttonRef.current.offsetHeight;
 
-        const contVisibleHeight = docHeight - footerHeight - docScroll /*- buttonHeight*/;
+        const contVisibleHeight = docHeight - footerHeight - docScroll;
 
         return contVisibleHeight;
     }

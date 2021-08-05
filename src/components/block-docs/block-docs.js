@@ -3,7 +3,7 @@ import {container, text, docTextStyle, docCardStyle, files} from './block-docs.m
 import {mainContainer} from '../../common-styles/containers.module.css';
 import {spoilerTitle} from '../../common-styles/title.module.css';
 import {paragraph} from '../../common-styles/paragraph.module.css';
-import PictureText from '../../libs/react-components/picture-text';
+import PictureText from '../../libs/react-components/picture-and-text';
 import docPic from '../../../static/images/page-clients/file.svg';
 
 /**Наша документация (Страница Клиентам) */

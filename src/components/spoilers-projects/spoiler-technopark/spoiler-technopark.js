@@ -6,7 +6,7 @@ import pic from '../../../../static/images/spoilers-projects/technopark.jpg';
 import supportPic from '../../../../static/images/spoilers-projects/support.png';
 import supplyPic from '../../../../static/images/spoilers-projects/supply.png';
 import rentPic from '../../../../static/images/spoilers-projects/rent.png';
-import PictureText from '../../../libs/react-components/picture-text';
+import PictureText from '../../../libs/react-components/picture-and-text';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 
 function Technopark() {

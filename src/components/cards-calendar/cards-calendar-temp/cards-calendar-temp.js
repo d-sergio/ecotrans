@@ -1,5 +1,5 @@
 import React from 'react';
-import PictureText from '../../../libs/react-components/picture-text';
+import PictureText from '../../../libs/react-components/picture-and-text';
 import {container, day, name} from './cards-calendar-temp.module.css';
 
 /**Шаблон карточки для календаря

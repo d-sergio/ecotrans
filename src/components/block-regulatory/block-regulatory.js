@@ -3,7 +3,7 @@ import {text, listText, listItem} from './block-regulatory.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
 import {spoilerTitle} from '../../common-styles/title.module.css';
 import {paragraph} from '../../common-styles/paragraph.module.css';
-import PictureText from '../../libs/react-components/picture-text';
+import PictureText from '../../libs/react-components/picture-and-text';
 import greenCircle from  '../../../static/images/page-clients/green-circle.svg';
 
 function BlockRegulatory() {

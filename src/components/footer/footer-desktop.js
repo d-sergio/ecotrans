@@ -14,7 +14,7 @@ import {
     links
 } from './footer-desktop.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
-import PictureText from '../../libs/react-components/picture-text';
+import PictureText from '../../libs/react-components/picture-and-text';
 
 const containerStyle = [container, mainContainer].join(" ");
 

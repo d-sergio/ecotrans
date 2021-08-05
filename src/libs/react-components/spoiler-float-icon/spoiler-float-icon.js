@@ -7,6 +7,7 @@ import {titleStyle, iconStyle, bodyStyle} from "./spoiler-float-icon.module.css"
 import throttle from '../../throttle';
 
 /**Спойлер. Вариант с плавающей кнопкой "закрыть/открыть"
+ * (позиционируется абсолютно)
  * 
  * Props:
  * 
@@ -53,6 +54,9 @@ function SpoilerFloat(props) {
         if (!props.isOpen) {
             body.current.style.height = '0';
         }
+
+        //посчитать координаты кнопки, когда шрифты загрузились
+        document.fonts.ready.then(() => initIcon());
     }, []);
 
     //новое состояние
@@ -68,8 +72,6 @@ function SpoilerFloat(props) {
             animateClose();
         }
     }, [open]);
-
-    useEffect(() => initIcon(), []);
 
     /**Инициализация координат кнопки Закрыть/Открыть */
     function initIcon() {
@@ -97,7 +99,7 @@ function SpoilerFloat(props) {
         const iconHeight = iconRef.current.offsetHeight;
 
         const newIconX = titleWidth + props.iconShiftX + 'px';
-        const newIconY = titleHeight - titleHeight / 2 - iconHeight / 2 + 'px';
+        const newIconY = titleHeight / 2 - iconHeight / 2 + 'px';
 
         setIconX(newIconX);
         setIconY(newIconY);

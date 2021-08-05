@@ -14,6 +14,7 @@ import {
     links
 } from './footer-desktop.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
+import PictureText from '../../libs/react-components/picture-text';
 
 const containerStyle = [container, mainContainer].join(" ");
 
@@ -35,22 +36,15 @@ function FooterDesktop() {
 
 const Address = () => (
     <div className={address}>
-        <div>
-            <img src={mapPin} alt="map_pin"/>
-            г. Курск, пр-т Ленинского комсомола 1Б
-        </div>
-        <div>
-            <a href="tel: +7 (906)577-49-34">
-                <img src={phone} alt="mail"/>
-                +7 (906)577-49-34
-            </a>
-        </div>
-        <div>
-            <a href="mailto: ecotranskursk@yandex.ru">
-                <img src={mail} alt="phone"/>
-                ecotranskursk@yandex.ru
-            </a>
-        </div>
+        <PictureText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
+
+        <a href="https://api.whatsapp.com/send/?phone=+79065774934">
+            <PictureText.Right image={phone} text='+7 (906)577-49-34'/>
+        </a>
+
+        <a href="mailto: ecotranskursk@yandex.ru">
+            <PictureText.Right image={mail} text='ecotranskursk@yandex.ru'/>
+        </a>
     </div>
 );
 

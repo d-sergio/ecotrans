@@ -1,6 +1,6 @@
 //Используется в animate-move.js
 
-import {Animation} from "../../../../animate/animate";
+import Animation from "../../../../animate/animate";
 import changeStyleProperty from '../../../../animate/draw-functions/change-style-property';
 import sliderTimeFunction from '../../../../animate/time-functions/slider-time-functions';
 /**Создать и вернуть объект анимации

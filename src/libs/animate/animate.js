@@ -36,7 +36,7 @@ import linear from './time-functions/linear';
  *      obj.cancel();
  * 
 */
-export class Animation{
+class Animation{
     constructor(animationProps) { 
         //Принимаемые параметры по умолчанию
         const defaults = {
@@ -123,3 +123,5 @@ export class Animation{
         }
     }
 }
+
+export default Animation;

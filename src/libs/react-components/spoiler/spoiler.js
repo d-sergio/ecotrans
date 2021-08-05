@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import usePrevious from '../../react/react-hooks/use-previous-hook';
-import {Animation} from "../../animate/animate";
+import Animation from "../../animate/animate";
 import spoilerTimeFunctions from '../../animate/time-functions/spoiler-time-function';
 import changeStyleProperty from '../../animate/draw-functions/change-style-property';
 import {titleStyle, iconStyle, bodyStyle} from "./spoiler.module.css";

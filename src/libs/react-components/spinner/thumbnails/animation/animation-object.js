@@ -1,4 +1,4 @@
-import {Animation} from '../../../../animate/animate';
+import Animation from '../../../../animate/animate';
 import changeTransformRotate from '../../../../animate/draw-functions/spinner-transform-rotate';
 import sliderTimeFunction from '../../../../animate/time-functions/slider-time-functions';
 

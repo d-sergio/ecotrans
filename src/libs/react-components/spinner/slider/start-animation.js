@@ -1,4 +1,4 @@
-import {Animation} from '../../../animate/animate';
+import Animation from '../../../animate/animate';
 import sliderTimeFunction from '../../../animate/time-functions/slider-time-functions';
 import changeStyleProperty from '../../../animate/draw-functions/change-style-property';
 import changeTransformScale from '../../../animate/draw-functions/change-transform-scale';

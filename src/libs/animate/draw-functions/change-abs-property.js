@@ -3,6 +3,7 @@
  * @param {node} element - элемент, прозрачность которого меняем
  * @param {string} property - изменяемое анимацией свойство стиля
  * @param {number} actualValue - рассчитанное значение, полученое из animate()
+ * @param {string} units - единицы измерения
  * 
  * Например, в animate можно передать
  * property = 'opacity', startValue = -1, finalValue = 1.

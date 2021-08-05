@@ -1,0 +1,10 @@
+.image{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+    .image{
+        width: 40px;
+        height: 40px;
+    }
+}

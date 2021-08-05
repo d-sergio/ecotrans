@@ -56,6 +56,7 @@ Subscribe.Mobile Subscribe.Desktop - Подписаться
 Arrow.MobileLeft Arrow.DesktopLeft - Стрелка влево
 Arrow.MobileRight Arrow.DesktopRight - Стрелка вправо
 Menu - кнопка мобильного меню
+ScrollUp - кнопка прокрутки страницы наверх
 
 Кнопка мобильного меню Buttons.Menu меняет вид через пропс open (true / false)
 

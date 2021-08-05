@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import usePrevious from '../../react/react-hooks/use-previous-hook';
-import {Animation} from "../../animate/animate";
+import Animation from "../../animate/animate";
 import spoilerTimeFunctions from '../../animate/time-functions/spoiler-time-function';
 import changeStyleProperty from '../../animate/draw-functions/change-style-property';
 import {titleStyle, iconStyle, bodyStyle} from "./spoiler-float-icon.module.css";
 import throttle from '../../throttle';
 
 /**Спойлер. Вариант с плавающей кнопкой "закрыть/открыть"
- * (позиционируется абсолютно)
+ * (позиционируется абсолютно). Кнопка всегда рядом с заголовком спойлера, даже
+ * если его текст переносится на новую строку
  * 
  * Props:
  * 

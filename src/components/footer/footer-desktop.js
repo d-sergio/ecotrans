@@ -50,7 +50,7 @@ const Address = () => (
 
  const Docs = () => (
     <div className={docs}>
-        <p><Link to='/'>Разрешительная документация</Link></p>
+        <p><Link to='/clients'>Разрешительная документация</Link></p>
         <p><Link to='/'>ИНН</Link></p>
         <p><Link to='/'>ОГРН</Link></p>
     </div>

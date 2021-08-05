@@ -8,7 +8,7 @@ import Subscribe from "./button-subscribe";
 import Arrow from "./button-arrow";
 import Menu from "./button-menu";
 import Order from './button-order';
-
+import ScrollUp from './button-scroll-up';
 
 const buttons = {
     Contact,
@@ -20,7 +20,8 @@ const buttons = {
     Subscribe,
     Arrow,
     Menu,
-    Order
+    Order,
+    ScrollUp
 };
 
 export default buttons;

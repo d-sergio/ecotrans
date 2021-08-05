@@ -16,7 +16,7 @@ function FooterMobile() {
                     ecotranskursk@yandex.ru
                 </a>
             </p>
-            <Link to='/'>Разрешительная документация</Link>
+            <Link to='/clients'>Разрешительная документация</Link>
             <p style={{marginTop: '1.5rem'}}>Сайт разработан we write</p>
             <p style={{marginTop: '0.75rem'}}>© ООО “Экотранс” 2021</p>
         </div>

@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 import {style, phone, logo} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
 import HeaderMenu from '../header-menu';
-import { Animation} from '../../libs/animate/animate';
+import Animation from '../../libs/animate/animate';
 import linear from '../../libs/animate/time-functions/linear';
 import changeStyleProperty from '../../libs/animate/draw-functions/change-style-property';
 

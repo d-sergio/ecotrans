@@ -15,6 +15,14 @@ import {styleMobile, logoMobile, textMobile, styleDesktop, logoDesktop, textDesk
  *  <path d="..." fill="значение"></path>
  *  <path d="..." fill="значение"></path>
  * </svg>
+ * 
+ * Props:
+ * @param {boolean} mobile - мобильный вид, если true
+ * @param {object} propStyle - стиль для контейнера карточки. Например:
+ * propStyle={marginTop: '10px'}
+ * @param {boolean} active - активный вид (подсветка), если true
+ * @param {node} logo - место для логотипа <svg></svg>
+ * @param {node | String} text - текст под логотипом
 */
 function CardsPartnersTemp(props) {
     const slide = useRef(null);

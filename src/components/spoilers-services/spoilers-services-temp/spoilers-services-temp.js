@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Buttons from '../../buttons';
 import {spoilerTitle} from '../../../common-styles/title.module.css';
-import {button, margin} from './spoilers-services-temp.module.css';
+import {button, margin, titleStyle} from './spoilers-services-temp.module.css';
 import MobileView from '../../root-layout/view-context';
 import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
@@ -29,7 +29,7 @@ function SpoilerServicesTemplate(props) {
         />;
 
     const buttonStyle = [mainContainer, button].join(" ");
-    const titleClass = [mainContainer, spoilerTitle].join(" ");
+    const titleClass = [mainContainer, spoilerTitle, titleStyle].join(" ");
 
     const bodySpoiler = (
         <div>

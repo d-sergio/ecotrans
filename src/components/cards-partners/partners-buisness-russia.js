@@ -15,7 +15,7 @@ import CardsPartnersTemp from "./cards-partners-template";
 function BuisnessRussia(props) {
     const height = props.mobile ? 55 : 69;
     const width = props.mobile ? 160 : 259;
-    const propStyle = props.mobile ? {marginTop: '0.5rem'} : false;    
+    const propStyle = props.mobile ? {marginTop: '0.5rem'} : {marginTop: '1rem'};    
 
     const logo = (
         <svg width={width} height={height} viewBox="0 -25 333 110" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,9 +23,7 @@ function BuisnessRussia(props) {
         </svg>
     );
     
-    const text = props.mobile ? 
-        <div>КРО ООО “Деловая<br/>Россия”</div>
-        : <div>КРО ООО “Деловая Россия”</div>;
+    const text = <div>КРО ООО “Деловая<br/>Россия”</div>;
 
     return(
         <CardsPartnersTemp propStyle={propStyle} mobile={props.mobile} active={props.active} logo={logo} text={text}/>

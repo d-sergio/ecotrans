@@ -29,7 +29,7 @@ function SpoilerProjectsTemplate(props) {
         />;
 
     const buttonStyle = [mainContainer, button].join(" ");
-    const titleClass = [spoilerTitle, mainContainer].join(" ");
+    const titleClass = [spoilerTitle, mainContainer, titleStyle].join(" ");
 
     const bodySpoiler = (
         <div>

@@ -14,7 +14,7 @@ function Technopark() {
     const resTitleStyle = [residentsTitle, mainContainer].join(" ");
     const resItemsStyle = [residentsItems, mainContainer].join(" ");
 
-    const title = <div>Экотехнопарк  Экотранс</div>;
+    const title = <>Экотехнопарк  Экотранс</>;
 
     const body = (
         <div className={paragraph}>

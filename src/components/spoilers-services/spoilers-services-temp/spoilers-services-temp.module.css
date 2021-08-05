@@ -8,11 +8,6 @@
     margin-bottom: 81px;
 }
 
-.titleStyle{
-    display: flex;
-    cursor: pointer;
-}
-
 @media screen and (max-width: 650px) {
     .button{
         align-items: center;

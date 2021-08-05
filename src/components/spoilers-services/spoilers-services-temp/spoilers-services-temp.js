@@ -1,22 +1,35 @@
 import React, { useContext } from 'react';
 import Buttons from '../../buttons';
-import Spoiler from '../../../libs/react-components/spoiler';
 import {spoilerTitle} from '../../../common-styles/title.module.css';
-import {button, margin, titleStyle} from './spoilers-services-temp.module.css';
+import {button, margin} from './spoilers-services-temp.module.css';
 import MobileView from '../../root-layout/view-context';
 import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
 
 function SpoilerServicesTemplate(props) {
+    const deskShift = 16;
+    const mobileShift = 28;
+
     const mobileView = useContext(MobileView);
 
-    const titleSpoiler = <div className={spoilerTitle}>{props.title}</div>;
+    const titleSpoiler = <div style={{display: 'inline'}}>{props.title}</div>;
 
-    const open = <img src={arrowPic} alt="spoiler arrow"/>;
-    const close = <img style={{transform: 'rotate(180deg'}} src={arrowPic} alt="spoiler arrow"/>;
+    const open =
+        <img
+            src={arrowPic}
+            alt="spoiler arrow"
+        />;
+
+    const close =
+        <img
+            style={{transform: 'rotate(180deg'}}
+            src={arrowPic}
+            alt="spoiler arrow"
+        />;
 
     const buttonStyle = [mainContainer, button].join(" ");
-    const titleClass = [titleStyle, mainContainer].join(" ");
+    const titleClass = [mainContainer, spoilerTitle].join(" ");
 
     const bodySpoiler = (
         <div>
@@ -29,7 +42,8 @@ function SpoilerServicesTemplate(props) {
 
     return (
         <div className={margin}>
-            <Spoiler
+            <SpoilerFloat
+                iconShiftX={mobileView ? mobileShift : deskShift}
                 title={titleSpoiler}
                 titleClass={titleClass}
                 body={bodySpoiler}

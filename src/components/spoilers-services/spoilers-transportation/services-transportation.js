@@ -9,9 +9,7 @@ function Transportation() {
     const greenDeskStyle = [green, greenDesktop].join(" ");
     const greenMobStyle = [green, greenMobile].join(" ");
 
-    const title = (
-        <>Транспортирование отходов 1-4 классов опасности</>
-    );
+    const title = <>Транспортирование отходов 1-4 классов опасности</>;
 
     const body = (
         <>

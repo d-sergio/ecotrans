@@ -7,7 +7,6 @@ import MobileView from '../root-layout/view-context';
 import config from '../../config/config-media-queries.json';
 import ScrollUp from '../../libs/react-components/scroll-up';
 import Buttons from '../buttons';
-import {mainContainer} from '../../common-styles/containers.module.css';
 
 function Layout(props) {
     const queries = {
@@ -50,17 +49,5 @@ function Layout(props) {
         </div>
     );
 }
-
-/*
-<ScrollUp
-    key={mobileView}
-    button={<Buttons.ScrollUp/>}
-    left={mobileView ? '80%' : '90%'}
-    top='90%'
-    end={mobileView ? 0 : 78}
->
-    {props.children}
-</ScrollUp>
-*/
 
 export default Layout;

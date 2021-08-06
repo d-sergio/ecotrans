@@ -7,3 +7,15 @@
 .arrow{
     margin-left: 10px;
 }
+
+/*Названия месяцев в календаре*/
+.calendarMonth{
+    font-family: "MontserratBold";
+    font-size: 1.25rem;
+}
+
+@media screen and (min-width: 576px) {
+    .calendarMonth{
+        font-size: 1.625rem;
+    }
+}

@@ -1,18 +1,22 @@
+/*Заголовки*/
 .title {
     font-family: "MontserratBold";
     font-size: 1.25rem;
     color: #219982;
 }
 
+/*Заголовки в спойлерах Услуг и Проектов*/
 .spoilerTitle{
     font-family: "MontserratBold";
     font-size: 1.25rem;
     color: #219982;
 }
 
-.calendarMonth{
-    font-family: "MontserratBold";
-    font-size: 1.25rem;
+/*Название страницы для мобильных (не в меню, а в контенте страницы)*/
+.mobilePageTitle{
+    font-size: 0.875rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 @media screen and (min-width: 576px) {

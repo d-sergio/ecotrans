@@ -2,8 +2,14 @@
     padding-top: 75px;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 576px) and (max-width: 1023px) {
     .topPaddings {
         padding-top: 41px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .topPaddings{
+        padding-top: 0;
     }
 }

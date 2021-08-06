@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {container} from './scroll-up.module.css';
 import Animation from '../../animate/animate';
 import timeFunc from '../../animate/time-functions/slider-time-functions';
@@ -10,8 +10,8 @@ import throttle from '../../throttle';
 function ScrollUp(props) {
     const throttling = 100;
     const buttonRef = useRef(null);
+    const mounted = useRef();
     const animateScroll = useRef(); //здесь будет объект анимации
-    const navHeight = useReducer(0); //высота навигационной панели в мобильном браузере
 
     const [left, setLeft] = useState( calcLeft() + 'px' );
     const [bottom, setBottom] = useState(0);
@@ -25,6 +25,8 @@ function ScrollUp(props) {
     function initCalcCords() {
         if (typeof window === undefined) return;
 
+        mounted.current = true;
+
         window.addEventListener('scroll', throttleSetCoords);
         window.addEventListener('resize', throttleSetCoords);
 
@@ -34,6 +36,8 @@ function ScrollUp(props) {
         return () => {
             if (typeof window === undefined) return;
 
+            mounted.current = false;
+
             window.removeEventListener('scroll', throttleSetCoords);
             window.removeEventListener('resize', throttleSetCoords);
         }
@@ -41,6 +45,8 @@ function ScrollUp(props) {
 
     /**Установить координаты кнопки*/
     function setCoords() {
+        if (!mounted.current) return;
+
         const x = calcLeft();
         const y = calcBottom();
 

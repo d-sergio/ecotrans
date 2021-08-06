@@ -10,7 +10,7 @@ import throttle from '../../throttle';
 function ScrollUp(props) {
     const throttling = 100;
     const buttonRef = useRef(null);
-    const animate = useRef(); //здесь будет объект анимации
+    const animateScroll = useRef(); //здесь будет объект анимации
 
     const [left, setLeft] = useState( calcLeft() + 'px' );
     const [bottom, setBottom] = useState(0);
@@ -32,29 +32,34 @@ function ScrollUp(props) {
         return () => {
             if (typeof window === undefined) return;
 
-            window.removeEventListener('scroll', setCoords);
+            window.removeEventListener('scroll', throttleSetCoords);
             window.removeEventListener('resize', throttleSetCoords);
         }
     }
 
     function setCoords() {
-        const contVisibleHeight = calcVisibleHeight();
-
         const x = calcLeft();
+        const y = calcBottom();
 
-        setLeft(x + 'px');
+        setLeft(x);
+        setBottom(y);
+    }
+
+    function calcBottom() {
+        const contVisibleHeight = calcVisibleHeight();
 
         if (contVisibleHeight < document.documentElement.clientHeight) {
 
-            //const x = document.documentElement.clientHeight - contVisibleHeight;
-            const x = window.visualViewport.height - contVisibleHeight;
-            setBottom(x + props.end + 'px');
+            //const y = document.documentElement.clientHeight - contVisibleHeight;
+            const y = window.visualViewport.height - contVisibleHeight;
+            return y + props.end + 'px';
 
         } else {
 
-            setBottom(props.bottom);
+            return props.bottom;
         }
     }
+    
 
     function calcLeft() {
         if (!buttonRef.current || typeof window === undefined) return 0;
@@ -67,7 +72,7 @@ function ScrollUp(props) {
             //const x = docWidth / 2 + props.contentWidth / 2 + props.shiftX;
             const x = docWidth / 2 + props.contentWidth / 2 - buttonWidth - props.shiftX;
 
-            return x;
+            return x + 'px';
 
         } else if (window.innerWidth <= props.outside && window.innerWidth > props.contentWidth) {
             
@@ -75,12 +80,12 @@ function ScrollUp(props) {
 
             const x = docWidth - props.shiftX - buttonWidth - paddings / 2;
 
-            return x;
+            return x + 'px';
         } else if (window.innerWidth <= props.outside && window.innerWidth <= props.contentWidth) {
 
             const x = docWidth - props.shiftX - buttonWidth;
 
-            return x;
+            return x + 'px';
         }
     }
 
@@ -103,7 +108,7 @@ function ScrollUp(props) {
 
     /**Прокрутка наверх */
     function scrollTop() {
-        if (animate.current) animate.current.cancel();
+        if (animateScroll.current) animateScroll.current.cancel();
 
         const currentScroll = document.documentElement.scrollTop;
 
@@ -118,8 +123,8 @@ function ScrollUp(props) {
             units: ''
         }
         
-        animate.current = new Animation(animProps);
-        animate.current.start();
+        animateScroll.current = new Animation(animProps);
+        animateScroll.current.start();
     }
 
     return (

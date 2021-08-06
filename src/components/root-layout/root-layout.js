@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import config from '../../config/config-media-queries.json';
 import MobileView from './view-context';
 import PageName from './page-name-context';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
-import mediaQuery from '../../libs/react/media-query';
 
 function RootLayout (props) {
     const queries = {
@@ -12,10 +11,6 @@ function RootLayout (props) {
     };
 
     const mobileView = useMediaQuery(queries);
-    
-    //const [mobileView, setMobileView] = useState(undefined);
-
-    //useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
 
     const [pageName, setPageName] = useState({
         name: '/',

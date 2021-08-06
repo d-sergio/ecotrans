@@ -1,12 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import {wrapper, content} from './layout.module.css';
-import mediaQuery from '../../libs/react/media-query';
 import MobileView from '../root-layout/view-context';
 import config from '../../config/config-media-queries.json';
 import ScrollUp from '../../libs/react-components/scroll-up';
 import Buttons from '../buttons';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 
 function Layout(props) {
     const queries = {
@@ -14,12 +14,9 @@ function Layout(props) {
         large: config.footer.large
     };
 
-
     const mobileView = useContext(MobileView);
 
-    const [footerView, setFooterView] = useState(undefined);
-
-    useEffect(() => mediaQuery(footerView, setFooterView, queries), []);
+    const footerView = useMediaQuery(queries);
 
     if (footerView === undefined) return null;  
 

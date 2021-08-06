@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Feedback from '../contact-feedback';
 import Address from '../contact-address';
 import LeafletMap from '../../libs/react-components/leaflet-map';
 import LeafletTooltip from '../../libs/react-components/leaflet-tooltip';
-import mediaQuery from '../../libs/react/media-query';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import {wrapper,
     container,
     title,
@@ -19,9 +19,7 @@ const queries = {
 
 /**Контент страницы Контакты */
 function BlockContact() {
-    const [mobileView, setMobileView] = useState(undefined);
-
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
+    const mobileView = useMediaQuery(queries);
     
     if (mobileView === undefined) return null;
 

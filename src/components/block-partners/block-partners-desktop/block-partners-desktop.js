@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import Partners from '../../cards-partners';
-import mediaQuery from '../../../libs/react/media-query';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
 
 const cards = [    
@@ -30,9 +30,7 @@ function BlockPartnersDesktop() {
         large: config.blockPartnersDesktop.large
     };
 
-    const [active, setActive] = useState(undefined);
-
-    useEffect(() => mediaQuery(active, setActive, queries), []);
+    const active = useMediaQuery(queries);
 
     if (active === undefined) return null;
 

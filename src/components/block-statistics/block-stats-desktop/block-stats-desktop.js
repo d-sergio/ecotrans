@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-statistics';
-import mediaQuery from '../../../libs/react/media-query';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
 import {freezeContainer, marginBottom} from './block-stats-desktop.module.css';
 
@@ -26,9 +26,7 @@ function BlockStatsDesktop() {
         large: config.blockStatsDesktop.large
     };
 
-    const [active, setActive] = useState(undefined);
-
-    useEffect(() => mediaQuery(active, setActive, queries), []);
+    const active = useMediaQuery(queries);
 
     if (active === undefined) return null;
 

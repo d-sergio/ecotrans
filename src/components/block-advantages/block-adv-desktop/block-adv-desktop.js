@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Slider from '../../../libs/react-components/sliders/slider';
 import Cards from '../../cards-advantages';
-import mediaQuery from '../../../libs/react/media-query';
 import config from '../../../config/config-media-queries.json';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {freezeContainer, container} from './block-adv-desktop.module.css';
 import {title} from '../../../common-styles/title.module.css';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 
 const advCards = [
     <Cards.Ecologist/>,
@@ -23,9 +23,7 @@ function BlockAdvDesktop() {
         large: config.blockAdvDesktop.large
     };
 
-    const [active, setActive] = useState(undefined);
-
-    useEffect(() => mediaQuery(active, setActive, queries), []);
+    const active = useMediaQuery(queries);
 
     if (active === undefined) return null;
 

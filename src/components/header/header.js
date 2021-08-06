@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import logoImg from '../../../static/images/logo.png';
 import phoneImg from '../../../static/images/phone.png';
-import mediaQuery from '../../libs/react/media-query';
 import config from '../../config/config-media-queries.json';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 
 /**Header
  * Props:
@@ -18,9 +18,7 @@ function Header() {
     const HeaderDesktop = React.lazy(() => import("./header-desktop"));
     const HeaderMobile = React.lazy(() => import("./header-mobile"));
 
-    const [mobileView, setMobileView] = useState(undefined);
-
-    useEffect(() => mediaQuery(mobileView, setMobileView, queries), []);
+    const mobileView = useMediaQuery(queries);
 
     if (mobileView === undefined) return null;
 

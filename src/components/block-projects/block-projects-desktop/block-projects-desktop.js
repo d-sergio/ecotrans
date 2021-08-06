@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from '../../../libs/react-components/sliders/desktop-projects/slider';
 import {container, marginBottom} from './block-projects-desktop.module.css';
 import Cards from '../../cards-projects';
 import Buttons from '../../buttons';
-import mediaQuery from '../../../libs/react/media-query';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 
 const cards = [
     <Cards.Technopark.Desktop/>,
@@ -25,9 +25,7 @@ function BlockProjectsDesktop() {
         large: "screen and (min-width: 1440px)"
     };
 
-    const [smallView, setSmallView] = useState();
-
-    useEffect(() => mediaQuery(smallView, setSmallView, queries), []);
+    const smallView = useMediaQuery(queries);
 
     if (smallView === undefined) return null; 
 

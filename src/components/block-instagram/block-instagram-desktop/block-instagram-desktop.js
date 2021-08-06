@@ -4,7 +4,7 @@ import {subscribe, text, button, images, container, stayInformed, svgStyle} from
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import Slider from '../../../libs/react-components/sliders/slider';
-import mediaQuery from '../../../libs/react/media-query';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
 
 import img1 from '../../../../static/images/instagram/desktop/1.png';
@@ -48,15 +48,13 @@ function BlockInstagramDesktop() {
         large: config.blockInstagramDesktop.large
     };
 
-    const [active, setActive] = useState(undefined);
+    const active = useMediaQuery(queries);
     const [scaleSvgFactor, setScaleSvgFactor] = useState([1, 1]);
 
     const containerRef = useRef(null);
     const subscribeRef = useRef(null);
     const buttonRef = useRef(null);
     const svgRef = useRef(null);
-
-    useEffect(() => mediaQuery(active, setActive, queries), []);
 
     /*Сначала хук с mediaQuery. После него рисуем кривую. Поэтому
     ждём, когда значение active перестанет быть undefined*/

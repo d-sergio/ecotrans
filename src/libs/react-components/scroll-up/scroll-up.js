@@ -23,7 +23,7 @@ function ScrollUp(props) {
     function initCalcCords() {
         if (typeof window === undefined) return;
 
-        window.addEventListener('scroll', setCoords);
+        window.addEventListener('scroll', throttleSetCoords);
         window.addEventListener('resize', throttleSetCoords);
 
         //ждём, когда загрузятся шрифты

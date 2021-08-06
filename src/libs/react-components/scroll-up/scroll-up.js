@@ -46,7 +46,8 @@ function ScrollUp(props) {
 
         if (contVisibleHeight < document.documentElement.clientHeight) {
 
-            const x = document.documentElement.clientHeight - contVisibleHeight;
+            //const x = document.documentElement.clientHeight - contVisibleHeight;
+            const x = window.visualViewport.height - contVisibleHeight;
             setBottom(x + props.end + 'px');
 
         } else {
@@ -63,7 +64,8 @@ function ScrollUp(props) {
 
         if (window.innerWidth > props.outside) {
 
-            const x = docWidth / 2 + props.contentWidth / 2 + props.shiftX;
+            //const x = docWidth / 2 + props.contentWidth / 2 + props.shiftX;
+            const x = docWidth / 2 + props.contentWidth / 2 - buttonWidth - props.shiftX;
 
             return x;
 

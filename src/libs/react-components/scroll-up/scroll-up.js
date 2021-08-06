@@ -12,6 +12,14 @@ function ScrollUp(props) {
     const buttonRef = useRef(null);
     const animateScroll = useRef(); //здесь будет объект анимации
 
+    /*Минимальная высота видимой части страницы.
+    В мобильных браузерах может появляться/прятаться навигационная панель,
+    меняя высоту видимой части страницы viewport. Чтобы около футера кнопка
+    не прыгала по вертикали на каждой анимации панели, будем запоминать
+    минимальный размер viewport и использовать его в дальнейшем для расчётов
+    bottom*/
+    const minViewportHeight = useRef(document.documentElement.clientHeight);
+
     const [left, setLeft] = useState( calcLeft() + 'px' );
     const [bottom, setBottom] = useState(0);
 
@@ -20,10 +28,11 @@ function ScrollUp(props) {
 
     const throttleSetCoords = throttle(setCoords, throttling);
 
+    /**Инициализация координат кнопки */
     function initCalcCords() {
         if (typeof window === undefined) return;
 
-        window.addEventListener('scroll', throttleSetCoords);
+        window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
 
         //ждём, когда загрузятся шрифты
@@ -32,11 +41,12 @@ function ScrollUp(props) {
         return () => {
             if (typeof window === undefined) return;
 
-            window.removeEventListener('scroll', throttleSetCoords);
+            window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
         }
     }
 
+    /**Установить координаты кнопки*/
     function setCoords() {
         const x = calcLeft();
         const y = calcBottom();
@@ -45,13 +55,24 @@ function ScrollUp(props) {
         setBottom(y);
     }
 
+    /**Посчитать отступ кнопки от нижней границы окна */
     function calcBottom() {
+        if (typeof window === undefined) return;
+
         const contVisibleHeight = calcVisibleHeight();
 
         if (contVisibleHeight < document.documentElement.clientHeight) {
 
+            const viewportHeight = window.visualViewport.height;
+
+            if (viewportHeight < minViewportHeight.current) {
+
+                minViewportHeight.current = viewportHeight;
+            }
+
             //const y = document.documentElement.clientHeight - contVisibleHeight;
-            const y = window.visualViewport.height - contVisibleHeight;
+            const y = minViewportHeight.current - contVisibleHeight;
+
             return y + props.end + 'px';
 
         } else {
@@ -60,28 +81,22 @@ function ScrollUp(props) {
         }
     }
     
-
+    /**Посчитать отступ кнопки от левой границы окна */
     function calcLeft() {
         if (!buttonRef.current || typeof window === undefined) return 0;
 
         const docWidth = window.innerWidth;
         const buttonWidth = buttonRef.current.offsetWidth;
 
-        if (window.innerWidth > props.outside) {
-
-            //const x = docWidth / 2 + props.contentWidth / 2 + props.shiftX;
-            const x = docWidth / 2 + props.contentWidth / 2 - buttonWidth - props.shiftX;
-
-            return x + 'px';
-
-        } else if (window.innerWidth <= props.outside && window.innerWidth > props.contentWidth) {
+        if (window.innerWidth > props.contentWidth) {
             
             const paddings = docWidth - props.contentWidth;
 
             const x = docWidth - props.shiftX - buttonWidth - paddings / 2;
 
             return x + 'px';
-        } else if (window.innerWidth <= props.outside && window.innerWidth <= props.contentWidth) {
+
+        } else if (window.innerWidth <= props.contentWidth) {
 
             const x = docWidth - props.shiftX - buttonWidth;
 
@@ -145,9 +160,8 @@ export default ScrollUp;
 
 ScrollUp.defaultProps = {
     bottom: '20px',
-    end: 20,
+    end: 0,
     duration: 500,
     contentWidth: 1440,
-    shiftX: 20,
-    outside: 1670
+    shiftX: 20
 };

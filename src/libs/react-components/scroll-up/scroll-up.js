@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import {container} from './scroll-up.module.css';
 import Animation from '../../animate/animate';
 import timeFunc from '../../animate/time-functions/slider-time-functions';
@@ -11,14 +11,7 @@ function ScrollUp(props) {
     const throttling = 100;
     const buttonRef = useRef(null);
     const animateScroll = useRef(); //здесь будет объект анимации
-
-    /*Минимальная высота видимой части страницы.
-    В мобильных браузерах может появляться/прятаться навигационная панель,
-    меняя высоту видимой части страницы viewport. Чтобы около футера кнопка
-    не прыгала по вертикали на каждой анимации панели, будем запоминать
-    минимальный размер viewport и использовать его в дальнейшем для расчётов
-    bottom*/
-    const minViewportHeight = useRef(document.documentElement.clientHeight);
+    const navHeight = useReducer(0); //высота навигационной панели в мобильном браузере
 
     const [left, setLeft] = useState( calcLeft() + 'px' );
     const [bottom, setBottom] = useState(0);
@@ -32,7 +25,7 @@ function ScrollUp(props) {
     function initCalcCords() {
         if (typeof window === undefined) return;
 
-        window.addEventListener('scroll', setCoords);
+        window.addEventListener('scroll', throttleSetCoords);
         window.addEventListener('resize', throttleSetCoords);
 
         //ждём, когда загрузятся шрифты
@@ -41,7 +34,7 @@ function ScrollUp(props) {
         return () => {
             if (typeof window === undefined) return;
 
-            window.removeEventListener('scroll', setCoords);
+            window.removeEventListener('scroll', throttleSetCoords);
             window.removeEventListener('resize', throttleSetCoords);
         }
     }
@@ -62,16 +55,8 @@ function ScrollUp(props) {
         const contVisibleHeight = calcVisibleHeight();
 
         if (contVisibleHeight < document.documentElement.clientHeight) {
-
-            const viewportHeight = window.visualViewport.height;
-
-            if (viewportHeight < minViewportHeight.current) {
-
-                minViewportHeight.current = viewportHeight;
-            }
-
             //const y = document.documentElement.clientHeight - contVisibleHeight;
-            const y = minViewportHeight.current - contVisibleHeight;
+            const y = window.visualViewport.height - contVisibleHeight;
 
             return y + props.end + 'px';
 

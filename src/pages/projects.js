@@ -3,7 +3,7 @@ import { navigate } from '@reach/router';
 import PageName from '../components/root-layout/page-name-context';
 import Layout from '../components/layout/layout';
 import SpoilersProjects from '../components/spoilers-projects';
-import {topBottomPaddings} from '../common-styles/pages.module.css';
+import {topPaddings} from '../common-styles/pages.module.css';
 
 function Services() {
     const pageName = useContext(PageName);
@@ -12,7 +12,7 @@ function Services() {
 
     return (
         <Layout>
-            <div className={topBottomPaddings}>
+            <div style={{paddingBottom: '10px'}} className={topPaddings}>
                 <SpoilersProjects.Technopark/>
                 <SpoilersProjects.GreenPhone/>
                 <SpoilersProjects.Education/>

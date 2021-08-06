@@ -1,0 +1,9 @@
+.bodyStyle{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.arrow{
+    margin-left: 10px;
+}

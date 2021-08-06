@@ -36,7 +36,7 @@ function Layout(props) {
                         key={mobileView}
                         button={<Buttons.ScrollUp/>}
                         contentWidth={1440}
-                        shiftX={mobileView ? 30 : 88}
+                        shiftX={mobileView ? 20 : 88}
                         bottom='30px'
                     />
 

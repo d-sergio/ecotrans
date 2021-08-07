@@ -6,7 +6,7 @@ function PictureTextOver(props) {
     return(
         <div className={container}>
             <img className={props.className || image} src={props.image} alt='day'/>
-            <p className={text}>{props.text}</p>
+            <div className={text}>{props.text}</div>
         </div>
     );
 }

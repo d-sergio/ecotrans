@@ -3,12 +3,31 @@ import {container} from './scroll-up.module.css';
 import Animation from '../../animate/animate';
 import timeFunc from '../../animate/time-functions/slider-time-functions';
 import changeJsProperty from '../../animate/draw-functions/change-js-property';
-import getDocumentHeight from '../../get-document-height';
-import throttle from '../../throttle';
+import getDocumentHeight from '../../common/get-document-height';
+import throttle from '../../common/throttle';
 
-/**Кнопка прокрутки в начало страницы */
+/**Кнопка прокрутки в начало страницы
+ * 
+ * Props:
+ * @param {Node} button - внешний вид кнопки
+ * @param {number} contentWidth - ширина контента (px), центрированного по ширине
+ * страницы. Кнопа размещается внутри, рядом с правой границей контента.
+ * По умолчнаю 1440.
+ * @param {number} shiftX - сдвиг относительно положения по умолчанию в пикселях.
+ * Значение > 0 сдвигает кнопку влево.
+ * @param {String} bottom - расположение кнопки относительно нижней части окна.
+ * Надо указать единицы измерения. Например: bottom='30px', buttom='10%'
+ * @param {number} end - когда страница прокручена до конца, кнопка ложится на
+ * футер. Положительное значение end сдвинет кнопку выше от футера на указаннное
+ * число пикселей
+ * @param {number} duration - длительность (мс) анимации прокрутки наверх.
+ * По умолчаню 500.
+ * @param {number} throttle - минимальное время (мс) между рассчётами позиции кнопки,
+ * чтобы уменьшить нагрузку на браузер (100 по умолчанию)
+ * 
+ * Использование см. в readme.txt
+ */
 function ScrollUp(props) {
-    const throttling = 100;
     const buttonRef = useRef(null);
     const mounted = useRef();
     const animateScroll = useRef(); //здесь будет объект анимации
@@ -19,7 +38,7 @@ function ScrollUp(props) {
     useEffect(() => initCalcCords(), []);
     useEffect(() => setBottom(props.bottom), []);
 
-    const throttleSetCoords = throttle(setCoords, throttling);
+    const throttleSetCoords = throttle(setCoords, props.throttle);
 
     /**Инициализация координат кнопки */
     function initCalcCords() {
@@ -61,8 +80,13 @@ function ScrollUp(props) {
         const contVisibleHeight = calcVisibleHeight();
 
         if (contVisibleHeight < document.documentElement.clientHeight) {
-            //const y = document.documentElement.clientHeight - contVisibleHeight;
-            const y = window.visualViewport.height - contVisibleHeight;
+            
+            //не все браузеры поддерживают window.visualViewport
+            const windowHeight = window.visualViewport ?
+                window.visualViewport.height
+                : document.documentElement.clientHeight;
+
+            const y = windowHeight - contVisibleHeight;
 
             return y + props.end + 'px';
 
@@ -96,16 +120,17 @@ function ScrollUp(props) {
     }
 
     /**Высота видимой части контента =
-     * высота контента - прокрутка документа - высота кнопки
+     * высота контента - прокрутка документа - высота футера
     */
     function calcVisibleHeight() {
         if (typeof window === undefined) return;
 
         const footer = document.getElementsByTagName('footer')[0];
 
+        const footerHeight = footer ? footer.scrollHeight : 0;
+
         const docHeight = getDocumentHeight();
-        const docScroll = window.pageYOffset;
-        const footerHeight = footer.scrollHeight;
+        const docScroll = window.pageYOffset;        
 
         const contVisibleHeight = docHeight - footerHeight - docScroll;
 
@@ -150,9 +175,10 @@ function ScrollUp(props) {
 export default ScrollUp;
 
 ScrollUp.defaultProps = {
-    bottom: '20px',
+    bottom: '0px',
     end: 0,
     duration: 500,
     contentWidth: 1440,
-    shiftX: 20
+    shiftX: 0,
+    throttle: 100
 };

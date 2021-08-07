@@ -7,12 +7,19 @@ import april15 from '../../../static/images/calendar/april/15.webp';
 import april18_22 from '../../../static/images/calendar/april/18-22.webp';
 import april19 from '../../../static/images/calendar/april/19.webp';
 
+import april1Full from '../../../static/images/calendar/april/full-1.png';
+
 function April1() {
     const day = '1 Апреля';
     const name = <>Международный день<br/>птиц</>;
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april1}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april1}
+            fullImage={april1Full}
+        />
     );
 }
 
@@ -21,7 +28,12 @@ function April5() {
     const name = 'День геолога';
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april5}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april5}
+            fullImage={april1Full}
+        />
     );
 }
 
@@ -30,7 +42,12 @@ function April7() {
     const name = <>Всемирный день<br/>охраны здоровья</>;
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april7}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april7}
+            fullImage={april1Full}
+        />
     );
 }
 
@@ -39,7 +56,12 @@ function April15() {
     const name = <>День экологических<br/>знаний</>;
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april15}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april15}
+            fullImage={april1Full}
+        />
     );
 }
 
@@ -48,7 +70,12 @@ function April18_22() {
     const name = 'Марш парков';
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april18_22}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april18_22}
+            fullImage={april1Full}
+        />
     );
 }
 
@@ -57,7 +84,12 @@ function April19() {
     const name = 'День подснежника';
 
     return(
-        <CardsCalendarTemp day={day} name={name} image={april19}/>
+        <CardsCalendarTemp
+            day={day}
+            name={name}
+            thumb={april19}
+            fullImage={april1Full}
+        />
     );
 }
 

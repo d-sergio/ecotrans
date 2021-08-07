@@ -1,0 +1,15 @@
+.backgroundCloseIcon{
+    position: fixed;
+    right: 100px;
+    top: 28px;
+
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 78%;
+}

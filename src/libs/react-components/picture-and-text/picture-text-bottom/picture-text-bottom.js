@@ -9,7 +9,7 @@ function PictureTextBottom(props) {
                 <img className={props.className || image} src={props.image} alt="picture"/>
             </div>
             
-            <p className={text}>{props.text}</p>
+            <div className={text}>{props.text}</div>
         </div>
     );
 }

@@ -182,6 +182,7 @@ function File(props) {
     return(
         <div className={container}>
             <input
+                readOnly
                 ref={inputRef}
                 value={fileName ? fileName : values[props.name]}
                 type="text"

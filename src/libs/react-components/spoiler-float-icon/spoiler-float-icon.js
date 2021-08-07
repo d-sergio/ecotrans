@@ -4,7 +4,7 @@ import Animation from "../../animate/animate";
 import spoilerTimeFunctions from '../../animate/time-functions/spoiler-time-function';
 import changeStyleProperty from '../../animate/draw-functions/change-style-property';
 import {titleStyle, iconStyle, bodyStyle} from "./spoiler-float-icon.module.css";
-import throttle from '../../throttle';
+import throttle from '../../common/throttle';
 
 /**Спойлер. Вариант с плавающей кнопкой "закрыть/открыть"
  * (позиционируется абсолютно). Кнопка всегда рядом с заголовком спойлера, даже

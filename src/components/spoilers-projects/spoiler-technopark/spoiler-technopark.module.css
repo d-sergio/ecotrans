@@ -4,10 +4,10 @@
     justify-content: space-around;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 10px;
 }
 
 .residentsTitle{
+    margin-top: 36px;
     font-family: 'MontserratBold';
     text-align: center;
 }
@@ -15,15 +15,29 @@
 .residentsImage{
     max-width: 100%;
     height: auto;
+
+    margin-top: 52px;
+}
+
+.residentText{
+    margin: 30px 10px 0 10px;
+    font-size: 1.125rem;
 }
 
 @media screen and (max-width: 575px) {
     .residentsTitle{
+        margin-top: 16px;
         text-align: unset;
     }
 
     .residentsImage{
         width: 121px;
         height: 121px;
+
+        margin-top: 22px;
+    }
+
+    .residentText{
+        margin-top: 7px;
     }
 }

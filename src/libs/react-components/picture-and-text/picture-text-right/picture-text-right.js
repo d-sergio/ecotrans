@@ -7,7 +7,7 @@ function PictureTextRight(props) {
         <div className={container}>
             <img className={props.className || image} src={props.image} alt="picture"/>
             
-            <p className={text}>{props.text}</p>
+            <div className={text}>{props.text}</div>
         </div>
     );
 }

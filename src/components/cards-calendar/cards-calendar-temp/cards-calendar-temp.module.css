@@ -14,11 +14,6 @@
     text-align: center;
 }
 
-.image{
-    max-width: 100%;
-    height: auto;
-}
-
 @media screen and (max-width: 575px) {
     .container{
         width: 100%;

@@ -18,7 +18,7 @@ function April1() {
             day={day}
             name={name}
             thumb={april1}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }
@@ -32,7 +32,7 @@ function April5() {
             day={day}
             name={name}
             thumb={april5}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }
@@ -46,7 +46,7 @@ function April7() {
             day={day}
             name={name}
             thumb={april7}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }
@@ -60,7 +60,7 @@ function April15() {
             day={day}
             name={name}
             thumb={april15}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }
@@ -74,7 +74,7 @@ function April18_22() {
             day={day}
             name={name}
             thumb={april18_22}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }
@@ -88,7 +88,7 @@ function April19() {
             day={day}
             name={name}
             thumb={april19}
-            fullImage={april1Full}
+            fullSizeImage={april1Full}
         />
     );
 }

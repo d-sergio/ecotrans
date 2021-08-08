@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PictureText from '../../../libs/react-components/picture-and-text';
-import {container, day, name, image} from './cards-calendar-temp.module.css';
-import PopupCalendar from '../../popup-calendar/popup-calendar';
+import {container, day, name} from './cards-calendar-temp.module.css';
+import AttachPopupCalendar from '../../attach-popup-calendar-temp';
 
 /**Шаблон карточки для календаря
  * 
  * Props:
  * @param {String | Node} day - день (число и месяц, например)
  * @param {String | Node} name - название дня по календарю
+ * @param {String} thumb - картинка (миниатюра)
+ * @param {String} fullSizeImage - картинка в полном размере. Передаётся
+ * дальше в <AttachPopupCalendar>. Открывается как попап
 */
 function CardsCalendarTemp(props) {
-    const [isOpen, setOpen] = useState(false);
 
+    /**Текст карточки */
     const text = 
         <>
             <div className={day}>
@@ -23,30 +26,14 @@ function CardsCalendarTemp(props) {
             </div>
         </>;
 
-    function showFullCard() {
-        if (!isOpen) setOpen(true);
-    }
-
     return(
-        <div
-            className={container}
-            onClick={showFullCard}
-        >
-            <PopupCalendar
-                key={isOpen}
-                isOpen={isOpen}
-                closeFunction={() => setOpen(false)}
-            >
-                <img
-                    className={image}
-                    src={props.fullImage}
-                    alt='day'
-                />
+        <AttachPopupCalendar fullSizeImage={props.fullSizeImage}>
 
-            </PopupCalendar>
+            <div className={container}>
+                <PictureText.Over image={props.thumb} text={text}/>
+            </div>
 
-            <PictureText.Over image={props.thumb} text={text}/>
-        </div>
+        </AttachPopupCalendar>
     );
 }
 

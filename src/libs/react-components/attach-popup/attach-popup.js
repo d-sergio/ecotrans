@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Popup from './popup';
+import Popup from './popup/popup';
 
 /**Попап, прикрепляемый к дочернему элементу
  * 
@@ -25,20 +25,18 @@ import Popup from './popup';
  * @param {Node} popup - попап
  * @param {boolean} defaultClose - true (по умолчанию) разрешает закрывать попап
  * кликом по пространству вокруг него
+ * @param {number} duration - время анимации (мс) открытия/закрытия попапа
+ * (300 по умолчанию)
  */
 function AttachPopup(props) {
     //прокрутка страницы предотвращаеся?
     const scrollPrevented = useRef(false);
 
-    /*Свойство стиля display попапа:
-    'flex' - попап открыт
-    'none' - попап закрыт
-    */
-    const [display, setDisplay] = useState('none');
+    const [isOpen, setOpen] = useState(false);
 
     useEffect(initialize, []);
 
-    useEffect(preventScroll, [display]);
+    useEffect(preventScroll, [isOpen]);
 
     /**Инициализация */
     function initialize() {
@@ -46,32 +44,30 @@ function AttachPopup(props) {
 
         if (props.isOpen) {
         
-            setDisplay('flex');
+            setOpen(true);
 
         } else {
 
-            setDisplay('none');
+            setOpen(false);
         }
     }
 
     /**Обработчики для предотвращения прокрутки страницы */
     function preventScroll() {
-        if (display === 'flex' && !scrollPrevented.current) {
+        if (isOpen && !scrollPrevented.current) {
             
             scrollPrevented.current = true;
 
             window.addEventListener('wheel', preventScrollEvent, {passive: false});
             window.addEventListener('touchmove', preventScrollEvent, {passive: false});
 
-        } else if (display === 'none' && scrollPrevented.current) {
+        } else if (!isOpen && scrollPrevented.current) {
 
             scrollPrevented.current = false;
 
             window.removeEventListener('wheel', preventScrollEvent, {passive: false});
             window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
         }
-
-        setDisplay(display === 'flex' ? 'flex' : 'none');
 
         return () => {            
             if (scrollPrevented.current) {
@@ -87,7 +83,7 @@ function AttachPopup(props) {
     }
 
     function openPopup() {
-        if (display === 'none') setDisplay('flex');
+        if (!isOpen) setOpen(true);
     }
 
     /**props.children - элемент, к которому прикреплён попап */
@@ -98,10 +94,11 @@ function AttachPopup(props) {
 
             <Popup
                 defaultClose={props.defaultClose}
-                display={display}
-                closePopup={() => setDisplay('none')}
+                isOpen={isOpen}
+                closePopup={() => setOpen(false)}
                 className={props.className}
                 popup={props.popup}
+                duration={props.duration}
             />
 
         </div>
@@ -112,5 +109,6 @@ export default AttachPopup;
 
 AttachPopup.defaultProps = {
     isOpen: false,
-    defaultClose: true
+    defaultClose: true,
+    duration: 300
 };

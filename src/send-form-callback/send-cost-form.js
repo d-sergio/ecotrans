@@ -11,9 +11,11 @@ async function sendCostForm(form) {
 
         const result = await response.json();
 
-        console.log(`Ответ сервера: ${result.message}`);
+        return result;
     } catch(e) {
         console.log('Ошибка при отправке формы');
+
+        return false;
     }
 }
 

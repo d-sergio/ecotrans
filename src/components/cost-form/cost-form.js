@@ -1,13 +1,17 @@
-import React, { useContext} from 'react';
+import React, { useContext, useState} from 'react';
 import Buttons from '../buttons';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './cost-form.module.css';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import sendCostForm from '../../send-form-callback/send-cost-form';
-import checkFileSize from '../../libs/react-components/forms-and-fields/validate/file-size';
+import ModalEmailSent from '../modal-email-sent';
+import Modal from '../../libs/react-components/modals';
 
 function CostForm() {
     const mobileView = useContext(MobileView);
+
+    //Если форма отпралена, то будет показано модальное окно
+    const [isSubmitting, setSubmitting] = useState(false);
 
     const formName = 'cost';
     const inputFileName = 'passport';
@@ -54,51 +58,71 @@ function CostForm() {
         passport: () => Forms.Validate.fileSize(formName, inputFileName, maxFileSize)
     };
 
+    /**Отправка формы */
+    async function sendForm(formData) {
+        const result = await sendCostForm(formData);
+
+        if (result) {
+            console.log(`Ответ сервера: ${result.message}`);
+
+            if (result.message === 'done') setSubmitting(true);
+        }
+    }
+
     return(
-        <Forms.Form
-            className={form}
-            validate={validate}
-            onSubmit={sendCostForm}
-            initialValues={initialValues}
-            name={formName}
-        >
-            <Forms.Fields.Input
-                classNames={inputClasses}
-                name='inn'
-                error='none'
-            />
+        <>
+            <Forms.Form
+                className={form}
+                validate={validate}
+                onSubmit={sendForm}
+                initialValues={initialValues}
+                name={formName}
+            >
+                <Forms.Fields.Input
+                    classNames={inputClasses}
+                    name='inn'
+                    error='none'
+                />
 
-            <Forms.Fields.Input
-                classNames={inputClasses}
-                name='fkko'
-                error='none'
-            />
+                <Forms.Fields.Input
+                    classNames={inputClasses}
+                    name='fkko'
+                    error='none'
+                />
 
-            <Forms.Fields.Input
-                classNames={inputClasses}
-                name='phone'
-                error='none'
-            />
+                <Forms.Fields.Input
+                    classNames={inputClasses}
+                    name='phone'
+                    error='none'
+                />
 
-            <Forms.Fields.Input
-                classNames={inputClasses}
-                name='email'
-                error='none'
-            />
-            
-            <Forms.Fields.File
-                classNames={passportClasses}
-                name={inputFileName}
-                accept={fileTypes}
-                error='none'
-            />
+                <Forms.Fields.Input
+                    classNames={inputClasses}
+                    name='email'
+                    error='none'
+                />
+                
+                <Forms.Fields.File
+                    classNames={passportClasses}
+                    name={inputFileName}
+                    accept={fileTypes}
+                    error='none'
+                />
 
-            <div className={button}>
-                {
-                    mobileView ? <Buttons.Send.Mobile/> : <Buttons.Send.Desktop/>
-                }
-            </div>
-        </Forms.Form>
+                <div className={button}>
+                    {
+                        mobileView ? <Buttons.Send.Mobile/> : <Buttons.Send.Desktop/>
+                    }
+                </div>
+
+            </Forms.Form>
+
+            <Modal.Open
+                isOpen={isSubmitting}
+                modal={<ModalEmailSent/>}
+                closeModal={() => setSubmitting(false)}
+            />
+        </>
     );
 }
 

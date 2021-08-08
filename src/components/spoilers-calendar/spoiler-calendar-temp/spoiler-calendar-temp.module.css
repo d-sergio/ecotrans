@@ -1,7 +1,6 @@
 .bodyStyle{
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: block;
+    text-align: center;
 }
 
 .arrow{
@@ -15,6 +14,12 @@
 }
 
 @media screen and (min-width: 576px) {
+    .bodyStyle{
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
     .calendarMonth{
         font-size: 1.625rem;
     }

@@ -3,14 +3,16 @@ import BatchControl from '../../../animate/batch-control';
 import changeStyleProperty from '../../../animate/draw-functions/change-style-property';
 import sliderTimeFunction from '../../../animate/time-functions/slider-time-functions';
 
-function animateClose({popupRef, animate, duration}) {
-    if (!popupRef.current) return;
+const marginTop = 20;
+
+function animateClose({modalRef, animate, duration}) {
+    if (!modalRef.current) return;
 
     if (animate.current) animate.current.cancel();
 
-    const background = popupRef.current;
+    const background = modalRef.current;
 
-    const popupContent = popupRef.current.firstChild;
+    const modalContent = modalRef.current.firstChild;
 
     const backgroundCallback = () => {
         background.style.display = 'none';
@@ -21,7 +23,7 @@ function animateClose({popupRef, animate, duration}) {
         timing: sliderTimeFunction.inverted,
         duration: duration,
         draw: changeStyleProperty,
-        element: popupRef.current,
+        element: modalRef.current,
         property: 'opacity',
         startValue: 1,
         finalValue: 0,
@@ -29,31 +31,31 @@ function animateClose({popupRef, animate, duration}) {
     };
 
     /*Контент двигается снизу вверх */
-    const popupMove = {
+    const modalMove = {
         timing: sliderTimeFunction.inverted,
         duration: duration,
         draw: changeStyleProperty,
-        element: popupContent,
+        element: modalContent,
         property: 'marginTop',
         startValue: 0,
-        finalValue: -50,
+        finalValue: -marginTop,
         units: '%'
     };
 
     /*Контент меняет прозрачность от 1 до 0*/
-    const popupOpacity = {
+    const modalOpacity = {
         timing: sliderTimeFunction.inverted,
         duration: duration,
         draw: changeStyleProperty,
-        element: popupContent,
+        element: modalContent,
         property: 'opacity',
         startValue: 1,
         finalValue: 0
     };
 
     const animateBackground = new Animation(backgroundProps);
-    const animateMove = new Animation(popupMove);
-    const animateOpacity = new Animation(popupOpacity);
+    const animateMove = new Animation(modalMove);
+    const animateOpacity = new Animation(modalOpacity);
 
     const animateBatch = [
         animateBackground,

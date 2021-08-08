@@ -63,7 +63,7 @@ function BlockContact() {
                                 view={tooltipView}
                                 zoom={15}
                                 marker={[51.662725, 36.134059]}
-                                popup={"<b>этаж 2, комната 17</b>"}
+                                modal={"<b>этаж 2, комната 17</b>"}
                             />
                             
                         </LeafletTooltip>

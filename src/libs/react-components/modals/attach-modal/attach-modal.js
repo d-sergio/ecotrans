@@ -1,34 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Popup from './popup/popup';
+import Modal from '../modal';
 
-/**Попап, прикрепляемый к дочернему элементу
+/**Модальное окно, прикрепляемый к дочернему элементу
  * 
  * Использование:
  * 
- * <AttachPopup popup={<Popup/>}>
- *      <ButtonOpenPopup/>
- * </AttachPopup>
+ * <AttachModal modal={<Modal/>}>
+ *      <ButtonOpenModal/>
+ * </AttachModal>
  * 
- * <Popup/> - ваш попап
- * <ButtonOpenPopup/> - дочерний элемент, при клике на котором откроется
- * попап
+ * <Modal/> - ваше модальное окно
+ * <ButtonOpenModal/> - дочерний элемент, при клике на котором откроется
+ * модальное окно
  * 
- * Создать кнопку закрытия попапа можно, добавив элементу атрибут data-close-popup.
+ * Создать кнопку закрытия модального окна можно, добавив элементу атрибут data-close-modal.
  * 
- * По умолчанию попап закрывается кликом по пространству вокруг него. Это можно
+ * По умолчанию модальное окно закрывается кликом по пространству вокруг него. Это можно
  * изменить через пропс defaultClose (см. ниже)
  * 
  * Props:
  * 
- * @param {boolean} isOpen - открыт ли попап по умолчанию
- * @param {String} className - css-стили попапа
- * @param {Node} popup - попап
- * @param {boolean} defaultClose - true (по умолчанию) разрешает закрывать попап
- * кликом по пространству вокруг него
- * @param {number} duration - время анимации (мс) открытия/закрытия попапа
- * (300 по умолчанию)
+ * @param {boolean} isOpen - открыт ли модальное окно по умолчанию
+ * @param {String} className - css-стили модальное окно
+ * @param {Node} modal - модальное окно
+ * @param {boolean} defaultClose - true (по умолчанию) разрешает закрывать
+ * модальное окно кликом по пространству вокруг него
+ * @param {number} duration - время анимации (мс) открытия/закрытия
+ * модального окна (300 по умолчанию)
  */
-function AttachPopup(props) {
+function AttachModal(props) {
     //прокрутка страницы предотвращаеся?
     const scrollPrevented = useRef(false);
 
@@ -82,22 +82,22 @@ function AttachPopup(props) {
         e.preventDefault();
     }
 
-    function openPopup() {
+    function openModal() {
         if (!isOpen) setOpen(true);
     }
 
-    /**props.children - элемент, к которому прикреплён попап */
+    /**props.children - элемент, к которому прикреплён модальное окно */
     return (
-        <div onClick={openPopup}>
+        <div onClick={openModal}>
             
             {props.children}
 
-            <Popup
+            <Modal
                 defaultClose={props.defaultClose}
                 isOpen={isOpen}
-                closePopup={() => setOpen(false)}
+                closeModal={() => setOpen(false)}
                 className={props.className}
-                popup={props.popup}
+                modal={props.modal}
                 duration={props.duration}
             />
 
@@ -105,9 +105,9 @@ function AttachPopup(props) {
     );
 }
 
-export default AttachPopup;
+export default AttachModal;
 
-AttachPopup.defaultProps = {
+AttachModal.defaultProps = {
     isOpen: false,
     defaultClose: true,
     duration: 300

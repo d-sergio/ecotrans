@@ -1,5 +1,5 @@
 .container{
-    width: 405px;
+    width: 100%;
     margin-bottom: 10px;
     margin-top: 26px;
 
@@ -14,8 +14,9 @@
     text-align: center;
 }
 
-@media screen and (max-width: 575px) {
+/*Календарь*/
+@media screen and (min-width: 576px) {
     .container{
-        width: 100%;
+        width: 405px;
     }
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {container} from '../attach-popup.module.css';
 import animateOpen from './animate-open';
 import animateClose from './animate-close';

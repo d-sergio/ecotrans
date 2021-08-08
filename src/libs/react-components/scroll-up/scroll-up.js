@@ -24,6 +24,9 @@ import throttle from '../../common/throttle';
  * По умолчаню 500.
  * @param {number} throttle - минимальное время (мс) между рассчётами позиции кнопки,
  * чтобы уменьшить нагрузку на браузер (100 по умолчанию)
+ * @param {number} show - на сколько надо прокрутить страницу вниз относительно
+ * высоты окна, чтобы появилась кнопка. От 0 до 1. Например:
+ * show={0.3} - кнопка появится при прокрутке равной 30% от высоты окна
  * 
  * Использование см. в readme.txt
  */
@@ -33,7 +36,7 @@ function ScrollUp(props) {
     const animateScroll = useRef(); //здесь будет объект анимации
 
     const [left, setLeft] = useState( calcLeft() + 'px' );
-    const [bottom, setBottom] = useState(0);
+    const [bottom, setBottom] = useState('-100px');
 
     useEffect(() => initCalcCords(), []);
     useEffect(() => setBottom(props.bottom), []);
@@ -75,16 +78,20 @@ function ScrollUp(props) {
 
     /**Посчитать отступ кнопки от нижней границы окна */
     function calcBottom() {
-        if (typeof window === undefined) return;
+        if (typeof window === undefined || !buttonRef.current) return;
 
         const contVisibleHeight = calcVisibleHeight();
 
+        //не все браузеры поддерживают window.visualViewport
+        const windowHeight = window.visualViewport ?
+        window.visualViewport.height
+        : document.documentElement.clientHeight; 
+
+        if (document.documentElement.scrollTop < windowHeight * props.show) {
+            return (-buttonRef.current.offsetHeight + 'px');
+        }
+
         if (contVisibleHeight < document.documentElement.clientHeight) {
-            
-            //не все браузеры поддерживают window.visualViewport
-            const windowHeight = window.visualViewport ?
-                window.visualViewport.height
-                : document.documentElement.clientHeight;
 
             const y = windowHeight - contVisibleHeight;
 
@@ -100,20 +107,20 @@ function ScrollUp(props) {
     function calcLeft() {
         if (!buttonRef.current || typeof window === undefined) return 0;
 
-        const docWidth = window.innerWidth;
+        const windowWidth = window.innerWidth;
         const buttonWidth = buttonRef.current.offsetWidth;
 
         if (window.innerWidth > props.contentWidth) {
             
-            const paddings = docWidth - props.contentWidth;
+            const paddings = windowWidth - props.contentWidth;
 
-            const x = docWidth - props.shiftX - buttonWidth - paddings / 2;
+            const x = windowWidth - props.shiftX - buttonWidth - paddings / 2;
 
             return x + 'px';
 
         } else if (window.innerWidth <= props.contentWidth) {
 
-            const x = docWidth - props.shiftX - buttonWidth;
+            const x = windowWidth - props.shiftX - buttonWidth;
 
             return x + 'px';
         }
@@ -180,5 +187,6 @@ ScrollUp.defaultProps = {
     duration: 500,
     contentWidth: 1440,
     shiftX: 0,
-    throttle: 100
+    throttle: 100,
+    show: 0.3
 };

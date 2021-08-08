@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {container} from './attach-popup.module.css';
+import Popup from './popup';
 
 /**Попап, прикрепляемый к дочернему элементу
  * 
@@ -25,7 +25,6 @@ import {container} from './attach-popup.module.css';
  * @param {Node} popup - попап
  * @param {boolean} defaultClose - true (по умолчанию) разрешает закрывать попап
  * кликом по пространству вокруг него
- * 
  */
 function AttachPopup(props) {
     //прокрутка страницы предотвращаеся?
@@ -87,45 +86,23 @@ function AttachPopup(props) {
         e.preventDefault();
     }
 
-    /**Закрыть popup кликом по пустому пространству вокруг него */
-    function closePopup(e) {
-        if (props.defaultClose
-            && !e.target.dataset.closePopup
-            && !e.target.dataset.closeEmpty) {
-                //закрытие попапа кликом по пустому пространству разрешено
-                return;
-
-        } else if (!props.defaultClose&& !e.target.dataset.closePopup) {
-
-            //закрытие попапа кликом по пустому пространству запрещено
-            return;
-        }
-
-
-        if (display === 'flex') setDisplay('none');
-    }
-
     function openPopup() {
         if (display === 'none') setDisplay('flex');
     }
 
-    const Popup = () => (
-        <div
-            data-close-empty
-            style={{display: display}}
-            className={props.className || container}
-            onClick={closePopup}
-        >
-            {props.popup}
-        </div>
-        );
-
+    /**props.children - элемент, к которому прикреплён попап */
     return (
         <div onClick={openPopup}>
             
             {props.children}
 
-            <Popup/>
+            <Popup
+                defaultClose={props.defaultClose}
+                display={display}
+                closePopup={() => setDisplay('none')}
+                className={props.className}
+                popup={props.popup}
+            />
 
         </div>
     );
@@ -135,6 +112,5 @@ export default AttachPopup;
 
 AttachPopup.defaultProps = {
     isOpen: false,
-    popup: <div style={{backgroundColor: 'white'}}>Hello, world!</div>,
     defaultClose: true
 };

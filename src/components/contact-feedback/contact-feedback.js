@@ -44,8 +44,16 @@ function Feedback() {
     const textareaInActiveStyle = [textareaInActive, textarea].join(" ");
     const textareaActiveStyle = [textareaActive, textarea].join(" ");
 
-    const inputClasses = [inputInActiveStyle, inputActiveStyle];
-    const textareaClasses = [textareaInActiveStyle, textareaActiveStyle];
+    const inputClasses = {
+        inactive: inputInActiveStyle,
+        active: inputActiveStyle,
+        error: inputActiveStyle
+    };
+    const textareaClasses = {
+        inactive: textareaInActiveStyle,
+        active: textareaActiveStyle,
+        error: textareaActiveStyle
+    };
 
     return(
         <div className={feedback}>
@@ -58,22 +66,22 @@ function Feedback() {
                 initialValues = {initialValues}
             >
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name={'initials'}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name={'email'}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name={'phone'}
                     error={<ContactError/>}
                 />
                 <Forms.Fields.Textarea
-                    classNames={textareaClasses}
+                    className={textareaClasses}
                     name={'message'}
                     error={<ContactError/>}
                 />

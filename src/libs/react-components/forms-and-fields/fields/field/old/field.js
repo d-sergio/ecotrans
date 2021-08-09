@@ -3,19 +3,18 @@ import {container, errorStyle} from './field.module.css';
 import Errors from '../../context/errors';
 import Values from '../../context/values';
 import ErrorMessage from '../../error-message';
-import getClassNames from '../common/get-class-names';
 
 /**Поле input или textarea
  * 
  * Props:
  * @param {string} name - имя поля
  * @param {string} fieldType - 'input' / 'textarea' - соответствующий вид поля
- * @param {string | object} className - className объект стилей CSS.
- * inactive - стиль неактивного поля
- * active - стиль активного поля
- * error - стиль поля с ошибкой
+ * @param {[className]} classNames - className массив стилей CSS.
+ * Элемент [0] - стиль неактивного поля
+ * Элемент [1] - стиль активного поля
+ * Элемент [2] - стиль поля с ошибкой
  * 
- * Также можно передать один стиль без объекта.
+ * Также можно передать один стиль без массива.
  * 
  * @param {node} error - элемент, в который будет помещено сообщение об ошибке
  * валидации. По умолчанию используется <ErrorMessage.Default/>
@@ -39,15 +38,15 @@ function Field(props) {
     const values = useContext(Values);
     const [value, setValue] = useState(values[props.name]);
 
-    useEffect(initFieldType, []);
-    useEffect(initErrors, []);
+    useEffect(() => initField(), []);
+    useEffect(() => initErrors(), []);
     useEffect(() => {
         if (errors !== undefined) showError();
     }, [errors]);
 
     /**Тип поля*/
-    function initFieldType() {
-        const className = getClassNames(props.className).inactive;
+    function initField() {
+        const className = initFieldStyle();
 
         if (props.fieldType === 'input') {
 
@@ -61,7 +60,6 @@ function Field(props) {
                     onChange={onChange}
                     onBlur={onBlur}
                     value={value}
-                    autocomplete="off"
                 />
             )
         } else if (props.fieldType === 'textarea') {
@@ -76,18 +74,35 @@ function Field(props) {
                     onChange={onChange}
                     onBlur={onBlur}
                     value={value}
-                    autocomplete="off"
                 />
             )
         }
     }
 
+    /**Стиль неактивного поля */
+    function initFieldStyle() {
+        if (!props.classNames) return;
+
+        if (Array.isArray(props.classNames)) {
+
+            return props.classNames[0];
+
+        } else if (typeof props.classNames === 'string') {
+            
+            return props.classNames;
+        }   
+    }
+
     /**Активный вид поля*/
     function setActiveField() { 
-        if (fieldRef.current
-            && props.className) {
+        
+        if (!props.classNames) return;
 
-                fieldRef.current.className = getClassNames(props.className).active;
+        if (fieldRef.current
+            && Array.isArray(props.classNames)
+            && props.classNames[1] !== undefined) {
+
+                fieldRef.current.className = props.classNames[1];
         }
     }
 
@@ -95,24 +110,49 @@ function Field(props) {
      * только его название
     */
     function setInActiveField() {
+
         if (fieldRef.current
-            && props.className
-            && (value === '' || value === values[props.name])) {
-                
-                fieldRef.current.className = getClassNames(props.className).inactive;
+        && Array.isArray(props.classNames)
+        && props.classNames.length > 1
+        && (value === '' || value === values[props.name])) {
+            
+            fieldRef.current.className = props.classNames[0];
+
         }
     }
 
-    /**Применить к полю стиль, соответствующий ошибке */
-    function setErrorStyle() {  
-        if (errors) {
+    /**Применить к полю стиль, соответствующий ошибке, если такой стиль
+     * получен из пропс
+    */
+    function setErrorStyle() {
+        if (!props.classNames) return;
+        
+        //Поле активно, есть ошибки и массив стилей
+        if (Array.isArray(props.classNames) && errors) {
 
-            //Подсветка поля с ошибкой
-            if (errors[props.name]) {
+            //Подсветка поля с ошибкой, есть стиль для этого случая
+            if (errors[props.name] && props.classNames[2] !== undefined) {
 
-                return getClassNames(props.className).error;
+                return props.classNames[2];
 
+            } else {
+                //Нет стиля для подсветки поля с ошибкой или ошибки нет
+
+                if (value === '' || value === values[props.name]) {
+
+                    //поле пустое - неактивный стиль
+                    return props.classNames[0];
+                } else {
+
+                    //поле не пустое - активный стиль
+                    return props.classNames[1];
+                }
+                
             }
+
+        } else {
+            //Стиль не является массивом
+            return props.classNames;
         }
     }
 
@@ -170,7 +210,7 @@ function Field(props) {
 
     return(
         <div className={container}>
-            {initFieldType()}
+            {initField()}
 
             <div className={errorStyle} ref={errorRef}>
                 {

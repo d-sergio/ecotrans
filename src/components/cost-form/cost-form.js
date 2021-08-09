@@ -24,21 +24,21 @@ function CostForm() {
     const passportActiveStyle = [attach, input, inputActive, passport].join(" ");
     const passportErrorStyle = [attach, input, inputError, passport].join(" ");
     
-    const passportClasses = [
-        passportInActiveStyle,
-        passportActiveStyle,
-        passportErrorStyle
-    ];
+    const passportClasses = {
+        inactive: passportInActiveStyle,
+        active: passportActiveStyle,
+        error: passportErrorStyle
+    };
 
     //Стили Input
     const inputActiveStyle = [input, inputActive].join(" ");
     const inputInActiveStyle = [input, inputInActive].join(" ");
     const inputErrorStyle = [input, inputError].join(" ");
-    const inputClasses = [
-        inputInActiveStyle,
-        inputActiveStyle,
-        inputErrorStyle
-    ];
+    const inputClasses = {
+        inactive: inputInActiveStyle,
+        active: inputActiveStyle,
+        error: inputErrorStyle
+    };
 
     /**Имена полей формы */
     const initialValues = {
@@ -65,7 +65,7 @@ function CostForm() {
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);
 
-            if (result.message === 'done') setSubmitting(true);
+            if (result.message === 'done') return;
         }
     }
 
@@ -79,31 +79,31 @@ function CostForm() {
                 name={formName}
             >
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name='inn'
                     error='none'
                 />
 
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name='fkko'
                     error='none'
                 />
 
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name='phone'
                     error='none'
                 />
 
                 <Forms.Fields.Input
-                    classNames={inputClasses}
+                    className={inputClasses}
                     name='email'
                     error='none'
                 />
                 
                 <Forms.Fields.File
-                    classNames={passportClasses}
+                    className={passportClasses}
                     name={inputFileName}
                     accept={fileTypes}
                     error='none'

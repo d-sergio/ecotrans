@@ -3,18 +3,15 @@ import {container, file, errorStyle} from './file.module.css';
 import Errors from '../../context/errors';
 import Values from '../../context/values';
 import ErrorMessage from '../../error-message';
-import getClassNames from '../common/get-class-names';
 
 /**Поле загрузки файлов
  * 
  * Props:
  * 
- * @param {string | object} className - className объект стилей CSS.
- * inactive - стиль неактивного поля
- * active - стиль активного поля
- * error - стиль поля с ошибкой
- * 
- * Также можно передать один стиль без объекта.
+ * @param {string} classNames - className массив стилей CSS.
+ * Элемент [0] - стиль неактивного поля
+ * Элемент [1] - стиль активного поля
+ * Элемент [2] - стиль поля с ошибкой
  *
  * Также можно передать один стиль без массива.
  * 
@@ -98,17 +95,26 @@ function File(props) {
 
     /**Стиль неактивного поля */
     function initFieldStyle() {
-        if (!inputRef.current) return;
+        if (!props.classNames || !inputRef.current) return;
+
+        if (Array.isArray(props.classNames)) {
+
+            inputRef.current.className = props.classNames[0];
+
+        } else if (typeof props.classNames === 'string') {
             
-        inputRef.current.className = getClassNames(props.className).inactive;
+            inputRef.current.className = props.classNames;
+        }   
     }
 
     /**Активный вид поля*/
     function setActiveField() {  
 
-        if (inputRef.current) {
+        if (inputRef.current
+            && Array.isArray(props.classNames)
+            && props.classNames[1] !== undefined) {
 
-            inputRef.current.className = getClassNames(props.className).active;
+                inputRef.current.className = props.classNames[1];
         }
     }
 
@@ -116,14 +122,34 @@ function File(props) {
      * получен из пропс
     */
     function setErrorStyle() {
-        if (errors) {
+        if (!props.classNames) return;
+        
+        //Поле активно, есть ошибки и массив стилей
+        if (Array.isArray(props.classNames) && errors) {
 
-            //Подсветка поля с ошибкой
-            if (errors[props.name]) {
+            //Подсветка поля с ошибкой, есть стиль для этого случая
+            if (errors[props.name] && props.classNames[2] !== undefined) {
 
-                return getClassNames(props.className).error;
+                return props.classNames[2];
 
+            } else {
+                //Нет стиля для подсветки поля с ошибкой или ошибки нет
+
+                if (fileName === '' || fileName === values[props.name]) {
+
+                    //поле пустое - неактивный стиль
+                    return props.classNames[0];
+                } else {
+
+                    //поле не пустое - активный стиль
+                    return props.classNames[1];
+                }
+                
             }
+
+        } else {
+            //Стиль не является массивом
+            return props.classNames;
         }
     }
 

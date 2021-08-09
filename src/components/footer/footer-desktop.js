@@ -70,7 +70,7 @@ const Menu = () => (
 const Links = () => (
     <div className={links}>
         <p>
-            <a href='https://www.instagram.com/ecotrans46/'>
+            <a target='_blank' href={config.instagram}>
                 Instagram
             </a>
         </p>

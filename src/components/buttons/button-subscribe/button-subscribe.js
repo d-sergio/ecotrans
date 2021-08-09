@@ -1,6 +1,7 @@
 import React from 'react';
 import {mobile, desktop} from './button-subscribe.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
+import config from '../../../config/config.json'
 
 /**Кнопка Подписаться
  * 
@@ -11,7 +12,7 @@ function ButtonSubscribe (props) {
     const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-    return <a href='https://www.instagram.com/ecotrans46/' target="_blank"><button className={cssStyle}>Подписаться</button></a>;
+    return <a href={config.instagram} target="_blank"><button className={cssStyle}>Подписаться</button></a>;
 };
 
 export default ButtonSubscribe;

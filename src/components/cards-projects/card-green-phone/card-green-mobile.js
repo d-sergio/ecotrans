@@ -6,7 +6,11 @@ function CardGreenMobile() {
     const logo = <img src={img} alt='green_phone_logo' style={{height: '60px'}}/>;
 
     return(
-        <ProjectsTemplateMobile logo={logo} serviceName={'Зелёный телефон'}/>
+        <ProjectsTemplateMobile
+            logo={logo}
+            serviceName={'Зелёный телефон'}
+            toAnchor='#greenphone'
+        />
     );
     
 }

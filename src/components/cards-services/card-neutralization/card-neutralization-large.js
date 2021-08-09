@@ -8,7 +8,12 @@ function CardNeutralLarge() {
     const description = <div>Обезвреживание и утилизация<br/>отходов 1–4 класса опасности</div>
     
     return(
-        <ServicesTemplateLarge logo={logo} serviceName={serviceName} description={description}/>
+        <ServicesTemplateLarge
+            logo={logo}
+            serviceName={serviceName}
+            description={description}
+            toAnchor='#neutralization'
+        />
     );
 }
 

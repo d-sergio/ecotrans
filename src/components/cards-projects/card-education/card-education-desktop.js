@@ -16,6 +16,7 @@ function CardEducationDesktop(props) {
             nameLarge={nameLarge}
             description={description}
             active={active}
+            toAnchor='#education'
             />
     );
     

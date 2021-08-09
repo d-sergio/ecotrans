@@ -1,4 +1,6 @@
 import React from 'react';
+import {ToAnchor} from '../../../libs/react-components/navigate';
+import {Link} from 'gatsby';
 import {commonStyle} from '../projects-template-common/projects-template-common.module.css';
 import {mobile, image, serviceName} from './projects-template-mobile.module.css';
 import ButtonLook from '../../buttons/button-look';
@@ -19,9 +21,18 @@ function ProjectsTemplateMobile(props) {
                 {props.logo}
             </div>
             <div className={serviceName}>{props.serviceName}</div>
-            <ButtonLook/>
+
+            <ToAnchor to={props.toAnchor}>
+                <Link to='/projects'>
+                    <ButtonLook/>
+                </Link>
+            </ToAnchor>
         </div>
     );
 }
 
 export default ProjectsTemplateMobile;
+
+ProjectsTemplateMobile.defaultProps = {
+    toAnchor: ''
+};

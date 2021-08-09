@@ -11,7 +11,11 @@ function CardMedicalMobile() {
     const logo = <img src={img} alt='medical_waste_logo' style={imgStyle}/>
 
     return(
-        <ServicesTemplateMobile logo={logo} serviceName={'Медицинские отходы'}/>
+        <ServicesTemplateMobile
+            logo={logo}
+            serviceName={'Медицинские отходы'}
+            toAnchor='#medicalwaste'
+        />
     );
 }
 

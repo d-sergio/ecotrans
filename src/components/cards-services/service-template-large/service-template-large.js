@@ -2,6 +2,8 @@ import React from 'react';
 import {commonStyle} from '../service-template-common/service-template-common.module.css';
 import {large, image, serviceName, text, description} from './service-template-large.module.css';
 import ButtonChoose from '../../buttons/button-choose/button-choose';
+import { ToAnchor } from '../../../libs/react-components/navigate';
+import { Link } from 'gatsby';
 
 const styles = [commonStyle, large].join(" ");
 
@@ -23,9 +25,17 @@ function ServicesTemplateLarge(props) {
                 <div className={serviceName}>{props.serviceName}</div>
                 <div className={description}>{props.description}</div>
             </div>
-            <ButtonChoose desktop={true}/>
+            <ToAnchor to={props.toAnchor}>
+                <Link to='services'>
+                    <ButtonChoose/>
+                </Link>
+            </ToAnchor>
         </div>
     );
 }
 
 export default ServicesTemplateLarge;
+
+ServicesTemplateLarge.defaultProps = {
+    toAnchor: ''
+};

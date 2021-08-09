@@ -4,6 +4,7 @@ import {title} from '../../../common-styles/title.module.css';
 import {link, text, button, images, container} from './block-instagram-mobile.module.css';
 import Buttons from '../../buttons';
 import Slider from '../../../libs/react-components/sliders/slider';
+import config from '../../../config/config.json';
 
 import img1 from '../../../../static/images/instagram/mobile/1.png';
 import img2 from '../../../../static/images/instagram/mobile/2.png';
@@ -24,7 +25,7 @@ function BlockInstagramMobile() {
             <div className={mainContainer}>
                 <div className={title}>Будьте на связи!</div>
                 <div className={text}>
-                    Подпишитесь на наш <span className={link}><a href='https://www.instagram.com/ecotrans46/'>Instagram.</a></span><br/>
+                    Подпишитесь на наш <span className={link}><a target='_blank' href={config.instagram}>Instagram.</a></span><br/>
                     Тут вся полезная информация!
                 </div>
             </div>

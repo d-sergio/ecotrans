@@ -7,7 +7,11 @@ function CardTechnoMobile() {
     const serviceName = <div>Собственный<br/>экотехнопарк</div>
     
     return(
-        <ProjectsTemplateMobile logo={logo} serviceName={serviceName}/>
+        <ProjectsTemplateMobile
+            logo={logo}
+            serviceName={serviceName}
+            toAnchor='#technopark'
+        />
     );
     
 }

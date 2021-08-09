@@ -8,7 +8,12 @@ function CardDocsLarge() {
     const description = <div style={{marginTop: '6px'}}>Комплект документов по экологии<br/>на предприятии</div>;
 
     return(
-        <ServicesTemplateLarge logo={logo} serviceName={serviceName} description={description}/>
+        <ServicesTemplateLarge
+            logo={logo}
+            serviceName={serviceName}
+            description={description}
+            toAnchor='#docs'
+        />
     );
     
 }

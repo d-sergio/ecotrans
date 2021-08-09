@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'gatsby';
 import ButtonDetailed from '../../buttons/button-detailed';
+import {ToAnchor} from '../../../libs/react-components/navigate';
 import {commonStyle} from '../projects-template-common/projects-template-common.module.css';
 import {
         size,
@@ -54,7 +56,11 @@ function ProjectsTemplateDesktop(props) {
                             {props.description}
                         </div>
                     </div>
-                    <ButtonDetailed/>
+                    <ToAnchor to={props.toAnchor}>
+                        <Link to='/projects'>
+                            <ButtonDetailed/>
+                        </Link>
+                    </ToAnchor>
                 </div>
 
                 <div className={smallStyle}>
@@ -73,3 +79,7 @@ function ProjectsTemplateDesktop(props) {
 
 
 export default ProjectsTemplateDesktop;
+
+ProjectsTemplateDesktop.defaultProps = {
+    toAnchor: ''
+};

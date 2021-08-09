@@ -6,7 +6,11 @@ function CardTransportMobile() {
     const logo = <img src={img} alt='transportation_logo' style={{height: '60px'}}/>
 
     return(
-        <ServicesTemplateMobile logo={logo} serviceName={'Транспортирование'}/>
+        <ServicesTemplateMobile
+            logo={logo}
+            serviceName={'Транспортирование'}
+            toAnchor='#transportation'
+        />
     );
 }
 

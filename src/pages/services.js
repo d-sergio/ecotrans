@@ -4,6 +4,7 @@ import Layout from '../components/layout/layout';
 import ServicesSpoilers from '../components/spoilers-services';
 import {topPaddings} from '../common-styles/pages.module.css';
 import MobilePageTitle from '../components/mobile-page-title';
+import {NavPage} from '../libs/react-components/navigate';
 
 function Services() {
     const pageName = useContext(PageName);
@@ -11,16 +12,24 @@ function Services() {
     useEffect(() => pageName.change('/services'), []);
 
     return (
-        <Layout>
-            <div style={{paddingBottom: '10px'}} className={topPaddings}>
-                <MobilePageTitle title={'Услуги'}/>
-                <ServicesSpoilers.Transportation/>
-                <ServicesSpoilers.Neutralization/>
-                <ServicesSpoilers.MedicalWaste/>
-                <ServicesSpoilers.Training/>
-                <ServicesSpoilers.Docs/>
-            </div>
-        </Layout>);
+        <NavPage>
+            <Layout>
+                <div style={{paddingBottom: '10px'}} className={topPaddings}>
+                    <MobilePageTitle title={'Услуги'}/>
+                    <span id='transportation'></span>
+                    <ServicesSpoilers.Transportation/>
+                    <span id='neutralization'></span>
+                    <ServicesSpoilers.Neutralization/>
+                    <span id='medicalwaste'></span>
+                    <ServicesSpoilers.MedicalWaste/>
+                    <span id='training'></span>
+                    <ServicesSpoilers.Training/>
+                    <span id='docs'></span>
+                    <ServicesSpoilers.Docs/>
+                </div>
+            </Layout>
+        </NavPage>
+    );
 };
 
 export default Services;

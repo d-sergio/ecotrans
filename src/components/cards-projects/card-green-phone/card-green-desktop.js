@@ -16,7 +16,8 @@ function CardGreenDesktop(props) {
             nameLarge={nameLarge}
             description={description}
             active={active}
-            />
+            toAnchor='#greenphone'
+        />
     );
     
 }

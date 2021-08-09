@@ -42,7 +42,7 @@ function Address() {
                 <p className={social}>Социальные сети</p>
             </div>
 
-            <a className={instagram} href='https://www.instagram.com/ecotrans46/'>
+            <a className={instagram} target='_blank' href={config.instagram}>
                 <img src={instagramPic} alt="instagram"/>
                 <p>
                     Все самые свежие новости доступны

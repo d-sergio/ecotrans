@@ -8,7 +8,12 @@ function CardTrainingLarge() {
     const description = <div>Повышение квалификации<br/>и переподготовка персонала</div>
 
     return(
-        <ServicesTemplateMobile logo={logo} serviceName={serviceName} description={description}/>
+        <ServicesTemplateMobile
+            logo={logo}
+            serviceName={serviceName}
+            description={description}
+            toAnchor='#training'
+        />
     );
 }
 

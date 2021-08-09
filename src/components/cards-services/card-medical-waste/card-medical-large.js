@@ -13,7 +13,12 @@ function CardMedicalLarge() {
     const description = <div style={{marginTop: '-16px'}}>Сбор, транспортирование<br/>и обезвреживание<br/>медицинских отходов</div>;
 
     return(
-        <ServicesTemplateLarge logo={logo} serviceName={serviceName} description={description}/>
+        <ServicesTemplateLarge
+            logo={logo}
+            serviceName={serviceName}
+            description={description}
+            toAnchor='#medicalwaste'
+        />
     );
 }
 

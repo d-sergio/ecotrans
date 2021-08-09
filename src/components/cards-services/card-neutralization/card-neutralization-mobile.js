@@ -6,7 +6,11 @@ function CardNeutralMobile() {
     const logo = <img src={img} alt='neutralization_logo' style={{height: '64px'}}/>
 
     return(
-        <ServicesTemplateMobile logo={logo} serviceName={'Обезвреживание и утилизация'}/>
+        <ServicesTemplateMobile
+            logo={logo}
+            serviceName={'Обезвреживание и утилизация'}
+            toAnchor='#neutralization'
+        />
     );
 }
 

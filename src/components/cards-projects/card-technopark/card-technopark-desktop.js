@@ -16,7 +16,8 @@ function CardTechnoDesktop(props) {
             nameLarge={nameLarge}
             description={description}
             active={active}
-            />
+            toAnchor='#technopark'
+        />
     );
     
 }

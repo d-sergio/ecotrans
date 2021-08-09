@@ -7,7 +7,11 @@ function CardEducationMobile() {
     const serviceName = <div>Центр<br/>доп. образования</div>;
     
     return(
-        <ProjectsTemplateMobile logo={logo} serviceName={serviceName}/>
+        <ProjectsTemplateMobile
+            logo={logo}
+            serviceName={serviceName}
+            toAnchor='#education'
+        />
     );
     
 }

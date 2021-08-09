@@ -8,7 +8,12 @@ function CardTransportLarge() {
     const description = <div style={{marginTop: '-15px'}}>Транспортирование<br/>отходов 1-4 классов<br/>опасности </div>
 
     return(
-        <ServicesTemplateLarge logo={logo} serviceName={serviceName} description={description}/>
+        <ServicesTemplateLarge
+            logo={logo}
+            serviceName={serviceName}
+            description={description}
+            toAnchor='#transportation'
+        />
     );
 }
 

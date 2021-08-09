@@ -6,7 +6,7 @@ import pic from '../../../../static/images/spoilers-projects/technopark.jpg';
 import supportPic from '../../../../static/images/spoilers-projects/support.png';
 import supplyPic from '../../../../static/images/spoilers-projects/supply.png';
 import rentPic from '../../../../static/images/spoilers-projects/rent.png';
-import PictureText from '../../../libs/react-components/picture-and-text';
+import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 
 function Technopark() {
@@ -58,19 +58,19 @@ function Technopark() {
             
 
             <div className={resItemsStyle}>
-                <PictureText.Bottom
+                <PictureAndText.Bottom
                     className={residentsImage}
                     image={supportPic}
                     text={<p className={residentText}>Экологическая<br/>и правовая поддержка</p>}
                 />
 
-                <PictureText.Bottom
+                <PictureAndText.Bottom
                     className={residentsImage}
                     image={supplyPic}
                     text={<p className={residentText}>Снабжение вторичным<br/>сырьем и промышленными<br/>отходами</p>}
                 />
 
-                <PictureText.Bottom
+                <PictureAndText.Bottom
                     className={residentsImage}
                     image={rentPic}
                     text={<p className={residentText}>Аренда<br/>площадок</p>}

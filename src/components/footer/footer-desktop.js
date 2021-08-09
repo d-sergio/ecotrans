@@ -14,7 +14,7 @@ import {
     links
 } from './footer-desktop.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
-import PictureText from '../../libs/react-components/picture-and-text';
+import PictureAndText from '../../libs/react-components/picture-and-text';
 import CopyToClipboard from '../copy-to-clipboard';
 import config from '../../config/config.json';
 
@@ -38,14 +38,14 @@ function FooterDesktop() {
 
 const Address = () => (
     <div className={address}>
-        <PictureText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
+        <PictureAndText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
 
         <a target='_blank' href={`https://api.whatsapp.com/send/?phone=${config.phone}`}>
-            <PictureText.Right image={phone} text={config.phonePretty}/>
+            <PictureAndText.Right image={phone} text={config.phonePretty}/>
         </a>
 
         <CopyToClipboard>
-            <PictureText.Right image={mail} text={config.email}/>
+            <PictureAndText.Right image={mail} text={config.email}/>
         </CopyToClipboard>
     </div>
 );

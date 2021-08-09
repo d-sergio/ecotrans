@@ -1,7 +1,7 @@
 import React from 'react';
-import PictureText from '../../../libs/react-components/picture-and-text';
+import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {container, day, name} from './cards-calendar-temp.module.css';
-import AttachModalCalendar from '../../attach-modal-calendar-temp';
+import ModalCalendar from '../../modals-calendar-temp';
 
 /**Шаблон карточки для календаря
  * 
@@ -10,7 +10,7 @@ import AttachModalCalendar from '../../attach-modal-calendar-temp';
  * @param {String | Node} name - название дня по календарю
  * @param {String} thumb - картинка (миниатюра)
  * @param {String} fullSizeImage - картинка в полном размере. Передаётся
- * дальше в <AttachModalCalendar>. Открывается как модальное окно
+ * дальше в <ModalCalendar>. Открывается как модальное окно
 */
 function CardsCalendarTemp(props) {
 
@@ -27,13 +27,13 @@ function CardsCalendarTemp(props) {
         </>;
 
     return(
-        <AttachModalCalendar fullSizeImage={props.fullSizeImage}>
+        <ModalCalendar fullSizeImage={props.fullSizeImage} text={text}>
 
             <div className={container}>
-                <PictureText.Over image={props.thumb} text={text}/>
+                <PictureAndText.Over image={props.thumb} text={text}/>
             </div>
 
-        </AttachModalCalendar>
+        </ModalCalendar>
     );
 }
 

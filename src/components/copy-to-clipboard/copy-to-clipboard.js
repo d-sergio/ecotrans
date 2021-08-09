@@ -28,17 +28,17 @@ function CopyToClipboard(props) {
     }
 
     return(
-        <div style={{cursor: 'pointer'}}>
+        <>
             <Modals.Set
                 isOpen={isOpen}
                 closeModal={closeMessage}
                 modal={<ModalMessages.AddressCopied/>}
             />
 
-            <div onClick={openMessage}>
+            <div style={{cursor: 'pointer'}} onClick={openMessage}>
                 {props.children}
             </div>
-        </div>
+        </>
     );
 }
 

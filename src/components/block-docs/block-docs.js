@@ -3,7 +3,7 @@ import {container, text, docTextStyle, docCardStyle, files} from './block-docs.m
 import {mainContainer} from '../../common-styles/containers.module.css';
 import {spoilerTitle} from '../../common-styles/title.module.css';
 import {paragraph} from '../../common-styles/paragraph.module.css';
-import PictureText from '../../libs/react-components/picture-and-text';
+import PictureAndText from '../../libs/react-components/picture-and-text';
 import docPic from '../../../static/images/page-clients/file.svg';
 
 /**Наша документация (Страница Клиентам) */
@@ -69,56 +69,56 @@ function BlockDocs() {
                     target='_blank'
                     href='/docs/санитарно-эпидем. заключение от 29.11.18-2 (стр1).pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={conclusion291118_2}/>
+                    <PictureAndText.Bottom image={docPic} text={conclusion291118_2}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/Сертификат исо 50001 (05.07.21) с приложением-2 (стр 1).pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={sert50001}/>
+                    <PictureAndText.Bottom image={docPic} text={sert50001}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/Лицензия на сбор отходов III IV классов опасности, транспортирование I - VI классов опасности обезвреживание отходов III IV классов опасности.pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={license}/>
+                    <PictureAndText.Bottom image={docPic} text={license}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/разрешение к сертификату (05.07.21).pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={resolution050721}/>
+                    <PictureAndText.Bottom image={docPic} text={resolution050721}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/разрешение к сертификату (17.06.21).pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={resolution170621}/>
+                    <PictureAndText.Bottom image={docPic} text={resolution170621}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/санитарно-эпидем. заключение от 13.11.2018.pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={conclusion13112018}/>
+                    <PictureAndText.Bottom image={docPic} text={conclusion13112018}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/сертифиакат исо9001исо14001 исо45001 (17.06.21).pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={sert9001}/>
+                    <PictureAndText.Bottom image={docPic} text={sert9001}/>
                 </a>
 
                 <a
                     target='_blank'
                     href='/docs/сертификат эксперта с 05.07.21 по 04.07.24.pdf'
                     className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={expert}/>
+                    <PictureAndText.Bottom image={docPic} text={expert}/>
                 </a>
             </div>
 

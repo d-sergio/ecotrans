@@ -1,15 +1,17 @@
 import React from 'react';
-import {backgroundCloseIcon, container, fullSizeImage} from './attach-modal-calendar-temp.module.css';
+import {backgroundCloseIcon, container, fullSizeImage, text} from './modals-calendar-temp.module.css';
 import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
+import PictureAndText from '../../libs/react-components/picture-and-text';
 
 /**Шаблон модального окна для календаря (полноразмерная картинка с текстом)
  * 
  * Props:
  * @param {String} fullSizeImage - полноразмерная картинка из календаря для
  * модального окна
+ * @param {Node | String} - текст, отображаемый поверх картинки
  */
-function AttachModalCalendarTemp(props) {
+function ModalCalendarTemp(props) {
 
     const ModalCalendar = () => (
         <div className={container}>
@@ -21,12 +23,9 @@ function AttachModalCalendarTemp(props) {
                 alt='close_icon'
             />
 
-            <img
-                className={fullSizeImage}
-                src={props.fullSizeImage}
-                alt='day'
-            />
-
+            <div className={text}>
+                <PictureAndText.Over image={props.fullSizeImage} text={props.text}/>
+            </div>
         </div>
     );
 
@@ -39,4 +38,4 @@ function AttachModalCalendarTemp(props) {
     );
 }
 
-export default AttachModalCalendarTemp;
+export default ModalCalendarTemp;

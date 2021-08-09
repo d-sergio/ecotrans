@@ -17,12 +17,12 @@ import Over from './picture-text-over';
  * ...
  * const text = <p>Текст</p>;
  * 
- * <PictureTextRight image={img} text={}/>
+ * <PictureAndTextRight image={img} text={}/>
  */
-const PictureText = {
+const PictureAndText = {
     Bottom,
     Right,
     Over
 };
 
-export default PictureText;
+export default PictureAndText;

@@ -15,6 +15,8 @@ import {
 } from './footer-desktop.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
 import PictureText from '../../libs/react-components/picture-and-text';
+import CopyToClipboard from '../copy-to-clipboard';
+import config from '../../config/config.json';
 
 const containerStyle = [container, mainContainer].join(" ");
 
@@ -38,21 +40,21 @@ const Address = () => (
     <div className={address}>
         <PictureText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
 
-        <a href="https://api.whatsapp.com/send/?phone=+79065774934">
-            <PictureText.Right image={phone} text='+7 (906)577-49-34'/>
+        <a target='_blank' href={`https://api.whatsapp.com/send/?phone=${config.phone}`}>
+            <PictureText.Right image={phone} text={config.phonePretty}/>
         </a>
 
-        <a href="mailto: ecotranskursk@yandex.ru">
-            <PictureText.Right image={mail} text='ecotranskursk@yandex.ru'/>
-        </a>
+        <CopyToClipboard>
+            <PictureText.Right image={mail} text={config.email}/>
+        </CopyToClipboard>
     </div>
 );
 
  const Docs = () => (
     <div className={docs}>
         <p><Link to='/clients'>Разрешительная документация</Link></p>
-        <p><Link to='/'>ИНН</Link></p>
-        <p><Link to='/'>ОГРН</Link></p>
+        <p><a target='_blank' href='/docs/Свидетельсво о гос регистрации.PDF'>Свидетельство о гос. регистрации</a></p>
+        <p><a target='_blank' href='docs/ИНН и ОГРН.PDF'>ОГРН и ИНН</a></p>
     </div>
 );
 

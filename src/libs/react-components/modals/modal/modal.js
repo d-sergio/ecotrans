@@ -62,7 +62,6 @@ function Modal(props) {
                 props.closeModal();
 
         } else if (!props.defaultClose && e.target.dataset.closeModal) {
-
             //закрытие модального окна кликом по пустому пространству запрещено
             props.closeModal();
         }

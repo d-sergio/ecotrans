@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {style, logo, phone} from "./header-desktop.module.css";
 import HeaderMenu from '../header-menu';
+import config from '../../config/config.json';
 
 function HeaderDesktop(props) {
     const Logo = () => (
@@ -14,9 +15,9 @@ function HeaderDesktop(props) {
     );
 
     const Phone = () => (
-            <a className={phone} href="tel:+7 (906)577-49-34">
+            <a className={phone} href={`tel: ${config.phone}`}>
                 <img src={props.phone} alt="phone"/>
-                +7 (906)577-49-34
+                {config.phonePretty}
             </a>
     );
 

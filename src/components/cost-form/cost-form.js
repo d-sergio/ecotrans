@@ -4,7 +4,7 @@ import { form, input, attach, button, passport, inputInActive, inputActive, inpu
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import sendCostForm from '../../send-form-callback/send-cost-form';
-import ModalEmailSent from '../modal-email-sent';
+import ModalMessages from '../modals-messages';
 import Modal from '../../libs/react-components/modals';
 
 function CostForm() {
@@ -65,7 +65,7 @@ function CostForm() {
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);
 
-            if (result.message === 'done') return;
+            if (result.message === 'done') setSubmitting(true);
         }
     }
 
@@ -117,9 +117,9 @@ function CostForm() {
 
             </Forms.Form>
 
-            <Modal.Open
+            <Modal.Set
                 isOpen={isSubmitting}
-                modal={<ModalEmailSent/>}
+                modal={<ModalMessages.EmailSent/>}
                 closeModal={() => setSubmitting(false)}
             />
         </>

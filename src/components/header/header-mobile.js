@@ -6,6 +6,7 @@ import HeaderMenu from '../header-menu';
 import Animation from '../../libs/animate/animate';
 import linear from '../../libs/animate/time-functions/linear';
 import changeStyleProperty from '../../libs/animate/draw-functions/change-style-property';
+import config from '../../config/config.json';
 
 /**HeaderMobile
  * 
@@ -102,10 +103,10 @@ function HeaderMobile(props) {
     );
     
     const Phone = () => (
-        <a className={phone} href="tel:+7 (906)577-49-34">
+        <a className={phone} href={`tel: ${config.phone}`}>
             <div className={phone}>
                 <img src={props.phone} alt="phone"/>
-                +7 (906)577-49-34
+                {config.phonePretty}
             </div>
         </a>
     );

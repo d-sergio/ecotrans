@@ -12,13 +12,45 @@ function BlockDocs() {
     const containerStyle = [container, mainContainer].join(" ");
     const textStyle = [paragraph, text].join(" ");
 
-    const docLicense = <p className={docTextStyle}>Лицензия</p>;
-    const docZone = <p className={docTextStyle}>Санитарно - защитная зона</p>;
-    const docLimits = <p className={docTextStyle}>Предельно - допустимые выбросы</p>;
-    const docSert1 = <p className={docTextStyle}>Сертификат ИСО №1</p>;
-    const docSert2 = <p className={docTextStyle}>Сертификат ИСО №2</p>;
-    const docSert3 = <p className={docTextStyle}>Сертификат ИСО №3</p>;
-    const docSert4 = <p className={docTextStyle}>Сертификат ИСО №4</p>;
+    const conclusion291118_2 =
+        <div className={docTextStyle}>
+            Санитарно-эпидем.<br/>заключение от 29.11.18-2
+        </div>;
+
+    const sert50001 = 
+        <div className={docTextStyle}>
+            Сертификат исо 50001 (05.07.21)<br/>с приложением-2 (стр 1)
+        </div>
+
+    const license = 
+    <div className={docTextStyle}>
+        Лицензия
+    </div>
+
+    const resolution050721 = 
+        <div className={docTextStyle}>
+            Разрешение<br/>к сертификату (05.07.21)
+        </div>
+
+    const resolution170621 = 
+        <div className={docTextStyle}>
+            Разрешение<br/>к сертификату (17.06.21)
+        </div>
+
+    const conclusion13112018 = 
+        <div className={docTextStyle}>
+            Cанитарно-эпидем.<br/>заключение от 13.11.2018
+        </div>
+
+    const sert9001 = 
+        <div className={docTextStyle}>
+            Сертифиакат исо9001<br/>исо14001 исо45001 (17.06.21).pdf
+        </div>
+
+    const expert = 
+        <div className={docTextStyle}>
+            Сертификат эксперта<br/>с 05.07.21 по 04.07.24
+        </div>
 
     return(
         <section className={containerStyle}>
@@ -33,29 +65,61 @@ function BlockDocs() {
             </p>
 
             <div className={files}>
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docLicense}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/санитарно-эпидем. заключение от 29.11.18-2 (стр1).pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={conclusion291118_2}/>
+                </a>
 
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docZone}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/Сертификат исо 50001 (05.07.21) с приложением-2 (стр 1).pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={sert50001}/>
+                </a>
 
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docLimits}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/Лицензия на сбор отходов III IV классов опасности, транспортирование I - VI классов опасности обезвреживание отходов III IV классов опасности.pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={license}/>
+                </a>
 
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docSert1}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/разрешение к сертификату (05.07.21).pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={resolution050721}/>
+                </a>
 
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docSert2}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/разрешение к сертификату (17.06.21).pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={resolution170621}/>
+                </a>
 
-                <div className={docCardStyle}>
-                    <PictureText.Bottom image={docPic} text={docSert3}/>
-                </div>
+                <a
+                    target='_blank'
+                    href='/docs/санитарно-эпидем. заключение от 13.11.2018.pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={conclusion13112018}/>
+                </a>
+
+                <a
+                    target='_blank'
+                    href='/docs/сертифиакат исо9001исо14001 исо45001 (17.06.21).pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={sert9001}/>
+                </a>
+
+                <a
+                    target='_blank'
+                    href='/docs/сертификат эксперта с 05.07.21 по 04.07.24.pdf'
+                    className={docCardStyle}>
+                    <PictureText.Bottom image={docPic} text={expert}/>
+                </a>
             </div>
 
             <p className={textStyle}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {mobile, desktop} from './button-contact.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
-
+import config from '../../../config/config.json';
 
 /**Кнопка Связаться (с нами)
  * 
@@ -14,7 +14,7 @@ function ButtonContact(props) {
 
     const buttonText = 'Связаться';
 
-    return <a href="mailto: ecotranskursk@yandex.ru"><button className={cssStyle}>{buttonText}</button></a>;
+    return <a href={`mailto: ${config.email}`}><button className={cssStyle}>{buttonText}</button></a>;
 };
 
 export default ButtonContact;

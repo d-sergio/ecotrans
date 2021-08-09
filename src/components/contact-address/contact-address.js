@@ -5,7 +5,8 @@ import phonePic from '../../../static/images/contact/phone.svg';
 import emailPic from '../../../static/images/contact/email.svg';
 import clockPic from '../../../static/images/contact/clock.svg';
 import instagramPic from '../../../static/images/contact/instagram.svg';
-
+import config from '../../config/config.json';
+import CopyToClipboard from '../copy-to-clipboard';
 
 /**Окно Контакты на странице Контакты */
 function Address() {
@@ -20,15 +21,17 @@ function Address() {
                 <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
             </div>
 
-            <a className={line} href="tel: +7 (906)577-49-34">
+            <a className={line} href={`tel: ${config.phone}`}>
                 <img src={phonePic} alt="phone"/>
-                <p>+ 7 (906) 577 49 34</p>
+                <p>{config.phonePretty}</p>
             </a>
 
-            <a className={line} href="mailto: ecotranskursk@yandex.ru">
-                <img src={emailPic} alt="email"/>
-                <p>ecotranskursk@yandex.ru</p>
-            </a>
+            <CopyToClipboard>
+                <p className={line}>
+                    <img src={emailPic} alt="email"/>
+                    <p>{config.email}</p>
+                </p>
+            </CopyToClipboard>
 
             <div className={line}>
                 <img src={clockPic} alt="clock"/>

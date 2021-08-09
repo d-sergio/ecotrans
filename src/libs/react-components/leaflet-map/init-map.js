@@ -12,8 +12,12 @@ function initMap(mounted, mymap, view, zoom, marker, popup) {
         zoomOffset: -1
     }).addTo(mymap.current);
 
-    window.L.marker(marker)
-    .addTo(mymap.current).bindPopup(popup);
+
+    if (popup) {
+        window.L.marker(marker).addTo(mymap.current).bindPopup(popup);
+    } else {
+        window.L.marker(marker).addTo(mymap.current);
+    }
 
     /*Блокируется зум колесом мыши и перетаскивание карты.
     Однако её можно перетаксивать двумя пальцами на сенсорных устройствах*/

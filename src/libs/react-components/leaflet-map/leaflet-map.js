@@ -80,7 +80,6 @@ LeafletMap.defaultProps = {
     zoom: 15,
     view: [51.66849, 36.13614],
     marker: [51.662725, 36.134059],
-    popup: "<div>popup</div>"
 };
 
 export default LeafletMap;

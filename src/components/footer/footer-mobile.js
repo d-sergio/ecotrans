@@ -1,20 +1,22 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {container} from './footer-mobile.module.css';
+import CopyToClipboard from '../copy-to-clipboard';
+import config from '../../config/config.json';
 
 function FooterMobile() {
     return(
         <div className={container}>
             <p style={{fontFamily: 'MontserratBold'}}>ООО “ЭКОТРАНС”</p>
             <p style={{marginTop: '0.75rem'}}>
-                <a href="tel: +7 (906)577-49-34">
-                    +7 (906)577-49-34
+                <a href={`tel: ${config.phone}`}>
+                    {config.phonePretty}
                 </a>
             </p>
             <p style={{marginTop: '0.5rem', marginBottom: '1.5rem'}}>
-                <a href="mailto: ecotranskursk@yandex.ru">
-                    ecotranskursk@yandex.ru
-                </a>
+                <CopyToClipboard>
+                    {config.email}
+                </CopyToClipboard>
             </p>
             <Link to='/clients'>Разрешительная документация</Link>
             <p style={{marginTop: '1.5rem'}}>Сайт разработан we write</p>

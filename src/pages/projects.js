@@ -12,19 +12,21 @@ function Services() {
     useEffect(() => pageName.change('/projects'), []);
 
     return (
-        <NavPage>
+        
             <Layout>
-                <div style={{paddingBottom: '10px'}} className={topPaddings}>
-                    <MobilePageTitle title={'Проекты'}/>
-                    <span id='technopark'></span>
-                    <SpoilersProjects.Technopark/>
-                    <span id='greenphone'></span>
-                    <SpoilersProjects.GreenPhone/>
-                    <span id='education'></span>
-                    <SpoilersProjects.Education/>
-                </div>
+                <NavPage>
+                    <div style={{paddingBottom: '10px'}} className={topPaddings}>
+                        <MobilePageTitle title={'Проекты'}/>
+                        <span id='technopark'></span>
+                        <SpoilersProjects.Technopark/>
+                        <span id='greenphone'></span>
+                        <SpoilersProjects.GreenPhone/>
+                        <span id='education'></span>
+                        <SpoilersProjects.Education/>
+                    </div>
+                </NavPage>
             </Layout>
-        </NavPage>
+        
         );
 };
 

@@ -2,7 +2,7 @@
     position: relative;
 
     width: 749px;
-    height: 301px;
+    height: auto;
 
     text-align: center;
 
@@ -23,6 +23,7 @@
 .text{
     display: block;
     margin-bottom: 90px;
+    line-height: 2.125rem;
 }
 
 .cross{
@@ -37,7 +38,6 @@
 @media screen and (max-width: 936px) {
     .container{
         width: 80%;
-        height: auto;
         padding: 0 5% 0 5%;
     }
 }

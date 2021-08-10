@@ -31,7 +31,8 @@ function WeWrite() {
 
 const modals = {
     EmailSent,
-    AddressCopied
+    AddressCopied,
+    WeWrite
 };
 
 export default modals;

@@ -2,5 +2,9 @@
     "email": "ecotranskursk@yandex.ru",
     "phone": "+79065774934",
     "phonePretty": "+7 (906) 577-49-34",
-    "instagram": "https://www.instagram.com/ecotrans46/"
+    "instagram": "https://www.instagram.com/ecotrans46/",
+    "costForm": {
+        "fileSize": 52428800,
+        "fileType": ".*"
+    }
 }

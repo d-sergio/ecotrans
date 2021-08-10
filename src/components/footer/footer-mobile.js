@@ -3,6 +3,8 @@ import {Link} from 'gatsby';
 import {container} from './footer-mobile.module.css';
 import CopyToClipboard from '../copy-to-clipboard';
 import config from '../../config/config.json';
+import Modals from '../../libs/react-components/modals';
+import ModalsMessages from '../modals-messages';
 
 function FooterMobile() {
     return(
@@ -18,8 +20,13 @@ function FooterMobile() {
                     {config.email}
                 </CopyToClipboard>
             </p>
+
             <Link to='/clients'>Разрешительная документация</Link>
-            <p style={{marginTop: '1.5rem'}}>Сайт разработан we write</p>
+
+            <Modals.Attach modal={<ModalsMessages.WeWrite/>}>
+                <p style={{marginTop: '1.5rem', cursor: 'pointer'}}>Сайт разработан we write</p>
+            </Modals.Attach>
+
             <p style={{marginTop: '0.75rem'}}>© ООО “Экотранс” 2021</p>
         </div>
     );

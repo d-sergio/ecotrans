@@ -17,6 +17,8 @@ import {mainContainer} from '../../common-styles/containers.module.css';
 import PictureAndText from '../../libs/react-components/picture-and-text';
 import CopyToClipboard from '../copy-to-clipboard';
 import config from '../../config/config.json';
+import Modals from '../../libs/react-components/modals';
+import ModalsMessages from '../modals-messages';
 
 const containerStyle = [container, mainContainer].join(" ");
 
@@ -75,7 +77,10 @@ const Links = () => (
             </a>
         </p>
         
-        <div>Сайт разработан we write</div>
+        <Modals.Attach modal={<ModalsMessages.WeWrite/>}>
+            <div style={{cursor: 'pointer'}}>Сайт разработан we write</div>
+        </Modals.Attach>
+
         <div>© ООО “Экотранс” 2021</div>
     </div>
 );

@@ -6,6 +6,7 @@ import Forms from '../../libs/react-components/forms-and-fields';
 import sendCostForm from '../../send-form-callback/send-cost-form';
 import ModalMessages from '../modals-messages';
 import Modal from '../../libs/react-components/modals';
+import config from '../../config/config.json';
 
 function CostForm() {
     const mobileView = useContext(MobileView);
@@ -15,10 +16,10 @@ function CostForm() {
 
     const formName = 'cost';
     const inputFileName = 'passport';
-    const maxFileSize = 52428800; //bytes
+    const maxFileSize = config.costForm.fileSize; //bytes
 
     //Доступные для загрузки типы файлов
-    const fileTypes = '.*';
+    const fileTypes = config.costForm.fileType;
     //Стиль File
     const passportInActiveStyle = [attach, input, inputInActive, passport].join(" ");
     const passportActiveStyle = [attach, input, inputActive, passport].join(" ");

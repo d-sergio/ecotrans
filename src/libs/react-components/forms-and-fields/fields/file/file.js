@@ -158,6 +158,7 @@ function File(props) {
             <input
                 readOnly
                 ref={inputRef}
+                className={getClassNames(props.className).inactive}
                 value={fileName ? fileName : values[props.name]}
                 type="text"
             />

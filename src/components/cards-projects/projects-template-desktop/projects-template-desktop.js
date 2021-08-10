@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import ButtonDetailed from '../../buttons/button-detailed';
-import {ToAnchor} from '../../../libs/react-components/navigate';
+import {ToAnchor} from '../../../libs/react-components/anchors';
 import {commonStyle} from '../projects-template-common/projects-template-common.module.css';
 import {
         size,

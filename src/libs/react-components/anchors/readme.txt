@@ -10,36 +10,36 @@ import RootLayout from '..путь к вашему root-компоненту';
 
 export const wrapRootElement = ({ element }) => <RootLayout>{element}</RootLayout>;
 
-2. В root-компоненте разместить NavRoot
+2. В root-компоненте разместить AnchorRoot
 
 import React, {useState} from 'react';
-import {NavRoot} from '../../libs/react-components/navigate';
+import {AnchorRoot} from '../../libs/react-components/navigate';
 
 function RootLayout (props) {
     return (
-        <NavRoot>
+        <AnchorRoot>
             {props.children}    //содержимое страниц сайта
-        </NavRoot>
+        </AnchorRoot>
     );
 }
 
 export default RootLayout;
 
 3. Установить якорь в нужном месте на странице, куда будет переход. И обернуть
-её в NavPage. Или разместить между header и footer, чтобы, например, избежать
+её в AnchorPage. Или разместить между header и footer, чтобы, например, избежать
 проблем со стилями для прижатия футера к низу страницы
 
 import React from 'react';
-import {NavPage} from '../libs/react-components/navigate';
+import {AnchorPage} from '../libs/react-components/navigate';
 
 function SomePage(props) {
     return(
         <Header/>
-            <NavPage>
+            <AnchorPage>
                 ...
                 <div id='anchor'></div>
                 ...
-            </NavPage>
+            </AnchorPage>
         <Footer/>
     );
 }

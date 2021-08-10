@@ -4,7 +4,7 @@ import Layout from '../components/layout/layout';
 import ServicesSpoilers from '../components/spoilers-services';
 import {topPaddings} from '../common-styles/pages.module.css';
 import MobilePageTitle from '../components/mobile-page-title';
-import {NavPage} from '../libs/react-components/navigate';
+import {AnchorPage} from '../libs/react-components/anchors';
 
 function Services() {
     const pageName = useContext(PageName);
@@ -12,7 +12,7 @@ function Services() {
     useEffect(() => pageName.change('/services'), []);
 
     return (
-        <NavPage>
+        <AnchorPage>
             <Layout>
                 <div style={{paddingBottom: '10px'}} className={topPaddings}>
                     <MobilePageTitle title={'Услуги'}/>
@@ -28,7 +28,7 @@ function Services() {
                     <ServicesSpoilers.Docs/>
                 </div>
             </Layout>
-        </NavPage>
+        </AnchorPage>
     );
 };
 

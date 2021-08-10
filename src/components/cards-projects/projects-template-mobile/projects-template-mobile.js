@@ -1,5 +1,5 @@
 import React from 'react';
-import {ToAnchor} from '../../../libs/react-components/navigate';
+import {ToAnchor} from '../../../libs/react-components/anchors';
 import {Link} from 'gatsby';
 import {commonStyle} from '../projects-template-common/projects-template-common.module.css';
 import {mobile, image, serviceName} from './projects-template-mobile.module.css';

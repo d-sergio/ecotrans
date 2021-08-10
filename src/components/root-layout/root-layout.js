@@ -3,7 +3,7 @@ import config from '../../config/config-media-queries.json';
 import MobileView from './view-context';
 import PageName from './page-name-context';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
-import {NavRoot} from '../../libs/react-components/navigate';
+import {AnchorRoot} from '../../libs/react-components/anchors';
 
 function RootLayout (props) {
     const queries = {
@@ -26,13 +26,13 @@ function RootLayout (props) {
     }
 
     return (
-        <NavRoot>
+        <AnchorRoot>
             <PageName.Provider value={pageName}>
                 <MobileView.Provider value={mobileView}>
                     {props.children}
                 </MobileView.Provider>
             </PageName.Provider>
-        </NavRoot>
+        </AnchorRoot>
     );
 }
 

@@ -4,7 +4,7 @@ import Layout from '../components/layout/layout';
 import SpoilersProjects from '../components/spoilers-projects';
 import {topPaddings} from '../common-styles/pages.module.css';
 import MobilePageTitle from '../components/mobile-page-title';
-import {NavPage} from '../libs/react-components/navigate';
+import {AnchorPage} from '../libs/react-components/anchors';
 
 function Services() {
     const pageName = useContext(PageName);
@@ -14,7 +14,7 @@ function Services() {
     return (
         
             <Layout>
-                <NavPage>
+                <AnchorPage>
                     <div style={{paddingBottom: '10px'}} className={topPaddings}>
                         <MobilePageTitle title={'Проекты'}/>
                         <span id='technopark'></span>
@@ -24,7 +24,7 @@ function Services() {
                         <span id='education'></span>
                         <SpoilersProjects.Education/>
                     </div>
-                </NavPage>
+                </AnchorPage>
             </Layout>
         
         );

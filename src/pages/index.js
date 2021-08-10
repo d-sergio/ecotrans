@@ -14,15 +14,15 @@ import MobileView from '../components/root-layout/view-context';
 import GatsbySuspense from '../libs/gatsby-components/gatsby-suspense';
 
 function Index() {
-    const pageName = useContext(PageName);
+    //const pageName = useContext(PageName);
     const mobileView = useContext(MobileView);
 
     const BlockMap = React.lazy(() => import('../components/block-map'));
 
-    useEffect(() => pageName.change('/'), []);
+    //useEffect(() => pageName.change('/'), []);
 
     return (
-        <Layout>
+        <Layout currentPage='/'>
             <Title/>
             <BlockServices/>
             <BlockStats/>

@@ -7,14 +7,12 @@ import BlockCalendar from '../components/block-calendar';
 import MobilePageTitle from '../components/mobile-page-title';
 
 function Clients() {
-    const pageName = useContext(PageName);
+    /*const pageName = useContext(PageName);
 
-
-    useEffect(() => pageName.change('/clients'), []);
-
+    useEffect(() => pageName.change('/clients'), []);*/
 
     return (
-        <Layout>
+        <Layout currentPage='/clients'>
             <MobilePageTitle title={'Клиентам'}/>
             <BlockDocs/>
             <BlockRegulatory/>

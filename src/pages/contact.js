@@ -4,12 +4,12 @@ import Layout from '../components/layout/layout';
 import BlockContact from '../components/block-contact/block-contact';
 
 function Contact() {
-    const pageName = useContext(PageName);
+    /*const pageName = useContext(PageName);
 
-    useEffect(() => pageName.change('/contact'), []);
+    useEffect(() => pageName.change('/contact'), []);*/
 
     return (
-        <Layout>
+        <Layout currentPage='/contact'>
             <BlockContact/>
         </Layout>);
 };

@@ -111,6 +111,9 @@ function SpoilerFloat(props) {
 
         if (animate.current) animate.current.cancel();
 
+        /*Может исчезнуть боковая полоса прокрутки, если закрыть все спойлеры.
+        Тогда ширина окна изменится и надо ещё раз пересчитать координаты кнопки.
+        Поэтому добавим её в колбэк */
         const animationProps = {
             timing: spoilerTimeFunctions.inverted,
             duration: props.duration,
@@ -119,7 +122,8 @@ function SpoilerFloat(props) {
             property: 'height',
             startValue: body.current.scrollHeight,
             finalValue: 0,
-            units: 'px'
+            units: 'px',
+            callback: setIconPosition
         }
 
         animate.current = new Animation();

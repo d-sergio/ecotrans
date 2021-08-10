@@ -3,14 +3,15 @@ import {Link} from 'gatsby';
 import {style, logo, phone} from "./header-desktop.module.css";
 import HeaderMenu from '../header-menu';
 import config from '../../config/config.json';
+import { Ecotrans } from '../header-menu-items';
 
 function HeaderDesktop(props) {
     const Logo = () => (
         <div className={logo}>
             <Link to='/'>
                 <img src={props.logo} alt="logo_ecotrans"/>
-                Экотранс
             </Link>
+            <Ecotrans/>
         </div>
     );
 

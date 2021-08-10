@@ -7,13 +7,13 @@ import MobilePageTitle from '../components/mobile-page-title';
 import {AnchorPage} from '../libs/react-components/anchors';
 
 function Services() {
-    const pageName = useContext(PageName);
+    /*const pageName = useContext(PageName);
 
-    useEffect(() => pageName.change('/projects'), []);
+    useEffect(() => pageName.change('/projects'), []);*/
 
     return (
         
-            <Layout>
+            <Layout currentPage='/projects'>
                 <AnchorPage>
                     <div style={{paddingBottom: '10px'}} className={topPaddings}>
                         <MobilePageTitle title={'Проекты'}/>

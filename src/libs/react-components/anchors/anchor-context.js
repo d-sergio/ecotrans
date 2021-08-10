@@ -2,7 +2,8 @@ import React from 'react';
 
 /**Контекст
  * 
- * destination - 
+ * anchor - целевой якорь на следующей странице, куда переходим
+ * changeAnchor - функция изменения anchor
  */
 const Anchor = React.createContext({
     anchor: '',

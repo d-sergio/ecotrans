@@ -37,28 +37,8 @@
     margin-bottom: 2rem;
 }
 
-.link{
-    text-align: center;
-    flex: 1;
-
-    /*transition: all 0.1s Добавляется в js*/
-}
-
-.link:hover{
-    transform: scale(1.125, 1.125);
-    font-family: "MontserratBold";
-    font-weight: 700;
-}
-
 @media screen and (min-width: 576px) {
     .menuMobile{
         font-size: 1.125rem;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-    .link{
-        display: flex;
-        align-items: center;
     }
 }

@@ -9,11 +9,16 @@
     margin-left: auto;
 }
 
-.logo a{
+.logo{
     display: flex;
+    width: 145px;
     align-items: center;
     font-family: "MontserratBold";
     font-size: 1.125rem;
+}
+
+.logo a{
+    margin-right: 10px;
 }
 
 .phone{

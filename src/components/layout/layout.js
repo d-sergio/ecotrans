@@ -7,7 +7,12 @@ import config from '../../config/config-media-queries.json';
 import ScrollUp from '../../libs/react-components/scroll-up';
 import Buttons from '../buttons';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import { NavPage } from '../../libs/react-components/navigation-highlight';
 
+/**
+ * Props:
+ * @param {String} currentPage - текущая страница. Например, '/home'
+*/
 function Layout(props) {
     const queries = {
         small: config.footer.small,
@@ -25,7 +30,11 @@ function Layout(props) {
 
             <div className={content}>
 
-                <header><Header mobile={mobileView}/></header>
+                <header>
+                    <NavPage currentPage={props.currentPage}>
+                        <Header mobile={mobileView}/>
+                    </NavPage>
+                </header>
 
                 <main>
                     <ScrollUp

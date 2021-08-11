@@ -35,14 +35,14 @@
     line-height: 2.75rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1210px) {
     .text{
         margin-right: auto;
     }
 }
 
 /*Уменьшить шрифты*/
-@media screen and (min-width: 731px) and (max-width: 900px) {
+@media screen and (min-width: 691px) and (max-width: 900px) {
     .ecotrans{
         font-size: 4rem;
         line-height: 4.86rem;
@@ -59,21 +59,37 @@
     }
 }
 
-@media screen and (max-width: 730px) {
+/*Уменьшить шрифты*/
+@media screen and (min-width: 631px) and (max-width: 690px) {
     .ecotrans{
-        font-size: 2.8rem;
-        line-height: 3.4rem;
+        font-size: 3.5rem;
+        line-height: 4.25rem;
     }
 
-    /*Спрятать верхнюю строку текста*/
     .waste{    
-        font-size: 1.19rem;
-        
+        font-size: 1.19rem;        
         line-height: 1.47rem;
     }
 
+    /*Спрятать верхнюю строку текста*/
     .about{
         display: none;
     }
 }
 
+@media screen and (max-width: 630px) {
+    .ecotrans{
+        font-size: 2.8rem;
+        line-height: 3.4rem;
+    }
+
+    .waste{    
+        font-size: 1.4875rem;        
+        line-height: 1.8375rem;
+    }
+
+    /*Спрятать верхнюю строку текста*/
+    .about{
+        display: none;
+    }
+}

@@ -60,7 +60,6 @@
 
     .mobile{
         display: block;
-        text-align: center;
     }
 
     .mobileImage{
@@ -69,15 +68,17 @@
     }
 }
 
-
+/*Размер мобильной картинки*/
 @media screen and (min-width: 731px) and (max-width: 1120px) {
     .mobile{
         height: 130%;
+        text-align: center;
     }
 }
 
 @media screen and (max-width: 730px) {
     .mobile{
         height: 110%;
+        text-align: right;
     }
 }

@@ -1,14 +1,19 @@
 import React from 'react';
 import Buttons from '../../buttons';
-import {outer, container, ecotrans, waste} from './block-title-mobile.module.css';
+import {container, text, ecotrans, waste, imageContainer, image} from './block-title-mobile.module.css';
+import mobilePic from '../../../../static/images/block-title/mobile.svg';
 
 function BlockTitleMobile() {
     return(
-        <section className={outer}>
-            <div className={container}>
+        <section className={container}>
+            <div className={text}>
                 <h1 className={ecotrans}>Экотранс</h1>
                 <p className={waste}>Отходы это не мусор</p>
                 <Buttons.Contact.Mobile/>
+            </div>
+
+            <div className={imageContainer}>
+                <img className={image} src={mobilePic} alt='mobile_pic'/>
             </div>
         </section>
     );

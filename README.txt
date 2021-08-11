@@ -4,35 +4,12 @@
 
 Корневой компонент root-layout управляет контекстом.
 
-1.1 Контекст MobileView (view-context.js) принимает
+Контекст MobileView (view-context.js) принимает
 значения true/false. Параметры медиа-запросов, по которым может определяться
 мобильный/десктопный режим сайта, задаются в файле config/config-media-queries.json
 
 Кроме того, в некоторых случаях компоненты сами могут совершать медиа-запросы
 через media-query.js (смотри подробнее components/root-layout/media-query-readme.txt)
-
-1.2 Контекст PageName (page-name-context.js) содержит объект с именем текущей страницы и методом её изменения:
-
-    name - имя текущей страницы
-    changeName - метод изменения имени текущей страницы
-
-Требуется для корректной подсветки имени текущей страницы в меню навигации.
-
-Значения name:
-
-    /
-    /services
-    /projects
-    /clients
-    /contact
-
-Контекст PageName задаётся на каждой странице:
-
-    import PageName from '../components/root-layout/page-name-context';
-
-    const pageName = useContext(PageName);
-
-    useEffect(() => pageName.change('/services'), []);
 
 
 
@@ -134,6 +111,10 @@ EcoFund, EcoLab, EcoSputnik, Filippov, Leader, BuisnessRussia
 Также переходят в активное состояние под курсором мыши. Но после этого теряют
 способность активироваться через пропс ---Сейчас эта возможность закомментирована
 и не активна
+
+
+
+
 
 > Вёрстка
 

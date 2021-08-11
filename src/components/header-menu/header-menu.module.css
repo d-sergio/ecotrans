@@ -6,6 +6,8 @@
     width: 517px;
 
     font-size: 1.125rem;
+
+    z-index: 100000;
 }
 
 .menuMobile{

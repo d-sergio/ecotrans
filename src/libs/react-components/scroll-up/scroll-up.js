@@ -8,6 +8,9 @@ import throttle from '../../common/throttle';
 
 /**Кнопка прокрутки в начало страницы
  * 
+ * Внимание!
+ * Автоматически устанавливает родительскому элементу position: relative !
+ * 
  * Props:
  * @param {Node} button - внешний вид кнопки
  * @param {number} contentWidth - ширина контента (px), центрированного по ширине
@@ -24,9 +27,9 @@ import throttle from '../../common/throttle';
  * По умолчаню 500.
  * @param {number} throttle - минимальное время (мс) между рассчётами позиции кнопки,
  * чтобы уменьшить нагрузку на браузер (100 по умолчанию)
- * @param {number} show - на сколько надо прокрутить страницу вниз относительно
+ * @param {number} startShowing - на сколько надо прокрутить страницу вниз относительно
  * высоты окна, чтобы появилась кнопка. От 0 до 1. Например:
- * show={0.3} - кнопка появится при прокрутке равной 30% от высоты окна
+ * startShowing={0.3} - кнопка появится при прокрутке равной 30% от высоты окна
  * 
  * Использование см. в readme.txt
  */
@@ -38,10 +41,18 @@ function ScrollUp(props) {
     const [left, setLeft] = useState( calcLeft() + 'px' );
     const [bottom, setBottom] = useState('-100px');
 
-    useEffect(() => initCalcCords(), []);
+    useEffect(setParentRelative, []);
+    useEffect(initCalcCords, []);
     useEffect(() => setBottom(props.bottom), []);
 
     const throttleSetCoords = throttle(setCoords, props.throttle);
+
+    /**Установить родительскому компоненту position: relative */
+    function setParentRelative() {
+        if (!buttonRef.current) return;
+
+        buttonRef.current.parentNode.style.position = 'relative';
+    }
 
     /**Инициализация координат кнопки */
     function initCalcCords() {
@@ -49,7 +60,7 @@ function ScrollUp(props) {
 
         mounted.current = true;
 
-        window.addEventListener('scroll', throttleSetCoords);
+        window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
 
         //ждём, когда загрузятся шрифты
@@ -60,7 +71,7 @@ function ScrollUp(props) {
 
             mounted.current = false;
 
-            window.removeEventListener('scroll', throttleSetCoords);
+            window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
         }
     }
@@ -87,20 +98,57 @@ function ScrollUp(props) {
         window.visualViewport.height
         : document.documentElement.clientHeight; 
 
-        if (document.documentElement.scrollTop < windowHeight * props.show) {
+        /*Кнопка прячется за нижней границей экрана, так как пользователь ещё
+        не достаточно прокрутил страницу */
+        if (document.documentElement.scrollTop < windowHeight * props.startShowing) {
+            buttonRef.current.style.position = 'fixed';
+
             return (-buttonRef.current.offsetHeight + 'px');
         }
 
+        /*Когда прокрутка достигает футера, кнопка ложится на него */
         if (contVisibleHeight < document.documentElement.clientHeight) {
+            /*Вариант, когда position кнопки около футера absolute. Родитель кнопки
+            должен иметь position: relative. */
+            buttonRef.current.style.position = 'absolute';
 
-            const y = windowHeight - contVisibleHeight;
+            const lastMarginBottom = getLastMarginBottom();
 
-            return y + props.end + 'px';
+            return props.end - lastMarginBottom + 'px';
+
+
+            /*Вариант, когда position кнопки всегда fixed. В мобильном браузере
+            кнопка может "плавать" около футера из-за панели навигации, которая
+            показывается/скрывается при прокрутке страницы. Также надо
+            закомментировать setParentRelative() и getLastMarginBottom() */
+
+            //const y = windowHeight - contVisibleHeight;
+            //return y + props.end + 'px';            
 
         } else {
 
+            buttonRef.current.style.position = 'fixed';
+
             return props.bottom;
         }
+    }
+
+    /**Последний дочерний элемент родителя кнопки может иметь margin-bottom,
+     * влияющий на положение кнопки около футера. Найдём этот margin-bottom,
+     * чтобы компенсировать его потом
+     */
+    function getLastMarginBottom() {
+        if (!buttonRef.current) return;
+
+        //Кнопка сама может быть последним элементом своего родителя
+        const lastParentChild = buttonRef.current.parentNode.lastChild === buttonRef.current ?
+            buttonRef.current.previousSibling
+            : buttonRef.current.parentNode.lastChild;
+
+        const lastChildBottomPx = getComputedStyle(lastParentChild).marginBottom;
+        const lastChildBottom = parseInt(lastChildBottomPx);
+
+        return lastChildBottom;
     }
     
     /**Посчитать отступ кнопки от левой границы окна */
@@ -183,10 +231,10 @@ export default ScrollUp;
 
 ScrollUp.defaultProps = {
     bottom: '0px',
-    end: 0,
+    end: 30,
     duration: 500,
     contentWidth: 1440,
     shiftX: 0,
     throttle: 100,
-    show: 0.3
+    startShowing: 0.3
 };

@@ -29,14 +29,9 @@ import Modal from '../modal';
  * модального окна (300 по умолчанию)
  */
 function AttachModal(props) {
-    //прокрутка страницы предотвращаеся?
-    const scrollPrevented = useRef(false);
-
     const [isOpen, setOpen] = useState(false);
 
     useEffect(initialize, []);
-
-    useEffect(preventScroll, [isOpen]);
 
     /**Инициализация */
     function initialize() {
@@ -50,36 +45,6 @@ function AttachModal(props) {
 
             setOpen(false);
         }
-    }
-
-    /**Обработчики для предотвращения прокрутки страницы */
-    function preventScroll() {
-        if (isOpen && !scrollPrevented.current) {
-            
-            scrollPrevented.current = true;
-
-            window.addEventListener('wheel', preventScrollEvent, {passive: false});
-            window.addEventListener('touchmove', preventScrollEvent, {passive: false});
-
-        } else if (!isOpen && scrollPrevented.current) {
-
-            scrollPrevented.current = false;
-
-            window.removeEventListener('wheel', preventScrollEvent, {passive: false});
-            window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
-        }
-
-        return () => {            
-            if (scrollPrevented.current) {
-                window.removeEventListener('wheel', preventScrollEvent, {passive: false});
-                window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
-            }
-        };
-    }
-
-    /**Предотвратить прокрутку страницы */
-    function preventScrollEvent(e) {
-        e.preventDefault();
     }
 
     function openModal() {

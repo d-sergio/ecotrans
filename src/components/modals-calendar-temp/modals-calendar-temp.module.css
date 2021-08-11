@@ -1,7 +1,7 @@
 .backgroundCloseIcon{
-    position: fixed;
-    right: 100px;
-    top: 28px;
+    position: absolute;
+    right: 35px;
+    top: -55px;
 
     cursor: pointer;
 }
@@ -11,15 +11,34 @@
     justify-content: center;
     align-items: center;
 
-    width: 78%;
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 1123px;
+}
+
+.textAndBorder{
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    font-size: 1.5rem;
+    line-height: 2.125rem;
 }
 
 .fullSizeImage{
-    max-width: 100%;
-    height: auto;
+    
 }
 
-.text{
-    font-size: 1.5rem;
-    line-height: 2.125rem;
+@media screen and (max-width: 1440px) {
+    .container{
+        width: 90%;
+    }
+}
+
+/*Позиция кнопки закрытия*/
+@media screen and (max-width: 1440px) {
+    .backgroundCloseIcon{
+        right: 80px;
+    }
 }

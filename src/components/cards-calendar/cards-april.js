@@ -1,13 +1,11 @@
 import React from 'react';
 import CardsCalendarTemp from "./cards-calendar-temp";
-import april1 from '../../../static/images/calendar/april/1.webp';
-import april5 from '../../../static/images/calendar/april/5.webp';
-import april7 from '../../../static/images/calendar/april/7.webp';
-import april15 from '../../../static/images/calendar/april/15.webp';
-import april18_22 from '../../../static/images/calendar/april/18-22.webp';
-import april19 from '../../../static/images/calendar/april/19.webp';
-
-import april1Full from '../../../static/images/calendar/april/full-1.png';
+import april1 from '../../../static/images/calendar/thumbnails/april/1.webp';
+import april5 from '../../../static/images/calendar/thumbnails/april/5.webp';
+import april7 from '../../../static/images/calendar/thumbnails/april/7.webp';
+import april15 from '../../../static/images/calendar/thumbnails/april/15.webp';
+import april18_22 from '../../../static/images/calendar/thumbnails/april/18-22.webp';
+import april19 from '../../../static/images/calendar/thumbnails/april/19.webp';
 
 function April1() {
     const day = '1 Апреля';
@@ -18,7 +16,7 @@ function April1() {
             day={day}
             name={name}
             thumb={april1}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }
@@ -32,7 +30,7 @@ function April5() {
             day={day}
             name={name}
             thumb={april5}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }
@@ -46,7 +44,7 @@ function April7() {
             day={day}
             name={name}
             thumb={april7}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }
@@ -60,7 +58,7 @@ function April15() {
             day={day}
             name={name}
             thumb={april15}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }
@@ -74,7 +72,7 @@ function April18_22() {
             day={day}
             name={name}
             thumb={april18_22}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }
@@ -88,7 +86,7 @@ function April19() {
             day={day}
             name={name}
             thumb={april19}
-            fullSizeImage={april1Full}
+            fullSizeImage={'april/1.png'}
         />
     );
 }

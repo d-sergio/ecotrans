@@ -19,11 +19,14 @@ import animateClose from './animate-close';
 function Modal(props) {
     const modalRef = useRef(null);
     const animate = useRef();   //Объект анимации
+
+    //прокрутка страницы предотвращаеся?
+    const scrollPrevented = useRef(false);
     
     useEffect(initialize, []);
 
     useEffect(animateModal, [props.isOpen]);
-
+    useEffect(preventScroll, [props.isOpen]);
 
     /**Инициализация */
     function initialize() {
@@ -65,6 +68,36 @@ function Modal(props) {
             //закрытие модального окна кликом по пустому пространству запрещено
             props.closeModal();
         }
+    }
+
+    /**Обработчики для предотвращения прокрутки страницы */
+    function preventScroll() {
+        if (props.isOpen && !scrollPrevented.current) {
+            
+            scrollPrevented.current = true;
+
+            window.addEventListener('wheel', preventScrollEvent, {passive: false});
+            window.addEventListener('touchmove', preventScrollEvent, {passive: false});
+
+        } else if (!props.isOpen && scrollPrevented.current) {
+
+            scrollPrevented.current = false;
+
+            window.removeEventListener('wheel', preventScrollEvent, {passive: false});
+            window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
+        }
+
+        return () => {            
+            if (scrollPrevented.current) {
+                window.removeEventListener('wheel', preventScrollEvent, {passive: false});
+                window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
+            }
+        };
+    }
+
+    /**Предотвратить прокрутку страницы */
+    function preventScrollEvent(e) {
+        e.preventDefault();
     }
 
     return(

@@ -3,5 +3,7 @@
 
     z-index: 1000000;
 
+    opacity: 0; /*до инициализации координат кнопки*/
+
     transition: bottom 0.2s;
 }

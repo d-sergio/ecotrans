@@ -56,7 +56,7 @@ function ScrollUp(props) {
 
     /**Инициализация координат кнопки */
     function initCalcCords() {
-        if (typeof window === undefined) return;
+        if (typeof window === undefined || !buttonRef.current) return;
 
         mounted.current = true;
 
@@ -64,7 +64,11 @@ function ScrollUp(props) {
         window.addEventListener('resize', throttleSetCoords);
 
         //ждём, когда загрузятся шрифты
-        document.fonts.ready.then(() => setCoords());
+        document.fonts.ready.then(() => {
+            //Кнопка до этого момента была не видна
+            buttonRef.current.style.opacity = 1;
+            setCoords();
+        });
 
         return () => {
             if (typeof window === undefined) return;
@@ -101,6 +105,7 @@ function ScrollUp(props) {
         /*Кнопка прячется за нижней границей экрана, так как пользователь ещё
         не достаточно прокрутил страницу */
         if (document.documentElement.scrollTop < windowHeight * props.startShowing) {
+            
             buttonRef.current.style.position = 'fixed';
 
             return (-buttonRef.current.offsetHeight + 'px');

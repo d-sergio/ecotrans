@@ -107,7 +107,7 @@ function ScrollUp(props) {
         }
 
         /*Когда прокрутка достигает футера, кнопка ложится на него */
-        if (contVisibleHeight < document.documentElement.clientHeight) {
+        if (contVisibleHeight < windowHeight) {
             /*Вариант, когда position кнопки около футера absolute. Родитель кнопки
             должен иметь position: relative. */
             buttonRef.current.style.position = 'absolute';

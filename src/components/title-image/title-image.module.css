@@ -1,0 +1,83 @@
+.container{
+    position: relative;
+    flex: 1;
+    height: 439px;
+    width: auto;
+
+    overflow: visible;
+}
+
+.imageContainer{
+    position: absolute;
+    width: 100%;
+}
+
+.imageContainerLeft{
+    text-align: left;
+    left: 10px;
+}
+
+.imageContainerCenter{
+    text-align: center;
+}
+
+.imageContainerRight{
+    text-align: right;
+    right: 10px;
+}
+
+.bottomStyle{
+    position: absolute;
+    width: 100%;
+
+    bottom: -32px;
+    height: 32px;
+
+    border-radius: 32px;
+
+    background-color: #07C1A2;
+
+}
+
+.image{
+    height: 439px;
+    width: auto;
+}
+
+.mobile{
+    display: none;
+}
+
+/*Показать мобильную картинку*/
+@media screen and (max-width: 1120px) {
+    .image{
+        display: none;
+    }
+
+    .bottomStyle {
+        display: none;
+    }
+
+    .mobile{
+        display: block;
+        text-align: center;
+    }
+
+    .mobileImage{
+        height: 100%;
+        width: auto;
+    }
+}
+
+
+@media screen and (min-width: 731px) and (max-width: 1120px) {
+    .mobile{
+        height: 130%;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .mobile{
+        height: 110%;
+    }
+}

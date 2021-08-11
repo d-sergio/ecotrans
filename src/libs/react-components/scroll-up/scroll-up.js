@@ -120,7 +120,8 @@ function ScrollUp(props) {
             /*Вариант, когда position кнопки всегда fixed. В мобильном браузере
             кнопка может "плавать" около футера из-за панели навигации, которая
             показывается/скрывается при прокрутке страницы. Также надо
-            закомментировать setParentRelative() и getLastMarginBottom() */
+            закомментировать setParentRelative() и getLastMarginBottom(), а в 
+            стилях css раскомментировать position: fixed; */
 
             //const y = windowHeight - contVisibleHeight;
             //return y + props.end + 'px';            

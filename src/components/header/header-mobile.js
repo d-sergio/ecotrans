@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {Link} from 'gatsby';
-import {style, phone, logo} from "./header-mobile.module.css";
+import {style, phone, logo, mobileContainer} from "./header-mobile.module.css";
 import ButtonMenu from '../buttons/button-menu';
 import HeaderMenu from '../header-menu';
 import Animation from '../../libs/animate/animate';
@@ -23,7 +23,7 @@ function HeaderMobile(props) {
         if (!headerMenu.current) return;
 
         headerMenu.current.style.display = 'none';
-        headerMenu.current.style.opacity = '0';
+        headerMenu.current.style.opacity = 0;
 
         setInit(true);
     }, []);
@@ -46,8 +46,7 @@ function HeaderMobile(props) {
     function animateOpen() {
         if (!headerMenu.current) return;
 
-        headerMenu.current.style.display = 'block';
-        headerMenu.current.style.opacity = '0';
+        headerMenu.current.style.display = 'flex';
 
         if (animate.current) animate.current.cancel();
 
@@ -68,8 +67,8 @@ function HeaderMobile(props) {
     function animateClose() {
         if (!headerMenu.current) return;
 
-        headerMenu.current.style.display = 'block';
-        headerMenu.current.style.opacity = '0';
+        //headerMenu.current.style.display = 'block';
+        //headerMenu.current.style.opacity = '0';
 
         const callback = () => {
             if (!headerMenu.current) return;
@@ -117,7 +116,7 @@ function HeaderMobile(props) {
             <Phone/>
             <div style={{height: '24px'}} onClick={onClick}>
                 <ButtonMenu open={isOpen}/>
-                <div ref={headerMenu}>
+                <div className={mobileContainer} ref={headerMenu}>
                    <HeaderMenu mobile={true}/>
                 </div>
             </div>

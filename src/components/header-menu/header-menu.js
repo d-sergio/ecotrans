@@ -1,5 +1,5 @@
 import React from 'react';
-import {menuDesktop, menuMobile, mobileContainer} from './header-menu.module.css';
+import {menuDesktop, menuMobile} from './header-menu.module.css';
 import { Services, Projects, Clients, Contact, Main} from '../header-menu-items';
 
 /**Имя текущей страницы берётся из контекста.
@@ -23,9 +23,7 @@ function HeaderMenu(props) {
         </nav>
     );
 
-    return props.mobile ?
-            <div className={mobileContainer}>{menu}</div>   //Дополнительная обёртка для мобильного
-            : menu;
+    return menu;
 }
 
 export default HeaderMenu;

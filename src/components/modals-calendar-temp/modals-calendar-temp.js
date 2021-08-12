@@ -4,6 +4,7 @@ import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
 import { mainContainer } from '../../common-styles/containers.module.css';
+import dummy from '../../../static/images/calendar/calendar-dummy.svg';
 
 /**Шаблон модального окна для календаря (полноразмерная картинка с текстом)
  * 
@@ -18,6 +19,7 @@ function ModalCalendarTemp(props) {
 
     const [isOpen, setOpen] = useState(false);
     const [importedPicture, setPicture] = useState(null);
+    const [imageLoaded, setLoaded] = useState(false);
     
     useEffect(() => {
         return () => mounted.current = false;
@@ -64,8 +66,8 @@ function ModalCalendarTemp(props) {
                             />
                             : null
                     }
-                    
                 </div>
+                
             </div>
         </div>
     );
@@ -73,7 +75,7 @@ function ModalCalendarTemp(props) {
     return(
         <>
             <Modal.Set
-                isOpen={isOpen}
+                isOpen={isOpen && importedPicture ? true : false}
                 closeModal={() => setOpen(false)}
                 modal={<FullSizePic/>}
             />

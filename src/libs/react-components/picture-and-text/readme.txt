@@ -7,6 +7,8 @@
 Props:
 @param {Object} image - импортированная картинка
 @param {String | Node} text - текст
+@param {Function} onload - колбэк, который выполнится сразц после загрузки
+картинки
 @param {String} className - стили CSS для img.
 По умолчанию:
 

@@ -5,7 +5,12 @@ import {container, image, text} from './picture-text-right.module.css';
 function PictureTextRight(props) {
     return(
         <div className={container}>
-            <img className={props.className || image} src={props.image} alt="picture"/>
+            <img
+                onLoad={props.onload || null}
+                className={props.className || image}
+                src={props.image}
+                alt="pic_text_right"
+            />
             
             <div className={text}>{props.text}</div>
         </div>

@@ -7,7 +7,12 @@ function PictureTextOver(props) {
         <div className={container}>
             
             <div className={imgWrapper}>
-                <img className={props.className || image} src={props.image} alt='day'/>
+                <img
+                    onLoad={props.onload || null}
+                    className={props.className || image}
+                    src={props.image}
+                    alt='pic_text_over'
+                />
             </div>
 
             <div className={overlay}>{props.overlay}</div>

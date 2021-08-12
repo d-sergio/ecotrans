@@ -61,7 +61,7 @@ function ModalCalendarTemp(props) {
                     {
                         importedPicture ?
                             <PictureAndText.Over image={importedPicture} text={props.text}/>
-                            : <PictureAndText.Over image={dummy} text={''}/>
+                            : null
                     }
                     
                 </div>

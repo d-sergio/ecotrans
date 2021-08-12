@@ -4,7 +4,6 @@ import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
 import { mainContainer } from '../../common-styles/containers.module.css';
-import dummy from '../../../static/images/calendar-dummy.svg';
 
 /**Шаблон модального окна для календаря (полноразмерная картинка с текстом)
  * 
@@ -12,8 +11,6 @@ import dummy from '../../../static/images/calendar-dummy.svg';
  * @param {String} fullSizeImage - полноразмерная картинка из календаря для
  * модального окна. Адрес вида '/april/1.png'. Всё лежит в
  * '/static/images/calendar/fullsize/'
- * @param {Node} dummy - заглушка, которую видит пользователь, пока картинка
- * не загрузилась
  * @param {Node | String} - текст, отображаемый поверх картинки
  */
 function ModalCalendarTemp(props) {
@@ -65,7 +62,7 @@ function ModalCalendarTemp(props) {
                                 overlay={<div className={gradient}></div>}
                                 text={props.text}
                             />
-                            : <PictureAndText.Over image={dummy} text={''}/>
+                            : null
                     }
                     
                 </div>

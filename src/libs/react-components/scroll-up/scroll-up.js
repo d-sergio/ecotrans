@@ -144,17 +144,24 @@ function ScrollUp(props) {
      * чтобы компенсировать его потом
      */
     function getLastMarginBottom() {
-        if (!buttonRef.current) return;
+        try{
+            if (!buttonRef.current) return;
 
-        //Кнопка сама может быть последним элементом своего родителя
-        const lastParentChild = buttonRef.current.parentNode.lastChild === buttonRef.current ?
-            buttonRef.current.previousSibling
-            : buttonRef.current.parentNode.lastChild;
+            //Кнопка сама может быть последним элементом своего родителя
+            const lastParentChild = buttonRef.current.parentNode.lastChild === buttonRef.current ?
+                buttonRef.current.previousSibling
+                : buttonRef.current.parentNode.lastChild;
+    
+            const lastChildBottomPx = getComputedStyle(lastParentChild).marginBottom;
+            const lastChildBottom = parseInt(lastChildBottomPx);
+    
+            return lastChildBottom;
+        } catch (e) {
+            
+            console.log(`ScrollUp. Ошибка в getLastMarginBottom. Вернёт значение 0.`)
 
-        const lastChildBottomPx = getComputedStyle(lastParentChild).marginBottom;
-        const lastChildBottom = parseInt(lastChildBottomPx);
-
-        return lastChildBottom;
+            return 0;
+        }
     }
     
     /**Посчитать отступ кнопки от левой границы окна */

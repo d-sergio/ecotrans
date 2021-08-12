@@ -37,13 +37,13 @@ function Layout(props) {
                 </header>
 
                 <main>
-                    <ScrollUp
+                    {/*<ScrollUp
                         key={mobileView}
                         button={<Buttons.ScrollUp/>}
                         contentWidth={1440}
                         shiftX={mobileView ? 20 : 88}
                         bottom='30px'
-                    />
+                    />*/}
 
                     {props.children}
                 </main>

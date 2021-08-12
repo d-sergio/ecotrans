@@ -2,7 +2,7 @@ import React from 'react';
 import {mainContainer} from '../../common-styles/containers.module.css';
 import {spoilerTitle} from '../../common-styles/title.module.css';
 import {container} from './block-calendar.module.css';
-import SpoilerApril from '../spoilers-calendar/spoiler-april';
+import Spoilers from '../spoilers-calendar/';
 
 function BlockCalendar() {
     const containerStyle = [container, mainContainer].join(" ");
@@ -12,7 +12,29 @@ function BlockCalendar() {
 
             <div className={spoilerTitle}>Экологический календарь</div>
 
-            <SpoilerApril/>
+            <Spoilers.January/>
+
+            <Spoilers.February/>
+
+            <Spoilers.March/>
+
+            <Spoilers.April/>
+
+            <Spoilers.May/>
+
+            <Spoilers.June/>
+
+            <Spoilers.July/>
+
+            <Spoilers.August/>
+
+            <Spoilers.Semptember/>
+
+            <Spoilers.Oktober/>
+
+            <Spoilers.November/>
+
+            <Spoilers.December/>
             
         </section>
     );

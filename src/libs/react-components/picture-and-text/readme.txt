@@ -13,6 +13,8 @@ Props:
     max-width: 100%;
     height: auto;
 
+@param {Node} overlay - любой слой над картинкой (только для Over)
+
 Использование:
 
 import img from '../image.jpg';

@@ -19,19 +19,18 @@
     }
 }
 
-@media screen and (min-width: 670px) {
+@media screen and (min-width: 901px) {
     .bodyStyle{
-        /*display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: space-between;*/
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 30px;
     }
 }
 
-@media screen and (min-width: 430px) and (max-width: 669px) {
+@media screen and (min-width: 430px) and (max-width: 900px) {
     .bodyStyle{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
     }
 }

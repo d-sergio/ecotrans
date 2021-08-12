@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {backgroundCloseIcon, container, textAndBorder} from './modals-calendar-temp.module.css';
+import {backgroundCloseIcon, container, textAndBorder, gradient} from './modals-calendar-temp.module.css';
 import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
@@ -60,8 +60,12 @@ function ModalCalendarTemp(props) {
                 <div className={textAndBorder}>
                     {
                         importedPicture ?
-                            <PictureAndText.Over image={importedPicture} text={props.text}/>
-                            : null
+                            <PictureAndText.Over
+                                image={importedPicture}
+                                overlay={<div className={gradient}></div>}
+                                text={props.text}
+                            />
+                            : <PictureAndText.Over image={dummy} text={''}/>
                     }
                     
                 </div>

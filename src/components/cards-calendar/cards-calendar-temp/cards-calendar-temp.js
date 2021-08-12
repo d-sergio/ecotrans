@@ -1,6 +1,6 @@
 import React from 'react';
 import PictureAndText from '../../../libs/react-components/picture-and-text';
-import {container, day, name} from './cards-calendar-temp.module.css';
+import {container, day, name, gradient} from './cards-calendar-temp.module.css';
 import ModalCalendar from '../../modals-calendar-temp';
 
 /**Шаблон карточки для календаря
@@ -30,7 +30,11 @@ function CardsCalendarTemp(props) {
         <ModalCalendar fullSizeImage={props.fullSizeImage} text={text}>
 
             <div className={container}>
-                <PictureAndText.Over image={props.thumb} text={text}/>
+                <PictureAndText.Over
+                    image={props.thumb}
+                    overlay={<div className={gradient}></div>}
+                    text={text}
+                />
             </div>
 
         </ModalCalendar>

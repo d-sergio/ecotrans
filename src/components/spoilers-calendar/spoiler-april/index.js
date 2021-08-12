@@ -1,3 +1,3 @@
-import SpoilerApril from "./spoiler-april";
+import Spoiler from "./spoiler-april";
 
-export default SpoilerApril;
+export default Spoiler;

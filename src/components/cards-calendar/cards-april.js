@@ -7,7 +7,7 @@ import april15 from '../../../static/images/calendar/thumbnails/april/15.webp';
 import april18_22 from '../../../static/images/calendar/thumbnails/april/18-22.webp';
 import april19 from '../../../static/images/calendar/thumbnails/april/19.webp';
 
-function April1() {
+function Day1() {
     const day = '1 Апреля';
     const name = <>Международный день<br/>птиц</>;
 
@@ -16,12 +16,12 @@ function April1() {
             day={day}
             name={name}
             thumb={april1}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/1.webp'}
         />
     );
 }
 
-function April5() {
+function Day5() {
     const day = '5 Апреля';
     const name = 'День геолога';
 
@@ -30,12 +30,12 @@ function April5() {
             day={day}
             name={name}
             thumb={april5}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/5.webp'}
         />
     );
 }
 
-function April7() {
+function Day7() {
     const day = '7 Апреля';
     const name = <>Всемирный день<br/>охраны здоровья</>;
 
@@ -44,12 +44,12 @@ function April7() {
             day={day}
             name={name}
             thumb={april7}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/7.webp'}
         />
     );
 }
 
-function April15() {
+function Day15() {
     const day = '15 Апреля';
     const name = <>День экологических<br/>знаний</>;
 
@@ -58,12 +58,12 @@ function April15() {
             day={day}
             name={name}
             thumb={april15}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/15.webp'}
         />
     );
 }
 
-function April18_22() {
+function Day18_22() {
     const day = '18-22 Апреля';
     const name = 'Марш парков';
 
@@ -72,12 +72,12 @@ function April18_22() {
             day={day}
             name={name}
             thumb={april18_22}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/18-22.webp'}
         />
     );
 }
 
-function April19() {
+function Day19() {
     const day = '19 Апреля';
     const name = 'День подснежника';
 
@@ -86,18 +86,18 @@ function April19() {
             day={day}
             name={name}
             thumb={april19}
-            fullSizeImage={'april/1.png'}
+            fullSizeImage={'april/19.webp'}
         />
     );
 }
 
 const april = {
-    April1,
-    April5,
-    April7,
-    April15,
-    April18_22,
-    April19
+    Day1,
+    Day5,
+    Day7,
+    Day15,
+    Day18_22,
+    Day19
 };
 
 export default april;

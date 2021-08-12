@@ -1,19 +1,19 @@
 import React from 'react';
-import {container} from './spoiler-april.module.css';
+import {container} from '../spoilers-calendar-common.module.css';
 import Cards from '../../cards-calendar';
 import SpoilerCalendarTemp from '../spoiler-calendar-temp';
 
-function SpoilerApril() {
+function Spoiler() {
     const text = 'Апрель';
 
     const body =
         [
-            <Cards.April1/>,
-            <Cards.April5/>,
-            <Cards.April7/>,
-            <Cards.April15/>,
-            <Cards.April18_22/>,
-            <Cards.April19/>
+            <Cards.April.Day1/>,
+            <Cards.April.Day5/>,
+            <Cards.April.Day7/>,
+            <Cards.April.Day15/>,
+            <Cards.April.Day18_22/>,
+            <Cards.April.Day19/>
         ];
 
 
@@ -26,4 +26,4 @@ function SpoilerApril() {
     );
 }
 
-export default SpoilerApril;
+export default Spoiler;

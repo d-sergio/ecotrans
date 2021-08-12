@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {backgroundCloseIcon, container, pictureAndText, gradient} from './modals-calendar-temp.module.css';
+import {outsideCloseIcon, insideCloseIcon, container, pictureAndText, gradient, image} from './modals-calendar-temp.module.css';
 import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
@@ -15,17 +15,23 @@ import dummy from '../../../static/images/calendar/calendar-dummy.svg';
  * @param {Node | String} - текст, отображаемый поверх картинки
  */
 function ModalCalendarTemp(props) {
-    const mounted = useRef(true);
+    //const mounted = useRef(true);
+
+    /**Меньше этой ширины окна картинка не открывается кликом,
+     * так как уже занимает всю ширину
+     */
+    const openMinSize = 590;
 
     const [isOpen, setOpen] = useState(false);
     const [importedPicture, setPicture] = useState(null);
     
-    useEffect(() => {
+    /*useEffect(() => {
         return () => mounted.current = false;
-    }, []);
+    }, []);*/
 
     useEffect(openFullSizePic, [isOpen]);
 
+    /**Динамический импорт картинки */
     function openFullSizePic() {
         if (importedPicture || !isOpen) return;
 
@@ -34,40 +40,57 @@ function ModalCalendarTemp(props) {
         .catch((e) => console.log(`ModalCalendarTemp: ошибка импорта\n ${e.name}: ${e.message}\n ${e.stack}`));
     }
 
+    /**Добавить импортированную картинку */
     function addData(data) {
-        if (!mounted.current) {
+        /*if (!mounted.current) {
             console.log('ModalCalendarTemp: компонент размонтирован, импорт картинки прерван');
 
             return;
+        }*/
+
+        try{
+            /**Предварительная загрузка картинки. Открывается на img.onload */
+            const img = new Image();
+            img.src = data.default || data;
+            /*img.onload = () => mounted.current ? setPicture(data.default || data) : null;*/
+            img.onload = () => setPicture(data.default || data);
+        } catch(e) {
+            console.log(`ModalCalendarTemp: не удалось загрузить картинку\n ${e.name}: ${e.message}\n ${e.stack}`);
         }
 
-        const img = new Image();
-        img.src = data.default || data;
-        img.onload = () => setPicture(data.default || data);
     }
 
+    /**Контент модального окна с картинкой */
     const FullSizePic = () => (
         <div data-close-modal className={mainContainer} style={{position: 'relative'}}>
             <div className={container}>
-
-                <img
-                    data-close-modal
-                    className={backgroundCloseIcon}
-                    src={closeIcon}
-                    alt='close_icon'
-                />
 
                 <div className={pictureAndText}>
                     {
                         importedPicture ?
                             <PictureAndText.Over
+                                className={image}
                                 image={importedPicture}
                                 overlay={<div className={gradient}></div>}
                                 text={props.text}
                             />
                             : null
                     }
+
+                    <img
+                        data-close-modal
+                        className={insideCloseIcon}
+                        src={closeIcon}
+                        alt='close_icon'
+                    />
                 </div>
+
+                <img
+                    data-close-modal
+                    className={outsideCloseIcon}
+                    src={closeIcon}
+                    alt='close_icon'
+                />
                 
             </div>
         </div>
@@ -81,7 +104,12 @@ function ModalCalendarTemp(props) {
                 modal={<FullSizePic/>}
             />
 
-            <div onClick={() => setOpen(true)}>
+            <div onClick={
+                () => document.documentElement.clientWidth >= openMinSize ?
+                    setOpen(true)
+                    : null
+                }>
+
                 {props.children}
             </div>
         </>

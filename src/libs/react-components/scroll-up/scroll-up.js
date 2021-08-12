@@ -65,6 +65,8 @@ function ScrollUp(props) {
 
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
+            if (!buttonRef.current) return;
+            
             //Кнопка до этого момента была не видна
             buttonRef.current.style.opacity = 1;
             setCoords();

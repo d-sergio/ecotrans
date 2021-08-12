@@ -27,7 +27,7 @@
     }
 }
 
-@media screen and (min-width: 430px) and (max-width: 900px) {
+@media screen and (min-width: 590px) and (max-width: 900px) {
     .bodyStyle{
         display: grid;
         grid-template-columns: 1fr 1fr;

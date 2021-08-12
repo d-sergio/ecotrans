@@ -62,6 +62,7 @@ function ScrollUp(props) {
 
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
+        window.addEventListener('orientationchange', setCoords);
 
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
@@ -79,6 +80,8 @@ function ScrollUp(props) {
 
             window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
+            window.removeEventListener('orientationchange', setCoords);
+
         }
     }
 

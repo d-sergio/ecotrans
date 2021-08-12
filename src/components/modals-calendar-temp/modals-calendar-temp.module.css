@@ -26,10 +26,6 @@
     line-height: 2.125rem;
 }
 
-.fullSizeImage{
-    
-}
-
 @media screen and (max-width: 1440px) {
     .container{
         width: 90%;

@@ -3,8 +3,12 @@
     width: 100%;
 }
 
+/*Убрать у картинки лишний отступ снизу*/
+.imgWrapper{
+    line-height: 0;
+}
+
 .image{
-    display: block;
     max-width: 100%;
     height: auto;
 }

@@ -1,11 +1,15 @@
 import React from 'react';
-import {container, image, text} from './picture-text-over.module.css';
+import {container, image, text, imgWrapper} from './picture-text-over.module.css';
 
 /**Картинка с текстом поверх неё */
 function PictureTextOver(props) {
     return(
         <div className={container}>
-            <img className={props.className || image} src={props.image} alt='day'/>
+            
+            <div className={imgWrapper}>
+                <img className={props.className || image} src={props.image} alt='day'/>
+            </div>
+
             <div className={text}>{props.text}</div>
         </div>
     );

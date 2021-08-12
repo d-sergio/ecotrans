@@ -63,11 +63,9 @@ function ScrollUp(props) {
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
 
+        //ориентация экрана
         const portrait = window.matchMedia('(orientation: portrait)');
-        const landscape = window.matchMedia('(orientation: landscape)');
-
         portrait.addEventListener('change', resetCoords);
-        landscape.addEventListener('change', resetCoords);
 
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
@@ -85,15 +83,18 @@ function ScrollUp(props) {
 
             window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
-
             portrait.removeEventListener('change', resetCoords);
-            landscape.removeEventListener('change', resetCoords);
     
         }
     }
 
+    /**Прослушиваем  оринтацию экрана. Иначе кнопка может оказаться
+     * там, где быть не должна
+    */
     function resetCoords() {
         if (!buttonRef.current) return;
+
+        console.log('!!!')
 
         setLeft(0);
         setCoords();

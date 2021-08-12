@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {backgroundCloseIcon, container, textAndBorder, gradient} from './modals-calendar-temp.module.css';
+import {backgroundCloseIcon, container, pictureAndText, gradient} from './modals-calendar-temp.module.css';
 import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
@@ -19,7 +19,6 @@ function ModalCalendarTemp(props) {
 
     const [isOpen, setOpen] = useState(false);
     const [importedPicture, setPicture] = useState(null);
-    const [imageLoaded, setLoaded] = useState(false);
     
     useEffect(() => {
         return () => mounted.current = false;
@@ -42,7 +41,9 @@ function ModalCalendarTemp(props) {
             return;
         }
 
-        setPicture(data.default || data);
+        const img = new Image();
+        img.src = data.default || data;
+        img.onload = () => setPicture(data.default || data);
     }
 
     const FullSizePic = () => (
@@ -56,7 +57,7 @@ function ModalCalendarTemp(props) {
                     alt='close_icon'
                 />
 
-                <div className={textAndBorder}>
+                <div className={pictureAndText}>
                     {
                         importedPicture ?
                             <PictureAndText.Over

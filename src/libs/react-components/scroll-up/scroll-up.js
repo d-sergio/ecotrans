@@ -60,9 +60,12 @@ function ScrollUp(props) {
 
         mounted.current = true;
 
+        const orientQuery = window.matchMedia('(orientation: portrait)');
+
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
-        window.addEventListener('orientationchange', setCoords);
+        //window.addEventListener('orientationchange', setCoords);
+        orientQuery.addEventListener('change', setCoords);
 
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
@@ -80,8 +83,8 @@ function ScrollUp(props) {
 
             window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
-            window.removeEventListener('orientationchange', setCoords);
-
+            //window.removeEventListener('orientationchange', setCoords);
+            orientQuery.removeEventListener('change', setCoords);
         }
     }
 

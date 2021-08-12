@@ -60,16 +60,14 @@ function ScrollUp(props) {
 
         mounted.current = true;
 
-        const portraitQuery = window.matchMedia('(orientation: portrait)');
-        const landscapeQuery = window.matchMedia('(orientation: landscape)');
-
-
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
-        //window.addEventListener('orientationchange', setCoords);
-        portraitQuery.addEventListener('change', setCoords);
-        landscapeQuery.addEventListener('change', setCoords);
 
+        const portrait = window.matchMedia('(orientation: portrait)');
+        const landscape = window.matchMedia('(orientation: landscape)');
+
+        portrait.addEventListener('change', resetCoords);
+        landscape.addEventListener('change', resetCoords);
 
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
@@ -87,14 +85,18 @@ function ScrollUp(props) {
 
             window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
-            //window.removeEventListener('orientationchange', setCoords);
-            portraitQuery.removeEventListener('change', checkOrientation);
-            landscapeQuery.removeEventListener('change', checkOrientation);
+
+            portrait.removeEventListener('change', resetCoords);
+            landscape.removeEventListener('change', resetCoords);
+    
         }
     }
 
-    function checkOrientation(e) {
-        if (e.matches) setCoords;
+    function resetCoords() {
+        if (!buttonRef.current) return;
+
+        setLeft(0);
+        setCoords();
     }
 
     /**Установить координаты кнопки*/

@@ -91,3 +91,15 @@
 .description {
     font-size: 1.125rem;
 }
+
+@media screen and (max-width: 650px) {
+    .circleActive {
+        height: 400px;
+        width: 400px;
+        min-width: 400px;
+    }
+
+    .imageActive {
+        height: 110px;
+    }
+}

@@ -25,7 +25,14 @@ function BlockProjectsDesktop() {
         large: "screen and (min-width: 1440px)"
     };
 
+    //Смещение кнопок от центра
+    const buttonQuery = {
+        small: "screen and (max-width: 651px)",
+        large: "screen and (min-width: 650px)"
+    };
+
     const smallView = useMediaQuery(queries);
+    const buttonShift = useMediaQuery(buttonQuery);
 
     if (smallView === undefined) return null; 
 
@@ -34,12 +41,12 @@ function BlockProjectsDesktop() {
     return(
         <section className={smallView ? marginBottom : containerStyle}>
             <Slider
-                key={smallView}
+                key={smallView + buttonShift}
                 visible={smallView ? 1 : 3}
                 adjacent={smallView ? true : false}
                 prev={<ArrowLeft/>}
                 next={<ArrowRight/>}
-                buttonShift={60}>
+                buttonShift={buttonShift ? 30 : 60}>
 
                 {cards}
 

@@ -28,7 +28,7 @@
         "large": "screen and (min-width: 1440px)"
     },
     "blockProjects": {
-        "small": "screen and (max-width: 650px)",
-        "large": "screen and (min-width: 651px)"
+        "small": "screen and (max-width: 575px)",
+        "large": "screen and (min-width: 576px)"
     }
 }

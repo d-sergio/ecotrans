@@ -61,7 +61,7 @@ function ScrollUp(props) {
         mounted.current = true;
 
         window.addEventListener('scroll', setCoords);
-        window.addEventListener('resize', throttleSetCoords);
+        window.addEventListener('resize', setCoords);
 
         //ориентация экрана
         const portrait = window.matchMedia('(orientation: portrait)');
@@ -82,7 +82,7 @@ function ScrollUp(props) {
             mounted.current = false;
 
             window.removeEventListener('scroll', setCoords);
-            window.removeEventListener('resize', throttleSetCoords);
+            window.removeEventListener('resize', setCoords);
             portrait.removeEventListener('change', resetCoords);
     
         }

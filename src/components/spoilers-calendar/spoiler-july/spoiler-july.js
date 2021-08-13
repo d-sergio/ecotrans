@@ -8,9 +8,9 @@ function Spoiler() {
 
     const body =
         [
-            <Cards.July.Day4/>,
-            <Cards.July.Day23/>,
-            <Cards.July.Day29/>
+            <Cards.July.Day4 key='CardJuly4'/>,
+            <Cards.July.Day23 key='CardJuly23'/>,
+            <Cards.July.Day29 key='CardJuly29'/>
         ];
 
 

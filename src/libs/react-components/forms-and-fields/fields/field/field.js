@@ -61,7 +61,7 @@ function Field(props) {
                     onChange={onChange}
                     onBlur={onBlur}
                     value={value}
-                    autocomplete="off"
+                    autoComplete="off"
                 />
             )
         } else if (props.fieldType === 'textarea') {
@@ -76,7 +76,7 @@ function Field(props) {
                     onChange={onChange}
                     onBlur={onBlur}
                     value={value}
-                    autocomplete="off"
+                    autoComplete="off"
                 />
             )
         }

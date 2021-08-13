@@ -10,6 +10,7 @@ function Day6() {
 
     return(
         <CardsCalendarTemp
+            key='august6'
             day={day}
             name={name}
             thumb={pic6}
@@ -24,6 +25,7 @@ function Day3saturday() {
 
     return(
         <CardsCalendarTemp
+            key='august3saturday'
             day={day}
             name={name}
             thumb={pic3saturday}
@@ -38,6 +40,7 @@ function Day18_31() {
 
     return(
         <CardsCalendarTemp
+            key='august1831'
             day={day}
             name={name}
             thumb={pic18_31}

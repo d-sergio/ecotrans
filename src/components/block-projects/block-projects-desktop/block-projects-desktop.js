@@ -6,9 +6,9 @@ import Buttons from '../../buttons';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 
 const cards = [
-    <Cards.Technopark.Desktop/>,
-    <Cards.Green.Desktop/>,
-    <Cards.Education.Desktop/>
+    <Cards.Technopark.Desktop key='ProjectsDeskTechnopark'/>,
+    <Cards.Green.Desktop key='ProjectsDeskGreen'/>,
+    <Cards.Education.Desktop key='ProjectsDeskEducation'/>
 ];
 
 const ArrowLeft = () => (

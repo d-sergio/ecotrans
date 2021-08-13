@@ -29,7 +29,7 @@ function Address() {
             <CopyToClipboard>
                 <p className={line}>
                     <img src={emailPic} alt="email"/>
-                    <p>{config.email}</p>
+                    {config.email}
                 </p>
             </CopyToClipboard>
 

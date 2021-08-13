@@ -13,6 +13,7 @@ function Day3() {
 
     return(
         <CardsCalendarTemp
+            key='december3'
             day={day}
             name={name}
             thumb={pic3}
@@ -27,6 +28,7 @@ function Day5() {
 
     return(
         <CardsCalendarTemp
+            key='december5'
             day={day}
             name={name}
             thumb={pic5}
@@ -41,6 +43,7 @@ function Day10() {
 
     return(
         <CardsCalendarTemp
+            key='december10'
             day={day}
             name={name}
             thumb={pic10}
@@ -55,6 +58,7 @@ function Day11() {
 
     return(
         <CardsCalendarTemp
+            key='december11'
             day={day}
             name={name}
             thumb={pic11}
@@ -69,6 +73,7 @@ function Day15() {
 
     return(
         <CardsCalendarTemp
+            key='december15'
             day={day}
             name={name}
             thumb={pic15}
@@ -83,6 +88,7 @@ function Day23() {
 
     return(
         <CardsCalendarTemp
+            key='december23'
             day={day}
             name={name}
             thumb={pic23}

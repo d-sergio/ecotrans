@@ -19,6 +19,7 @@ function Day11() {
 
     return(
         <CardsCalendarTemp
+            key='septemer11'
             day={day}
             name={name}
             thumb={pic11}
@@ -33,6 +34,7 @@ function Day15() {
 
     return(
         <CardsCalendarTemp
+            key='septemer15'
             day={day}
             name={name}
             thumb={pic15}
@@ -47,6 +49,7 @@ function Day16() {
 
     return(
         <CardsCalendarTemp
+            key='septemer16'
             day={day}
             name={name}
             thumb={pic16}
@@ -61,6 +64,7 @@ function Day21() {
 
     return(
         <CardsCalendarTemp
+            key='septemer21'
             day={day}
             name={name}
             thumb={pic21}
@@ -75,6 +79,7 @@ function Day22_01() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2201'
             day={day}
             name={name}
             thumb={pic22_01}
@@ -89,6 +94,7 @@ function Day22_02() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2202'
             day={day}
             name={name}
             thumb={pic22_02}
@@ -103,6 +109,7 @@ function Day27_01() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2701'
             day={day}
             name={name}
             thumb={pic27_01}
@@ -117,6 +124,7 @@ function Day27_02() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2702'
             day={day}
             name={name}
             thumb={pic27_02}
@@ -131,6 +139,7 @@ function Day2sunday_01() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2sunday1'
             day={day}
             name={name}
             thumb={pic2sunday_01}
@@ -145,6 +154,7 @@ function Day2sunday_02() {
 
     return(
         <CardsCalendarTemp
+            key='septemer2sunday2'
             day={day}
             name={name}
             thumb={pic2sunday_02}
@@ -159,6 +169,7 @@ function Day3sunday() {
 
     return(
         <CardsCalendarTemp
+            key='septemer3sunday'
             day={day}
             name={name}
             thumb={pic3sunday}
@@ -173,6 +184,7 @@ function DayLastSunday() {
 
     return(
         <CardsCalendarTemp
+            key='septemerLastSunday'
             day={day}
             name={name}
             thumb={picLastSunday}

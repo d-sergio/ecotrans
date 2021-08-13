@@ -10,6 +10,7 @@ function Day11() {
 
     return(
         <CardsCalendarTemp
+            key='january11'
             day={day}
             name={name}
             thumb={pic11}
@@ -24,6 +25,7 @@ function Day19() {
 
     return(
         <CardsCalendarTemp
+            key='january19'
             day={day}
             name={name}
             thumb={pic19}
@@ -38,6 +40,7 @@ function Day20() {
 
     return(
         <CardsCalendarTemp
+            key='january20'
             day={day}
             name={name}
             thumb={pic20}

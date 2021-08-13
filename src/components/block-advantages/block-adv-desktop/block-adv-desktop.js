@@ -7,17 +7,17 @@ import {freezeContainer, container} from './block-adv-desktop.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 
-const advCards = [
-    <Cards.Ecologist/>,
-    <Cards.License/>,
-    <Cards.Technologies/>,
-    <Cards.Training/>
-];
-
-const titleStyle = [title, mainContainer].join(" ");
-
 /**Блок "Преимущества работы с нами" (десктопный)*/
 function BlockAdvDesktop() {
+    const advCards = [
+        <Cards.Ecologist key='Ecologist'/>,
+        <Cards.License key='License'/>,
+        <Cards.Technologies key='Technologies'/>,
+        <Cards.Training key='Training'/>
+    ];
+    
+    const titleStyle = [title, mainContainer].join(" ");
+    
     const queries = {
         small: config.blockAdvDesktop.small,
         large: config.blockAdvDesktop.large

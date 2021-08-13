@@ -6,11 +6,11 @@ import config from '../../../config/config-media-queries.json';
 import {freezeContainer, marginBottom} from './block-stats-desktop.module.css';
 
 const cards = [
-    <Cards.TenYears/>,
-    <Cards.DangerClass/>,
-    <Cards.Tko/>,
-    <Cards.WasteClass/>,
-    <Cards.MedicalWaste/>
+    <Cards.TenYears key='CardStatTenYears'/>,
+    <Cards.DangerClass key='CardStatDangerClass'/>,
+    <Cards.Tko key='CardStatTko'/>,
+    <Cards.WasteClass key='CardStatWasteClass'/>,
+    <Cards.MedicalWaste key='CardStatMedicalWaste'/>
 ];
 
 const visible = {

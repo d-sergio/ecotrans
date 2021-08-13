@@ -8,15 +8,15 @@ function Spoiler() {
 
     const body =
         [
-            <Cards.Oktober.Day1weekends/>,
-            <Cards.Oktober.Day1/>,
-            <Cards.Oktober.Day5_01/>,
-            <Cards.Oktober.Day5_02/>,
-            <Cards.Oktober.Day6/>,
-            <Cards.Oktober.Day13/>,
-            <Cards.Oktober.Day14/>,
-            <Cards.Oktober.Day31/>,
-            <Cards.Oktober.DayLastThursday/>
+            <Cards.Oktober.Day1weekends key='CardOktober1weekends'/>,
+            <Cards.Oktober.Day1 key='CardOktober1'/>,
+            <Cards.Oktober.Day5_01 key='CardOktober501'/>,
+            <Cards.Oktober.Day5_02 key='CardOktober502'/>,
+            <Cards.Oktober.Day6 key='CardOktober6'/>,
+            <Cards.Oktober.Day13 key='CardOktober13'/>,
+            <Cards.Oktober.Day14 key='CardOktober14'/>,
+            <Cards.Oktober.Day31 key='CardOktober31'/>,
+            <Cards.Oktober.DayLastThursday key='CardOktoberLastThursday'/>
         ];
 
 

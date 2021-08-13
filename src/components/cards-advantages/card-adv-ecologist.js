@@ -5,7 +5,7 @@ function Ecologist(props) {
     const style = props.mobile ? mobile : desktop;
     
     return(
-        <div className={style}>
+        <div key='ecologistCard' className={style}>
             <div>С нами вам не нужен</div>
             <div>штатный эколог</div>
             <div>на предприятии</div>

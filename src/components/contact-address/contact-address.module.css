@@ -28,10 +28,13 @@
 
 .line > p{
     align-self: center;
-    margin-left: 29px;
 
     font-size: 1.125rem;
     line-height: 1.3125rem;
+}
+
+.line > img{
+    margin-right: 29px;
 }
 
 .social{

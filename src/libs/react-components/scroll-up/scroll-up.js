@@ -94,8 +94,6 @@ function ScrollUp(props) {
     function resetCoords() {
         if (!buttonRef.current) return;
 
-        console.log('!!!')
-
         setLeft(0);
         setCoords();
     }

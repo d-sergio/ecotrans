@@ -13,6 +13,7 @@ function Day1() {
 
     return(
         <CardsCalendarTemp
+            key='april1'
             day={day}
             name={name}
             thumb={april1}
@@ -27,6 +28,7 @@ function Day5() {
 
     return(
         <CardsCalendarTemp
+            key='april5'
             day={day}
             name={name}
             thumb={april5}
@@ -41,6 +43,7 @@ function Day7() {
 
     return(
         <CardsCalendarTemp
+            key='april7'
             day={day}
             name={name}
             thumb={april7}
@@ -55,6 +58,7 @@ function Day15() {
 
     return(
         <CardsCalendarTemp
+            key='april15'
             day={day}
             name={name}
             thumb={april15}
@@ -69,6 +73,7 @@ function Day18_22() {
 
     return(
         <CardsCalendarTemp
+            key='april1822'
             day={day}
             name={name}
             thumb={april18_22}
@@ -83,6 +88,7 @@ function Day19() {
 
     return(
         <CardsCalendarTemp
+            key='april19'
             day={day}
             name={name}
             thumb={april19}

@@ -3,12 +3,12 @@ import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Partners from '../../cards-partners';
 
 const cards = [
-    <Partners.BuisnessRussia mobile={true}/>,
-    <Partners.EcoSputnik mobile={true}/>,
-    <Partners.EcoFund mobile={true}/>,
-    <Partners.Leader mobile={true}/>,
-    <Partners.Filippov mobile={true}/>,
-    <Partners.EcoLab mobile={true}/>
+    <Partners.BuisnessRussia mobile={true} key='CardPartMobBuisnessRussia'/>,
+    <Partners.EcoSputnik mobile={true} key='CardPartMobEcoSputnik'/>,
+    <Partners.EcoFund mobile={true} key='CardPartMobEcoFund'/>,
+    <Partners.Leader mobile={true} key='CardPartMobLeader'/>,
+    <Partners.Filippov mobile={true} key='CardPartMobFilippov'/>,
+    <Partners.EcoLab mobile={true} key='CardPartMobEcoLab'/>
 ];
 
 const visible = {

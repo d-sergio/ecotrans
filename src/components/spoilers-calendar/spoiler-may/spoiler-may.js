@@ -8,15 +8,15 @@ function Spoiler() {
 
     const body =
         [
-            <Cards.May.Day1_10/>,
-            <Cards.May.Day3/>,
-            <Cards.May.Day15_01/>,
-            <Cards.May.Day15_02/>,
-            <Cards.May.Day20/>,
-            <Cards.May.Day22/>,
-            <Cards.May.Day23/>,
-            <Cards.May.Day24/>,
-            <Cards.May.Day25/>
+            <Cards.May.Day1_10 key='CardMay110'/>,
+            <Cards.May.Day3 key='CardMay3'/>,
+            <Cards.May.Day15_01 key='CardMay1501'/>,
+            <Cards.May.Day15_02 key='CardMay1502'/>,
+            <Cards.May.Day20 key='CardMay20'/>,
+            <Cards.May.Day22 key='CardMay22'/>,
+            <Cards.May.Day23 key='CardMay23'/>,
+            <Cards.May.Day24 key='CardMay24'/>,
+            <Cards.May.Day25 key='CardMay25'/>
         ];
 
 

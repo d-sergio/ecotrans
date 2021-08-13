@@ -18,11 +18,11 @@ function SliderServices() {
 export default SliderServices;
 
 const cards = [
-    <Cards.Docs.Mobile/>,
-    <Cards.Neutral.Mobile/>,
-    <Cards.Transport.Mobile/>,
-    <Cards.Medical.Mobile/>,
-    <Cards.Training.Mobile/>
+    <Cards.Docs.Mobile key='CardServMobDocs'/>,
+    <Cards.Neutral.Mobile key='CardServMobNeutral'/>,
+    <Cards.Transport.Mobile key='CardServMobTransport'/>,
+    <Cards.Medical.Mobile key='CardServMobMedical'/>,
+    <Cards.Training.Mobile key='CardServMobTraining'/>
 ];
 
 const ArrowLeft = () => (

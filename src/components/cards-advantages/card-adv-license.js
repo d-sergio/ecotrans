@@ -5,7 +5,7 @@ function License(props) {
     const style = props.mobile ? mobile : desktop;
     
     return(
-        <div className={style}>
+        <div  key='licenseCard' className={style}>
             <div>Наличие ГЭЭ</div>
             <div>и Лицензии на утилизацию,</div>
             <div>обезвреживание</div>

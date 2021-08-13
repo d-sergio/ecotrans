@@ -5,7 +5,7 @@ function Technologies(props) {
     const style = props.mobile ? mobile : desktop;
     
     return(
-        <div className={style}>
+        <div key='technologiesCard' className={style}>
             <div>Специализированная</div>
             <div>площадка, собственное</div>
             <div>оборудование,</div>

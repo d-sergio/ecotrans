@@ -18,9 +18,9 @@ function SliderProjects() {
 export default SliderProjects;
 
 const cards = [
-    <Cards.Green.Mobile/>,
-    <Cards.Education.Mobile/>,
-    <Cards.Technopark.Mobile/>
+    <Cards.Green.Mobile key='CardProjMobGreen'/>,
+    <Cards.Education.Mobile key='CardProjMobEducation'/>,
+    <Cards.Technopark.Mobile key='CardProjMobTechnopark'/>
 ];
 
 const ArrowLeft = () => (

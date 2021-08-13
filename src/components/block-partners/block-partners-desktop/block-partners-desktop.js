@@ -7,12 +7,12 @@ import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
 
 const cards = [    
-    <Partners.EcoSputnik/>,
-    <Partners.EcoFund/>,
-    <Partners.Leader/>,
-    <Partners.Filippov/>,
-    <Partners.BuisnessRussia/>,
-    <Partners.EcoLab/>
+    <Partners.EcoSputnik key='CardPartMobEcoSputnik'/>,
+    <Partners.EcoFund key='CardPartMobEcoFund'/>,
+    <Partners.Leader key='CardPartMobLeader'/>,
+    <Partners.Filippov key='CardPartMobFilippov'/>,
+    <Partners.BuisnessRussia key='CardPartMobBuisnessRussia'/>,
+    <Partners.EcoLab key='CardPartMobEcoLab'/>
 ];
 
 const visible = {

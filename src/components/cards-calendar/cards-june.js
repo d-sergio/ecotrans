@@ -16,6 +16,7 @@ function Day5_01() {
 
     return(
         <CardsCalendarTemp
+            key='june501'
             day={day}
             name={name}
             thumb={pic5_01}
@@ -30,6 +31,7 @@ function Day5_02() {
 
     return(
         <CardsCalendarTemp
+            key='june502'
             day={day}
             name={name}
             thumb={pic5_02}
@@ -44,6 +46,7 @@ function Day6() {
 
     return(
         <CardsCalendarTemp
+            key='june6'
             day={day}
             name={name}
             thumb={pic6}
@@ -58,6 +61,7 @@ function Day7() {
 
     return(
         <CardsCalendarTemp
+            key='june7'
             day={day}
             name={name}
             thumb={pic7}
@@ -72,6 +76,7 @@ function Day8() {
 
     return(
         <CardsCalendarTemp
+            key='june8'
             day={day}
             name={name}
             thumb={pic8}
@@ -86,6 +91,7 @@ function Day15() {
 
     return(
         <CardsCalendarTemp
+            key='june15'
             day={day}
             name={name}
             thumb={pic15}
@@ -100,6 +106,7 @@ function Day17() {
 
     return(
         <CardsCalendarTemp
+            key='june17'
             day={day}
             name={name}
             thumb={pic17}
@@ -114,6 +121,7 @@ function Day20() {
 
     return(
         <CardsCalendarTemp
+            key='june20'
             day={day}
             name={name}
             thumb={pic20}
@@ -128,6 +136,7 @@ function Day29() {
 
     return(
         <CardsCalendarTemp
+            key='june29'
             day={day}
             name={name}
             thumb={pic29}

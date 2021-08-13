@@ -16,6 +16,7 @@ function Day1weekends() {
 
     return(
         <CardsCalendarTemp
+            key='oktober1weekends'
             day={day}
             name={name}
             thumb={pic1weekends}
@@ -30,6 +31,7 @@ function Day1() {
 
     return(
         <CardsCalendarTemp
+            key='oktober1'
             day={day}
             name={name}
             thumb={pic1}
@@ -44,6 +46,7 @@ function Day5_01() {
 
     return(
         <CardsCalendarTemp
+            key='oktober501'
             day={day}
             name={name}
             thumb={pic5_01}
@@ -58,6 +61,7 @@ function Day5_02() {
 
     return(
         <CardsCalendarTemp
+            key='oktober502'
             day={day}
             name={name}
             thumb={pic5_02}
@@ -72,6 +76,7 @@ function Day6() {
 
     return(
         <CardsCalendarTemp
+            key='oktober6'
             day={day}
             name={name}
             thumb={pic6}
@@ -86,6 +91,7 @@ function Day13() {
 
     return(
         <CardsCalendarTemp
+            key='oktober13'
             day={day}
             name={name}
             thumb={pic13}
@@ -100,6 +106,7 @@ function Day14() {
 
     return(
         <CardsCalendarTemp
+            key='oktober14'
             day={day}
             name={name}
             thumb={pic14}
@@ -114,6 +121,7 @@ function Day31() {
 
     return(
         <CardsCalendarTemp
+            key='oktober31'
             day={day}
             name={name}
             thumb={pic31}
@@ -128,6 +136,7 @@ function DayLastThursday() {
 
     return(
         <CardsCalendarTemp
+            key='oktoberLastThursday'
             day={day}
             name={name}
             thumb={picLastThursday}

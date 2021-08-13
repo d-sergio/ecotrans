@@ -16,6 +16,7 @@ function Day1() {
 
     return(
         <CardsCalendarTemp
+            key='march1'
             day={day}
             name={name}
             thumb={pic1}
@@ -30,6 +31,7 @@ function Day3() {
 
     return(
         <CardsCalendarTemp
+            key='march3'
             day={day}
             name={name}
             thumb={pic3}
@@ -44,6 +46,7 @@ function Day14() {
 
     return(
         <CardsCalendarTemp
+            key='march14'
             day={day}
             name={name}
             thumb={pic14}
@@ -58,6 +61,7 @@ function Day15() {
 
     return(
         <CardsCalendarTemp
+            key='march15'
             day={day}
             name={name}
             thumb={pic15}
@@ -72,6 +76,7 @@ function Day20() {
 
     return(
         <CardsCalendarTemp
+            key='march20'
             day={day}
             name={name}
             thumb={pic20}
@@ -86,6 +91,7 @@ function Day21() {
 
     return(
         <CardsCalendarTemp
+            key='march21'
             day={day}
             name={name}
             thumb={pic21}
@@ -100,6 +106,7 @@ function Day22_01() {
 
     return(
         <CardsCalendarTemp
+            key='march2201'
             day={day}
             name={name}
             thumb={pic22_01}
@@ -114,6 +121,7 @@ function Day22_02() {
 
     return(
         <CardsCalendarTemp
+            key='march2202'
             day={day}
             name={name}
             thumb={pic22_02}
@@ -128,6 +136,7 @@ function Day23() {
 
     return(
         <CardsCalendarTemp
+            key='march23'
             day={day}
             name={name}
             thumb={pic23}

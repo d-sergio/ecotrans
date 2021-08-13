@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Feedback from '../contact-feedback';
 import Address from '../contact-address';
 import LeafletMap from '../../libs/react-components/leaflet-map';
-import LeafletTooltip from '../../libs/react-components/leaflet-tooltip';
-import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+//import LeafletTooltip from '../../libs/react-components/leaflet-tooltip';
 import {wrapper,
     container,
     title,
@@ -43,14 +42,14 @@ function BlockContact() {
 
     useEffect(changeOrientation, []);
 
-    //const tooltipMargin = checkMobileView() ? 0 : '250px';
+    const tooltipMargin = checkMobileView() ? 0 : '250px';
 
     const mapCenter = checkMobileView() ?
         [51.662725, 36.134059]
         : [51.66849, 36.13414];
 
-    //const textDesktop = <p style={{marginTop: tooltipMargin}}>Меняйте масштаб карты колесом мыши, удерживая Shift<br/>(клик, чтобы скрыть подсказку)</p>;
-    //const textMobile = <p style={{marginTop: tooltipMargin}}>Перемещайте карту, проводя по ней двумя пальцами<br/>(коснитесь, чтобы скрыть подсказку)</p>;
+    //const textDesktop = <p style={{marginTop: tooltipMargin}}>Меняйте масштаб карты колесом мыши, удерживая Shift</p>;
+    //const textMobile = <p style={{marginTop: tooltipMargin}}>Перемещайте карту, проводя по ней двумя пальцами</p>;
 
     /**Отследить ориентацию экрана */
     function changeOrientation() {
@@ -103,7 +102,8 @@ function BlockContact() {
                     <div>
                         {/*<LeafletTooltip
                             textDesktop={textDesktop}
-                        textMobile={textMobile}>*/}
+                            textMobile={textMobile}
+                        >*/}
 
                             <LeafletMap
                                 height={mapHeight}

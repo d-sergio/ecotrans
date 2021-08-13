@@ -5,6 +5,9 @@
 .tooltipBack{
     position: absolute;
 
+    /*Элемент прозрачен для мыши*/
+    pointer-events: none;
+
     left: 0;
     top: 0;
 
@@ -18,6 +21,8 @@
 
 .tooltip{
     position: absolute;
+    /*Элемент прозрачен для мыши*/
+    pointer-events: none;
 
     /*display: flex;*/
     align-items: center;

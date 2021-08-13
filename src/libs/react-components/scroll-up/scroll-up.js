@@ -63,10 +63,6 @@ function ScrollUp(props) {
         window.addEventListener('scroll', setCoords);
         window.addEventListener('resize', throttleSetCoords);
 
-        //ориентация экрана
-        /*const portrait = window.matchMedia('(orientation: portrait)');
-        portrait.addEventListener('change', resetCoords);*/
-
         //ждём, когда загрузятся шрифты
         document.fonts.ready.then(() => {
             if (!buttonRef.current) return;
@@ -83,24 +79,16 @@ function ScrollUp(props) {
 
             window.removeEventListener('scroll', setCoords);
             window.removeEventListener('resize', throttleSetCoords);
-            //portrait.removeEventListener('change', resetCoords);
     
         }
     }
-
-    /**Прослушиваем  оринтацию экрана. Иначе кнопка может оказаться
-     * там, где быть не должна
-    */
-    /*function resetCoords() {
-        if (!buttonRef.current) return;
-
-        setCoords();
-    }*/
 
     /**Установить координаты кнопки*/
     function setCoords() {
         if (!mounted.current) return;
 
+        /*В мобильных, при повороте экрана, кнопка может внезапно оказаться
+        за пределами контента. Поэтому предварительно сбросим left*/
         setLeft(0);
 
         const x = calcLeft();

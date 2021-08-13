@@ -1,14 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LeafletMap from '../../libs/react-components/leaflet-map';
 import {title} from '../../common-styles/title.module.css';
 import pin from '../../../static/images/address/map-pin.svg';
 import {image, address, text} from './block-map.module.css';
 import {mainContainer} from '../../common-styles/containers.module.css';
 import LeafletTooltip from '../../libs/react-components/leaflet-tooltip';
+import throttle from '../../libs/common/throttle';
 
 /**Карта на главной странице (только для мобильных) */
 function BlockMap() {
+    const throttleChangeHeight = throttle(changeHeight, 300);
+
+    const mounted = useRef(true);
+
+    /*Какую высоту занимает карта относительно окна при горизонтальной ориентации */
+    const landscapeFactor = 0.7;
+
     const [height, setHeight] = useState(calcHeight());
+
+    useEffect(changeWindowSizes, []);
+
+    /**Отследить ориентацию экрана */
+    function changeWindowSizes() {
+        if (typeof window === undefined) return;
+
+        const oritentation = window.matchMedia('(orientation: landscape)');
+
+        oritentation.addEventListener('change', changeHeight);
+
+        window.addEventListener('resize', throttleChangeHeight);
+
+        return () => {
+            mounted.current = false;
+
+            oritentation.removeEventListener('change', changeHeight);
+            window.removeEventListener('resize', throttleChangeHeight);
+        }
+    }
+
+    /**Изменить высоту карты */
+    function changeHeight() {
+        if (!mounted.current) return;
+
+        setHeight(calcHeight());
+    }
 
     /**Высота компонента LeafletMap в зависимости от ориентации экрана*/
     function calcHeight() {
@@ -17,7 +52,7 @@ function BlockMap() {
             return document.documentElement.clientWidth;
         } else {
             
-            return document.documentElement.clientHeight;
+            return document.documentElement.clientHeight * landscapeFactor;
         }
     }
 
@@ -32,7 +67,7 @@ function BlockMap() {
                 </div>
             </div>
 
-            <LeafletTooltip>
+            {/*<LeafletTooltip>*/}
                 <LeafletMap
                     height={height}
                     view={[51.662725, 36.134059]}
@@ -40,7 +75,7 @@ function BlockMap() {
                     marker={[51.662725, 36.134059]}
                     modal={"<b>этаж 2, комната 17</b>"}
                 />
-            </LeafletTooltip>
+            {/*</LeafletTooltip>*/}
         </section>
     );
 }

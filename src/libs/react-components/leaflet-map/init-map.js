@@ -21,8 +21,9 @@ function initMap(mounted, mymap, view, zoom, marker, popup) {
 
     /*Блокируется зум колесом мыши и перетаскивание карты.
     Однако её можно перетаксивать двумя пальцами на сенсорных устройствах*/
-    mymap.current.scrollWheelZoom.disable();
-    mymap.current.dragging.disable();
+    //mymap.current.scrollWheelZoom.disable();
+    //mymap.current.dragging.disable();
+
     //mymap.current.keyboard.disable();
 
     //Скрыть кнопки управления масштабом

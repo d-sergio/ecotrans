@@ -25,12 +25,8 @@ const titleStyle = [title, mainContainer].join(" ");
 
 /**Блок "Наши партнёры" (десктопный)*/
 function BlockPartnersDesktop() {
-    const queries = {
-        small: config.blockPartnersDesktop.small,
-        large: config.blockPartnersDesktop.large
-    };
 
-    const active = useMediaQuery(queries);
+    const active = useMediaQuery(config.blockPartnersDesktop);
 
     if (active === undefined) return null;
 

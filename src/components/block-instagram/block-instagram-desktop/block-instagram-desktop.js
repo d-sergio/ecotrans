@@ -43,12 +43,7 @@ const slides = [
 function BlockInstagramDesktop() {
     const titleStyle = [title, stayInformed].join(" ");
 
-    const queries = {
-        small: config.blockInstagramDesktop.small,
-        large: config.blockInstagramDesktop.large
-    };
-
-    const active = useMediaQuery(queries);
+    const active = useMediaQuery(config.blockInstagramDesktop);
     const [scaleSvgFactor, setScaleSvgFactor] = useState([1, 1]);
 
     const containerRef = useRef(null);

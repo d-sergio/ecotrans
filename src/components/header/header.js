@@ -10,15 +10,11 @@ import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
  * @param {Boolean} mobile - мобильный вид, если true
  */
 function Header() {
-    const queries = {
-        small: config.header.small,
-        large: config.header.large
-    };
 
     const HeaderDesktop = React.lazy(() => import("./header-desktop"));
     const HeaderMobile = React.lazy(() => import("./header-mobile"));
 
-    const mobileView = useMediaQuery(queries);
+    const mobileView = useMediaQuery(config.header);
 
     if (mobileView === undefined) return null;
 

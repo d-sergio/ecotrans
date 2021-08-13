@@ -9,12 +9,8 @@ import config from '../../config/config-media-queries.json';
 
 /**BlockProjects - Наши проекты */
 function BlockProjects() {
-    const queries = {
-        small: config.blockProjects.small,
-        large: config.blockProjects.large
-    };
 
-    const mobileView = useMediaQuery(queries);
+    const mobileView = useMediaQuery(config.blockProjects);
 
     if (mobileView === undefined) return null;
 

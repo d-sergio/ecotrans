@@ -5,13 +5,8 @@ import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import {AnchorRoot} from '../../libs/react-components/anchors';
 
 function RootLayout (props) {
-    const queries = {
-        small: config.app.small,
-        large: config.app.large
-    };
 
-    const mobileView = useMediaQuery(queries);
-
+    const mobileView = useMediaQuery(config.app);
 
     return (
         <AnchorRoot>

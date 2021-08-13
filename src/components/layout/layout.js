@@ -14,14 +14,10 @@ import { NavPage } from '../../libs/react-components/navigation-highlight';
  * @param {String} currentPage - текущая страница. Например, '/home'
 */
 function Layout(props) {
-    const queries = {
-        small: config.footer.small,
-        large: config.footer.large
-    };
 
     const mobileView = useContext(MobileView);
 
-    const footerView = useMediaQuery(queries);
+    const footerView = useMediaQuery(config.footer);
 
     if (footerView === undefined) return null;  
 

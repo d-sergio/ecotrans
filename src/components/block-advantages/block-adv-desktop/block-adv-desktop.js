@@ -18,12 +18,7 @@ function BlockAdvDesktop() {
     
     const titleStyle = [title, mainContainer].join(" ");
     
-    const queries = {
-        small: config.blockAdvDesktop.small,
-        large: config.blockAdvDesktop.large
-    };
-
-    const active = useMediaQuery(queries);
+    const active = useMediaQuery(config.blockAdvDesktop);
 
     if (active === undefined) return null;
 

@@ -21,12 +21,8 @@ const visible = {
 
 /**Блок статистики (десктопный)*/
 function BlockStatsDesktop() {
-    const queries = {
-        small: config.blockStatsDesktop.small,
-        large: config.blockStatsDesktop.large
-    };
 
-    const active = useMediaQuery(queries);
+    const active = useMediaQuery(config.blockStatsDesktop);
 
     if (active === undefined) return null;
 

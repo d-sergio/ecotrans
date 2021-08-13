@@ -2,46 +2,37 @@ import {useEffect, useState} from "react";
 
 /**Медиа-запрос
  * 
- * Описание смотри в media-query-readme.txt
+ * Описание смотри в readme.txt
  */
-function useMediaQuery(queries) {
-    const [mobileView, setMobileView] = useState();
+function useMediaQuery(q) {
+    const [match, setMatch] = useState();
 
     useEffect(() => initMediaQuery(), []);
 
     function initMediaQuery() {
         if (typeof window !== undefined) {
-            const queryMobile = window.matchMedia(queries.small);
-            const queryDesktop = window.matchMedia(queries.large);
 
-            queryMobile.addEventListener("change", mobileHandler);
-            queryDesktop.addEventListener("change", desktopHandler);
+            const query = window.matchMedia(q);
+
+            query.addEventListener("change", checkMatches);
     
-            if (mobileView === undefined) setMobileView(init);
-    
-            function mobileHandler(e) {
-                if (e.matches) setMobileView(true);
-            }
-    
-            function desktopHandler(e) {
-                if (e.matches) setMobileView(false);
-            }
-    
+            if (match === undefined) setMatch(init);
+
             function init() {
-                if (queryMobile.matches) return true;
-                if (queryDesktop.matches) return false;
         
-                return true;
+                return query.matches ? true : false;
+            }
+
+            function checkMatches(e) {
+
+                setMatch(e.matches ? true : false);
             }
     
-            return function removeListeners() {
-                queryMobile.removeEventListener("change", mobileHandler);
-                queryDesktop.removeEventListener("change", desktopHandler);
-            }
+            return () => query.removeEventListener("change", checkMatches);
         }
     }
 
-    return mobileView;
+    return match;
 }
 
 export default useMediaQuery;

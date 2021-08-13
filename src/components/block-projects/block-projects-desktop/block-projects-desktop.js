@@ -4,6 +4,7 @@ import {container, marginBottom} from './block-projects-desktop.module.css';
 import Cards from '../../cards-projects';
 import Buttons from '../../buttons';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 
 const cards = [
     <Cards.Technopark.Desktop key='ProjectsDeskTechnopark'/>,
@@ -20,19 +21,9 @@ const ArrowRight = () => (
 );
 
 function BlockProjectsDesktop() {
-    const queries = {
-        small: "screen and (max-width: 1439px)",
-        large: "screen and (min-width: 1440px)"
-    };
 
-    //Смещение кнопок от центра
-    const buttonQuery = {
-        small: "screen and (max-width: 651px)",
-        large: "screen and (min-width: 650px)"
-    };
-
-    const smallView = useMediaQuery(queries);
-    const buttonShift = useMediaQuery(buttonQuery);
+    const smallView = useMediaQuery(config.blockProjectsDesktop.smallView);
+    const buttonShift = useMediaQuery(config.blockProjectsDesktop.buttonShift);
 
     if (smallView === undefined) return null; 
 

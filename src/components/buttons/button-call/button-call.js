@@ -12,7 +12,7 @@ function ButtonCall(props) {
     const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
-    return <a href={`tel: ${config.phone}`}><button className={cssStyle}>Позвонить</button></a>;
+    return <a href={`tel:${config.phone}`}><button className={cssStyle}>Позвонить</button></a>;
 };
 
 export default ButtonCall;

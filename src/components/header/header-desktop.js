@@ -16,7 +16,7 @@ function HeaderDesktop(props) {
     );
 
     const Phone = () => (
-            <a className={phone} href={`tel: ${config.phone}`}>
+            <a className={phone} href={`tel:${config.phone}`}>
                 <img src={props.phone} alt="phone"/>
                 {config.phonePretty}
             </a>

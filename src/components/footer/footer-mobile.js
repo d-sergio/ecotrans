@@ -11,7 +11,7 @@ function FooterMobile() {
         <div className={container}>
             <p style={{fontFamily: 'MontserratBold'}}>ООО “ЭКОТРАНС”</p>
             <p style={{marginTop: '0.75rem'}}>
-                <a href={`tel: ${config.phone}`}>
+                <a href={`tel:${config.phone}`}>
                     {config.phonePretty}
                 </a>
             </p>

@@ -21,7 +21,7 @@ function Address() {
                 <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
             </div>
 
-            <a className={line} href={`tel: ${config.phone}`}>
+            <a className={line} href={` ${config.phone}`}>
                 <img src={phonePic} alt="phone"/>
                 <p>{config.phonePretty}</p>
             </a>

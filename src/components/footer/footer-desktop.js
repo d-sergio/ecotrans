@@ -42,7 +42,7 @@ const Address = () => (
     <div className={address}>
         <PictureAndText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
 
-        <a target='_blank' href={`https://api.whatsapp.com/send/?phone=${config.phone}`}>
+        <a target='_blank' href={`tel:${config.phone}`}>
             <PictureAndText.Right image={phone} text={config.phonePretty}/>
         </a>
 
@@ -86,3 +86,5 @@ const Links = () => (
 );
 
 export default FooterDesktop;
+
+//https://api.whatsapp.com/send/?phone=${config.phone}

@@ -7,8 +7,8 @@ import config from '../../config/config-media-queries.json';
 function BlockInstagram() {
     const mobileView = useMediaQuery(config.blockInstagram);
 
-    const BlockInstagramDesktop = React.lazy(() => import('./block-instagram-desktop'));
-    const BlockInstagramMobile = React.lazy(() => import('./block-instagram-mobile'));
+    const BlockInstagramDesktop = React.lazy(() => import('./block-instagram-max'));
+    const BlockInstagramMobile = React.lazy(() => import('./block-instagram-compact'));
 
     if (mobileView === undefined) return null;
 

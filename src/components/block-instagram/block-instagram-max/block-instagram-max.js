@@ -1,16 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Buttons from  '../../buttons'
-import {subscribe, text, button, images, container, stayInformed, svgStyle} from './block-instagram-desktop.module.css';
+import {subscribe, button, container, stayInformed, svgStyle} from './block-instagram-max.module.css';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
-import Slider from '../../../libs/react-components/sliders/slider';
-import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
-import config from '../../../config/config-media-queries.json';
-
-import img1 from '../../../../static/images/instagram/desktop/1.png';
-import img2 from '../../../../static/images/instagram/desktop/2.png';
-import img3 from '../../../../static/images/instagram/desktop/3.png';
-import img4 from '../../../../static/images/instagram/desktop/4.png';
+import Text from './instagram-text';
+import InstagramSlider from './instagram-slider';
+import throttle from '../../../libs/common/throttle';
 
 /**Функции getShift и getCorrectRight дополнительно корректируют положение
  * пунктирной линии в зависимости от размера блока.
@@ -21,29 +16,20 @@ import img4 from '../../../../static/images/instagram/desktop/4.png';
 const defaultWidth = 916;
 const defaultHeight = 467;
 
-const slides = [
-    <div className={images} key='instagram1'><img src={img1} alt="instagram1"/></div>,
-    <div className={images} key='instagram2'><img src={img2} alt="instagram2"/></div>,
-    <div className={images} key='instagram3'><img src={img3} alt="instagram3"/></div>,
-    <div className={images} key='instagram4'><img src={img4} alt="instagram4"/></div>
-];
-
 /**Блок Instagram (десктопный)
  * 
  * Содержит пунктирную кривую SVG, которая масштабируется по размеру родительского
  * блока.
- * 
- * State:
- * active - слайдер активен или не активен. На определённом разрешении замораживается
  * 
  * scaleSvgFactor - массив множителей для масштабирования пунктирной кривой
  *  scaleSvgFactor[0] - по оси X
  *  scaleSvgFactor[1] - по оси Y
 */
 function BlockInstagramDesktop() {
+    const throttleDrawSvgLine = throttle(drawSvgLine, 300);
+
     const titleStyle = [title, stayInformed].join(" ");
 
-    const active = useMediaQuery(config.blockInstagramDesktop);
     const [scaleSvgFactor, setScaleSvgFactor] = useState([1, 1]);
 
     const containerRef = useRef(null);
@@ -51,23 +37,20 @@ function BlockInstagramDesktop() {
     const buttonRef = useRef(null);
     const svgRef = useRef(null);
 
-    /*Сначала хук с mediaQuery. После него рисуем кривую. Поэтому
-    ждём, когда значение active перестанет быть undefined*/
-    useEffect(() => drawSvgLine(), [active]);
+    useEffect(() => setTimeout(drawSvgLine), []);
 
     useEffect(() => {
         if (typeof window !== undefined) {
-            window.addEventListener('resize', drawSvgLine);
+            window.addEventListener('resize', throttleDrawSvgLine);
         }
 
         return () => {
             if (typeof window !== undefined) {
-                window.removeEventListener('resize', drawSvgLine);
+                window.removeEventListener('resize', throttleDrawSvgLine);
             }
         }
     }, []);
 
-    if (active === undefined) return null;
 
     /**Рассчитать множители для масштабирования пунктирной кривой*/
     function drawSvgLine() {
@@ -121,26 +104,13 @@ function BlockInstagramDesktop() {
                     <p className={titleStyle}>Будьте в курсе!</p><br/>
             </div>
 
-            <div className={active ? null : mainContainer}>
-                <Slider
-                    key={active}
-                    visible={active ? 0 : 4}
-                    freeze={active ? false : true}
-                    adjacent={active ? true : false}>
-
-                    {slides}
-
-                </Slider>
-            </div>
+            <InstagramSlider/>
 
             <div className={mainContainer}>
                 <div ref={subscribeRef} className={subscribe}>
-                    <div className={text}>
-                        Мы освободили вашу почту от спам - рассылки с просьбой скинуть нам ваш email. <br/>
-                        Вместо этого приглашем подписаться на наш Instagram. Тут вся полезная информация <br/>
-                        не только о деятельности компании, но и последние новости экологического законодательства, <br/>
-                        полезные советы по утилизации отходов и многое другое.
-                    </div>
+
+                    <Text/>
+
                     <div ref={buttonRef} className={button}>
                         <Buttons.Subscribe.Desktop/>
                     </div>

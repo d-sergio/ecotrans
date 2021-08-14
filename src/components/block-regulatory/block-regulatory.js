@@ -31,19 +31,27 @@ function BlockRegulatory() {
             </p>
 
             <div className={listItem}>
-                <PictureAndText.Right image={greenCircle} text={textLaw}/>
+                <a href={`http://www.consultant.ru/document/cons_doc_LAW_34823/`} target='_blank'>
+                    <PictureAndText.Right image={greenCircle} text={textLaw}/>
+                </a>
             </div>
 
             <div className={listItem}>
-                <PictureAndText.Right image={greenCircle} text={textAct}/>
+                <a href={`http://publication.pravo.gov.ru/signatoryauthority/foiv090`} target='_blank'>
+                    <PictureAndText.Right image={greenCircle} text={textAct}/>
+                </a>
             </div>
 
             <div className={listItem}>
-                <PictureAndText.Right image={greenCircle} text={textWaste}/>
+                <a href={`http://www.consultant.ru/document/cons_doc_LAW_19109/`} target='_blank'>
+                    <PictureAndText.Right image={greenCircle} text={textWaste}/>
+                </a>
             </div>
 
             <div className={listItem}>
-                <PictureAndText.Right image={greenCircle} text={textExpertise}/>
+                <a href={`http://www.consultant.ru/document/cons_doc_LAW_8515/`} target='_blank'>
+                    <PictureAndText.Right image={greenCircle} text={textExpertise}/>
+                </a>
             </div>
 
         </section>

@@ -41,12 +41,12 @@ function LeafletMap(props) {
 
             script.onload = () => {
                 initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
-                document.addEventListener('keydown', waitShift);
+                //document.addEventListener('keydown', waitShift);
             }
 
         } else {
             initMap(mounted, mymap, props.view, props.zoom, props.marker, props.popup);
-            document.addEventListener('keydown', waitShift);
+            //document.addEventListener('keydown', waitShift);
         }
 
         //подключить стили, если надо
@@ -54,26 +54,37 @@ function LeafletMap(props) {
 
         return () => {
             mounted.current = false;
-            document.removeEventListener('keydown', waitShift);
+            //document.removeEventListener('keydown', waitShift);
         }
     }, []);
 
     /**Ждём нажатия Shift, чтобы разрешить зум колесом мыши*/
-    function waitShift(e) {
+    /*function waitShift(e) {
         onKeyDown(e, mymap);
-    }
+    }*/
 
     return(
         <div
-        onMouseOver={() => onMouseOver(mymap)}
-        onMouseLeave={() => onMouseLeave(mymap)}
-        onTouchEnd={() => onMouseLeave(mymap)}
-        onPointerCancel={() => onMouseLeave(mymap)}
-        id="mapid"
-        style={{height: props.height + 'px'}}>
+            id="mapid"
+            style={{height: props.height + 'px'}}
+        >
         </div>
     );
 }
+
+/*
+    return(
+        <div
+            onMouseOver={() => onMouseOver(mymap)}
+            onMouseLeave={() => onMouseLeave(mymap)}
+            onTouchEnd={() => onMouseLeave(mymap)}
+            onPointerCancel={() => onMouseLeave(mymap)}
+            id="mapid"
+            style={{height: props.height + 'px'}}
+        >
+        </div>
+    );
+*/
 
 LeafletMap.defaultProps = {
     height: 257,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BlockProjectsMobile from './block-projects-mobile/block-projects-mobile';
 import BlockProjectsDesktop from './block-projects-desktop/block-projects-desktop';
 import {mainContainer} from '../../common-styles/containers.module.css';
@@ -14,6 +14,8 @@ function BlockProjects() {
 
     const mobileStyle = [mainContainer, title, textMobile].join(" ");
     const desktopStyle = [mainContainer, title].join(" ");
+
+    if (mobileView === undefined) return null;
 
     return(
         <>

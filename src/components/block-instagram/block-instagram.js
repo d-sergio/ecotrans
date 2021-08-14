@@ -10,6 +10,8 @@ function BlockInstagram() {
     const BlockInstagramDesktop = React.lazy(() => import('./block-instagram-desktop'));
     const BlockInstagramMobile = React.lazy(() => import('./block-instagram-mobile'));
 
+    if (mobileView === undefined) return null;
+
     return(
         <GatsbySuspense>
             {mobileView ? <BlockInstagramMobile/> : <BlockInstagramDesktop/>}

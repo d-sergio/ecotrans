@@ -10,6 +10,8 @@ function BlockCall() {
     const BlockCallMax = React.lazy(() => import('./block-call-max'));
     const BlockCallCompact = React.lazy(() => import('./block-call-compact'));
 
+    if (compactView === undefined) return null;
+
     return (
         <>
             <GatsbySuspense>

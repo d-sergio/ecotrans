@@ -15,6 +15,8 @@ function BlockCost() {
 
     const containerStyle = [mainContainer, marginBottom].join(" ");
 
+    if (mobileView === undefined) return null;
+
     return(
         <section className={containerStyle}>
             <GatsbySuspense>

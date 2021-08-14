@@ -8,6 +8,8 @@ function BlockTitle() {
 
     const TitleDesktop = React.lazy(() => import('./block-title-desktop'));
     const TitleMobile = React.lazy(() => import('./block-title-mobile'));
+    
+    if (mobileView === undefined) return null;
 
     return(
         <GatsbySuspense>

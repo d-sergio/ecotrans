@@ -9,6 +9,8 @@ function BlockAdvantages() {
 
     const mobileView = useContext(MobileView);
 
+    if (mobileView === undefined) return null;
+
     return(
         <GatsbySuspense>
             {

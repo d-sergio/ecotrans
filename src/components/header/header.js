@@ -16,6 +16,8 @@ function Header() {
 
     const mobileView = useMediaQuery(config.header);
 
+    if (mobileView === undefined) return null;
+
     return(
         <GatsbySuspense>
             {

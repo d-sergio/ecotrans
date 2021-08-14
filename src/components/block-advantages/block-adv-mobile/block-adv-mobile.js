@@ -4,12 +4,11 @@ import Cards from '../../cards-advantages';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 
-
 const advCards = [
-    <Cards.Ecologist mobile={true}/>,
-    <Cards.License mobile={true}/>,
-    <Cards.Technologies mobile={true}/>,
-    <Cards.Training mobile={true}/>
+    <Cards.Ecologist mobile={true} key='CardAdvMobEcologist'/>,
+    <Cards.License mobile={true} key='CardAdvMobLicense'/>,
+    <Cards.Technologies mobile={true} key='CardAdvMobTechnologies'/>,
+    <Cards.Training mobile={true} key='CardAdvMobTraining'/>
 ];
 
 const titleStyle = [title, mainContainer].join(" "); 

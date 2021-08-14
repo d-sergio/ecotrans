@@ -3,8 +3,8 @@ import {container} from './modal.module.css';
 import animateOpen from './animate-open';
 import animateClose from './animate-close';
 /**
- * По умолчанию модальное окно закрывается кликом по пространству вокруг него. Это можно
- * изменить через пропс defaultClose (см. ниже)
+ * По умолчанию модальное окно закрывается кликом по пространству вокруг него
+ * или через touchmove. Это можно изменить через пропс defaultClose (см. ниже)
  * 
  * Props:
  * @param {Node} modal - модальное окно
@@ -12,7 +12,7 @@ import animateClose from './animate-close';
  * @param {String} isOpen - true, чтобы открыть модальное окно
  * @param {function} closeModal - функция закрытия модального окна
  * @param {boolean} defaultClose - true (по умолчанию) разрешает закрывать модальное окно
- * кликом по пространству вокруг него
+ * кликом по пространству вокруг него или через touchmove
  * @param {number} duration - время анимации (мс) открытия/закрытия модального окна
  * (300 по умолчанию)
  */
@@ -49,8 +49,9 @@ function Modal(props) {
             : animateClose({modalRef, animate, duration});
     }
 
-    /**Закрыть модальное окно кликом по пустому пространству вокруг него (атрибут
-     * data-close-empty) или по элементу с атрибутом data-close-modal.
+    /**Закрыть модальное окно кликом (или через touchmove) по пустому пространству
+     * вокруг него (атрибут data-close-empty) или по элементу с атрибутом
+     * data-close-modal.
      * 
      * props.defaultClose === false запрещает закрывать кликом по пустому
      * пространству
@@ -106,6 +107,7 @@ function Modal(props) {
             ref={modalRef}
             className={props.className || container}
             onClick={closeModal}
+            onTouchMove={closeModal}
         >
             {props.modal}
         </div>

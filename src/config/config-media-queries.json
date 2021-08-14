@@ -18,5 +18,9 @@
     "blockProjectsDesktop": {
         "smallView": "screen and (max-width: 1439px)",
         "buttonShift": "screen and (max-width: 651px)"
-    }
+    },
+
+    "blockCall": "screen and (max-width: 939px)",
+
+    "projectAndServices": "screen and (max-width: 316px)"
 }

@@ -1,11 +1,14 @@
-import React from 'react';
-import Buttons from '../../buttons';
+import React, { useContext } from 'react';
+import ButtonCall from '../../buttons/button-call/button-call';
 import pic from '../../../../static/images/block-call/call-desktop.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
-import {container, main, text, image} from './block-call-desktop.module.css';
+import {container, main, text, image} from './block-call-max.module.css';
+import MobileView from '../../root-layout/view-context';
 
 function BlockCallDesktop() {
+    const mobileView = useContext(MobileView);
+
     return(
         <section className={mainContainer}>
             <div className={container}>
@@ -20,7 +23,7 @@ function BlockCallDesktop() {
                         объяснит, как заказать любую из наших услуг.
                     </div>
 
-                    <Buttons.Call.Desktop/>
+                    <ButtonCall mobile={mobileView}/>
 
                 </div>
 

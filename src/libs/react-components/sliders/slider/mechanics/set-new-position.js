@@ -4,6 +4,7 @@ import getVisible from './get-visible';
  * destination - новая позиция слайдера
  */
 function setNewPosition({destination, state, setState, params, viewport, carousel}) {
+
     if (!viewport || !carousel) return;
 
     /**текущая позиция и сдвиг margin-left carousel станут предыдущими, после setState*/
@@ -12,6 +13,20 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
     let newChildren = state.children;   //возможно, будут добавлены/удалены слайды
     let newPosition = destination;  //возможно, будет корректироваться позиция из-за
                                     //добавления/удаления слайдов
+
+    if (destination === state.prevPosition) {
+        setState(
+            {
+                ...state,
+                prevPosition: prevPosition,
+                prevMargin: prevMargin,
+                currentPosition: newPosition,
+                children: newChildren
+            }
+        );
+
+        return;
+    }
     
     //Заранее вычислим всё, что может потребоваться далее, в зависимости от условий
     const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);

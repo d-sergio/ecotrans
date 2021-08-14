@@ -27,3 +27,23 @@
     max-width: 100%;
     height: auto;
 }
+
+@media screen and (max-width: 575px) {
+    .text{
+        margin-top: 11px;
+        margin-bottom: 16px;
+        
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    
+    }
+
+    .main{
+        max-width: unset;
+    }
+
+    .image{
+        float: right;
+        shape-outside: url(/images/block-call/call-mobile.png);
+    }
+}

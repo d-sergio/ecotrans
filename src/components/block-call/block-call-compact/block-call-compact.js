@@ -1,11 +1,14 @@
-import React from 'react';
-import Buttons from '../../buttons';
+import React, { useContext } from 'react';
+import ButtonCall from '../../buttons/button-call/button-call';
 import pic from '../../../../static/images/block-call/call-mobile.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
-import {text, image, floatImage, container, button} from './block-call-mobile.module.css';
+import {text, image, floatImage, container, buttonBottom, buttonTop} from './block-call-compact.module.css';
+import MobileView from '../../root-layout/view-context';
 
 function BlockCallMobile() {
+    const mobileView = useContext(MobileView);
+
     return(
         <section className={mainContainer}>
             <div className={container}>
@@ -23,11 +26,15 @@ function BlockCallMobile() {
                     в течение трех дней. Позвоните нам и наш менеджер подробно
                     объяснит, как заказать любую из наших услуг.
                 </p>
+
+                <div className={buttonTop}>
+                    <ButtonCall mobile={mobileView}/>
+                </div>
                 
             </div>
 
-            <div className={button}>
-                <Buttons.Call.Mobile/>
+            <div className={buttonBottom}>
+                <ButtonCall mobile={mobileView}/>
             </div>
 
             </div>

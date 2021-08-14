@@ -1,0 +1,70 @@
+.container{
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 37px;
+}
+
+.floatImage{
+    width: 100%;
+}
+
+.text{
+    margin-top: 11px;
+    margin-bottom: 16px;
+    
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.image{
+    width: 40%;
+    height: auto;
+
+    float: right;
+}
+
+.buttonBottom{
+    display: none;
+    text-align: center;
+}
+
+.buttonTop{
+    display: block;
+}
+
+@media screen and (min-width: 576px) {
+    .buttonTop{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    .image{
+        width: 47.5%;
+    }
+
+    .buttonBottom{
+        display: block;
+    }
+    
+    .buttonTop{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 449px) {
+    .image{
+        shape-outside: url(/images/block-call/call-mobile.png);
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .text{
+        margin-top: 8px;
+        margin-bottom: 39px;
+    
+        font-size: 1.125rem;
+        line-height: 1.5625rem;
+    }
+}

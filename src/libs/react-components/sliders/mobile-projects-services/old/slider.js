@@ -52,9 +52,6 @@ function Slider(props) {
     const carousel = useRef(null);
     const viewport = useRef(null);
     const stateRef = useRef(state); /** #1 актуальное состояние для  startTouchHandler*/
-    const container = useRef(null); /**********МОДИФИКАЦИЯ**********/
-    const prev = useRef(null);  /**********МОДИФИКАЦИЯ**********/
-    const next = useRef(null);  /**********МОДИФИКАЦИЯ**********/
 
     /*Вызывается только один раз для установки размеров и начальных координат слайдера*/
     useEffect(() => initialize(), []);
@@ -155,7 +152,6 @@ function Slider(props) {
 
         updateSlideWidth(slideArgs);
         updateCarouselCoords(coordsArgs);
-        updateArrowsCoords();   /**********МОДИФИКАЦИЯ**********/
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние
@@ -276,28 +272,12 @@ function Slider(props) {
         checkBounds(boundsArgs);
     }
 
-    /**********МОДИФИКАЦИЯ**********/
-    /**Находим и устанавливаем координаты кнопок управления */
-    function updateArrowsCoords() {
-        if (!container.current || !carousel.current || !prev.current || !next.current) return;
-
-        const sliderWidth = container.current.offsetWidth;
-        const slideWidth = carousel.current.firstChild.firstChild.offsetWidth;
-
-        const left = sliderWidth * 0.5 - slideWidth * 0.5 - props.buttonShift + 'px';
-        prev.current.style.left = left;
-
-        const right = sliderWidth * 0.5 - slideWidth * 0.5 - props.buttonShift + 'px';
-        next.current.style.right = right;
-
-    }
-
     return(
-        <div className={containerStyle} ref={container}
+        <div className={containerStyle}
             onMouseEnter={() => props.cancelAutoMove ? cancelAutoMove() : null}
             onTouchStart={() => props.cancelAutoMove ? cancelAutoMove() : null}>
 
-            <div ref={prev} className={prevStyle} onClick={() => buttonHandler((-1))}>
+            <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}
             </div>
 
@@ -314,7 +294,7 @@ function Slider(props) {
                 </div>
             </div>
 
-            <div ref={next} className={nextStyle} onClick={() => buttonHandler(1)}>
+            <div className={nextStyle} onClick={() => buttonHandler(1)}>
                 {props.freeze ? null : props.next}
             </div>
         </div>
@@ -335,11 +315,7 @@ Slider.defaultProps = {
     autoMove: defaultProps.autoMove,
     cancelAutoMove: defaultProps.cancelAutoMove,
     moveInterval: defaultProps.moveInterval,
-    callback: defaultProps.callback,
-    /**********МОДИФИКАЦИЯ**********/
-    /*на сколько пикселей влево и вправо от центрального слайда сместить кнопки
-    управления слайдером*/
-    buttonShift: 0
+    callback: defaultProps.callback
 };
 
 export default Slider;

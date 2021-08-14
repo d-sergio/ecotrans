@@ -9,18 +9,24 @@
     display: flex;
     outline: none;
 
+    padding-left: 8px;
+
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
+    left: 0;
 }
 
 .nextStyle{
     display: flex;
     outline: none;
 
+    padding-right: 8px;
+
     /*Модификация: кнопки перекрывают карусель*/
     align-self: center;
     position: absolute;
+    right: 0;
 }
 
 .viewportStyle{

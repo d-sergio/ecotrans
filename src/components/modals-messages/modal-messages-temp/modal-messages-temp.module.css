@@ -34,7 +34,7 @@
 
     cursor: pointer;
 }
-
+/*
 @media screen and (max-width: 936px) and (min-height: 371px) {
     .container{
         width: 80%;
@@ -49,5 +49,39 @@
 
         box-shadow: unset;
         border-radius: unset;    
+    }
+}
+*/
+@media screen and (max-width: 575px) {
+    .container{
+        font-size: unset;
+        width: 90%;
+    }
+
+    .title{
+        margin-top: 50px;
+        line-height: unset;
+
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .text{
+        margin-bottom: 40px;
+
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .br{
+        display: none;
+    }
+
+    .cross{
+        width: 20px;
+        height: 20px;
+
+        right: 25px;
+        top: 18px;
     }
 }

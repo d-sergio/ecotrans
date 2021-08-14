@@ -1,5 +1,5 @@
 import React from 'react';
-import {container, cross, title, text} from './modal-messages-temp.module.css';
+import {container, cross, title, text, br} from './modal-messages-temp.module.css';
 import close from '../../../../static/images/cross-modal.svg';
 
 function ModalEcotransTemp(props) {
@@ -8,7 +8,7 @@ function ModalEcotransTemp(props) {
             <img data-close-modal className={cross} src={close} alt='close'/>
             
             <div className={text}>
-                <span className={title}>{props.title}</span><br/>
+                <span className={title}>{props.title}</span><br className={br}/>
                 {props.text}
             </div>
         </div>

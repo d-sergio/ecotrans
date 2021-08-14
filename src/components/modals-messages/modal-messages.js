@@ -15,7 +15,7 @@ function AddressCopied() {
     return(
         <ModalEcotransTemp
             title='Адрес скопирован в буфер обмена'
-            text='Вы же не наверняка не пользуйтесь mail - агентом'
+            text='Вы же наверняка не пользуйтесь mail - агентом'
         />
     );
 }

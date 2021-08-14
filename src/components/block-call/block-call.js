@@ -7,25 +7,6 @@ import config from '../../config/config-media-queries.json';
 function BlockCall() {
     const compactView = useMediaQuery(config.blockCall);
 
-    const [compactMode, setCompactMode] = useState();
-
-    useEffect(changeView, [compactView]);
-
-    function changeView() {
-        if (compactView) {
-
-            setCompactMode(true);
-
-            return;
-
-        } else {
-
-            setCompactMode(false);
-
-            return;
-        }
-    }
-
     const BlockCallMax = React.lazy(() => import('./block-call-max'));
     const BlockCallCompact = React.lazy(() => import('./block-call-compact'));
 
@@ -33,7 +14,7 @@ function BlockCall() {
         <>
             <GatsbySuspense>
                 {
-                    compactMode ? <BlockCallCompact/> : <BlockCallMax/>
+                    compactView ? <BlockCallCompact/> : <BlockCallMax/>
                 }
             </GatsbySuspense>
         </>

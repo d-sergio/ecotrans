@@ -31,3 +31,28 @@
     width: 100%;
     height: 100%;
 }
+
+@media screen and (min-width: 576px) {
+    .container{
+        margin-bottom: 87px;
+    }
+
+    .text{
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .images {
+        width: 319.5px;
+        text-align: center;
+        min-width: 319.5px;
+        
+        height: 294px;
+    }
+    
+    .images img{
+        min-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
+}

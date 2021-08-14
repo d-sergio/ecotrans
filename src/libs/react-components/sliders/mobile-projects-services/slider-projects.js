@@ -8,21 +8,13 @@ import config from '../../../../config/config-media-queries.json';
 function SliderProjects() {
         
     const smallShift = useMediaQuery(config.projectAndServices);
-
-    const [buttonShift, setShift] = useState(0);
-
-    useEffect(changeButtonShift, [smallShift]);
-
-    function changeButtonShift() {
-        setShift(smallShift ? 35 : 50);
-    }
-
+    
     return <Slider
                 visible={1}
                 treshold={0.1}
                 prev={<ArrowLeft/>}
                 next={<ArrowRight/>}
-                buttonShift={buttonShift}
+                buttonShift={smallShift ? 35 : 50}
             >
 
                 {cards}

@@ -25,8 +25,6 @@ function BlockProjectsDesktop() {
     const smallView = useMediaQuery(config.blockProjectsDesktop.smallView);
     const buttonShift = useMediaQuery(config.blockProjectsDesktop.buttonShift);
 
-    if (smallView === undefined) return null; 
-
     const containerStyle = [marginBottom, container].join(" ");
 
     return(

@@ -28,8 +28,6 @@ function BlockPartnersDesktop() {
 
     const active = useMediaQuery(config.blockPartnersDesktop);
 
-    if (active === undefined) return null;
-
     return(
         <section style={{marginBottom: '120px'}}>
             <div className={titleStyle}>Наши партнеры</div>

@@ -24,8 +24,6 @@ function BlockStatsDesktop() {
 
     const active = useMediaQuery(config.blockStatsDesktop);
 
-    if (active === undefined) return null;
-
     const freezeStyle = [marginBottom, freezeContainer].join(" ");
 
     return(

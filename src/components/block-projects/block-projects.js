@@ -12,8 +12,6 @@ function BlockProjects() {
 
     const mobileView = useMediaQuery(config.blockProjects);
 
-    if (mobileView === undefined) return null;
-
     const mobileStyle = [mainContainer, title, textMobile].join(" ");
     const desktopStyle = [mainContainer, title].join(" ");
 

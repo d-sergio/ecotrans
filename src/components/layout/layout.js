@@ -19,8 +19,6 @@ function Layout(props) {
 
     const footerView = useMediaQuery(config.footer);
 
-    if (footerView === undefined) return null;  
-
     return(
         <div className={wrapper}>
 

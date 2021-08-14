@@ -20,8 +20,6 @@ function BlockAdvDesktop() {
     
     const active = useMediaQuery(config.blockAdvDesktop);
 
-    if (active === undefined) return null;
-
     return(
         <section className={container}>
             <div className={titleStyle}>Преимущества работы с нами</div>

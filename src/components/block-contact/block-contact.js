@@ -11,11 +11,13 @@ import {wrapper,
     info
 } from './block-contact.module.css';
 import throttle from '../../libs/common/throttle';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
 
 /**Контент страницы Контакты */
 function BlockContact() {
-    /**Максимальная ширина окна для мобильного вида */
-    const maxMobileWidth = 767;
+
+    const mobileView = useMediaQuery(config.blockContact);
 
     /**Высота карты в десктопном варианте */
     const desktopMapHeight = 800;
@@ -27,7 +29,9 @@ function BlockContact() {
 
     const mounted = useRef(true);
 
-    const [mapHeight, setMapHeight] = useState(checkMobileView() ? calcHeight() : desktopMapHeight);
+    const [mapHeight, setMapHeight] = useState(mobileView ? calcHeight() : desktopMapHeight);
+
+    //useEffect(initMapHeight, []);
 
     useEffect(() => {
         if (typeof window === undefined) return;
@@ -42,9 +46,9 @@ function BlockContact() {
 
     useEffect(changeOrientation, []);
 
-    const tooltipMargin = checkMobileView() ? 0 : '250px';
+    //const tooltipMargin = checkMobileView() ? 0 : '250px';
 
-    const mapCenter = checkMobileView() ?
+    const mapCenter = mobileView ?
         [51.662725, 36.134059]
         : [51.66849, 36.13414];
 
@@ -70,26 +74,17 @@ function BlockContact() {
     function changeHeight() {
         if (!mounted.current) return;
 
-        setMapHeight(checkMobileView() ? calcHeight() : desktopMapHeight);
+        setMapHeight(mobileView ? calcHeight() : desktopMapHeight);
     }
 
     /**Высота компонента LeafletMap в зависимости от ориентации экрана*/
     function calcHeight() {
-        if (document.documentElement.clientHeight >= document.documentElement.clientWidth) {
+        if (document.documentElement.clientHeight > document.documentElement.clientWidth) {
             
             return document.documentElement.clientWidth;
         } else {
 
             return document.documentElement.clientHeight * landscapeFactor;
-        }
-    }
-
-    /**Мобильный вид? */
-    function checkMobileView() {
-        if (document.documentElement.clientWidth <= maxMobileWidth) {
-            return true;
-        } else {
-            return false;
         }
     }
 

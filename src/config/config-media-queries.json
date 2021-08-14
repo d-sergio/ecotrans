@@ -7,6 +7,8 @@
 
     "blockAdvDesktop": "screen and (max-width: 1439px)",
 
+    "blockContact": "screen and (max-width: 767px)",
+
     "blockInstagram": "screen and (max-width: 1023px)",
 
     "blockInstagramDesktop": "screen and (max-width: 1439px)",

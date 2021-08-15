@@ -7,7 +7,12 @@ import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
 
+/**
+ * @param {String} serviceName - из какого блока сделан заказ:
+ * docs, medical, neutralization, training, transportation
+ */
 function SpoilerServicesTemplate(props) {
+
     const deskShift = 16;
     const mobileShift = 28;
 
@@ -35,7 +40,11 @@ function SpoilerServicesTemplate(props) {
         <div>
             {props.body}
             <div className={buttonStyle}>
-                {mobileView ? <Buttons.Order.Mobile/> : <Buttons.Order.Desktop/>}
+                {
+                    mobileView ?
+                        <Buttons.Order.Mobile serviceName={props.serviceName}/>
+                        : <Buttons.Order.Desktop serviceName={props.serviceName}/>
+                }
             </div>
         </div>
     );

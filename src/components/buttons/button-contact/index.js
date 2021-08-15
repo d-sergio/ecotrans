@@ -1,12 +1,18 @@
 import React from "react";
-import Contact from "./button-contact";
+import PhoneContact from "./button-contact-phone";
+import FormContact from './button-contact-form';
 
-const Mobile = () => <Contact mobile={true}/>;
-const Desktop = () => <Contact/>;
+const PhoneMobile = () => <PhoneContact mobile={true}/>;
+const PhoneDesktop = () => <PhoneContact/>;
+
+const FormMobile = (props) => <FormContact mobile={true} {...props}/>;
+const FormDesktop = (props) => <FormContact {...props}/>;
 
 const contact = {
-    Mobile,
-    Desktop
+    PhoneMobile,
+    PhoneDesktop,
+    FormMobile,
+    FormDesktop
 };
 
 export default contact;

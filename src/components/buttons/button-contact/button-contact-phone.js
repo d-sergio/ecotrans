@@ -1,6 +1,7 @@
 import React from 'react';
 import {mobile, desktop} from './button-contact.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
+import config from '../../../config/config.json';
 
 /**Кнопка Связаться (с нами)
  * 
@@ -13,7 +14,13 @@ function ButtonContact(props) {
 
     const buttonText = 'Связаться';
 
-    return <button className={cssStyle}>{buttonText}</button>;
+    return (
+        <a href={`tel:${config.greenPhone}`}>
+            <button className={cssStyle}>
+                {buttonText}
+            </button>
+        </a>
+    );
 };
 
 export default ButtonContact;

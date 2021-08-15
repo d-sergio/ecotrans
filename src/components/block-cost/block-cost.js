@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import {mainContainer} from '../../common-styles/containers.module.css';
 import MobileView from '../root-layout/view-context';
-import CostForm from '../cost-form';
+import CostForm from '../form-cost';
 import {formMobile, formDesktop, marginBottom} from './block-cost.module.css';
 
 function BlockCost() {

@@ -13,7 +13,8 @@ import Values from '../context/values';
  * @param {function} onSubmit - колбэк в случае успешной валидации формы
  * @param {Object} initialValues - объект, в котором ключ - имя поля, значение равно
  * начальному значению поля
- * @param {String} name - имя формы
+ * @param {String} name - имя формы. На одной странице не должно быть форм
+ * с одинаковыми именами!
  */
 function Form(props) {
     const formRef = useRef(null);

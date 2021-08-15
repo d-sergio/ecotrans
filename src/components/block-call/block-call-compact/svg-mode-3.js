@@ -6,7 +6,7 @@ function SvgMode3(props) {
     const scaleSvgFactor = props.scaleSvgFactor;
 
     function getCorrect() {
-        if (!svgRef.current) return;
+        if (!svgRef.current) return 0;
 
         const container = svgRef.current.parentNode.parentNode;
         const containerWidth = container.offsetWidth;

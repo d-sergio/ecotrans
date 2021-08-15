@@ -1,19 +1,16 @@
-import React, { useContext, useState} from 'react';
-import Buttons from '../buttons';
-import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './cost-form.module.css';
-import MobileView from '../root-layout/view-context';
+import React, {useContext} from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
-import ModalSendingCost from '../modal-request-cost';
+import { input, attach, passport, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
+import {form, title, container, cross, button} from './form-modal-order.module.css';
 import config from '../../config/config.json';
+import Buttons from '../buttons';
+import MobileView from '../root-layout/view-context';
+import close from '../../../static/images/cross-modal.svg';
 
-function CostForm() {
+function ModalOrderForm(props) {
     const mobileView = useContext(MobileView);
 
-    //Если форма отпралена, то будет показано модальное окно
-    const [modalIsOpen, setModalOpen] = useState(false);
-    const [formData, setFormData] = useState();
-
-    const formName = 'cost';
+    const formName = props.formName + 'order';
     const inputFileName = 'passport';
     const maxFileSize = config.costForm.fileSize; //bytes
 
@@ -46,7 +43,7 @@ function CostForm() {
         fkko: '*ФККО',
         phone: '*+7 (909) 000 00 00',
         email: '*e-mail',
-        passport: `Паспорт отходов (не более ${maxFileSize / 1048576}Мб)`
+        passport: `Паспорт отходов (до ${maxFileSize / 1048576}Мб)`
     };
 
     //Функции валидации
@@ -59,15 +56,15 @@ function CostForm() {
     };
 
     return(
-        <>
+        <div className={container}>
+            <img data-close-modal className={cross} src={close} alt='close'/>
+
+            <div className={title}>Заполните эту форму</div>
+
             <Forms.Form
                 className={form}
                 validate={validate}
-                onSubmit={(data) => {
-                        setFormData(data);
-                        setModalOpen(true);
-                    }
-                }
+                onSubmit={ props.setFormData }
                 initialValues={initialValues}
                 name={formName}
             >
@@ -107,17 +104,9 @@ function CostForm() {
                         mobileView ? <Buttons.Send.Mobile/> : <Buttons.Send.Desktop/>
                     }
                 </div>
-
             </Forms.Form>
-
-            <ModalSendingCost
-                key={modalIsOpen}
-                isOpen={modalIsOpen ? true : false}
-                formData={modalIsOpen ? formData : undefined}
-                closeModal={() => setModalOpen(false)}
-            />
-        </>
+        </div>
     );
 }
 
-export default CostForm;
+export default ModalOrderForm;

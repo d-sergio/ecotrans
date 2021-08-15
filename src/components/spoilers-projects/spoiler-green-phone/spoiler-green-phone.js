@@ -85,9 +85,13 @@ function GreenPhone() {
             <div style={{clear: 'both'}}></div>
 
             <div className={buttonStyle}>
-                <a href={`tel:${config.greenPhone}`}>
-                    {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
-                </a>
+                
+                    {
+                        mobileView ?
+                            <Buttons.Contact.PhoneMobile/>
+                            : <Buttons.Contact.PhoneDesktop/>
+                    }
+
             </div>
         </div>
     );

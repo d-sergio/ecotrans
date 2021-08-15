@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import postOrderForm from '../../send-form-callback/post-order-form';
 import Modals from '../../libs/react-components/modals';
 import ModalMessages from '../modal-messages';
+import ModalOrderForm from '../form-modal-order/form-modal-order';
+import postOrderForm from '../../send-form-callback/post-order-form';
 
-function ModalRequestCost(props) {
-    const [modal, setModal] = useState(<ModalMessages.EmailSending/>);
-    const [status, setStatus] = useState('sending');
+function ModalOrderService(props) {
+    const [status, setStatus] = useState('order');
+    const [formData, setFormData] = useState();
+    const [modal, setModal] = useState(<ModalOrderForm formName={props.serviceName} setFormData={setFormData}/>);
 
-    useEffect(sendForm, [props.formData]);
+    useEffect(() => {
+        if (formData) {
+            sendForm();
+            setStatus('sending');
+            setModal(<ModalMessages.EmailSending/>);
+        }
+    }, [formData]);
 
     /**Отправка формы */
     async function sendForm() {
-        if (!props.formData) return;
+        if (!formData) return;
         
-        const result = await postOrderForm(props.formData);
+        const result = await postOrderForm(formData, props.serviceName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);
@@ -36,15 +44,18 @@ function ModalRequestCost(props) {
         setStatus('error');
         return;
     }
-
-    return (
+    
+    return(
         <Modals.Set
             isOpen={props.isOpen}
             modal={modal}
-            closeModal={props.closeModal}
             defaultClose={status === 'sending' ? false : true}
+            closeModal={() => {
+                setFormData(undefined);
+                props.closeModal();
+            }}
         />
     );
 }
 
-export default ModalRequestCost;
+export default ModalOrderService;

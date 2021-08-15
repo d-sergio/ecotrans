@@ -60,6 +60,8 @@ function BlockCallMobile() {
     const mobileButton = useContext(MobileView);
 
     useEffect(() => {
+        drawSvgLine();  //чтоб наверняка сработало, когда уже всё отрендерено
+
         if (typeof window !== undefined) {
             window.addEventListener('resize', drawSvgLine);
         }

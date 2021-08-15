@@ -42,7 +42,7 @@ function Docs() {
     );
 
     return(
-        <SpoilerServicesTemplate title={title} body={body}/>
+        <SpoilerServicesTemplate serviceName='docs' title={title} body={body}/>
     );
 }
 

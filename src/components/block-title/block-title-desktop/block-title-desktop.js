@@ -13,7 +13,7 @@ function TitleDesktop() {
                 <p className={about}>Транспортировка, утилизация и переработка отходов</p>
                 <h1 className={ecotrans}>ЭКОТРАНС</h1>
                 <p className={waste}>Отходы это не мусор</p>
-                <Buttons.Contact.Desktop/>
+                <Buttons.Contact.FormDesktop/>
             </div>
 
             <TitleImage/>

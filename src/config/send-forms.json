@@ -1,4 +1,4 @@
 {
     "feedback": "http://localhost:3000/messages/feedback",
-    "cost": "http://localhost:3000/messages/cost"
+    "cost": "http://localhost:3000/messages/order"
 }

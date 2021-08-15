@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../buttons';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
@@ -15,7 +15,7 @@ import {
     inputInActive,
     agree,
     textarea,
-    button} from './contact-feedback.module.css';
+    button} from './form-feedback.module.css';
 
 /**Окно "Обратная связь" страницы Контакты*/
 function Feedback() {

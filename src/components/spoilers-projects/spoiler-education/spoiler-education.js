@@ -69,7 +69,11 @@ function Education() {
             <div style={{clear: 'both'}}></div>
 
             <div className={buttonStyle}>
-                {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
+                {
+                    mobileView ?
+                        <Buttons.Contact.FormMobile seviceName='education'/>
+                        : <Buttons.Contact.FormDesktop seviceName='education'/>
+                }
             </div>
         </div>
     );

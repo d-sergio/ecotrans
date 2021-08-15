@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import Buttons from '../../buttons';
 import {spoilerTitle} from '../../../common-styles/title.module.css';
-import {button, margin, titleStyle} from './spoilers-projects-temp.module.css';
+import {margin, titleStyle} from './spoilers-projects-temp.module.css';
 import MobileView from '../../root-layout/view-context';
 import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
@@ -28,17 +27,7 @@ function SpoilerProjectsTemplate(props) {
             alt="spoiler arrow"
         />;
 
-    const buttonStyle = [mainContainer, button].join(" ");
     const titleClass = [spoilerTitle, mainContainer, titleStyle].join(" ");
-
-    const bodySpoiler = (
-        <div>
-            {props.body}
-            <div className={buttonStyle}>
-                {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
-            </div>
-        </div>
-    );
 
     return (
         <div className={margin}>
@@ -46,7 +35,7 @@ function SpoilerProjectsTemplate(props) {
                 iconShiftX={mobileView ? mobileShift : deskShift}
                 title={titleSpoiler}
                 titleClass={titleClass}
-                body={bodySpoiler}
+                body={props.body}
                 open={open}
                 close={close}
             />

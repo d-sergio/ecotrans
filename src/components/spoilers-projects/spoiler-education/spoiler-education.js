@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
-import {greenDesktop, greenMobile, green, paragraph, imageLeft} from '../spoilers-projects-common/spoilers-projects-common.module.css';
+import {greenDesktop, greenMobile, green, paragraph, imageLeft, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/education.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import MobileView from '../../root-layout/view-context';
+import Buttons from '../../buttons';
 
 function Education() {
+    const mobileView = useContext(MobileView);
+
     const paragraphStyle = [paragraph, mainContainer].join(" ");
     const greenDeskStyle = [green, greenDesktop].join(" ");
     const greenMobStyle = [green, greenMobile].join(" ");
+    const buttonStyle = [button, mainContainer].join(" ");
 
     const title = <>Центр дополнительного экологического образования</>;
 
@@ -62,6 +67,10 @@ function Education() {
                 </span>
             </div>
             <div style={{clear: 'both'}}></div>
+
+            <div className={buttonStyle}>
+                {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
+            </div>
         </div>
     );
 

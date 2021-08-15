@@ -1,21 +1,9 @@
-.button{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
 .margin{
     margin-bottom: 81px;
 }
 
 .titleStyle{
     cursor: pointer;
-}
-
-@media screen and (max-width: 650px) {
-    .button{
-        align-items: center;
-    }
 }
 
 @media screen and (max-width: 767px) {

@@ -40,7 +40,9 @@ function FooterDesktop() {
 
 const Address = () => (
     <div className={address}>
-        <PictureAndText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
+        <a target='_blank' href={config.openstreetmap}>
+            <PictureAndText.Right image={mapPin} text='г. Курск, пр-т Ленинского комсомола 1Б'/>
+        </a>
 
         <a target='_blank' href={`tel:${config.phone}`}>
             <PictureAndText.Right image={phone} text={config.phonePretty}/>

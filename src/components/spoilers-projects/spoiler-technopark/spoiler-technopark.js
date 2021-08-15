@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
-import {paragraph, image} from '../spoilers-projects-common/spoilers-projects-common.module.css';
+import {paragraph, image, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import {residentsItems, residentsTitle, residentsImage, residentText} from './spoiler-technopark.module.css';
 import pic from '../../../../static/images/spoilers-projects/technopark.jpg';
 import supportPic from '../../../../static/images/spoilers-projects/support.png';
@@ -8,11 +8,15 @@ import supplyPic from '../../../../static/images/spoilers-projects/supply.png';
 import rentPic from '../../../../static/images/spoilers-projects/rent.png';
 import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import MobileView from '../../root-layout/view-context';
+import Buttons from '../../buttons';
 
 function Technopark() {
+    const mobileView = useContext(MobileView);
 
     const resTitleStyle = [residentsTitle, mainContainer].join(" ");
     const resItemsStyle = [residentsItems, mainContainer].join(" ");
+    const buttonStyle = [button, mainContainer].join(" ");
 
     const title = <>Экотехнопарк  Экотранс</>;
 
@@ -88,6 +92,11 @@ function Technopark() {
                     базовым критериям. 
                 </p>
             </div>
+
+            <div className={buttonStyle}>
+                {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
+            </div>
+
         </div>
     );
 

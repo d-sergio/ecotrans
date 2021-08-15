@@ -1,10 +1,12 @@
 {
     "email": "ecotranskursk@yandex.ru",
     "phone": "+79065774934",
+    "greenPhone": "+79606948939",
     "phonePretty": "+7 (906) 577-49-34",
     "instagram": "https://www.instagram.com/ecotrans46/",
     "costForm": {
         "fileSize": 52428800,
         "fileType": ".*"
-    }
+    },
+    "openstreetmap": "https://www.openstreetmap.org/#map=19/51.66271/36.13372"
 }

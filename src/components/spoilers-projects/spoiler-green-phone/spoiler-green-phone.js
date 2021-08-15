@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
-import {green, greenDesktop, greenMobile, paragraph, imageRight} from '../spoilers-projects-common/spoilers-projects-common.module.css';
+import {green, greenDesktop, greenMobile, paragraph, imageRight, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/green-phone.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
+import MobileView from '../../root-layout/view-context';
+import Buttons from '../../buttons';
+import config from '../../../config/config.json';
 
 function GreenPhone() {
+    const mobileView = useContext(MobileView);
+
     const paragraphStyle = [mainContainer, paragraph].join(" ");
     const greenDeskStyle = [green, greenDesktop].join(" ");
     const greenMobStyle = [green, greenMobile].join(" ");
+    const buttonStyle = [button, mainContainer].join(" ");
 
     const title = <>Зеленый телефон</>;
 
@@ -77,6 +83,12 @@ function GreenPhone() {
             </div>
 
             <div style={{clear: 'both'}}></div>
+
+            <div className={buttonStyle}>
+                <a href={`tel:${config.greenPhone}`}>
+                    {mobileView ? <Buttons.Contact.Mobile/> : <Buttons.Contact.Desktop/>}
+                </a>
+            </div>
         </div>
     );
 

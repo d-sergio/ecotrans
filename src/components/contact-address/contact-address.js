@@ -16,10 +16,12 @@ function Address() {
                 Контакты
             </div>
 
-            <div className={line}>
-                <img src={addressPic} alt="address"/>
-                <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
-            </div>
+            <a target='_blank' href={config.openstreetmap}>
+                <div className={line}>
+                    <img src={addressPic} alt="address"/>
+                    <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
+                </div>
+            </a>
 
             <a className={line} href={` ${config.phone}`}>
                 <img src={phonePic} alt="phone"/>

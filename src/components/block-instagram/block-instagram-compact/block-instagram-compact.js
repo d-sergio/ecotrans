@@ -6,7 +6,6 @@ import ButtonSubscribe from '../../buttons/button-subscribe/button-subscribe';
 import config from '../../../config/config.json';
 import MobileView from '../../root-layout/view-context';
 import InstagramSlider from './instagram-slider-compact';
-import throttle from '../../../libs/common/throttle';
 
 /**Размеры контейнеров блока от которых масштабируются пунктирные линии.
  * Линии тут две: десктопная и мобильная
@@ -21,7 +20,6 @@ const defaultContainerHeightDesktop = 504;
  * 
 */
 function BlockInstagramMobile() {
-    const throttleDrawSvgLine = throttle(drawSvgLine, 300);
     const containerRef = useRef(null);
 
     const [scaleSvgFactor, setScaleSvgFactor] = useState({X: 1, Y: 1});
@@ -32,12 +30,12 @@ function BlockInstagramMobile() {
 
     useEffect(() => {
         if (typeof window !== undefined) {
-            window.addEventListener('resize', throttleDrawSvgLine);
+            window.addEventListener('resize', drawSvgLine);
         }
 
         return () => {
             if (typeof window !== undefined) {
-                window.removeEventListener('resize', throttleDrawSvgLine);
+                window.removeEventListener('resize', drawSvgLine);
             }
         }
     }, []);

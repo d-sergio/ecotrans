@@ -5,7 +5,6 @@ import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import Text from './instagram-text';
 import InstagramSlider from './instagram-slider';
-import throttle from '../../../libs/common/throttle';
 
 /**Функции getShift и getCorrectRight дополнительно корректируют положение
  * пунктирной линии в зависимости от размера блока.
@@ -26,8 +25,6 @@ const defaultHeight = 467;
  *  scaleSvgFactor[1] - по оси Y
 */
 function BlockInstagramDesktop() {
-    const throttleDrawSvgLine = throttle(drawSvgLine, 300);
-
     const titleStyle = [title, stayInformed].join(" ");
 
     const [scaleSvgFactor, setScaleSvgFactor] = useState([1, 1]);
@@ -41,12 +38,12 @@ function BlockInstagramDesktop() {
 
     useEffect(() => {
         if (typeof window !== undefined) {
-            window.addEventListener('resize', throttleDrawSvgLine);
+            window.addEventListener('resize', drawSvgLine);
         }
 
         return () => {
             if (typeof window !== undefined) {
-                window.removeEventListener('resize', throttleDrawSvgLine);
+                window.removeEventListener('resize', drawSvgLine);
             }
         }
     }, []);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';

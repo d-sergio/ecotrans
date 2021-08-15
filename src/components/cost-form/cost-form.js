@@ -3,16 +3,15 @@ import Buttons from '../buttons';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './cost-form.module.css';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
-import sendCostForm from '../../send-form-callback/send-cost-form';
-import ModalMessages from '../modals-messages';
-import Modal from '../../libs/react-components/modals';
+import ModalSendingCost from '../modal-request-cost';
 import config from '../../config/config.json';
 
 function CostForm() {
     const mobileView = useContext(MobileView);
 
     //Если форма отпралена, то будет показано модальное окно
-    const [isSubmitting, setSubmitting] = useState(false);
+    const [modalIsOpen, setModalOpen] = useState(false);
+    const [formData, setFormData] = useState();
 
     const formName = 'cost';
     const inputFileName = 'passport';
@@ -59,23 +58,16 @@ function CostForm() {
         passport: () => Forms.Validate.fileSize(formName, inputFileName, maxFileSize)
     };
 
-    /**Отправка формы */
-    async function sendForm(formData) {
-        const result = await sendCostForm(formData);
-
-        if (result) {
-            console.log(`Ответ сервера: ${result.message}`);
-
-            if (result.message === 'done') setSubmitting(true);
-        }
-    }
-
     return(
         <>
             <Forms.Form
                 className={form}
                 validate={validate}
-                onSubmit={sendForm}
+                onSubmit={(data) => {
+                        setFormData(data);
+                        setModalOpen(true);
+                    }
+                }
                 initialValues={initialValues}
                 name={formName}
             >
@@ -118,10 +110,11 @@ function CostForm() {
 
             </Forms.Form>
 
-            <Modal.Set
-                isOpen={isSubmitting}
-                modal={<ModalMessages.EmailSent/>}
-                closeModal={() => setSubmitting(false)}
+            <ModalSendingCost
+                key={modalIsOpen}
+                isOpen={modalIsOpen ? true : false}
+                formData={modalIsOpen ? formData : undefined}
+                closeModal={() => setModalOpen(false)}
             />
         </>
     );

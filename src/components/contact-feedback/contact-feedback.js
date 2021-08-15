@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from '../buttons';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ContactError from './contact-error-message';
-import sendFeedbackForm from '../../send-form-callback/send-feedback-form';
+import ModalRequestFeedback from '../modal-request-feedback /modal-request-feedback';
 import {
     feedback,
     feedbackTitle,
@@ -20,6 +20,10 @@ import {
 /**Окно "Обратная связь" страницы Контакты*/
 function Feedback() {
     const mobileView = useContext(MobileView);
+
+    //Если форма отпралена, то будет показано модальное окно
+    const [modalIsOpen, setModalOpen] = useState(false);
+    const [formData, setFormData] = useState();    
 
     //Имена полей формы
     const initialValues = {
@@ -62,7 +66,11 @@ function Feedback() {
             <Forms.Form
                 className={form}
                 validate={validate}
-                onSubmit={sendFeedbackForm}
+                onSubmit={(data) => {
+                        setFormData(data);
+                        setModalOpen(true);
+                    }
+                }
                 initialValues = {initialValues}
             >
                 <Forms.Fields.Input
@@ -100,6 +108,13 @@ function Feedback() {
                     }
                 </div>
             </Forms.Form>
+
+            <ModalRequestFeedback
+                key={modalIsOpen}
+                isOpen={modalIsOpen ? true : false}
+                formData={modalIsOpen ? formData : undefined}
+                closeModal={() => setModalOpen(false)}
+            />
         </div>
     );
 }

@@ -4,7 +4,7 @@ import {container} from './footer-mobile.module.css';
 import CopyToClipboard from '../copy-to-clipboard';
 import config from '../../config/config.json';
 import Modals from '../../libs/react-components/modals';
-import ModalsMessages from '../modals-messages';
+import ModalsMessages from '../modal-messages';
 
 function FooterMobile() {
     return(

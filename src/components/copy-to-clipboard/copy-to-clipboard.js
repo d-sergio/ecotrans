@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ModalMessages from '../modals-messages';
+import ModalMessages from '../modal-messages';
 import Modals from '../../libs/react-components/modals';
 import config from '../../config/config.json';
 

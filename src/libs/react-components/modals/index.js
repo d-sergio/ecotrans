@@ -1,9 +1,9 @@
 import Attach from "./attach-modal";
 import Set from "./modal";
 
-const modals = {
+const Modals = {
     Attach,
     Set
 };
 
-export default modals;
+export default Modals;

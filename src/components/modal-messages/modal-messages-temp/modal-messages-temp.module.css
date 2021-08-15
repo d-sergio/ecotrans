@@ -18,12 +18,18 @@
     display: block;
     font-family: 'MontserratBold';
     margin-top: 90px;
+
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .text{
     display: block;
     margin-bottom: 90px;
     line-height: 2.125rem;
+
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .cross{
@@ -61,16 +67,10 @@
     .title{
         margin-top: 50px;
         line-height: unset;
-
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .text{
         margin-bottom: 40px;
-
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .br{

@@ -114,6 +114,7 @@ function BlockContact() {
                     </div>
 
                     <div className={info}>
+                        
                         <div className={feedback}>
                             <Feedback/>
                         </div>                    
@@ -121,6 +122,7 @@ function BlockContact() {
                         <div className={address}>
                             <Address/>
                         </div>
+
                     </div>
                 </div>
 

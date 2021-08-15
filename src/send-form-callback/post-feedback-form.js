@@ -10,10 +10,14 @@ async function sendFeedbackForm(form) {
         );
 
         const result = await response.json();
+        console.log(`Отправка формы: ${result.status}`);
 
-        console.log(`Ответ сервера: ${result.message}`);
+        return result;
+
     } catch(e) {
-        console.log('Ошибка при отправке формы');
+        console.log(`Ошибка при отправке формы: ${e.name}, ${e.message}, ${e.stack}`);
+
+        return false;
     }
 }
 

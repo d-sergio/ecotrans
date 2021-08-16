@@ -34,7 +34,8 @@ function ModalCalendarTemp(props) {
 
     function openFullSizePic() {
         try{
-            document.documentElement.style.transform = '';
+            document.documentElement.style.transform = ''; /*beget */
+
             setPicture(`${window.location.origin}/images/calendar/fullsize/${props.fullSizeImage}`);
         } catch(e) {
             /**Защита для build */

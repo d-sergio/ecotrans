@@ -96,8 +96,8 @@ function Technopark() {
             <div className={buttonStyle}>
                 {
                     mobileView ?
-                        <Buttons.Contact.FormMobile seviceName='technopark'/>
-                        : <Buttons.Contact.FormDesktop seviceName='technopark'/>
+                        <Buttons.Contact.FormMobile projectName='technopark'/>
+                        : <Buttons.Contact.FormDesktop projectName='technopark'/>
                 }
             </div>
 

@@ -1,7 +1,7 @@
 import config from '../config/send-forms.json';
 
-async function postOrderForm(form, serviceName) {
-    const defaultName = 'Не указана';
+async function postServiceForm(form, serviceName) {
+    const defaultName = 'Не указано';
 
     const orders = {
         docs: 'Экологическая документация',
@@ -14,7 +14,7 @@ async function postOrderForm(form, serviceName) {
     try{
         form.append('serviceName', orders[serviceName] || defaultName);
 
-        const response = await fetch(config.cost,
+        const response = await fetch(config.service,
             {
                 method: "POST",
                 body: form
@@ -33,4 +33,4 @@ async function postOrderForm(form, serviceName) {
     }
 }
 
-export default postOrderForm;
+export default postServiceForm;

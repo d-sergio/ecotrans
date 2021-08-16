@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import postServiceForm from '../../send-form-callback/post-service-form';
 import Modals from '../../libs/react-components/modals';
 import ModalMessages from '../modal-messages';
+import FormProjectContact from '../form-project-contact';
+import postProjectForm from '../../send-form-callback/post-project-form';
 
-function ModalRequestCost(props) {
-    const [modal, setModal] = useState(<ModalMessages.EmailSending/>);
-    const [status, setStatus] = useState('sending');
+function ModalContactProject(props) {
+    const [status, setStatus] = useState('order');
+    const [formData, setFormData] = useState();
+    const [modal, setModal] = useState(<FormProjectContact formName={props.projectName} setFormData={setFormData}/>);
 
-    useEffect(sendForm, [props.formData]);
+    useEffect(() => {
+        if (formData) {
+            sendForm();
+            setStatus('sending');
+            setModal(<ModalMessages.EmailSending/>);
+        }
+    }, [formData]);
 
     /**Отправка формы */
     async function sendForm() {
-        if (!props.formData) return;
+        if (!formData) return;
         
-        const result = await postServiceForm(props.formData);
+        const result = await postProjectForm(formData, props.projectName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);
@@ -36,15 +44,18 @@ function ModalRequestCost(props) {
         setStatus('error');
         return;
     }
-
-    return (
+    
+    return(
         <Modals.Set
             isOpen={props.isOpen}
             modal={modal}
-            closeModal={props.closeModal}
             defaultClose={status === 'sending' ? false : true}
+            closeModal={() => {
+                setFormData(undefined);
+                props.closeModal();
+            }}
         />
     );
 }
 
-export default ModalRequestCost;
+export default ModalContactProject;

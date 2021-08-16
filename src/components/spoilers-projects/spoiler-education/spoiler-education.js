@@ -71,8 +71,8 @@ function Education() {
             <div className={buttonStyle}>
                 {
                     mobileView ?
-                        <Buttons.Contact.FormMobile seviceName='education'/>
-                        : <Buttons.Contact.FormDesktop seviceName='education'/>
+                        <Buttons.Contact.FormMobile projectName='education'/>
+                        : <Buttons.Contact.FormDesktop projectName='education'/>
                 }
             </div>
         </div>

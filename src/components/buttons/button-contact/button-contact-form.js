@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {mobile, desktop} from './button-contact.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
+import ModalContactProject from '../../modal-contact-project';
 
 /**Кнопка Связаться (с нами)
  * 
@@ -14,10 +15,21 @@ function ButtonContact(props) {
 
     const buttonText = 'Связаться';
 
+    const [isOpen, setOpen] = useState(false);
+
     return (
-            <button className={cssStyle}>
+        <>
+            <button onClick={() => setOpen(true)} className={cssStyle}>
                 {buttonText}
             </button>
+            
+            <ModalContactProject
+                key={isOpen}
+                isOpen={isOpen}
+                closeModal={() => setOpen(false)}
+                projectName={props.projectName}
+            />
+        </>
     );
 };
 

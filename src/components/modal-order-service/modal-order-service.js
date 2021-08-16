@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Modals from '../../libs/react-components/modals';
 import ModalMessages from '../modal-messages';
-import ModalOrderForm from '../form-modal-order/form-modal-order';
-import postOrderForm from '../../send-form-callback/post-order-form';
+import FormOrderService from '../form-order-service';
+import postServiceForm from '../../send-form-callback/post-service-form';
 
 function ModalOrderService(props) {
     const [status, setStatus] = useState('order');
     const [formData, setFormData] = useState();
-    const [modal, setModal] = useState(<ModalOrderForm formName={props.serviceName} setFormData={setFormData}/>);
+    const [modal, setModal] = useState(<FormOrderService formName={props.serviceName} setFormData={setFormData}/>);
 
     useEffect(() => {
         if (formData) {
@@ -21,7 +21,7 @@ function ModalOrderService(props) {
     async function sendForm() {
         if (!formData) return;
         
-        const result = await postOrderForm(formData, props.serviceName);
+        const result = await postServiceForm(formData, props.serviceName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);

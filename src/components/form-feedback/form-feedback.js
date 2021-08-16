@@ -53,6 +53,7 @@ function Feedback() {
         active: inputActiveStyle,
         error: inputActiveStyle
     };
+    
     const textareaClasses = {
         inactive: textareaInActiveStyle,
         active: textareaActiveStyle,

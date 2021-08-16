@@ -1,16 +1,18 @@
 import React, {useContext} from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
 import { input, attach, passport, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
-import {form, title, container, cross, button} from './form-modal-order.module.css';
+import {form, title, container, cross, button} from './form-order-service.module.css';
 import config from '../../config/config.json';
 import Buttons from '../buttons';
 import MobileView from '../root-layout/view-context';
 import close from '../../../static/images/cross-modal.svg';
 
-function ModalOrderForm(props) {
+function FormOrderService(props) {
     const mobileView = useContext(MobileView);
 
+    //Уникальное имя формы
     const formName = props.formName + 'order';
+    
     const inputFileName = 'passport';
     const maxFileSize = config.costForm.fileSize; //bytes
 
@@ -31,6 +33,7 @@ function ModalOrderForm(props) {
     const inputActiveStyle = [input, inputActive].join(" ");
     const inputInActiveStyle = [input, inputInActive].join(" ");
     const inputErrorStyle = [input, inputError].join(" ");
+    
     const inputClasses = {
         inactive: inputInActiveStyle,
         active: inputActiveStyle,
@@ -109,4 +112,4 @@ function ModalOrderForm(props) {
     );
 }
 
-export default ModalOrderForm;
+export default FormOrderService;

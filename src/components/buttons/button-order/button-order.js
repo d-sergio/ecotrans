@@ -7,7 +7,8 @@ import ModalOrderService from '../../modal-order-service';
  * 
  * Props:
  * @param {Boolean} mobile - мобильный вариант, если true
- * @param {String} serviceName - из какого блока сделан заказ
+ * @param {String} serviceName - название услуги:
+ * docs, medical, neutralization, training, transportation
  */
 function ButtonOrder(props) {
     const viewMode = props.mobile === true ? mobile : desktop;

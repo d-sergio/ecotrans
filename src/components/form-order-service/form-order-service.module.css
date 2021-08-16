@@ -98,12 +98,12 @@
         width: 20px;
         height: 20px;
 
-        right: 24px;
-        top: 16px;
+        right: 12px;
+        top: 12px;
     }
 
     .title{
-        font-size: 1.625rem;
+        font-size: 1.25rem;
         margin-top: 10px;
         margin-bottom: 26px;
     }
@@ -121,5 +121,13 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 20px;
         align-items: center;
+    }
+
+    .cross{
+        width: 20px;
+        height: 20px;
+
+        right: 12px;
+        top: 12px;
     }
 }

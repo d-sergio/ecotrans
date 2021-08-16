@@ -3,12 +3,17 @@ import ModalMessages from '../modal-messages';
 import Modals from '../../libs/react-components/modals';
 import config from '../../config/config.json';
 
+/**navigator.clipboard поддерживается только для HTTPS! Поэтому на HTTP ничего
+ * не произойдёт
+*/
 function CopyToClipboard(props) {
     const [isOpen, setOpen] = useState(false);
 
     useEffect(copy, [isOpen]);
 
     function openMessage() {
+        if (!navigator.clipboard) return;
+
         setOpen(true);
     }
 
@@ -17,7 +22,7 @@ function CopyToClipboard(props) {
     }
 
     function copy() {
-        if (typeof window === undefined || !isOpen) return;
+        if (typeof window === undefined || !isOpen || !navigator.clipboard) return;
 
         navigator.clipboard.writeText(config.email).then(
             () => console.log('CopyToClipboard: copied')

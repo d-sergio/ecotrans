@@ -16,6 +16,14 @@ import config from '../../config/config-media-queries.json';
 
 /**Контент страницы Контакты */
 function BlockContact() {
+    /*Модальное окно отправки формы обратной связи вложено в компонент
+    Feedback. Соседний компонент Address перекрывает это модальное окно.
+    Посколько Address тоже имеет своё модальное окно, то простой установкой
+    z-index не обойтись, так как кто-то всегда будет перекрывать соседа.
+    Реф обёртки Feedback передаётся самому Feedback. Когда он открывает
+    модальное окно, то повышает свой z-index. А при закрытии возвращает
+    прежнее значение*/
+    const feedbackRef = useRef(null);
 
     const mobileView = useMediaQuery(config.blockContact);
 
@@ -115,8 +123,8 @@ function BlockContact() {
 
                     <div className={info}>
                         
-                        <div className={feedback}>
-                            <Feedback/>
+                        <div ref={feedbackRef} className={feedback}>
+                            <Feedback feedbackRef={feedbackRef}/>
                         </div>                    
 
                         <div className={address}>

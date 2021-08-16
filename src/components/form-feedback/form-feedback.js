@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from '../buttons';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
@@ -18,7 +18,7 @@ import {
     button} from './form-feedback.module.css';
 
 /**Окно "Обратная связь" страницы Контакты*/
-function Feedback() {
+function Feedback(props) {
     const mobileView = useContext(MobileView);
 
     //Если форма отпралена, то будет показано модальное окно
@@ -26,6 +26,28 @@ function Feedback() {
     const [formData, setFormData] = useState();
     //Ключ нужен для сброса состояния модального окна при каждом его вызове
     const [key, setKey] = useState(0);
+
+    useEffect(setFeedbackZindex, [modalIsOpen]);
+
+    /*Модальное окно отправки формы обратной связи вложено в компонент
+    Feedback. Соседний компонент Address перекрывает это модальное окно.
+    Посколько Address тоже имеет своё модальное окно, то простой установкой
+    z-index не обойтись, так как кто-то всегда будет перекрывать соседа.
+    Реф обёртки Feedback передаётся самому Feedback. Когда он открывает
+    модальное окно, то повышает свой z-index. А при закрытии возвращает
+    прежнее значение*/
+    function setFeedbackZindex() {
+        if (!props.feedbackRef.current) return;
+
+        if (modalIsOpen) {
+            props.feedbackRef.current.style.zIndex = '503';
+        } else {
+            //Задержка для анимации закрытия модального окна
+            setTimeout(() => {
+                props.feedbackRef.current.style.zIndex = '501';
+            }, 500);
+        }
+    }
 
     //Имена полей формы
     const initialValues = {

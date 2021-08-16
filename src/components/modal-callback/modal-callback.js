@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modals from '../../libs/react-components/modals';
 import ModalMessages from '../modal-messages';
 import FormCallback from '../form-callback';
-import postCallbackForm from '../../send-form-callback/post-callback copy';
+import postCallbackForm from '../../send-form-callback/post-callback';
 
 function ModalCallback(props) {
     const [status, setStatus] = useState('order');

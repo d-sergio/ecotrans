@@ -16,14 +16,21 @@ function ButtonOrder(props) {
 
     const [isOpen, setOpen] = useState(false);
 
+    const [key, setKey] = useState(0);
+
+    function openModal() {
+        setKey(key + 1);
+        setOpen(true);
+    }
+
     return (
         <>
-            <button onClick={() => setOpen(true)} className={cssStyle}>
+            <button onClick={openModal} className={cssStyle}>
                 Заказать
             </button>
             
             <ModalOrderService
-                key={isOpen}
+                key={key}
                 isOpen={isOpen}
                 closeModal={() => setOpen(false)}
                 serviceName={props.serviceName}

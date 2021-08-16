@@ -23,7 +23,7 @@ function Address() {
                 </div>
             </a>
 
-            <a className={line} href={` ${config.phone}`}>
+            <a className={line} href={`tel:${config.phone}`}>
                 <img src={phonePic} alt="phone"/>
                 <p>{config.phonePretty}</p>
             </a>

@@ -23,7 +23,9 @@ function Feedback() {
 
     //Если форма отпралена, то будет показано модальное окно
     const [modalIsOpen, setModalOpen] = useState(false);
-    const [formData, setFormData] = useState();    
+    const [formData, setFormData] = useState();
+    //Ключ нужен для сброса состояния модального окна при каждом его вызове
+    const [key, setKey] = useState(0);
 
     //Имена полей формы
     const initialValues = {
@@ -69,6 +71,7 @@ function Feedback() {
                 validate={validate}
                 onSubmit={(data) => {
                         setFormData(data);
+                        setKey(key + 1);
                         setModalOpen(true);
                     }
                 }
@@ -111,7 +114,7 @@ function Feedback() {
             </Forms.Form>
 
             <ModalRequestFeedback
-                key={modalIsOpen}
+                key={key}
                 isOpen={modalIsOpen ? true : false}
                 formData={modalIsOpen ? formData : undefined}
                 closeModal={() => setModalOpen(false)}

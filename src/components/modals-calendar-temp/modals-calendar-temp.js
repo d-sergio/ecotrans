@@ -4,7 +4,6 @@ import Modal from '../../libs/react-components/modals';
 import closeIcon from '../../../static/images/calendar/cross-calend-modal.svg';
 import PictureAndText from '../../libs/react-components/picture-and-text';
 import { mainContainer } from '../../common-styles/containers.module.css';
-import dummy from '../../../static/images/calendar/calendar-dummy.svg';
 
 /**Шаблон модального окна для календаря (полноразмерная картинка с текстом)
  * 
@@ -15,7 +14,9 @@ import dummy from '../../../static/images/calendar/calendar-dummy.svg';
  * @param {Node | String} - текст, отображаемый поверх картинки
  */
 function ModalCalendarTemp(props) {
-    //const mounted = useRef(true);
+    const mounted = useRef(true);
+    const tryLoadCount = useRef(0);
+    const maxLoadCounts = useRef(10);
 
     /**Меньше этой ширины окна картинка не открывается кликом,
      * так как уже занимает всю ширину
@@ -25,40 +26,49 @@ function ModalCalendarTemp(props) {
     const [isOpen, setOpen] = useState(false);
     const [importedPicture, setPicture] = useState(null);
     
-    /*useEffect(() => {
+    useEffect(() => {
         return () => mounted.current = false;
-    }, []);*/
+    }, []);
 
     useEffect(openFullSizePic, [isOpen]);
 
-    /**Динамический импорт картинки */
     function openFullSizePic() {
+        try{
+            setPicture(`${window.location.origin}/images/calendar/fullsize/${props.fullSizeImage}`);
+        } catch(e) {
+            /**Защита для build */
+        }
+    }
+
+    /**Динамический импорт картинки */
+    /*function openFullSizePic() {
         if (importedPicture || !isOpen) return;
 
         import(`../../../static/images/calendar/fullsize/${props.fullSizeImage}`)
-        .then( (data) => addData(data) )
-        .catch((e) => console.log(`ModalCalendarTemp: ошибка импорта\n ${e.name}: ${e.message}\n ${e.stack}`));
-    }
+        .then( (data) => {
+            if (!mounted.current) return;
+            addData(data);
+        } )
+        .catch((e) => {
+            console.log(`ModalCalendarTemp: ошибка импорта\n ${e.name}: ${e.message}\n ${e.stack}`);
+            tryLoadCount.current += 1;
+
+            if (tryLoadCount <= maxLoadCounts) openFullSizePic();
+        });
+    }*/
 
     /**Добавить импортированную картинку */
-    function addData(data) {
-        /*if (!mounted.current) {
-            console.log('ModalCalendarTemp: компонент размонтирован, импорт картинки прерван');
-
-            return;
-        }*/
-
-        try{
+    /*function addData(data) {
+        try{*/
             /**Предварительная загрузка картинки. Открывается на img.onload */
-            const img = new Image();
+            /*const img = new Image();
             img.src = data.default || data;
-            /*img.onload = () => mounted.current ? setPicture(data.default || data) : null;*/
             img.onload = () => setPicture(data.default || data);
         } catch(e) {
             console.log(`ModalCalendarTemp: не удалось загрузить картинку\n ${e.name}: ${e.message}\n ${e.stack}`);
         }
 
-    }
+    }*/
 
     /**Контент модального окна с картинкой */
     const FullSizePic = () => (

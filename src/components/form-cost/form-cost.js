@@ -3,7 +3,7 @@ import Buttons from '../buttons';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './form-cost.module.css';
 import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
-import ModalSendingCost from '../modal-request-cost';
+import ModalRequestCost from '../modal-request-cost';
 import config from '../../config/config.json';
 
 function CostForm() {
@@ -12,6 +12,8 @@ function CostForm() {
     //Если форма отпралена, то будет показано модальное окно
     const [modalIsOpen, setModalOpen] = useState(false);
     const [formData, setFormData] = useState();
+    //Ключ нужен для сброса состояния модального окна при каждом его вызове
+    const [key, setKey] = useState(0);
 
     const formName = 'cost';
     const inputFileName = 'passport';
@@ -65,6 +67,7 @@ function CostForm() {
                 validate={validate}
                 onSubmit={(data) => {
                         setFormData(data);
+                        setKey(key + 1);
                         setModalOpen(true);
                     }
                 }
@@ -110,8 +113,8 @@ function CostForm() {
 
             </Forms.Form>
 
-            <ModalSendingCost
-                key={modalIsOpen}
+            <ModalRequestCost
+                key={key}
                 isOpen={modalIsOpen ? true : false}
                 formData={modalIsOpen ? formData : undefined}
                 closeModal={() => setModalOpen(false)}

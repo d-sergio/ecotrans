@@ -9,7 +9,7 @@ function BlockTitleMobile() {
             <div className={text}>
                 <h1 className={ecotrans}>Экотранс</h1>
                 <p className={waste}>Отходы это не мусор</p>
-                <Buttons.Contact.FormMobile/>
+                <Buttons.Contact.PhoneMobile/>
             </div>
 
             <div className={imageContainer}>

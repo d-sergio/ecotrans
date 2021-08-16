@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {mobile, desktop} from './button-contact.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
 import config from '../../../config/config.json';
+import ModalCallback from '../../modal-callback/modal-callback';
 
 /**Кнопка Связаться (с нами)
  * 
@@ -9,17 +10,31 @@ import config from '../../../config/config.json';
  * @param {Boolean} mobile - мобильный вариант, если true.
  */
 function ButtonContact(props) {
+    const [isOpen, setOpen] = useState(false);
+    const [key, setKey] = useState(0);
+
     const viewMode = props.mobile === true ? mobile: desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
     const buttonText = 'Связаться';
 
+    function openModal() {
+        setKey(key + 1);
+        setOpen(true);
+    }
+
     return (
-        <a href={`tel:${config.greenPhone}`}>
-            <button className={cssStyle}>
+        <>
+            <button onClick={openModal} className={cssStyle}>
                 {buttonText}
             </button>
-        </a>
+
+            <ModalCallback
+                key={key}
+                isOpen={isOpen}
+                closeModal={() => setOpen(false)}
+            />
+        </>
     );
 };
 

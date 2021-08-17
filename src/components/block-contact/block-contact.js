@@ -11,11 +11,19 @@ import {wrapper,
     info
 } from './block-contact.module.css';
 import throttle from '../../libs/common/throttle';
-import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';
+import mediaQuery from '../../libs/common/media-query';
 
 /**Контент страницы Контакты */
 function BlockContact() {
+    const throttleChangeHeight = throttle(changeHeight, 300);
+
+    /*Какую высоту занимает карта относительно окна при горизонтальной ориентации */
+    const landscapeFactor = 0.7;
+
+    /**Высота карты в десктопном варианте */
+    const desktopMapHeight = 800;
+
     /*Модальное окно отправки формы обратной связи вложено в компонент
     Feedback. Соседний компонент Address перекрывает это модальное окно.
     Посколько Address тоже имеет своё модальное окно, то простой установкой
@@ -25,56 +33,40 @@ function BlockContact() {
     прежнее значение*/
     const feedbackRef = useRef(null);
 
-    const mobileView = useMediaQuery(config.blockContact);
-
-    /**Высота карты в десктопном варианте */
-    const desktopMapHeight = 800;
-
-    /*Какую высоту занимает карта относительно окна при горизонтальной ориентации */
-    const landscapeFactor = 0.7;
-
-    const throttleChangeHeight = throttle(changeHeight, 300);
-
     const mounted = useRef(true);
 
-    const [mapHeight, setMapHeight] = useState(mobileView ? calcHeight() : desktopMapHeight);
+    const [mapHeight, setMapHeight] = useState(checkMobileView() ? calcHeight() : desktopMapHeight);
 
-    //useEffect(initMapHeight, []);
-
-    useEffect(() => {
-        if (typeof window === undefined) return;
-        window.addEventListener('resize', throttleChangeHeight);
-
-        return () => {
-            if (typeof window === undefined) return;
-
-            window.removeEventListener('resize', throttleChangeHeight);
-        }
-    }, []);
-
-    useEffect(changeOrientation, []);
+    useEffect(changeWindowSizes, []);
 
     //const tooltipMargin = checkMobileView() ? 0 : '250px';
 
-    const mapCenter = mobileView ?
+    const mapCenter = checkMobileView() ?
         [51.662725, 36.134059]
         : [51.66849, 36.13414];
 
     //const textDesktop = <p style={{marginTop: tooltipMargin}}>Меняйте масштаб карты колесом мыши, удерживая Shift</p>;
     //const textMobile = <p style={{marginTop: tooltipMargin}}>Перемещайте карту, проводя по ней двумя пальцами</p>;
 
+    function checkMobileView() {
+        return mediaQuery(config.blockContact);
+    }
+
     /**Отследить ориентацию экрана */
-    function changeOrientation() {
+    function changeWindowSizes() {
         if (typeof window === undefined) return;
 
-        const oritentation = window.matchMedia('(orientation: landscape)');
+        const orientation = window.matchMedia('(orientation: landscape)');
 
-        oritentation.addEventListener('change', throttleChangeHeight);
+        orientation.addEventListener('change', changeHeight);
+
+        window.addEventListener('resize', throttleChangeHeight);
 
         return () => {
             mounted.current = false;
 
-            oritentation.removeEventListener('change', throttleChangeHeight);
+            orientation.removeEventListener('change', changeHeight);
+            window.removeEventListener('resize', throttleChangeHeight);
         }
     }
 
@@ -82,12 +74,12 @@ function BlockContact() {
     function changeHeight() {
         if (!mounted.current) return;
 
-        setMapHeight(mobileView ? calcHeight() : desktopMapHeight);
+        setMapHeight(checkMobileView() ? calcHeight() : desktopMapHeight);
     }
 
     /**Высота компонента LeafletMap в зависимости от ориентации экрана*/
     function calcHeight() {
-        if (document.documentElement.clientHeight > document.documentElement.clientWidth) {
+        if (document.documentElement.clientHeight >= document.documentElement.clientWidth) {
             
             return document.documentElement.clientWidth;
         } else {
@@ -96,7 +88,7 @@ function BlockContact() {
         }
     }
 
-    if (mobileView === undefined) return null;
+    //if (checkMobileView() === undefined) return null;
 
     return(
             <div className={container}>

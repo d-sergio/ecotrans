@@ -24,16 +24,16 @@ function BlockMap() {
     function changeWindowSizes() {
         if (typeof window === undefined) return;
 
-        const oritentation = window.matchMedia('(orientation: landscape)');
+        const orientation = window.matchMedia('(orientation: landscape)');
 
-        oritentation.addEventListener('change', changeHeight);
+        orientation.addEventListener('change', changeHeight);
 
         window.addEventListener('resize', throttleChangeHeight);
 
         return () => {
             mounted.current = false;
 
-            oritentation.removeEventListener('change', changeHeight);
+            orientation.removeEventListener('change', changeHeight);
             window.removeEventListener('resize', throttleChangeHeight);
         }
     }
@@ -47,6 +47,7 @@ function BlockMap() {
 
     /**Высота компонента LeafletMap в зависимости от ориентации экрана*/
     function calcHeight() {
+        
         if (document.documentElement.clientHeight >= document.documentElement.clientWidth) {
 
             return document.documentElement.clientWidth;

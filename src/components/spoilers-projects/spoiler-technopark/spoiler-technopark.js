@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
 import {paragraph, image, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import {residentsItems, residentsTitle, residentsImage, residentText} from './spoiler-technopark.module.css';
@@ -8,11 +8,12 @@ import supplyPic from '../../../../static/images/spoilers-projects/supply.png';
 import rentPic from '../../../../static/images/spoilers-projects/rent.png';
 import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {mainContainer} from '../../../common-styles/containers.module.css';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 import Buttons from '../../buttons';
 
 function Technopark() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const resTitleStyle = [residentsTitle, mainContainer].join(" ");
     const resItemsStyle = [residentsItems, mainContainer].join(" ");

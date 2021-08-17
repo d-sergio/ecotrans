@@ -1,10 +1,11 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ButtonCall from '../../buttons/button-call/button-call';
 import pic from '../../../../static/images/block-call/call-mobile.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import {text, image, floatImage, container, buttonBottom, buttonTop, svgMode4} from './block-call-compact.module.css';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 import SvgMode1 from './svg-mode-1';
 import SvgMode2 from './svg-mode-2';
 import SvgMode3 from './svg-mode-3';
@@ -57,7 +58,7 @@ function BlockCallMobile() {
 
     const [scaleSvgFactor, setScaleSvgFactor] = useState({X: 1, Y: 1});
 
-    const mobileButton = useContext(MobileView);
+    const mobileButton = useMediaQuery(config.app);
 
     useEffect(() => {
         drawSvgLine();  //чтоб наверняка сработало, когда уже всё отрендерено

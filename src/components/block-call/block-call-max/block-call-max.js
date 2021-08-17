@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import ButtonCall from '../../buttons/button-call/button-call';
 import pic from '../../../../static/images/block-call/call-desktop.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import {container, main, text, image, svgStyleMobile} from './block-call-max.module.css';
-import MobileView from '../../root-layout/view-context';
+import config from '../../../config/config-media-queries.json';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 
 /**Размеры контейнеров блока от которых масштабируются пунктирные линии
@@ -18,7 +18,7 @@ function BlockCallDesktop() {
 
     const [scaleSvgFactor, setScaleSvgFactor] = useState({X: 1, Y: 1});
 
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     /**Сдвиг из-за изменения  mainContainer*/
     const shift = 50;

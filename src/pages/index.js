@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Layout from '../components/layout/layout';
 import Title from '../components/block-title';
 import BlockServices from '../components/block-services';
@@ -9,11 +9,12 @@ import BlockStats from '../components/block-statistics';
 import BlockPartners from '../components/block-partners/block-partners';
 import BlockCall from '../components/block-call';
 import BlockCost from '../components/block-cost/block-cost';
-import MobileView from '../components/root-layout/view-context';
+import useMediaQuery from '../libs/react/react-hooks/use-media-query';
+import config from '../config/config-media-queries.json';
 import GatsbySuspense from '../libs/gatsby-components/gatsby-suspense';
 
 function Index() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const BlockMap = React.lazy(() => import('../components/block-map'));
 

@@ -1,13 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
 import {greenDesktop, greenMobile, green, paragraph, imageLeft, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/education.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 import Buttons from '../../buttons';
 
 function Education() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const paragraphStyle = [paragraph, mainContainer].join(" ");
     const greenDeskStyle = [green, greenDesktop].join(" ");

@@ -2,17 +2,6 @@
 
 1. root-layout
 
-Корневой компонент root-layout управляет контекстом.
-
-Контекст MobileView (view-context.js) принимает
-значения true/false. Параметры медиа-запросов, по которым может определяться
-мобильный/десктопный режим сайта, задаются в файле config/config-media-queries.json
-
-Кроме того, в некоторых случаях компоненты сами могут совершать медиа-запросы
-через media-query.js (смотри подробнее components/root-layout/media-query-readme.txt)
-
-
-
 2. buttons
 
 Доступны как свойство при импорте компонента Buttons:

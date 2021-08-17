@@ -1,10 +1,11 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import {link, text, button, container, svgStyleMobile, svgStyleDesktop} from './block-instagram-compact.module.css';
 import ButtonSubscribe from '../../buttons/button-subscribe/button-subscribe';
 import config from '../../../config/config.json';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import configMedia from '../../../config/config-media-queries.json';
 import InstagramSlider from './instagram-slider-compact';
 
 /**Размеры контейнеров блока от которых масштабируются пунктирные линии.
@@ -24,7 +25,7 @@ function BlockInstagramMobile() {
 
     const [scaleSvgFactor, setScaleSvgFactor] = useState({X: 1, Y: 1});
 
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(configMedia.app);
 
     useEffect(drawSvgLine, []);
 

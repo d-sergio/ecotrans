@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import {mainContainer} from '../../common-styles/containers.module.css';
-import MobileView from '../root-layout/view-context';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
 import CostForm from '../form-cost';
 import {formMobile, formDesktop, marginBottom} from './block-cost.module.css';
 
 function BlockCost() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const formStyle = mobileView ? formMobile : formDesktop;
 

@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React  from 'react';
 import SpoilerProjectsTemplate from '../spoilers-projects-temp';
 import {green, greenDesktop, greenMobile, paragraph, imageRight, button} from '../spoilers-projects-common/spoilers-projects-common.module.css';
 import pic from '../../../../static/images/spoilers-projects/green-phone.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 import Buttons from '../../buttons';
-import config from '../../../config/config.json';
 
 function GreenPhone() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const paragraphStyle = [mainContainer, paragraph].join(" ");
     const greenDeskStyle = [green, greenDesktop].join(" ");

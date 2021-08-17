@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../buttons';
-import MobileView from '../root-layout/view-context';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ContactError from './contact-error-message';
 import ModalRequestFeedback from '../modal-request-feedback /modal-request-feedback';
@@ -19,7 +20,7 @@ import {
 
 /**Окно "Обратная связь" страницы Контакты*/
 function Feedback(props) {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     //Если форма отпралена, то будет показано модальное окно
     const [modalIsOpen, setModalOpen] = useState(false);

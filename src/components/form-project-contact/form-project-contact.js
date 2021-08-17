@@ -1,13 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
 import {form, title, container, cross, button} from './form-project-contact.module.css';
 import { input, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
 import Buttons from '../buttons';
-import MobileView from '../root-layout/view-context';
 import close from '../../../static/images/cross-modal.svg';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
 
 function FormProjectContact(props) {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     //Уникальное имя формы
     const formName = props.formName + 'order';

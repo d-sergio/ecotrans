@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Buttons from '../../buttons';
 import {spoilerTitle} from '../../../common-styles/title.module.css';
 import {button, margin, titleStyle} from './spoilers-services-temp.module.css';
-import MobileView from '../../root-layout/view-context';
+import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
+import config from '../../../config/config-media-queries.json';
 import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
@@ -16,7 +17,7 @@ function SpoilerServicesTemplate(props) {
     const deskShift = 16;
     const mobileShift = 28;
 
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const titleSpoiler = <div style={{display: 'inline'}}>{props.title}</div>;
 

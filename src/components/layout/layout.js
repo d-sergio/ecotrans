@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import {wrapper, content} from './layout.module.css';
-import MobileView from '../root-layout/view-context';
 import config from '../../config/config-media-queries.json';
 import ScrollUp from '../../libs/react-components/scroll-up';
 import Buttons from '../buttons';
@@ -15,7 +14,7 @@ import { NavPage } from '../../libs/react-components/navigation-highlight';
 */
 function Layout(props) {
 
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const footerView = useMediaQuery(config.footer);
 

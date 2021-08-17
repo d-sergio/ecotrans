@@ -1,13 +1,14 @@
-import React, { useContext, useState} from 'react';
+import React, { useState} from 'react';
 import Buttons from '../buttons';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './form-cost.module.css';
-import MobileView from '../root-layout/view-context';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ModalRequestCost from '../modal-request-cost';
 import config from '../../config/config.json';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import configMedia from '../../config/config-media-queries.json';
 
 function CostForm() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(configMedia.app);
 
     //Если форма отпралена, то будет показано модальное окно
     const [modalIsOpen, setModalOpen] = useState(false);

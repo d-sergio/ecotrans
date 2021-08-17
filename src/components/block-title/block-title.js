@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import MobileView from '../root-layout/view-context';
+import React from 'react';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
 import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 
 /**BlockTitle - титульный блок */
 function BlockTitle() {
-    const mobileView = useContext(MobileView);
+    const mobileView = useMediaQuery(config.app);
 
     const TitleDesktop = React.lazy(() => import('./block-title-desktop'));
     const TitleMobile = React.lazy(() => import('./block-title-mobile'));

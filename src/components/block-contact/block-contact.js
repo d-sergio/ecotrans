@@ -88,8 +88,6 @@ function BlockContact() {
         }
     }
 
-    //if (checkMobileView() === undefined) return null;
-
     return(
             <div className={container}>
                 <div className={title}>Мы всегда на связи!</div>

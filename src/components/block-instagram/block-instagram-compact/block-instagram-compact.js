@@ -7,6 +7,7 @@ import config from '../../../config/config.json';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import configMedia from '../../../config/config-media-queries.json';
 import InstagramSlider from './instagram-slider-compact';
+import mediaQuery from '../../../libs/common/media-query';
 
 /**Размеры контейнеров блока от которых масштабируются пунктирные линии.
  * Линии тут две: десктопная и мобильная
@@ -41,6 +42,10 @@ function BlockInstagramMobile() {
         }
     }, []);
 
+    function checkMobileView() {
+        return mediaQuery(configMedia.app);
+    }
+
     function drawSvgLine() {
         if (!containerRef.current || typeof window === undefined) return;
 
@@ -48,11 +53,11 @@ function BlockInstagramMobile() {
             const containerWidth = containerRef.current.offsetWidth;
             const containerHeight = containerRef.current.offsetHeight;
 
-            const defaultWidth = mobileView ?
+            const defaultWidth = checkMobileView() ?
                 defaultContainerWidthMobile
                 : defaultContainerWidthDesktop;
 
-            const defaultHeight = mobileView ?
+            const defaultHeight = checkMobileView() ?
             defaultContainerHeightMobile
             : defaultContainerHeightDesktop;
 

@@ -146,7 +146,6 @@ function BlockCallMobile() {
             svgModeRef2.current.style.display = 'none';
             svgModeRef3.current.style.display = 'none';
             svgModeRef4.current.style.display = 'block';
-
         }
     }
 
@@ -171,19 +170,19 @@ function BlockCallMobile() {
         <section ref={containerRef} className={mainContainer}>
             <div style={{position: 'relative'}} className={container}>
 
-                <div ref={svgModeRef1}>
+                <div style={{display: 'none'}} ref={svgModeRef1}>
                     <SvgMode1 key={scaleSvgFactor} scaleSvgFactor={scaleSvgFactor}/>
                 </div>
 
-                <div ref={svgModeRef2}>
+                <div style={{display: 'none'}} ref={svgModeRef2}>
                     <SvgMode2 key={scaleSvgFactor} scaleSvgFactor={scaleSvgFactor}/>
                 </div>
 
-                <div ref={svgModeRef3}>
+                <div style={{display: 'none'}} ref={svgModeRef3}>
                     <SvgMode3 key={scaleSvgFactor} scaleSvgFactor={scaleSvgFactor}/>
                 </div>
 
-                <div ref={svgModeRef4}>
+                <div style={{display: 'none'}} ref={svgModeRef4}>
                     <SvgMode4 key={scaleSvgFactor} scaleSvgFactor={scaleSvgFactor}/>
                 </div>
                     

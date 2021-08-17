@@ -9,16 +9,19 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
 
     if (animate.current) animate.current.cancel();
 
-    currentSlideRef.current.style.transform = 'scale(0, 0)';
-    currentSlideRef.current.style.opacity = '0';
-    prevSlideRef.current.style.transform = 'scale(1, 1)';
-    prevSlideRef.current.style.opacity = '1';
-    prevSlideRef.current.style.display = 'block';
+    /*prevSlideRef.current.style.transform = 'scale(1, 1)';
+    prevSlideRef.current.style.opacity = '1';*/
+    //prevSlideRef.current.style.display = 'block';
 
-    const hidePrev = () => {
+    /*currentSlideRef.current.style.transform = 'scale(0, 0)';
+    currentSlideRef.current.style.opacity = '0';*/
+
+    const resetPrev = () => {
         if (!prevSlideRef.current) return;
 
         prevSlideRef.current.style.display = 'none';
+        prevSlideRef.current.style.transform = 'scale(1, 1)';
+        prevSlideRef.current.style.opacity = '1';
     }
 
     //Объекты анимации
@@ -58,7 +61,7 @@ function startAnimation({prevSlideRef, currentSlideRef, prevPosition, animate, p
         property: 'opacity',
         startValue: 1,
         finalValue: 0,
-        callback: hidePrev
+        callback: resetPrev
     }
 
     animate.current = new BatchControl(

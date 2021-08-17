@@ -39,14 +39,51 @@ function Slider(props) {
         containerRef.current.style.top = top - props.slideTopCorrect + 'px';
     }
 
-    /**prevSlideRef нужен только для анимации. В остальное время он скрыт*/
+    /**Стили текущего слайда устанавливаются на рендере. Если их менять перед
+     * анимацией, то это будет заметно.
+    */
+    function getCurrentSlideStyle() {
+        //Первый рендер. Просто показывается первый слайд
+        const init = {
+            opacity: 1,
+            transform: 'scale(1, 1)'
+        };
+
+        //Перед анимацией
+        const beforeAnimate = {
+            opacity: 0,
+            transform: 'scale(0, 0)'
+        };
+
+        //Если есть предыдущий слайд, значит рендер не первый и требуется анимация
+        const style = prevPosition ? beforeAnimate : init;
+
+        return style;
+    }
+
+    /**prevSlideRef заранее получает display: 'block'. Если предыдущего слайда
+     * нет, то всё равно ничего не показывается внутри него.
+     * 
+     * Перед анимацией все стили определены в style и назначены key. Раньше
+     * стили менялись непосредственно перед анимацией, но это вызывало заметное
+     * мелькание слайдов.
+     * */
     return(
         <div ref={containerRef} className={container}>
-            <div ref={currentSlideRef}>
+            <div
+                key={props.currentPosition}
+                style={getCurrentSlideStyle()}
+                ref={currentSlideRef}>
+
                 {React.Children.toArray(props.children)[props.currentPosition]}
             </div>
             
-            <div ref={prevSlideRef} className={prevSlideStyle}>
+            <div
+                key={props.currentPosition + 10}
+                style={{display: 'block'}}
+                ref={prevSlideRef}
+                className={prevSlideStyle}>
+
                 {
                     prevPosition === undefined ?
                         null

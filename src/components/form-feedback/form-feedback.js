@@ -128,7 +128,7 @@ function Feedback(props) {
                 </div>
 
                 <div className={button}>
-                        <ButtonSend mobile={mobileView}/>
+                    <ButtonSend mobile={mobileView}/>
                 </div>
             </Forms.Form>
 

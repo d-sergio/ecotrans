@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {mobile, desktop} from './button-contact.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
-import config from '../../../config/config.json';
 import ModalCallback from '../../modal-callback/modal-callback';
 
 /**Кнопка Связаться (с нами)

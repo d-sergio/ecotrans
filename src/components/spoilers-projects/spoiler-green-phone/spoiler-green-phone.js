@@ -5,7 +5,7 @@ import pic from '../../../../static/images/spoilers-projects/green-phone.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
-import Buttons from '../../buttons';
+import ButtonContact from '../../buttons/button-contact/button-contact-phone';
 
 function GreenPhone() {
     const mobileView = useMediaQuery(config.app);
@@ -85,13 +85,7 @@ function GreenPhone() {
             <div style={{clear: 'both'}}></div>
 
             <div className={buttonStyle}>
-                
-                    {
-                        mobileView ?
-                            <Buttons.Contact.PhoneMobile/>
-                            : <Buttons.Contact.PhoneDesktop/>
-                    }
-
+                <ButtonContact  mobile={mobileView}/>
             </div>
         </div>
     );

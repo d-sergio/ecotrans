@@ -7,6 +7,7 @@ import config from '../../../config/config-media-queries.json';
 import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
+import ButtonOrder from '../../buttons/button-order/button-order';
 
 /**
  * @param {String} serviceName - из какого блока сделан заказ:
@@ -41,11 +42,7 @@ function SpoilerServicesTemplate(props) {
         <div>
             {props.body}
             <div className={buttonStyle}>
-                {
-                    mobileView ?
-                        <Buttons.Order.Mobile serviceName={props.serviceName}/>
-                        : <Buttons.Order.Desktop serviceName={props.serviceName}/>
-                }
+                <ButtonOrder  mobile={mobileView} serviceName={props.serviceName}/>
             </div>
         </div>
     );

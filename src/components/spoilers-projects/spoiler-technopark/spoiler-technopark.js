@@ -10,7 +10,7 @@ import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
-import Buttons from '../../buttons';
+import ButtonContact from '../../buttons/button-contact/button-contact-form';
 
 function Technopark() {
     const mobileView = useMediaQuery(config.app);
@@ -95,11 +95,7 @@ function Technopark() {
             </div>
 
             <div className={buttonStyle}>
-                {
-                    mobileView ?
-                        <Buttons.Contact.FormMobile projectName='technopark'/>
-                        : <Buttons.Contact.FormDesktop projectName='technopark'/>
-                }
+                <ButtonContact mobile={mobileView} projectName='technopark'/>
             </div>
 
         </div>

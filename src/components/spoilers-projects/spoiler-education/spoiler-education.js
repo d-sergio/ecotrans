@@ -5,7 +5,7 @@ import pic from '../../../../static/images/spoilers-projects/education.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
-import Buttons from '../../buttons';
+import ButtonContact from '../../buttons/button-contact/button-contact-form';
 
 function Education() {
     const mobileView = useMediaQuery(config.app);
@@ -70,11 +70,7 @@ function Education() {
             <div style={{clear: 'both'}}></div>
 
             <div className={buttonStyle}>
-                {
-                    mobileView ?
-                        <Buttons.Contact.FormMobile projectName='education'/>
-                        : <Buttons.Contact.FormDesktop projectName='education'/>
-                }
+                <ButtonContact mobile={mobileView} projectName='education'/>
             </div>
         </div>
     );

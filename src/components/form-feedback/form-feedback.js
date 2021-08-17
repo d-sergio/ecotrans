@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../buttons';
+import ButtonSend from '../buttons/button-send/button-send';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';
 import Forms from '../../libs/react-components/forms-and-fields';
@@ -128,11 +128,7 @@ function Feedback(props) {
                 </div>
 
                 <div className={button}>
-                    {
-                        mobileView ?
-                        <Button.Send.Mobile/>
-                        : <Button.Send.Desktop/>
-                    }
+                        <ButtonSend mobile={mobileView}/>
                 </div>
             </Forms.Form>
 

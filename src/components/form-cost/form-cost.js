@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import Buttons from '../buttons';
+import ButtonSend from '../buttons/button-send/button-send';
 import { form, input, attach, button, passport, inputInActive, inputActive, inputError } from './form-cost.module.css';
 import Forms from '../../libs/react-components/forms-and-fields';
 import ModalRequestCost from '../modal-request-cost';
@@ -107,9 +107,7 @@ function CostForm() {
                 />
 
                 <div className={button}>
-                    {
-                        mobileView ? <Buttons.Send.Mobile/> : <Buttons.Send.Desktop/>
-                    }
+                    <ButtonSend mobile={mobileView}/>
                 </div>
 
             </Forms.Form>

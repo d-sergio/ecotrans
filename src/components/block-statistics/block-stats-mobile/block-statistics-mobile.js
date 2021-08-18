@@ -26,7 +26,8 @@ function BlockStatsDesktop() {
                 visible={visible}
                 autoMove={true}
                 cancelAutoMove={true}
-                adjacent={true}>
+                adjacent={true}
+            >
 
                 {cards}
 

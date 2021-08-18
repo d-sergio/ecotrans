@@ -2,7 +2,7 @@
 
 import Animation from "../../../../animate/animate";
 import changeStyleProperty from '../../../../animate/draw-functions/change-style-property';
-import sliderTimeFunction from '../../../../animate/time-functions/slider-time-functions';
+import sliderTimeFunction from '../../../../animate/time-functions/linear';
 
 /**Создать и вернуть объект анимации
  * 

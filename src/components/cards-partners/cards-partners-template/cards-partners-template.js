@@ -88,11 +88,12 @@ function CardsPartnersTemp(props) {
     }
 
     return(
-        <div ref={slide}
-        className={style}
-        /*onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}*/
-        style={propStyle}
+        <div
+            ref={slide}
+            className={style}
+            onMouseEnter={() => setActive(true)}
+            onMouseLeave={() => setActive(false)}
+            style={propStyle}
         >
             <div ref={logo} className={logoStyle}>{props.logo}</div>
             <div ref={text} className={textStyle}>{props.text}</div>

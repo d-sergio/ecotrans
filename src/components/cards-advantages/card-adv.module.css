@@ -19,13 +19,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 355px;
+    width: 320px;
     height: 196px;
 
-    flex: none;
-    font-size: 1.5rem;
+    white-space: nowrap;
 
-    background-image: url(/images/advantages/advantages-desktop.png);
+    flex: none;
+    font-size: 1.35rem;
+
+    background-image: url(/images/advantages/advantages-desktop-transparent.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

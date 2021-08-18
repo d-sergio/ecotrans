@@ -1,6 +1,7 @@
 import AnimationObject from './animation-object';
 import BatchControl from '../../../../animate/batch-control';
-import getTransformRotate from '../../../../get-transform-rotate';
+import getTransformRotate from '../../../../common/get-transform-rotate';
+import calcShift from './common/calc-shift';
 
 /** Подробности смотри в start-animation-readme.txt */
 
@@ -53,20 +54,35 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
 
     /**До какого угла поворачиваем. Отталкивается от предыдущего угла поворота*/
     function calcFinalAngle() {
+        //console.log(`currentPosition ${props.currentPosition}, prevPosition ${prevPosition}, length ${props.children.length}`);
         if (!props.outside) {    //#1
-
+            //console.log(`//#1 dest ${props.currentPosition * fi}`);
             return props.currentPosition * fi;
 
         } else if (props.currentPosition > prevPosition && props.outside) { //#2
-
+            //console.log(`//#2 dest ${props.currentPosition - prevPosition - props.children.length}`);
             return (props.currentPosition - prevPosition - props.children.length) * fi;
 
         } else if (props.currentPosition < prevPosition && props.outside) {//#3
-
+            //console.log(`//#3 dest ${props.currentPosition * fi}`);
             return props.currentPosition * fi;
 
         }
-    } 
+    }
+
+    /**До какого угла поворачиваем. Отталкивается от предыдущего угла поворота*/
+    /*function calcFinalAngle() {
+        const shift = calcShift(props.currentPosition, prevPosition, props.children.length);
+        const angle = (prevPosition + shift) * fi;
+
+        if (angle > 0) {
+            return (angle - 360);
+        } else if (angle < 0) {
+            return (360 - angle);
+        }
+
+        return angle;
+    }*/
 
     /**Создать объект для управления всеми анимациями
      * thumbsAnimation - блок миниатюр
@@ -96,6 +112,7 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
         const resetTransform = () => element.style.transform = `rotate(${props.currentPosition * fi}deg)`;
 
         const animationObject = new AnimationObject(element, startAngle, finalAngle, duration, resetTransform);
+        //console.log(`startAngle ${startAngle} finalAngle ${finalAngle}`)
 
         if (props.currentPosition > prevPosition && !props.outside) {   //#1
             return animationObject.increaseAngle();

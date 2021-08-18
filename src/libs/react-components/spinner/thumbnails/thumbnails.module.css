@@ -9,6 +9,8 @@
     height: 100%;
 
     background-color: #EAFFE2;
+
+    user-select: none;
 }
 
 .circleStyle{
@@ -18,6 +20,7 @@
 .thumbsStyle{
     position: absolute;
     top: 0;
+    /*cursor: pointer;*/
 }
 
 .wrapThumbStyle{

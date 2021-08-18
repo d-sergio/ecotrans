@@ -52,9 +52,8 @@ function Spinner(props) {
         const estimatedPosition = state.currentPosition + shift;
         const childrenLength = props.children.length;
 
-
         if (estimatedPosition >= childrenLength) {
-
+            //console.log(state.currentPosition, estimatedPosition - childrenLength);
             setState(
                 {
                     ...state,
@@ -66,7 +65,7 @@ function Spinner(props) {
             return;
 
         } else if (estimatedPosition < 0) {
-            
+            //console.log(state.currentPosition, childrenLength + estimatedPosition);
             setState(
                 {
                     ...state,
@@ -78,7 +77,7 @@ function Spinner(props) {
             return;
 
         } else {
-
+            //console.log(state.currentPosition, estimatedPosition);
             setState(
                 {
                     ...state,
@@ -94,11 +93,12 @@ function Spinner(props) {
     return(
         <div ref={containerRef} className={container}>
             <Thumbnails
+            setNewPosition={setNewPosition}
             currentPosition={state.currentPosition}
             outside={state.outside}
             radius={props.radius}
             thumbsTopCorrect={30}
-            defaultAngle={3.5}
+            defaultAngle={-1.5}
             duration={props.duration}>
                 {getThumbnailsChildren()}    
             </Thumbnails>

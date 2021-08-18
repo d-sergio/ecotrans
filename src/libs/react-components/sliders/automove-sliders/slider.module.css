@@ -1,0 +1,30 @@
+.containerStyle{
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.prevStyle{
+    display: flex;
+    outline: none;
+}
+
+.nextStyle{
+    display: flex;
+    outline: none;
+}
+
+.viewportStyle{
+    overflow: hidden;
+    width: 100%;
+}
+
+.carouselStyle{
+    display: inline-flex;
+}
+
+.slideStyle{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}

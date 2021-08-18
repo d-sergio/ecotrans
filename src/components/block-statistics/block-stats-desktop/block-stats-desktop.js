@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../../libs/react-components/sliders/slider-highlight';
+import Slider from '../../../libs/react-components/sliders/automove-sliders/slider';
 import Cards from '../../cards-statistics';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
@@ -30,11 +30,15 @@ function BlockStatsDesktop() {
         <section className={active ? marginBottom : freezeStyle}>
             <Slider
                 key={active}
+                duration={300}
                 visible={active ? visible : 5}
                 adjacent={active ? true : false}
                 freeze={active ? false : true}
                 autoMove={active ? true : false}
-                cancelAutoMove={active ? true : false}>
+                cancelAutoMove={true}
+                moveInterval={5000}
+                autoMoveDuration={5000}
+            >
 
                 {cards}
 
@@ -44,3 +48,16 @@ function BlockStatsDesktop() {
 }
 
 export default BlockStatsDesktop;
+
+/**                key={active}
+                visible={active ? visible : 5}
+                autoMove={true}
+                moveInterval={5000}
+                duration={5000} */
+
+/*                key={active}
+                visible={active ? visible : 5}
+                adjacent={active ? true : false}
+                freeze={active ? false : true}
+                autoMove={active ? true : false}
+                cancelAutoMove={active ? true : false} */

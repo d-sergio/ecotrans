@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../../libs/react-components/sliders/slider';
+import Slider from '../../../libs/react-components/sliders/automove-sliders/slider';
 import Cards from '../../cards-advantages';
 import config from '../../../config/config-media-queries.json';
 import {mainContainer} from '../../../common-styles/containers.module.css';
@@ -28,7 +28,12 @@ function BlockAdvDesktop() {
                     key={active}
                     visible={active ? 0 : 4}
                     adjacent={active ? true : false}
-                    freeze={active ? false : true}>
+                    freeze={active ? false : true}
+                    autoMove={active ? true : false}
+                    cancelAutoMove={true}
+                    moveInterval={5000}
+                    autoMoveDuration={5000}
+                >
 
                     {advCards}
                     

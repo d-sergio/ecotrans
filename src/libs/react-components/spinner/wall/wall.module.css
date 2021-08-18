@@ -8,6 +8,9 @@
     height: 100%;
 
     overflow: hidden;
+
+    /*Доступ для кликов по Thumbnails*/
+    pointer-events: none;
 }
 
 /*Прямоугольник - нижняя часть стены*/

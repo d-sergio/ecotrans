@@ -5,6 +5,7 @@ import usePrevious from '../../../react/react-hooks/use-previous-hook';
 import startAnimation from './animation/start-animation';
 import createThumbsCircle from './mechanics/create-thumbs-circle';
 import setBlockSizes from './mechanics/set-block-sizes';
+import calcShift from './animation/common/calc-shift';
 
 /**Миниатюры
  * 
@@ -14,7 +15,7 @@ import setBlockSizes from './mechanics/set-block-sizes';
  * @param {number} thumbsTopCorrect - сдвиг миниатюр вниз от обычной позиции в px
  * @param {number} defaultAngle - на сколько позиций повернуть круг миниатюр по умолчанию
  * по часовой стрелке. Например, для 10 миниатюр можно установить значение
- * 3.5, чтобы первый элемент оказался наверху
+ * -1.5, чтобы первый элемент оказался наверху
  * @param {boolean} outside - true, если в Spinner произошёл выход за пределы children.length
  * (подробнее смотри описание state.outside в spinner-readme.txt)
  */
@@ -44,11 +45,25 @@ function Thumbnails(props) {
         }
     ), [props.currentPosition]);
 
+    /**Клик по миниатюрке меняет позицию на соответствующую */
+    function setThisPosition(index) {
+        if (index === props.currentPosition) return;
+
+        const shift = calcShift(
+            index,
+            props.currentPosition,
+            props.children.length
+        );
+        
+        props.setNewPosition(shift);
+    }
+
     /**Каждая миниатюра оборачивается в div с абсолютным позиционированием */
+    /*onClick={() => setThisPosition(index)} */
     function wrapThumbs() {
         const wrapped = React.Children.map(
             props.children,
-            thumb => <div className={wrapThumbStyle}>{thumb}</div>
+            (thumb, index) => <div className={wrapThumbStyle}>{thumb}</div>
         );
 
         /*возвращается инвертированный массив, так как вращение в обратную сторону*/

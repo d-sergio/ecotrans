@@ -15,12 +15,12 @@ import usePrevious from '../../../react/react-hooks/use-previous-hook';
 import updateSlideWidth from '../slider/mechanics/update-slide-width';
 import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
 import animateMove from './animation/animate-move';
-import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from '../slider/slider.module.css';
+import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from './slider.module.css';
 import getVisible from '../slider/mechanics/get-visible';
 import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
-import createAlwaysActive from '../slider/create-slides/create-always-active';
+import createSlides from '../slider/create-slides/create-slides';
 
 function Slider(props) {
     const children = React.Children.toArray(props.children);
@@ -37,11 +37,11 @@ function Slider(props) {
         prevPosition: 0,
         prevMargin: 0,
         children: children.concat(children, children),
-        currentPosition: props.initPosition + children.length,
+        currentPosition: props.initPosition + children.length
     };
 
     const [state, setState] = useState(initState);
-    const [autoMove, setAutoMove] = useState(props.autoMove); //Автопрокрутка карусели
+    const [autoMove, setAutoMove] = useState(props.autoMove);   //Автопрокрутка карусели
     const prevState = usePrevious(state);
 
     /*Длительность анимации animDuration также указывает, вызывать ли анимацию
@@ -58,12 +58,15 @@ function Slider(props) {
 
     useEffect(() => addTouchHandler(), []); /** #1 */
 
-    useEffect(() => updateComponent()/*, [state.currentPosition]*/);
+    useEffect(() => updateComponent());
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
+
+    useEffect(() => buttonHandler(1), []);
     
     function initialize() {
-        timer.current = 1;  //Только запустить слайдер
+        timer.current = 1;  //Только запустить автопрокрутку
+        
         updateWidthAndCoords();
     }
 
@@ -78,7 +81,7 @@ function Slider(props) {
                 carousel.current.removeEventListener('touchstart', startTouchHandler, {passive: false});
             }
         }
-    }    
+    }
 
     function updateComponent() {
         stateRef.current = state;/** #1 актуальное состояние для startTouchHandler */
@@ -92,7 +95,7 @@ function Slider(props) {
         //запуск анимации
         if (animDuration.current > 0) {
             if (!timer.current) setAutoMove(false);
-
+            
             if (animate.current) animate.current.cancel();
 
             const adjacentCorrect = calcAdjacentCorrect();
@@ -108,12 +111,11 @@ function Slider(props) {
 
                 updateSlideWidth(slideArgs);
 
-                /*Перед анимацией сдвигаем carousel в предыдущее положение prevMargin*/
+                /*Перед анимацией сдвигаем carousel в предыдещее положение prevMargin*/
                 if (carousel.current !== undefined || carousel.current !== null) {
                     carousel.current.style.marginLeft = state.prevMargin + 'px';
                 }
             }
-
 
             const moveArgs = {
                 params: props,
@@ -121,7 +123,10 @@ function Slider(props) {
                 animate: animate,
                 animDuration: animDuration,
                 carousel: carousel.current,
-                adjacentCorrect: adjacentCorrect
+                adjacentCorrect: adjacentCorrect/*,
+                callback: () => {
+                        if (!timer.current) setAutoMove(false);
+                    }*/
             };
 
             animateMove(moveArgs);
@@ -157,7 +162,6 @@ function Slider(props) {
 
         updateSlideWidth(slideArgs);
         updateCarouselCoords(coordsArgs);
-        //forceUpdate();  /**********МОДИФИКАЦИЯ**********/
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние
@@ -183,9 +187,9 @@ function Slider(props) {
     function buttonHandler(shift) {
         if (shift === 0) return;
 
-        animDuration.current = props.duration; //Также указывает, что потребуется анимация.
+        animDuration.current = autoMove ? props.autoMoveDuration : props.duration; //Также указывает, что потребуется анимация.
         
-        const destination = state.currentPosition + shift;
+        const destination = state.currentPosition + shift
 
         const positionArgs = {
             params: props,
@@ -261,25 +265,25 @@ function Slider(props) {
     function autoMoveStart() {
         if (!autoMove) return;
 
+        //if (!timer.current) buttonHandler(1);
         if (!timer.current) return;
         
-        timer.current = setTimeout(() => {
-            buttonHandler(1);
-        }, props.moveInterval);
+        timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
         return () => clearTimeout(timer.current);
     }
 
     /**Отмена автопрокрутки карусели */
     /*function cancelAutoMove() {
-        if (!timer.current || !props.cancelAutoMove) return;
+        if (!timer.current) return;
 
         if (animate.current) animate.current.cancel();
+
+        animDuration.current = props.duration;
         
         clearTimeout(timer.current);
-        
 
-       setAutoMove(false);
+        setAutoMove(false);
     }*/
 
     function startCheckBounds() {
@@ -295,6 +299,10 @@ function Slider(props) {
         checkBounds(boundsArgs);
     }
 
+    /*
+    onMouseDown={() => props.cancelAutoMove ? cancelAutoMove() : null}
+            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}
+    */
     return(
         <div className={containerStyle}>
 
@@ -307,17 +315,7 @@ function Slider(props) {
                     ref={carousel}
                     onMouseDown={(e) => startMouseHandler(e)}
                 >
-                    {
-                        createAlwaysActive({    /**********МОДИФИКАЦИЯ**********/
-                            children: state.children,
-                            currentPosition: state.currentPosition,
-                            autoMove: autoMove,
-                            slideStyle: slideStyle,
-                            viewport: viewport.current,
-                            carousel: carousel.current,
-                            visible: props.visible
-                        })
-                    }
+                    {createSlides(state.children, slideStyle)}
                 </div>
             </div>
 

@@ -4,7 +4,6 @@ import getVisible from './get-visible';
  * destination - новая позиция слайдера
  */
 function setNewPosition({destination, state, setState, params, viewport, carousel}) {
-
     if (!viewport || !carousel) return;
 
     /**текущая позиция и сдвиг margin-left carousel станут предыдущими, после setState*/

@@ -36,7 +36,7 @@ function ModalCalendarTemp(props) {
         if (!isOpen || importedPicture) return;
 
         try{
-            document.documentElement.style.transform = ''; /*beget */
+            document.documentElement.style.transform = ''; /*Ростелеком */
 
             /**Предварительная загрузка картинки. Открывается на img.onload */
             const img = new Image();

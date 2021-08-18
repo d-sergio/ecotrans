@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../../libs/react-components/sliders/slider';
+import Slider from '../../../libs/react-components/sliders/slider-highlight';
 import Cards from '../../cards-advantages';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
@@ -18,8 +18,11 @@ function BlockAdvMobile() {
         <section style={{marginBottom: '12px'}}>
             <div className={titleStyle}>Наши преимущества</div>
             <Slider
-            visible={0}
-            adjacent={true}>
+                visible={0}
+                adjacent={true}
+                autoMove={true}
+                cancelAutoMove={true}
+            >
 
                 {advCards}
                 

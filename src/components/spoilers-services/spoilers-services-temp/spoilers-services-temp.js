@@ -1,5 +1,4 @@
 import React from 'react';
-import Buttons from '../../buttons';
 import {spoilerTitle} from '../../../common-styles/title.module.css';
 import {button, margin, titleStyle} from './spoilers-services-temp.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
@@ -8,6 +7,7 @@ import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
 import ButtonOrder from '../../buttons/button-order/button-order';
+import ButtonOrderTraining from '../../buttons/button-order/button-order-training';
 
 /**
  * @param {String} serviceName - из какого блока сделан заказ:
@@ -42,7 +42,11 @@ function SpoilerServicesTemplate(props) {
         <div>
             {props.body}
             <div className={buttonStyle}>
-                <ButtonOrder  mobile={mobileView} serviceName={props.serviceName}/>
+                {
+                    props.training ?
+                    <ButtonOrderTraining mobile={mobileView}/>
+                    : <ButtonOrder  mobile={mobileView} serviceName={props.serviceName}/>
+                }
             </div>
         </div>
     );

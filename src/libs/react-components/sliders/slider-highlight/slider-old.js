@@ -3,6 +3,8 @@
  * src/libs/react/react-hooks/use-previous-hook.js
 */
 
+//import useForceUpdate from '../../../react/react-hooks/use-force-update';   /**********МОДИФИКАЦИЯ**********/
+
 import defaultProps from '../slider/default-props';
 //Настраиваемые импорты
 //выбрать папку ordinary/inertial для соответствующего способа прокрутки (см. slider-readme.txt)
@@ -14,13 +16,16 @@ import React, {useState, useRef, useEffect} from 'react';
 import usePrevious from '../../../react/react-hooks/use-previous-hook';
 import updateSlideWidth from '../slider/mechanics/update-slide-width';
 import updateCarouselCoords from '../slider/mechanics/update-carousel-coords';
-import animateMove from './animation/animate-move';
+import animateMove from '../slider/animation/animate-move';
 import {containerStyle, prevStyle, nextStyle, viewportStyle, carouselStyle, slideStyle} from '../slider/slider.module.css';
 import getVisible from '../slider/mechanics/get-visible';
 import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
 import createAlwaysActive from '../slider/create-slides/create-always-active';
+//import createSlidesActive from '../slider/create-slides/create-slides-active';
+//import createVisibleSlides from './alternative/create-visible-slides';
+//import setNewPosition from './alternative/set-new-position-alternative';
 
 function Slider(props) {
     const children = React.Children.toArray(props.children);
@@ -38,11 +43,14 @@ function Slider(props) {
         prevMargin: 0,
         children: children.concat(children, children),
         currentPosition: props.initPosition + children.length,
+        //autoMove: props.autoMove
     };
 
     const [state, setState] = useState(initState);
     const [autoMove, setAutoMove] = useState(props.autoMove); //Автопрокрутка карусели
     const prevState = usePrevious(state);
+
+    //const forceUpdate = useForceUpdate();   /**********МОДИФИКАЦИЯ**********/
 
     /*Длительность анимации animDuration также указывает, вызывать ли анимацию
     после изменения состояния слайдера. Ноль - не вызывать анимацию.*/
@@ -63,7 +71,6 @@ function Slider(props) {
     useEffect(() => autoMoveStart(), [state.currentPosition]);
     
     function initialize() {
-        timer.current = 1;  //Только запустить слайдер
         updateWidthAndCoords();
     }
 
@@ -91,9 +98,6 @@ function Slider(props) {
 
         //запуск анимации
         if (animDuration.current > 0) {
-            if (!timer.current) setAutoMove(false);
-
-            if (animate.current) animate.current.cancel();
 
             const adjacentCorrect = calcAdjacentCorrect();
 
@@ -114,12 +118,11 @@ function Slider(props) {
                 }
             }
 
-
             const moveArgs = {
                 params: props,
                 state: state,
-                animate: animate,
-                animDuration: animDuration,
+                animate: animate.current,
+                animDuration: animDuration.current,
                 carousel: carousel.current,
                 adjacentCorrect: adjacentCorrect
             };
@@ -185,7 +188,7 @@ function Slider(props) {
 
         animDuration.current = props.duration; //Также указывает, что потребуется анимация.
         
-        const destination = state.currentPosition + shift;
+        const destination = state.currentPosition + shift
 
         const positionArgs = {
             params: props,
@@ -203,12 +206,6 @@ function Slider(props) {
 
     function startMouseHandler(e) {
         if (props.freeze) return;
-
-        if (autoMove && props.cancelAutoMove) {
-            clearTimeout(timer.current);
-            timer.current = undefined;
-            animDuration.current = props.duration;
-        }
 
         const adjacentCorrect = calcAdjacentCorrect();
         
@@ -232,12 +229,6 @@ function Slider(props) {
     function startTouchHandler(e) {
         if (props.freeze) return;
 
-        if (autoMove && props.cancelAutoMove) {
-            clearTimeout(timer.current);
-            timer.current = undefined;
-            animDuration.current = props.duration;
-        }
-
         const adjacentCorrect = calcAdjacentCorrect();
 
         /*animDuration без current, так как задать новое значение в touchHandler
@@ -260,18 +251,14 @@ function Slider(props) {
     /**Старт автопрокрутки карусели */
     function autoMoveStart() {
         if (!autoMove) return;
-
-        if (!timer.current) return;
         
-        timer.current = setTimeout(() => {
-            buttonHandler(1);
-        }, props.moveInterval);
+        timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
         return () => clearTimeout(timer.current);
     }
 
     /**Отмена автопрокрутки карусели */
-    /*function cancelAutoMove() {
+    function cancelAutoMove() {
         if (!timer.current || !props.cancelAutoMove) return;
 
         if (animate.current) animate.current.cancel();
@@ -280,7 +267,7 @@ function Slider(props) {
         
 
        setAutoMove(false);
-    }*/
+    }
 
     function startCheckBounds() {
         const boundsArgs = {
@@ -296,7 +283,9 @@ function Slider(props) {
     }
 
     return(
-        <div className={containerStyle}>
+        <div className={containerStyle}
+            onMouseEnter={() => autoMove ? cancelAutoMove() : null}
+            onTouchStart={() => autoMove ? cancelAutoMove() : null}>
 
             <div className={prevStyle} onClick={() => buttonHandler((-1))}>
                 {props.freeze ? null : props.prev}

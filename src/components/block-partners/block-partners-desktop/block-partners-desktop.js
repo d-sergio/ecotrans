@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from '../../../libs/react-components/sliders/slider-highlight';
+import Slider from '../../../libs/react-components/sliders/automove-sliders/slider';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import Partners from '../../cards-partners';
@@ -17,7 +17,7 @@ const cards = [
 
 const visible = {
     0: 1,
-    1050: 1,
+    1024: 1,
     1440: 3
 };
 
@@ -35,9 +35,12 @@ function BlockPartnersDesktop() {
                 <Slider
                     key={visible}
                     visible={visible}
-                    adjacent={true}
                     autoMove={true}
-                    cancelAutoMove={true}>
+                    cancelAutoMove={true}
+                    moveInterval={5000}
+                    autoMoveDuration={5000}
+                    adjacent={true}
+                >
 
                     {cards}
                     

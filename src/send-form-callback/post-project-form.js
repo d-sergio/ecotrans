@@ -5,7 +5,8 @@ async function postServiceForm(form, projectName) {
 
     const projects = {
         education: 'Центр дополнительного экологического образования',
-        technopark: 'Экотехнопарк Экотранс'
+        technopark: 'Экотехнопарк Экотранс',
+        training: 'Обучение по обращению с отходами'
     };
 
     try{

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
 
-    height: 24px;
+    height: 19px;
     padding: 12px 8px 12px 8px;
 
     /*background-color: #EAFFE2;*/
@@ -18,7 +18,7 @@
 }
 
 .logo a img {
-    height: 24px;
+    height: 19px;
 
     z-index: 100000;
 }
@@ -28,9 +28,14 @@
     align-items: center;
 
     font-family: "MontserratLight";
-    font-size: 0.8rem;
+    font-size: 1.25rem;
 
     z-index: 100000;
+}
+
+.phone img{
+    height: 19px;
+    width: auto;
 }
 
 .mobileContainer{

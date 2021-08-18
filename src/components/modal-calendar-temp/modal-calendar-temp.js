@@ -14,7 +14,7 @@ import { mainContainer } from '../../common-styles/containers.module.css';
  * @param {Node | String} - текст, отображаемый поверх картинки
  */
 function ModalCalendarTemp(props) {
-    //const mounted = useRef(true);
+    const mounted = useRef(true);
     /*const tryLoadCount = useRef(0);
     const maxLoadCounts = useRef(10);*/
 
@@ -26,9 +26,9 @@ function ModalCalendarTemp(props) {
     const [isOpen, setOpen] = useState(false);
     const [importedPicture, setPicture] = useState(null);
     
-    /*useEffect(() => {
+    useEffect(() => {
         return () => mounted.current = false;
-    }, []);*/
+    }, []);
 
     useEffect(openFullSizePic, [isOpen]);
 
@@ -38,7 +38,16 @@ function ModalCalendarTemp(props) {
         try{
             document.documentElement.style.transform = ''; /*beget */
 
-            setPicture(`${window.location.origin}/images/calendar/fullsize/${props.fullSizeImage}`);
+            /**Предварительная загрузка картинки. Открывается на img.onload */
+            const img = new Image();
+            img.src = `${window.location.origin}/images/calendar/fullsize/${props.fullSizeImage}`;
+
+            img.onload = () => {
+                if (!mounted.current) return;
+
+                setPicture(img.src);
+            }
+            
         } catch(e) {
             /**Защита для build */
         }

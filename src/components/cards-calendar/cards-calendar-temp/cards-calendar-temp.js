@@ -1,7 +1,7 @@
 import React from 'react';
 import PictureAndText from '../../../libs/react-components/picture-and-text';
 import {container, day, name, gradient} from './cards-calendar-temp.module.css';
-import ModalCalendar from '../../modals-calendar-temp';
+import ModalCalendar from '../../modal-calendar-temp';
 
 /**Шаблон карточки для календаря
  * 

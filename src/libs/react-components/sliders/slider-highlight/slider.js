@@ -63,7 +63,7 @@ function Slider(props) {
     useEffect(() => autoMoveStart(), [state.currentPosition]);
     
     function initialize() {
-        timer.current = 1;  //Только запустить слайдер
+        if (props.autoMove) timer.current = 1;  //Только запустить слайдер
         updateWidthAndCoords();
     }
 

@@ -23,7 +23,11 @@ function Index() {
             <Title/>
             <BlockServices/>
             <BlockStats/>
-            <BlockCall/>
+            {
+                mobileView ?
+                    <BlockCall/>
+                    : null
+            }
             <BlockProjects/>
             <BlockAdvantages/>
             <BlockCost/>

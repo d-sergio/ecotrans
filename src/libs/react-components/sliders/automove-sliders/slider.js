@@ -62,10 +62,12 @@ function Slider(props) {
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
 
-    useEffect(() => buttonHandler(1), []);
+    useEffect(() => {   //Только запустить автопрокрутку
+        if (props.autoMove) buttonHandler(1);
+    }, []);
     
     function initialize() {
-        timer.current = 1;  //Только запустить автопрокрутку
+        if (props.autoMove) timer.current = 1;  //Только запустить автопрокрутку
         
         updateWidthAndCoords();
     }

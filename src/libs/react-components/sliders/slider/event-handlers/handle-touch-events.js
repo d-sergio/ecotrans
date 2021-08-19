@@ -125,7 +125,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
-        if (callback !== undefined && callback !== null) {
+        /*Если это был не вертикальный скролл страницы */
+        if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
         }
     }

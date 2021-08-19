@@ -32,6 +32,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let verticalScrolling = false;
 
     const startScrollY = document.documentElement.scrollTop;
+    let cumulativeScrollY = 0;
 
     /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
     движении. При достижении disableScrollingOn блокируется вертикальная прокрутка
@@ -51,8 +52,11 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
              * Да - отмена всех дальнейших действий
             */
             const currentScrollY = document.documentElement.scrollTop;
+            const deltaSrollY = Math.abs(currentScrollY - startScrollY);
+            cumulativeScrollY += deltaSrollY;
     
-            if (currentScrollY !== startScrollY && !horizontalScrolling) {
+            //if (currentScrollY !== startScrollY && !horizontalScrolling) {
+            if (cumulativeScrollY >= 5 && !horizontalScrolling) {
 
                 verticalScrolling = true;
                     

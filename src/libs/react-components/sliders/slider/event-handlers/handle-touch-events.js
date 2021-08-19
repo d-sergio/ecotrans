@@ -12,8 +12,9 @@
  *      @param {number} disableScrollingOn - если пользователь сдвинул карусель больше, чем
  *      на указанное количество пикселей, то вертикальная прокрутка страницы блокируется
  *      @param {event} event - событие touch
+ *      @param {function} autoMoveOff - колбэк для отключения автопрокрутки
 */
-export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event}) {
+export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event, autoMoveOff}) {
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -64,7 +65,13 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             }
 
             //Начинаем прокрутку слайдера
-            if (Math.abs(!horizontalScrolling && cumulativeShift) >= disableScrollingOn) horizontalScrolling = true;
+            if (Math.abs(!horizontalScrolling && cumulativeShift) >= disableScrollingOn) {
+
+                /*Отключить автопрокрутку */
+                if (autoMoveOff) autoMoveOff();
+
+                horizontalScrolling = true;
+            }
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
 

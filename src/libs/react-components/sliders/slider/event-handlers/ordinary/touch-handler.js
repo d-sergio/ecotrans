@@ -8,7 +8,11 @@ function touchHandler(touchArgs) {
     handleTouchEvents(touchHandlerProperties);
 }
 
-function configureTouchHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect}) {
+function configureTouchHandler({e, params, state, setState, viewport, carousel, animate, animDuration, adjacentCorrect, autoMoveOff}) {
+    /*Листать карусель есть смысл только, если число слайдов превышает ширину
+    слайдера. Проверим это. */
+    
+    /*для getVisible */
     const visibleArgs = {
         visible: params.visible,
         viewport: viewport,
@@ -18,8 +22,7 @@ function configureTouchHandler({e, params, state, setState, viewport, carousel, 
     const numberOfVisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
 
-    /*листать карусель есть смысл только, если число слайдов превышает ширину
-    слайдера */
+
     if (carouselLength < numberOfVisible) {
         return;
     }
@@ -28,18 +31,21 @@ function configureTouchHandler({e, params, state, setState, viewport, carousel, 
         animate.cancel();
     }
 
+    /*Возвращает аргументы для обработчика */
     const touchHandlerProperties = {
         carousel: carousel,
         viewport: viewport,
         callback: calcNewPosition,
         disableScrollingOn: params.disableScrollingOn,
-        event: e
+        event: e,
+        autoMoveOff: autoMoveOff
     }
     
     if (carousel !== null && viewport !== null){
         return touchHandlerProperties;
     }
 
+    /**Расчёт новой позиции, когда пользователь завершит прокрутку карусели */
     function calcNewPosition(speed) {
         const inertialParams = {
             speed: speed,

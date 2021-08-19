@@ -10,9 +10,9 @@ function moveOrClick() {
 
     try{
 
-        window.addEventListener('pointermove', onMove);
-        window.addEventListener('click', onUp)
-        window.addEventListener('pointercancel', onUp);
+        window.addEventListener('pointermove', onMove, {once: true});
+        window.addEventListener('pointerup', onUp, {once: true})
+        window.addEventListener('pointercancel', onUp, {once: true});
 
     } catch(e) {
         /*Защита для build */
@@ -24,14 +24,11 @@ function moveOrClick() {
 
     function onUp(e) {
         if (isMoved) {
-
-            window.removeEventListener('pointermove', onMove);
-            window.removeEventListener('click', onUp)
-            window.removeEventListener('pointercancel', onUp);
-
             e.preventDefault();
             return;
         }
+
+        isMoved = false;
     }
 }
 

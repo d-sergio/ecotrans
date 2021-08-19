@@ -16,38 +16,38 @@ import moveOrClick from '../../../libs/common/move-or-click';
  */
 function InstagramSlider() {
     const slides = [
-        <div
-            className={images} key='instagram1'
-            onPointerDown={moveOrClick}
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram1'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img1} alt="instagram1"/>
             </a>
         </div>,
 
-        <div
-            className={images} key='instagram2'
-            onPointerDown={moveOrClick}
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram2'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img2} alt="instagram2"/>
             </a>
         </div>,
 
-        <div
-            className={images} key='instagram3'
-            onPointerDown={moveOrClick}
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram3'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img3} alt="instagram3"/>
             </a>
         </div>,
 
-        <div
-            className={images} key='instagram4'
-            onPointerDown={moveOrClick}
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram4'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img4} alt="instagram4"/>
             </a>
         </div>

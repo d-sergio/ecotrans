@@ -9,38 +9,38 @@ import moveOrClick from '../../../libs/common/move-or-click';
 
 function InstagramSlider() {
     const slides = [
-        <div
-            onPointerDown={moveOrClick}
-            className={images} key='instagram1mobile'
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram1mobile'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img1} alt="instagram1"/>
             </a>
         </div>,
 
-        <div
-            onPointerDown={moveOrClick}
-            className={images} key='instagram2mobile'
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram2mobile'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img2} alt="instagram2"/>
             </a>
         </div>,
 
-        <div
-            onPointerDown={moveOrClick}
-            className={images} key='instagram3mobile'
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram3mobile'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img3} alt="instagram3"/>
             </a>
         </div>,
 
-        <div
-            onPointerDown={moveOrClick}
-            className={images} key='instagram4mobile'
-        >
-            <a href={`https://www.instagram.com/ecotrans46/`} target='_blank'>
+        <div className={images} key='instagram4mobile'>
+            <a
+                onPointerDown={moveOrClick}
+                href={`https://www.instagram.com/ecotrans46/`} target='_blank'
+            >
                 <img src={img4} alt="instagram4"/>
             </a>
         </div>

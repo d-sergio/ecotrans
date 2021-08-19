@@ -19,8 +19,8 @@ function createAlwaysActive({children, currentPosition, slideStyle, viewport, ca
 
         let onClick = null;
 
-        if (i === currentPosition - 1) onClick = () => buttonHandler(-1);
-        if (i === currentPosition + 1) onClick = () => buttonHandler(1);
+        if (i === currentPosition + highlight - 2) onClick = () => buttonHandler(-1);
+        if (i === currentPosition + highlight) onClick = () => buttonHandler(1);
 
         /*overflow: 'visible' чтобы при transform: scale() содержимое slide
         не обрезалось*/

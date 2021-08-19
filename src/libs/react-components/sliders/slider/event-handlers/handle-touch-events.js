@@ -45,6 +45,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
+        //console.log(`verticalScrolling ${verticalScrolling}`)
+        //console.log(`cumulativeScrollY ${cumulativeScrollY}`)
         try{
             if (verticalScrolling) return;
 
@@ -56,7 +58,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             cumulativeScrollY += deltaSrollY;
     
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (cumulativeScrollY >= 5 && !horizontalScrolling) {
+            if (cumulativeScrollY >= disableScrollingOn && !horizontalScrolling) {
 
                 verticalScrolling = true;
                     

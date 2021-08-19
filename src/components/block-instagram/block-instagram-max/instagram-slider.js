@@ -8,7 +8,7 @@ import img3 from '../../../../static/images/instagram/desktop/3.png';
 import img4 from '../../../../static/images/instagram/desktop/4.png';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
 import config from '../../../config/config-media-queries.json';
-import moveOrClick from '../../../libs/common/move-or-click';
+import {moveOrTap, moveOrClick} from '../../../libs/move-or-click';
 
 /**
  * State:
@@ -18,7 +18,8 @@ function InstagramSlider() {
     const slides = [
         <div className={images} key='instagram1'>
             <a
-                onPointerDown={moveOrClick}
+                onMouseDown={moveOrClick}
+                onTouchStart={moveOrTap}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img1} alt="instagram1"/>
@@ -27,7 +28,8 @@ function InstagramSlider() {
 
         <div className={images} key='instagram2'>
             <a
-                onPointerDown={moveOrClick}
+                onMouseDown={moveOrClick}
+                onTouchStart={moveOrTap}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img2} alt="instagram2"/>
@@ -36,7 +38,8 @@ function InstagramSlider() {
 
         <div className={images} key='instagram3'>
             <a
-                onPointerDown={moveOrClick}
+                onMouseDown={moveOrClick}
+                onTouchStart={moveOrTap}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img3} alt="instagram3"/>
@@ -45,7 +48,8 @@ function InstagramSlider() {
 
         <div className={images} key='instagram4'>
             <a
-                onPointerDown={moveOrClick}
+                onMouseDown={moveOrClick}
+                onTouchStart={moveOrTap}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img4} alt="instagram4"/>

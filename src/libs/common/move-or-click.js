@@ -11,7 +11,7 @@ function moveOrClick() {
     try{
 
         window.addEventListener('pointermove', onMove, {once: true});
-        window.addEventListener('pointerup', onUp, {once: true})
+        window.addEventListener('click', onUp, {once: true})
         window.addEventListener('pointercancel', onUp, {once: true});
 
     } catch(e) {

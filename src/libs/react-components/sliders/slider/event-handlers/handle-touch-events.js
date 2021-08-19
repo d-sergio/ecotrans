@@ -71,7 +71,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             }
 
             //Начинаем прокрутку слайдера
-            if (Math.abs(!horizontalScrolling && cumulativeShift) >= disableScrollingOn) {
+            if (!horizontalScrolling && Math.abs(cumulativeShift) >= disableScrollingOn) {
 
                 /*Отключить автопрокрутку */
                 if (autoMoveOff) autoMoveOff();

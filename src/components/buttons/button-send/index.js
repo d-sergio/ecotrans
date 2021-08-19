@@ -1,8 +1,8 @@
 import React from "react";
 import Send from "./button-send";
 
-const Mobile = () => <Send mobile={true}/>;
-const Desktop = () => <Send/>;
+const Mobile = (props) => <Send mobile={true} {...props}/>;
+const Desktop = (props) => <Send  {...props}/>;
 
 const send = {
     Mobile,

@@ -50,6 +50,13 @@
     align-self: center;
 }
 
+/*Только маленьких на мобильных при горизонтальном положении экрана*/
+.buttonSmallMobile{
+    display: none;
+    align-self: center;
+    margin-bottom: 28px;
+}
+
 .form{
     display: flex;
     flex-direction: column;
@@ -88,7 +95,7 @@
     }
 }
 
-@media screen and (max-height: 568px) {
+@media screen and (max-height: 568px), screen and (max-width: 575px) {
     .container{
         max-width: unset;
         width: 100%;
@@ -126,7 +133,7 @@
     }
 }
 
-@media screen and (max-height: 319px) {
+@media screen and (max-height: 319px) and (orientation: landscape) {
     .title{
         font-size: 1.25rem;
         margin-top: 0;
@@ -139,7 +146,19 @@
         column-gap: 10px;
     }
 
+
     .button{
-        grid-column: 2;
+        display: none;
+        /*grid-column: 2;
+        margin-top: 0;
+        text-align: center;*/
+    }
+/*
+    .button button {
+        height: 55px;
+    }*/
+
+    .buttonSmallMobile{
+        display: block;
     }
 }

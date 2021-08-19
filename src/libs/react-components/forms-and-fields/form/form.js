@@ -15,6 +15,7 @@ import Values from '../context/values';
  * начальному значению поля
  * @param {String} name - имя формы. На одной странице не должно быть форм
  * с одинаковыми именами!
+ * @param {String} id - id формы
  */
 function Form(props) {
     const formRef = useRef(null);
@@ -90,6 +91,7 @@ function Form(props) {
         <form
             ref={formRef}
             name={props.name ? props.name : null}
+            id={props.id || null}
             className={props.className}
             onSubmit={onSubmit}
             encType="multipart/form-data"

@@ -134,4 +134,14 @@
         column-gap: 20px;
         align-items: center;
     }
+
+    .button{
+        margin-top: 0;
+        text-align: center;
+        height: 100%;
+    }
+
+    .button button {
+        height: 55px;
+    }
 }

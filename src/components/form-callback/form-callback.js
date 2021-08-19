@@ -1,6 +1,6 @@
 import React from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
-import {form, title, container, cross, button, call} from './form-callback.module.css';
+import {form, title, container, cross, button, call, buttonSmallMobile} from './form-callback.module.css';
 import { input, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
 import Buttons from '../buttons';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
@@ -49,6 +49,7 @@ function FormCallback(props) {
                 onSubmit={ props.setFormData }
                 initialValues={initialValues}
                 name={formName}
+                id={formName}
             >
                 <Forms.Fields.Input
                     className={inputClasses}
@@ -67,6 +68,10 @@ function FormCallback(props) {
                     }
                 </div>
             </Forms.Form>
+
+            <div className={buttonSmallMobile}>
+                <Buttons.Send.Mobile form={formName}/>
+            </div>
 
             <div className={call}>
                 Или позвоните нам <a href={`tel:${config.phone}`}>+7(960)694-48-39</a>

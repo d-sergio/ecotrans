@@ -11,7 +11,15 @@ function ButtonSend(props) {
     const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon, common].join(' ');
 
-    return <button type="submit" className={cssStyle}>Отправить</button>
+    return(
+        <button
+            form={props.form}
+            type="submit"
+            className={cssStyle}
+            >
+                Отправить
+        </button>
+    );
 };
 
 export default ButtonSend;

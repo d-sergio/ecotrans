@@ -4,6 +4,11 @@ import getVisible from './get-visible';
  * destination - новая позиция слайдера
  */
 function setNewPosition({destination, state, setState, params, viewport, carousel}) {
+    /*Подсказывает, что лента слева/справа была только что добавлена, поэтому её
+    нельзя сразу удалять */
+    let leftAdded = false;
+    let rightAdded = false;
+
     if (!viewport || !carousel) return;
 
     /**текущая позиция и сдвиг margin-left carousel станут предыдущими, после setState*/
@@ -51,16 +56,23 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
         newChildren = newChildren.concat(params.children);
         prevPosition = params.children.length + state.currentPosition;
         newPosition = params.children.length + destination;
-
         /*Если добавлены новые слайды слева, то надо компенсировать сдвиг
         карусели в обратную сторону*/
         prevMargin = currentMarginLeft - correctMarginLeft;
+
+        leftAdded = true;
+    } else {
+        leftAdded = false;
     }
+
     //Добавляем целую ленту params.children справа
     if (destination + visible >= state.children.length - 1) {
         newChildren = newChildren.concat(params.children);
-
         prevMargin = currentMarginLeft;
+
+        rightAdded = true;
+    } else {
+        rightAdded = false;
     }
 
     /*Чтобы не нагружать браузер бесконечно добавляемыми слайдами, они иногда
@@ -75,7 +87,7 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
     const factorRight = Math.floor( ( state.children.length - newPosition - 1 ) / params.children.length);
 
     //Удаляем лишние слева. Корректируем покидаемую (prevPosition) и новую позицию
-    if (factorLeft >= 2) {
+    if (factorLeft >= 2 && !leftAdded) {
         newChildren = newChildren.slice( (factorLeft - 1) * params.children.length );
         newPosition = newPosition - (factorLeft - 1) * params.children.length;
         prevPosition = prevPosition - (factorLeft - 1) * params.children.length;
@@ -86,7 +98,7 @@ function setNewPosition({destination, state, setState, params, viewport, carouse
     }
 
     //Удаляем лишние справа
-    if (factorRight >= 2) {
+    if (factorRight >= 2 && !rightAdded) {
         newChildren = newChildren.slice(0, (factorLeft + 2) * params.children.length);
         prevMargin = currentMarginLeft;
     }

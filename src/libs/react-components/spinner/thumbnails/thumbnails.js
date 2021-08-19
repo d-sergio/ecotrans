@@ -63,7 +63,7 @@ function Thumbnails(props) {
     function wrapThumbs() {
         const wrapped = React.Children.map(
             props.children,
-            (thumb, index) => <div className={wrapThumbStyle}>{thumb}</div>
+            (thumb, index) => <div onClick={() => setThisPosition(index)} className={wrapThumbStyle}>{thumb}</div>
         );
 
         /*возвращается инвертированный массив, так как вращение в обратную сторону*/

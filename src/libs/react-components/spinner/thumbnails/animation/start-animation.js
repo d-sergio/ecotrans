@@ -61,7 +61,9 @@ function startAnimation({circleRef, thumbsRef, props, prevPosition, animate, dur
 
         } else if (props.currentPosition > prevPosition && props.outside) { //#2
             //console.log(`//#2 dest ${props.currentPosition - prevPosition - props.children.length}`);
-            return (props.currentPosition - prevPosition - props.children.length) * fi;
+            //console.log(`start ${startAngle}, final ${props.currentPosition * fi - 360}`)
+            //return (props.currentPosition - prevPosition - props.children.length) * fi;
+            return props.currentPosition * fi - 360;
 
         } else if (props.currentPosition < prevPosition && props.outside) {//#3
             //console.log(`//#3 dest ${props.currentPosition * fi}`);

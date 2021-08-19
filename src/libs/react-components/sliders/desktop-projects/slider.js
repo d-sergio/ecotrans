@@ -20,7 +20,7 @@ import getVisible from '../slider/mechanics/get-visible';
 import checkBounds from '../slider/mechanics/check-bounds';
 
 import setNewPosition from '../slider/mechanics/set-new-position';
-import createAlwaysActive from '../slider/create-slides/create-always-active';
+import createAlwaysActiveModif from './create-slides/create-always-active-modif';
 //import createVisibleSlides from './alternative/create-visible-slides';
 //import setNewPosition from './alternative/set-new-position-alternative';
 
@@ -305,14 +305,15 @@ function Slider(props) {
                     /*onMouseDown={(e) => startMouseHandler(e)}*/
                 >
                     {
-                        createAlwaysActive({    /**********МОДИФИКАЦИЯ**********/
+                        createAlwaysActiveModif({    /**********МОДИФИКАЦИЯ**********/
                             children: state.children,
                             currentPosition: state.currentPosition,
                             slideStyle: slideStyle,
                             viewport: viewport.current,
                             carousel: carousel.current,
                             visible: props.visible,
-                            autoMove: state.autoMove
+                            autoMove: state.autoMove,
+                            buttonHandler: buttonHandler
                         })
                     }
                 </div>

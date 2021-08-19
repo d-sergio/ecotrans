@@ -15,12 +15,16 @@
 
 .circleStyle{
     position: absolute;
+
+    user-select: none;
 }
 
 .thumbsStyle{
     position: absolute;
     top: 0;
-    /*cursor: pointer;*/
+    cursor: pointer;
+
+    user-select: none;
 }
 
 .wrapThumbStyle{

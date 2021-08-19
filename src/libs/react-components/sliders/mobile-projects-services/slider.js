@@ -306,11 +306,7 @@ function Slider(props) {
                     ref={carousel}
                     onMouseDown={(e) => startMouseHandler(e)}
                 >
-                    {createSlides(state.children, slideStyle)
-                    /*
-                    //альтерантивный вариант
-                    createVisibleSlides(state.children, state.currentPosition, props.visible, viewport.current, carousel.current, slideStyle, adjacentCorrect)
-                    */}
+                    {createSlides(state.children, slideStyle)}
                 </div>
             </div>
 

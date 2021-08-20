@@ -1,9 +1,6 @@
-import React from 'react';
-import Field from "./field";
+import Input from "./input";
+import Textarea from './textarea';
 import File from './file';
-
-const Textarea = (props) => <Field fieldType='textarea' {...props}/>
-const Input = Field;
 
 const Fields = {
     Textarea,

@@ -25,6 +25,8 @@
 
     outline: none;
     background-color: white;
+
+    -webkit-appearance: none;
 }
 
 .inputActive{

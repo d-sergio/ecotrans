@@ -36,7 +36,8 @@ function configureTouchHandler({e, params, state, setState, viewport, carousel, 
         carousel: carousel,
         viewport: viewport,
         callback: calcNewPosition,
-        disableScrollingOn: params.disableScrollingOn,
+        disablePageScroll: params.disablePageScroll,
+        disableSliderScroll: params.disableSliderScroll,
         event: e,
         autoMoveOff: autoMoveOff
     }

@@ -32,7 +32,8 @@ function configureTouchHandler({e, params, state, setState, viewport, carousel, 
         carousel: carousel,
         viewport: viewport,
         callback: calcInertialMotion,
-        disableScrollingOn: params.disableScrollingOn,
+        disablePageScroll: params.disablePageScroll,
+        disableSliderScroll: params.disableSliderScroll,
         event: e
     }
     

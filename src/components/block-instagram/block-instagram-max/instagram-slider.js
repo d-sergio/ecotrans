@@ -15,11 +15,15 @@ import {moveOrTap, moveOrClick} from '../../../libs/move-or-click';
  * active - слайдер активен или не активен. На определённом разрешении замораживается
  */
 function InstagramSlider() {
+    const active = useMediaQuery(config.blockInstagramDesktop);
+
+    if (active === undefined) return null;
+
     const slides = [
         <div className={images} key='instagram1'>
             <a
-                onMouseDown={moveOrClick}
-                onTouchStart={moveOrTap}
+                onMouseDown={active ? moveOrClick : null}
+                onTouchStart={active ? moveOrTap : null}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img1} alt="instagram1"/>
@@ -28,8 +32,8 @@ function InstagramSlider() {
 
         <div className={images} key='instagram2'>
             <a
-                onMouseDown={moveOrClick}
-                onTouchStart={moveOrTap}
+                onMouseDown={active ? moveOrClick : null}
+                onTouchStart={active ? moveOrTap : null}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img2} alt="instagram2"/>
@@ -38,8 +42,8 @@ function InstagramSlider() {
 
         <div className={images} key='instagram3'>
             <a
-                onMouseDown={moveOrClick}
-                onTouchStart={moveOrTap}
+                onMouseDown={active ? moveOrClick : null}
+                onTouchStart={active ? moveOrTap : null}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img3} alt="instagram3"/>
@@ -48,18 +52,14 @@ function InstagramSlider() {
 
         <div className={images} key='instagram4'>
             <a
-                onMouseDown={moveOrClick}
-                onTouchStart={moveOrTap}
+                onMouseDown={active ? moveOrClick : null}
+                onTouchStart={active ? moveOrTap : null}
                 href={`https://www.instagram.com/ecotrans46/`} target='_blank'
             >
                 <img src={img4} alt="instagram4"/>
             </a>
         </div>
     ];
-
-    const active = useMediaQuery(config.blockInstagramDesktop);
-
-    if (active === undefined) return null;
 
     return(
         <div className={active ? null : mainContainer}>

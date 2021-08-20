@@ -9,12 +9,12 @@
  *      @param {node} viewport - родительский блока ленты слайдов
  *      @param {function} callback - необязательная функция, которой будет передано значение
  *      начальной скорости движения ленты слайдов
- *      @param {number} disableScrollingOn - если пользователь сдвинул карусель больше, чем
+ *      @param {number} disablePageScroll - если пользователь сдвинул карусель больше, чем
  *      на указанное количество пикселей, то вертикальная прокрутка страницы блокируется
  *      @param {event} event - событие touch
  *      @param {function} autoMoveOff - колбэк для отключения автопрокрутки
 */
-export default function handleTouchEvents({carousel, viewport, callback, disableScrollingOn, event, autoMoveOff}) {
+export default function handleTouchEvents({carousel, viewport, callback, disablePageScroll, disableSliderScroll, event, autoMoveOff}) {
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -25,7 +25,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
     /*Горизонтальная прокрутка слайдера началась, потому что модуль cumulativeShift
-    превысил disableScrollingOn*/
+    превысил disablePageScroll*/
     let horizontalScrolling = false;
 
     /*Пользователь просто прокручивает страницу вниз. Прокрутка слайдера не нужна*/
@@ -35,7 +35,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let cumulativeScrollY = 0;
 
     /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
-    движении. При достижении disableScrollingOn блокируется вертикальная прокрутка
+    движении. При достижении disablePageScroll блокируется вертикальная прокрутка
     стариницы и начинается прокрутка слайдера*/
     let cumulativeShift = 0;
     
@@ -54,11 +54,13 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
              * Да - отмена всех дальнейших действий
             */
             const currentScrollY = document.documentElement.scrollTop;
-            const deltaSrollY = Math.abs(currentScrollY - startScrollY);
+            const deltaSrollY = currentScrollY - startScrollY;
             cumulativeScrollY += deltaSrollY;
     
+            /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
+            запрещена */
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (cumulativeScrollY >= disableScrollingOn && !horizontalScrolling) {
+            if (!horizontalScrolling && cumulativeScrollY >= Math.abs(disableSliderScroll)) {
 
                 verticalScrolling = true;
                     
@@ -71,11 +73,13 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             }
 
             //Начинаем прокрутку слайдера
-            if (!horizontalScrolling && Math.abs(cumulativeShift) >= disableScrollingOn) {
+            if (!horizontalScrolling && Math.abs(cumulativeShift) >= disablePageScroll) {
 
                 /*Отключить автопрокрутку */
                 if (autoMoveOff) autoMoveOff();
 
+                /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
+                будет запрещена */
                 horizontalScrolling = true;
             }
 

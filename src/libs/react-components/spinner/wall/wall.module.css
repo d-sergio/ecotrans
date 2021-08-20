@@ -19,6 +19,9 @@
     width: 100%;
 
     background-color: white;
+
+    /*Thumbnails под нижней частью wall недоступны для кликов*/
+    pointer-events: auto;
 }
 
 /*Верхняя изогнутая часть стены*/
@@ -27,4 +30,7 @@
 
     width: 1440px;
     height: 324px;
+
+    /*Доступ для кликов по Thumbnails*/
+    pointer-events: none;
 }

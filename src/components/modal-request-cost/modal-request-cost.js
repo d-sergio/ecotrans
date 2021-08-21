@@ -7,6 +7,7 @@ function ModalRequestCost(props) {
     const [modal, setModal] = useState(<ModalMessages.EmailSending/>);
     const [status, setStatus] = useState('sending');
     
+    const reasonName = 'Уточнение стоимости';
 
     useEffect(sendForm, [props.formData]);
 
@@ -14,7 +15,7 @@ function ModalRequestCost(props) {
     async function sendForm() {
         if (!props.formData) return;
         
-        const result = await postServiceForm(props.formData);
+        const result = await postServiceForm(props.formData, reasonName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);

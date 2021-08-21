@@ -64,6 +64,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
                 будет запрещена */
                 horizontalScrolling = true;
+                console.log('горизонтальная прокрутка')
             }
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
@@ -71,6 +72,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             currentMoveX = moveEvent.changedTouches[0].pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
+
+            console.log(`shiftX: ${cumulativeShift}`)
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -115,6 +118,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 */
                 const deltaSrollY = currentScrollY - startScrollY;
                 cumulativeScrollY += deltaSrollY;
+
+                console.log(`cumulativeScrollY: ${cumulativeScrollY}`)
             }
     
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
@@ -123,14 +128,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
 
                 verticalScrolling = true;
-                    
-                return;
+                console.log('вертикальная прокрутка')
+                //return;
 
             } else if (currentScrollY !== startScrollY && horizontalScrolling) {
                 /*Такое вряд ли случится, но на всякий случай отменим вертикальную
                 прокрутку*/
                 preventDefaultEvent(moveEvent);
-                return;
+                //return;
             }
 
         } catch(e) {
@@ -140,7 +145,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-
+        console.log('end')
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});

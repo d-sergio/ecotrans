@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/layout';
 import Title from '../components/block-title';
 import BlockServices from '../components/block-services';
@@ -17,10 +17,15 @@ function Index() {
     const mobileView = useMediaQuery(config.app);
 
     const BlockMap = React.lazy(() => import('../components/block-map'));
-
+    const [params, setParams] = useState(0);
+    useEffect(() => {
+        setParams({d: window.devicePixelRatio, w: window.innerWidth});
+    }, []);
     return (
         <Layout currentPage='/'>
             <Title/>
+            {params.d}<br/>
+            {params.w}
             <BlockServices/>
             <BlockStats/>
             {

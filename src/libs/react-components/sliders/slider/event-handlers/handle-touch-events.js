@@ -26,6 +26,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let speed = 0;
 
     const shiftToLockScroll = window.innerWidth * disablePageScroll;
+    console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
@@ -69,7 +70,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
 
-            currentMoveX = moveEvent.changedTouches[0].pageX;
+            currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
 

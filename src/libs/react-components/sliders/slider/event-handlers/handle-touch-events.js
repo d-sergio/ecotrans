@@ -53,7 +53,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             if (verticalScrolling) return;
 
-            if (horizontalScrolling) lockScroll();
+            //if (horizontalScrolling) lockScroll();
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -78,7 +78,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (targetMarginLeft <= 0
                 && targetMarginLeft >= maxCarouselPosition
                 && horizontalScrolling) {
-
+                    lockScroll();
                     requestAnimationFrame(function move(){
                     //допустимые границы движения ленты слайдов и cumulativeShift
                         carousel.style.marginLeft = targetMarginLeft + 'px';
@@ -131,7 +131,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             callback(speed);
         }
     }
-
+/*
     function preventDefaultEvent(e) {
         if (e.cancelable) {
 
@@ -141,7 +141,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             //sliderTouchEndHandler();
         }
-    }
+    }*/
 }
 
 function lockScroll() {

@@ -51,7 +51,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         //console.log(`verticalScrolling ${verticalScrolling}`)
         //console.log(`cumulativeScrollY ${cumulativeScrollY}`)
         try{
-            //if (verticalScrolling) return;
+            if (verticalScrolling) return;
 
             //Начинаем прокрутку слайдера
             if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScroll) {
@@ -65,7 +65,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 //console.log('горизонтальная прокрутка')
             }
 
-            //if (horizontalScrolling) preventDefaultEvent(moveEvent);
+            if (horizontalScrolling) preventDefaultEvent(moveEvent);
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -132,7 +132,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             } else if (currentScrollY !== startScrollY && horizontalScrolling) {
                 /*Такое вряд ли случится, но на всякий случай отменим вертикальную
                 прокрутку*/
-                //preventDefaultEvent(moveEvent);
+                preventDefaultEvent(moveEvent);
                 //return;
             }
 
@@ -149,7 +149,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
         /*Если это был не вертикальный скролл страницы */
-        if (callback !== undefined && callback !== null /*&& !verticalScrolling*/) {
+        if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
         }
     }

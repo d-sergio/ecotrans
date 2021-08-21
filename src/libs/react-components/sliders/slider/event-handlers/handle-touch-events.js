@@ -54,7 +54,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (verticalScrolling && !horizontalScrolling) return;
 
             //if (horizontalScrolling) preventDefaultEvent(moveEvent);
-            if (!verticalScrolling) lockScroll();
+            if (horizontalScrolling) lockScroll();
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;

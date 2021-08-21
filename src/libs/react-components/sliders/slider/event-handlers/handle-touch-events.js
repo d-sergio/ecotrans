@@ -51,9 +51,10 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             const currentScrollY = moveEvent.touches[0].pageY;
             const deltaSrollY = startScrollY - currentScrollY;
 
-            if (verticalScrolling && !horizontalScrolling) return;
+            if (verticalScrolling) return;
 
-            //if (horizontalScrolling) preventDefaultEvent(moveEvent);
+            if (!horizontalScrolling && !verticalScrolling) lockScroll();
+
             if (horizontalScrolling) lockScroll();
 
             currentMoveX = moveEvent.touches.item(0).pageX;
@@ -70,9 +71,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 будет запрещена */
                 horizontalScrolling = true;
             }
-
-
-            //if (horizontalScrolling) preventDefaultEvent(moveEvent);
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -111,6 +109,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
                 verticalScrolling = true;
 
+                unLockScroll();
             }/* else if (currentScrollY !== startScrollY && horizontalScrolling) {*/
                 /*Такое вряд ли случится, но на всякий случай отменим вертикальную
                 прокрутку*/

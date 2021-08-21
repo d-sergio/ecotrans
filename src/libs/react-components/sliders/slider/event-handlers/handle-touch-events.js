@@ -53,7 +53,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             if (verticalScrolling && !horizontalScrolling) return;
 
-            if (!verticalScrolling) window.addEventListener('scroll', preventDefaultEvent, {passive: false});
+            //if (horizontalScrolling) preventDefaultEvent(moveEvent);
+            if (!verticalScrolling) lockScroll();
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -127,7 +128,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
-        if (verticalScrolling) window.removeEventListener('scroll', preventDefaultEvent, {passive: false});
+        unLockScroll();
 
         /*Если это был не вертикальный скролл страницы */
         if (callback !== undefined && callback !== null && !verticalScrolling) {
@@ -145,6 +146,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             //sliderTouchEndHandler();
         }
     }
+}
+
+function lockScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+function unLockScroll() {
+    document.body.style.overflow = '';
 }
 /*
 function getPixelRatio() {

@@ -51,7 +51,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             const currentScrollY = moveEvent.touches[0].pageY;
             const deltaSrollY = startScrollY - currentScrollY;
 
-            if (verticalScrolling) return;
+            if (verticalScrolling) {
+                unLockScroll();
+                return;
+            }
+
+            lockScroll();
 
             //if (horizontalScrolling) lockScroll();
 
@@ -78,7 +83,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (targetMarginLeft <= 0
                 && targetMarginLeft >= maxCarouselPosition
                 && horizontalScrolling) {
-                    lockScroll();
                     requestAnimationFrame(function move(){
                     //допустимые границы движения ленты слайдов и cumulativeShift
                         carousel.style.marginLeft = targetMarginLeft + 'px';

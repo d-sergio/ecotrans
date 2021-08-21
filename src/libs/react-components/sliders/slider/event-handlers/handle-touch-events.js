@@ -51,12 +51,9 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             const currentScrollY = moveEvent.touches[0].pageY;
             const deltaSrollY = startScrollY - currentScrollY;
 
-            if (verticalScrolling && !horizontalScrolling) {
-                scrollPage(deltaSrollY);
-                return;
-            }
+            if (verticalScrolling && !horizontalScrolling) return;
 
-            if (!verticalScrolling) preventDefaultEvent(moveEvent);
+            if (!verticalScrolling) window.addEventListener('scroll', preventDefaultEvent, {passive: false});
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -130,6 +127,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
+        if (verticalScrolling) window.removeEventListener('scroll', preventDefaultEvent, {passive: false});
+
         /*Если это был не вертикальный скролл страницы */
         if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
@@ -146,18 +145,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             //sliderTouchEndHandler();
         }
     }
-
-    function scrollPage(scroll) {
-        requestAnimationFrame(() => {
-            window.scrollBy(0, scroll);
-        });
-    }
 }
-
+/*
 function getPixelRatio() {
     try{
         return window.devicePixelRatio;
-    } catch(e) {
+    } catch(e) {*/
         /*Защита для build */
-    }
-}
+    /*}
+}*/

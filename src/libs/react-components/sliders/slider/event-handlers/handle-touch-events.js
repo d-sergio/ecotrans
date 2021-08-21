@@ -16,7 +16,7 @@
 */
 export default function handleTouchEvents({carousel, viewport, callback, disablePageScroll, event, autoMoveOff}) {
     //Внутренние параметры
-    let startMoveX = event.touches[0].pageX;
+    let startMoveX = event.touches.item(0).pageX;
     let currentMoveX = startMoveX;
     let startTime = Date.now();
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
@@ -33,7 +33,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     /*Пользователь просто прокручивает страницу вниз. Прокрутка слайдера не нужна*/
     let verticalScrolling = false;
 
-    const startScrollY = event.touches[0].pageY;
+    const startScrollY = event.touches.item(0).pageY;
     let cumulativeScrollY = 0;
 
     /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
@@ -47,7 +47,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
-        const currentScrollY = moveEvent.touches[0].pageY;
+        const currentScrollY = moveEvent.touches.item(0).pageY;
         const deltaSrollY = startScrollY - currentScrollY;
 
         try{
@@ -143,14 +143,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         }
     }
 }
-/*
-function lockScroll() {
-    document.body.style.overflow = 'hidden';
-}
-
-function unLockScroll() {
-    document.body.style.overflow = '';
-}*/
 /*
 function getPixelRatio() {
     try{

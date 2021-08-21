@@ -22,8 +22,9 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
-    const shiftToLockScroll = window.innerWidth * disablePageScroll;
-    //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
+    const shiftToLockScrollY = window.innerWidth * disablePageScroll;
+    const shiftToLockScrollX = window.innerHeight * disablePageScroll;
+    //console.log(`shiftToLockScrollY ${shiftToLockScrollY}`);
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
@@ -54,7 +55,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (verticalScrolling) return;
 
             //Начинаем прокрутку слайдера
-            if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScroll) {
+            if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScrollY) {
 
                 /*Отключить автопрокрутку */
                 if (autoMoveOff) autoMoveOff();
@@ -123,7 +124,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
             запрещена */
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
+            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScrollX) {
 
                 verticalScrolling = true;
                 //console.log('вертикальная прокрутка')

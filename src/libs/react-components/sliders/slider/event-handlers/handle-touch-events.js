@@ -67,7 +67,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             }
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
-
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -93,17 +92,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             startMoveX = currentMoveX;  //Последняя точка текущего движения становится стартовой для нового движения
             startTime = Date.now(); //Время последней точки становится стратовым временем следующей точки
 
-            function preventDefaultEvent(e) {
-                if (e.cancelable) {
-
-                    e.preventDefault();
-
-                } else {
-
-                    sliderTouchEndHandler();
-                }
-            }
-
             const currentScrollY = moveEvent.touches[0].pageY;
 
             if (!horizontalScrolling) {
@@ -117,7 +105,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
             запрещена */
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll * 2) {
+            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll * 4) {
                 verticalScrolling = true;
 
             }/* else if (currentScrollY !== startScrollY && horizontalScrolling) {*/
@@ -140,6 +128,17 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         /*Если это был не вертикальный скролл страницы */
         if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
+        }
+    }
+
+    function preventDefaultEvent(e) {
+        if (e.cancelable) {
+
+            e.preventDefault();
+
+        } else {
+
+            sliderTouchEndHandler();
         }
     }
 }

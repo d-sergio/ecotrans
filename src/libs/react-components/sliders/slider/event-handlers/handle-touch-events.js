@@ -22,7 +22,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
-    const shiftToLockScroll = window.innerWidth * disablePageScroll * getPixelRatio();
+    const shiftToLockScroll = window.visualViewport.width * disablePageScroll * getPixelRatio();
     console.log(shiftToLockScroll)
     //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 

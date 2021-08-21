@@ -7,7 +7,7 @@ function ModalRequestCost(props) {
     const [modal, setModal] = useState(<ModalMessages.EmailSending/>);
     const [status, setStatus] = useState('sending');
     
-    const reasonName = 'Уточнение стоимости';
+    const reasonName = 'price';
 
     useEffect(sendForm, [props.formData]);
 

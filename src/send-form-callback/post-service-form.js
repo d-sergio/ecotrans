@@ -8,7 +8,8 @@ async function postServiceForm(form, serviceName) {
         medical: 'Сбор медицинских отходов',
         neutralization: 'Утилизация и обезвреживание отходов',
         training: 'Обучение по обращению с отходами',
-        transportation: 'Транспортирование отходов'
+        transportation: 'Транспортирование отходов',
+        price: 'Уточнение стоимости'
     };
 
     try{

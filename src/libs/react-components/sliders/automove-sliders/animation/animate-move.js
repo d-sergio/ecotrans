@@ -23,13 +23,8 @@ function animateMove({params, state, carousel, animate, animDuration, adjacentCo
         animDuration: animDuration.current,
         adjacentCorrect: adjacentCorrect,
         callback: callBackIsDefined
-                    ? () => {
-                        if (callback) callback();
-                        params.callback(state.currentPosition)
-                    }
-                    : () => {
-                        if (callback) callback();
-                    }
+                    ? () => params.callback(state.currentPosition)
+                    : undefined
     };
 
     animate.current = createAnimation(animationProps);

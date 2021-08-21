@@ -25,6 +25,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
+    const shiftToLockScroll = window.innerWidth * disablePageScroll;
+
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
     /*Горизонтальная прокрутка слайдера началась, потому что модуль cumulativeShift
@@ -53,30 +55,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         try{
             if (verticalScrolling) return;
 
-            /**Пользователь прокручивает страницу, а не слайдер?
-             * Да - отмена всех дальнейших действий
-            */
-            const currentScrollY = document.documentElement.scrollTop;
-            const deltaSrollY = currentScrollY - startScrollY;
-            cumulativeScrollY += deltaSrollY;
-    
-            /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
-            запрещена */
-            //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (!horizontalScrolling && cumulativeScrollY >= Math.abs(disableSliderScroll)) {
-
-                verticalScrolling = true;
-                    
-                return;
-
-            } else if (currentScrollY !== startScrollY && horizontalScrolling) {
-                /*Такое вряд ли случится, но на всякий случай отменим вертикальную
-                прокрутку*/
-                preventDefaultEvent(moveEvent);
-            }
-
             //Начинаем прокрутку слайдера
-            if (!horizontalScrolling && Math.abs(cumulativeShift) >= disablePageScroll) {
+            if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScroll) {
 
                 /*Отключить автопрокрутку */
                 if (autoMoveOff) autoMoveOff();
@@ -126,6 +106,33 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                     sliderTouchEndHandler();
                 }
             }
+
+            const currentScrollY = document.documentElement.scrollTop;
+
+            if (!horizontalScrolling) {
+                /**Пользователь прокручивает страницу, а не слайдер?
+                 * Да - отмена всех дальнейших действий
+                */
+                const deltaSrollY = currentScrollY - startScrollY;
+                cumulativeScrollY += deltaSrollY;
+            }
+    
+            /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
+            запрещена */
+            //if (currentScrollY !== startScrollY && !horizontalScrolling) {
+            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
+
+                verticalScrolling = true;
+                    
+                return;
+
+            } else if (currentScrollY !== startScrollY && horizontalScrolling) {
+                /*Такое вряд ли случится, но на всякий случай отменим вертикальную
+                прокрутку*/
+                preventDefaultEvent(moveEvent);
+                return;
+            }
+
         } catch(e) {
             console.log('Slider Ошибка sliderTouchMoveHandler(): ' + e.name + ":" + e.message + "\n" + e.stack);
         }

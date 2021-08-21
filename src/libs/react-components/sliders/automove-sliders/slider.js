@@ -210,6 +210,7 @@ function Slider(props) {
     function startMouseHandler(e) {
         if (props.freeze) return;
 
+        /*Отключить автопрокрутку немедленно*/
         if (autoMove && props.cancelAutoMove) {
             clearTimeout(timer.current);
             timer.current = undefined;
@@ -238,11 +239,14 @@ function Slider(props) {
     function startTouchHandler(e) {
         if (props.freeze) return;
 
-        if (autoMove && props.cancelAutoMove) {
-            clearTimeout(timer.current);
-            timer.current = undefined;
-            animDuration.current = props.duration;
-        }
+        /*Отключить автопрокрутку через колбэк*/
+        const autoMoveOff = () => {
+            if (autoMove && props.cancelAutoMove) {
+                clearTimeout(timer.current);
+                timer.current = undefined;
+                animDuration.current = props.duration;
+            }
+        };
 
         const adjacentCorrect = calcAdjacentCorrect();
 
@@ -257,7 +261,8 @@ function Slider(props) {
             animDuration: animDuration,
             carousel: carousel.current,
             viewport: viewport.current,
-            adjacentCorrect: adjacentCorrect
+            adjacentCorrect: adjacentCorrect,
+            autoMoveOff: autoMoveOff
         };
 
         touchHandler(touchArgs);

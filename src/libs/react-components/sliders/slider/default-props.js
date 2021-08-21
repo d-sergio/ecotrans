@@ -8,7 +8,7 @@ const defaultProps = {
     duration: 500,
     treshold: 0.2,
     friction: 5,
-    disablePageScroll: 10,
+    disablePageScroll: 0.03125,
     disableSliderScroll: 20,
     autoMove: false,
     cancelAutoMove: false,

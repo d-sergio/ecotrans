@@ -61,9 +61,14 @@ function Slider(props) {
     useEffect(() => updateComponent()/*, [state.currentPosition]*/);
 
     useEffect(() => autoMoveStart(), [state.currentPosition]);
+
+    useEffect(() => {   //Только запустить автопрокрутку
+        if (props.autoMove) buttonHandler(1);
+    }, []);
     
     function initialize() {
         if (props.autoMove) timer.current = 1;  //Только запустить слайдер
+        
         updateWidthAndCoords();
     }
 
@@ -114,7 +119,6 @@ function Slider(props) {
                 }
             }
 
-
             const moveArgs = {
                 params: props,
                 state: state,
@@ -157,7 +161,6 @@ function Slider(props) {
 
         updateSlideWidth(slideArgs);
         updateCarouselCoords(coordsArgs);
-        //forceUpdate();  /**********МОДИФИКАЦИЯ**********/
     }
 
     /**Рассчитать то свободное пространство, которые могут заполнить соседние
@@ -268,24 +271,10 @@ function Slider(props) {
 
         if (!timer.current) return;
         
-        timer.current = setTimeout(() => {
-            buttonHandler(1);
-        }, props.moveInterval);
+        timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
         return () => clearTimeout(timer.current);
     }
-
-    /**Отмена автопрокрутки карусели */
-    /*function cancelAutoMove() {
-        if (!timer.current || !props.cancelAutoMove) return;
-
-        if (animate.current) animate.current.cancel();
-        
-        clearTimeout(timer.current);
-        
-
-       setAutoMove(false);
-    }*/
 
     function startCheckBounds() {
         const boundsArgs = {

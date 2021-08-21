@@ -125,10 +125,7 @@ function Slider(props) {
                 animate: animate,
                 animDuration: animDuration,
                 carousel: carousel.current,
-                adjacentCorrect: adjacentCorrect/*,
-                callback: () => {
-                        if (!timer.current) setAutoMove(false);
-                    }*/
+                adjacentCorrect: adjacentCorrect
             };
 
             animateMove(moveArgs);
@@ -272,26 +269,12 @@ function Slider(props) {
     function autoMoveStart() {
         if (!autoMove) return;
 
-        //if (!timer.current) buttonHandler(1);
         if (!timer.current) return;
         
         timer.current = setTimeout(() => buttonHandler(1), props.moveInterval);
 
         return () => clearTimeout(timer.current);
     }
-
-    /**Отмена автопрокрутки карусели */
-    /*function cancelAutoMove() {
-        if (!timer.current) return;
-
-        if (animate.current) animate.current.cancel();
-
-        animDuration.current = props.duration;
-        
-        clearTimeout(timer.current);
-
-        setAutoMove(false);
-    }*/
 
     function startCheckBounds() {
         const boundsArgs = {
@@ -306,10 +289,6 @@ function Slider(props) {
         checkBounds(boundsArgs);
     }
 
-    /*
-    onMouseDown={() => props.cancelAutoMove ? cancelAutoMove() : null}
-            onTouchMove={() => props.cancelAutoMove ? cancelAutoMove() : null}
-    */
     return(
         <div className={containerStyle}>
 

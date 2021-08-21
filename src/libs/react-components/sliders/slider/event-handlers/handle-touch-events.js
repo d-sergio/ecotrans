@@ -51,6 +51,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         try{
             if (verticalScrolling) return;
 
+            preventDefaultEvent(moveEvent);
+
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
@@ -66,7 +68,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 horizontalScrolling = true;
             }
 
-            if (horizontalScrolling) preventDefaultEvent(moveEvent);
+            //if (horizontalScrolling) preventDefaultEvent(moveEvent);
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -138,7 +140,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
         } else {
 
-            sliderTouchEndHandler();
+            //sliderTouchEndHandler();
         }
     }
 }

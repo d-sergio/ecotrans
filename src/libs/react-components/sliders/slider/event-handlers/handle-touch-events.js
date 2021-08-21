@@ -34,7 +34,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     /*Пользователь просто прокручивает страницу вниз. Прокрутка слайдера не нужна*/
     let verticalScrolling = false;
 
-    const startScrollY = document.documentElement.scrollTop;
+    const startScrollY = event.touches[0].pageY;
     let cumulativeScrollY = 0;
 
     /*Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
@@ -108,7 +108,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 }
             }
 
-            const currentScrollY = document.documentElement.scrollTop;
+            const currentScrollY = moveEvent.touches[0].pageY;
 
             if (!horizontalScrolling) {
                 /**Пользователь прокручивает страницу, а не слайдер?

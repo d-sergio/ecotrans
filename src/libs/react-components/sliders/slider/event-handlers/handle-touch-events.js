@@ -11,13 +11,10 @@
  *      начальной скорости движения ленты слайдов
  *      @param {number} disablePageScroll - если пользователь сдвинул карусель больше, чем
  *      на указанное количество пикселей, то вертикальная прокрутка страницы блокируется
- *      @param {number} disableSliderScroll disableSliderScroll - если пользователь
- *      сдвинул карусель больше, чем на указанное количество пикселей, прокрутка слайдера
- *      блокируется
  *      @param {event} event - событие touch
  *      @param {function} autoMoveOff - колбэк для отключения автопрокрутки
 */
-export default function handleTouchEvents({carousel, viewport, callback, disablePageScroll, disableSliderScroll, event, autoMoveOff}) {
+export default function handleTouchEvents({carousel, viewport, callback, disablePageScroll, event, autoMoveOff}) {
     //Внутренние параметры
     let startMoveX = event.touches[0].pageX;
     let currentMoveX = startMoveX;
@@ -26,7 +23,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let speed = 0;
 
     const shiftToLockScroll = window.innerWidth * disablePageScroll;
-    console.log(`shiftToLockScroll ${shiftToLockScroll}`);
+    //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
@@ -65,7 +62,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
                 будет запрещена */
                 horizontalScrolling = true;
-                console.log('горизонтальная прокрутка')
+                //console.log('горизонтальная прокрутка')
             }
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
@@ -74,7 +71,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
 
-            console.log(`shiftX: ${cumulativeShift}`)
+            //console.log(`shiftX: ${cumulativeShift}`)
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -120,7 +117,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 const deltaSrollY = currentScrollY - startScrollY;
                 cumulativeScrollY += deltaSrollY;
 
-                console.log(`cumulativeScrollY: ${cumulativeScrollY}`)
+                //console.log(`cumulativeScrollY: ${cumulativeScrollY}`)
             }
     
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
@@ -129,7 +126,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
 
                 verticalScrolling = true;
-                console.log('вертикальная прокрутка')
+                //console.log('вертикальная прокрутка')
                 //return;
 
             } else if (currentScrollY !== startScrollY && horizontalScrolling) {
@@ -146,7 +143,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        console.log('end')
+        //console.log('end')
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});

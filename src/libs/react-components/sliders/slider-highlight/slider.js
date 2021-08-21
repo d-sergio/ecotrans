@@ -344,7 +344,6 @@ Slider.defaultProps = {
     treshold: defaultProps.treshold,
     friction: defaultProps.friction,
     disablePageScroll: defaultProps.disablePageScroll,
-    disableSliderScroll: defaultProps.disableSliderScroll,
     autoMove: defaultProps.autoMove,
     cancelAutoMove: defaultProps.cancelAutoMove,
     moveInterval: defaultProps.moveInterval,

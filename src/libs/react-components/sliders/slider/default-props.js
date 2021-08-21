@@ -1,12 +1,3 @@
-function getPixelRatio() {
-    try{
-        console.log(window.devicePixelRatio);
-        return window.devicePixelRatio;
-    } catch(e) {
-        /*Защита для build */
-    }
-}
-
 const defaultProps = {
     initPosition: 0,
     visible: 1,
@@ -17,7 +8,7 @@ const defaultProps = {
     duration: 500,
     treshold: 0.2,
     friction: 5,
-    disablePageScroll: 0.0606 * getPixelRatio(),
+    disablePageScroll: 0.0404,
     autoMove: false,
     cancelAutoMove: false,
     moveInterval: 3000,

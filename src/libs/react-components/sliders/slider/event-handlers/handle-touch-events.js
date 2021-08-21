@@ -22,7 +22,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
-    const shiftToLockScroll = window.innerWidth * disablePageScroll;
+    const shiftToLockScroll = window.innerWidth * disablePageScroll * getPixelRatio();
     //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
@@ -152,5 +152,13 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
         }
+    }
+}
+
+function getPixelRatio() {
+    try{
+        return window.devicePixelRatio;
+    } catch(e) {
+        /*Защита для build */
     }
 }

@@ -51,7 +51,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         //console.log(`verticalScrolling ${verticalScrolling}`)
         //console.log(`cumulativeScrollY ${cumulativeScrollY}`)
         try{
-            if (verticalScrolling) return;
+            //if (verticalScrolling) return;
 
             //Начинаем прокрутку слайдера
             if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScroll) {

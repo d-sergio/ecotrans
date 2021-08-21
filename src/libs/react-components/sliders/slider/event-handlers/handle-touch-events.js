@@ -23,7 +23,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let speed = 0;
 
     const shiftToLockScroll = window.innerWidth * disablePageScroll;
-    //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
@@ -49,9 +48,15 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
         try{
-            if (verticalScrolling) return;
+            const currentScrollY = moveEvent.touches[0].pageY;
+            const deltaSrollY = startScrollY - currentScrollY;
 
-            preventDefaultEvent(moveEvent);
+            if (verticalScrolling && !horizontalScrolling) {
+                scrollPage(deltaSrollY);
+                return;
+            }
+
+            if (!verticalScrolling) preventDefaultEvent(moveEvent);
 
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -67,6 +72,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 будет запрещена */
                 horizontalScrolling = true;
             }
+
 
             //if (horizontalScrolling) preventDefaultEvent(moveEvent);
             
@@ -94,13 +100,10 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             startMoveX = currentMoveX;  //Последняя точка текущего движения становится стартовой для нового движения
             startTime = Date.now(); //Время последней точки становится стратовым временем следующей точки
 
-            const currentScrollY = moveEvent.touches[0].pageY;
-
             if (!horizontalScrolling) {
                 /**Пользователь прокручивает страницу, а не слайдер?
                  * Да - отмена всех дальнейших действий
                 */
-                const deltaSrollY = currentScrollY - startScrollY;
                 cumulativeScrollY += deltaSrollY;
             }
     
@@ -142,6 +145,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
             //sliderTouchEndHandler();
         }
+    }
+
+    function scrollPage(scroll) {
+        requestAnimationFrame(() => {
+            window.scrollBy(0, scroll);
+        });
     }
 }
 

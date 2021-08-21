@@ -48,10 +48,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
-        //console.log(`verticalScrolling ${verticalScrolling}`)
-        //console.log(`cumulativeScrollY ${cumulativeScrollY}`)
         try{
             if (verticalScrolling) return;
+
+            currentMoveX = moveEvent.touches.item(0).pageX;
+            shift = currentMoveX - startMoveX;
+            cumulativeShift += shift;
 
             //Начинаем прокрутку слайдера
             if (!horizontalScrolling && Math.abs(cumulativeShift) >= shiftToLockScroll) {
@@ -62,16 +64,10 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
                 будет запрещена */
                 horizontalScrolling = true;
-                //console.log('горизонтальная прокрутка')
             }
 
             if (horizontalScrolling) preventDefaultEvent(moveEvent);
 
-            currentMoveX = moveEvent.touches.item(0).pageX;
-            shift = currentMoveX - startMoveX;
-            cumulativeShift += shift;
-
-            //console.log(`shiftX: ${cumulativeShift}`)
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
 
@@ -116,8 +112,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 */
                 const deltaSrollY = currentScrollY - startScrollY;
                 cumulativeScrollY += deltaSrollY;
-
-                //console.log(`cumulativeScrollY: ${cumulativeScrollY}`)
             }
     
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
@@ -125,15 +119,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
             if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll * 2) {
                 verticalScrolling = true;
-                //console.log('вертикальная прокрутка')
-                //return;
 
-            } else if (currentScrollY !== startScrollY && horizontalScrolling) {
+            }/* else if (currentScrollY !== startScrollY && horizontalScrolling) {*/
                 /*Такое вряд ли случится, но на всякий случай отменим вертикальную
                 прокрутку*/
-                preventDefaultEvent(moveEvent);
-                //return;
-            }
+                /*preventDefaultEvent(moveEvent);
+            }*/
 
         } catch(e) {
             console.log('Slider Ошибка sliderTouchMoveHandler(): ' + e.name + ":" + e.message + "\n" + e.stack);
@@ -142,7 +133,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Завершаем работу. Передаём слайдеру скорость, которая была в последний момент
     function sliderTouchEndHandler() {
-        //console.log('end')
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});

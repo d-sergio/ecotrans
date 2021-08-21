@@ -47,19 +47,18 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
-        try{
-            const currentScrollY = moveEvent.touches[0].pageY;
-            const deltaSrollY = startScrollY - currentScrollY;
+        const currentScrollY = moveEvent.touches[0].pageY;
+        const deltaSrollY = startScrollY - currentScrollY;
 
+        try{
             if (verticalScrolling) {
-                unLockScroll();
+                scrollPage(deltaSrollY);
                 return;
             }
 
-            lockScroll();
-
-            //if (horizontalScrolling) lockScroll();
-
+            console.log('!!!')
+            preventDefaultEvent(moveEvent);
+            
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
             cumulativeShift += shift;
@@ -116,7 +115,6 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 прокрутку*/
                 /*preventDefaultEvent(moveEvent);
             }*/
-
         } catch(e) {
             console.log('Slider Ошибка sliderTouchMoveHandler(): ' + e.name + ":" + e.message + "\n" + e.stack);
         }
@@ -128,33 +126,31 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
 
-        unLockScroll();
-
         /*Если это был не вертикальный скролл страницы */
         if (callback !== undefined && callback !== null && !verticalScrolling) {
             callback(speed);
         }
     }
-/*
+
     function preventDefaultEvent(e) {
         if (e.cancelable) {
 
             e.preventDefault();
 
         } else {
-
+            
             //sliderTouchEndHandler();
         }
-    }*/
+    }
 }
-
+/*
 function lockScroll() {
     document.body.style.overflow = 'hidden';
 }
 
 function unLockScroll() {
     document.body.style.overflow = '';
-}
+}*/
 /*
 function getPixelRatio() {
     try{
@@ -163,3 +159,7 @@ function getPixelRatio() {
         /*Защита для build */
     /*}
 }*/
+
+function scrollPage(by) {
+    window.scrollBy(0, by);
+}

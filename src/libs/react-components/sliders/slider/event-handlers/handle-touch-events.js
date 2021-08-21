@@ -22,10 +22,10 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
     let shift = 0;  //К предыдущему слайду: shift > 0; К следующему слайду shift < 0
     let speed = 0;
 
-    const shiftToLockScroll = window.visualViewport.width * disablePageScroll * getPixelRatio();
+    const shiftToLockScroll = window.innerWidth * disablePageScroll / getPixelRatio();
     //console.log(`shiftToLockScroll ${shiftToLockScroll}`);
 
-    const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft) * getPixelRatio();
+    const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
     /*Горизонтальная прокрутка слайдера началась, потому что модуль cumulativeShift
     превысил disablePageScroll*/

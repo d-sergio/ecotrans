@@ -107,7 +107,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
             /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
             запрещена */
             //if (currentScrollY !== startScrollY && !horizontalScrolling) {
-            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll * 4) {
+            if (!horizontalScrolling && Math.abs(cumulativeScrollY) > shiftToLockScroll) {
                 verticalScrolling = true;
 
             }/* else if (currentScrollY !== startScrollY && horizontalScrolling) {*/

@@ -52,7 +52,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
         try{
             if (verticalScrolling) {
-                scrollPage(deltaSrollY);
+                if (Math.abs(deltaSrollY) > shiftToLockScroll) scrollPage(deltaSrollY);
                 return;
             }
 

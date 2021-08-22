@@ -74,7 +74,7 @@ function FormCallback(props) {
             </div>
 
             <div className={call}>
-                Или позвоните нам <a href={`tel:${config.phone}`}>+7(960)694-48-39</a>
+                Или позвоните нам <a href={`tel:${config.greenPhone}`}>{config.greenPhonePretty}</a>
             </div>
         </div>
     );

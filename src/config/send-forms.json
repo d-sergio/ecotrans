@@ -1,6 +1,6 @@
 {
-    "feedback": "http://localhost:3000/messages/feedback",
-    "service": "http://localhost:3000/messages/services",
-    "project": "http://localhost:3000/messages/projects",
-    "callback": "http://localhost:3000/messages/callback"
+    "feedback": "http://prostoil.beget.tech/messages/feedback",
+    "service": "http://prostoil.beget.tech/messages/services",
+    "project": "http://prostoil.beget.tech/messages/projects",
+    "callback": "http://prostoil.beget.tech/messages/callback"
 }

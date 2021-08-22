@@ -53,12 +53,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         const deltaSrollY = startScrollY - currentScrollY;
 
         try{
-            if (verticalScrolling && !horizontalScrolling) {
-                /*if (deltaSrollY > shiftToLockScroll) {
-                    scrollPage(deltaSrollY);
-                }*/
-                return;
-            }
+            if (verticalScrolling && !horizontalScrolling) return;
             
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -73,7 +68,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
                 будет запрещена */
                 horizontalScrolling = true;
-                preventDefaultEvent(moveEvent);
+                //preventDefaultEvent(moveEvent);
             }
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
@@ -153,7 +148,3 @@ function getPixelRatio() {
         /*Защита для build */
     /*}
 }*/
-
-function scrollPage(by) {
-    window.scrollBy(0, by);
-}

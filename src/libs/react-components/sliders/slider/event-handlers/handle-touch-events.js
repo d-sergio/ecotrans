@@ -47,6 +47,8 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     //Двигаем ленту слайдов
     function sliderTouchMoveHandler(moveEvent){
+        if (horizontalScrolling) preventDefaultEvent(moveEvent);
+
         const currentScrollY = moveEvent.touches.item(0).pageY;
         const deltaSrollY = startScrollY - currentScrollY;
 
@@ -135,7 +137,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     function preventDefaultEvent(e) {
         if (e.cancelable) {
-console.log('!')
+
             e.preventDefault();
 
         } else {

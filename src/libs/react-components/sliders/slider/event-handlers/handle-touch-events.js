@@ -51,13 +51,14 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         const deltaSrollY = startScrollY - currentScrollY;
 
         try{
+            preventDefaultEvent(moveEvent);
+
             if (verticalScrolling) {
                 if (Math.abs(deltaSrollY) > shiftToLockScroll) scrollPage(deltaSrollY);
                 return;
             }
 
             console.log('!!!')
-            preventDefaultEvent(moveEvent);
             
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;

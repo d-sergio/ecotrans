@@ -6,7 +6,7 @@ function CardTransportSmall() {
     const logo = <img src={img} alt='transportation_logo' style={{height: '60px'}}/>
 
     return(
-        <ServiceTemplateSmall logo={logo} serviceName={'Транспортирование'}/>
+        <ServiceTemplateSmall logo={logo} orderName={'Транспортирование'}/>
     );
 }
 

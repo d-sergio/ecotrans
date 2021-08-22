@@ -8,7 +8,7 @@ function CardTransportMobile() {
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={'Транспортирование'}
+            orderName={'Транспортирование'}
             toAnchor='#transportation'
         />
     );

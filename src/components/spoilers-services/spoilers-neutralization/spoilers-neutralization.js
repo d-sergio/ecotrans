@@ -54,7 +54,7 @@ function Neutralization() {
     );
 
     return(
-        <SpoilerServicesTemplate serviceName='neutralization' title={title} body={body}/>
+        <SpoilerServicesTemplate orderName='neutralization' title={title} body={body}/>
     );
 }
 

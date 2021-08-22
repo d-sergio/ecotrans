@@ -13,7 +13,7 @@ function CardMedicalMobile() {
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={'Медицинские отходы'}
+            orderName={'Медицинские отходы'}
             toAnchor='#medicalwaste'
         />
     );

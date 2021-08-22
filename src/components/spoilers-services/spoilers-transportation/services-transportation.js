@@ -47,7 +47,7 @@ function Transportation() {
     );
 
     return(
-        <SpoilerServicesTemplate serviceName='transportation' title={title} body={body}/>
+        <SpoilerServicesTemplate orderName='transportation' title={title} body={body}/>
     );
 }
 

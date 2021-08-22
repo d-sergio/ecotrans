@@ -7,10 +7,10 @@ import arrowPic from '../../../../static/images/spoiler/spoiler.svg';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import SpoilerFloat from '../../../libs/react-components/spoiler-float-icon';
 import ButtonOrder from '../../buttons/button-order/button-order';
-import ButtonOrderTraining from '../../buttons/button-order/button-order-training';
+import ButtonOrderProject from '../../buttons/button-order/button-order-project';
 
 /**
- * @param {String} serviceName - из какого блока сделан заказ:
+ * @param {String} orderName - из какого блока сделан заказ:
  * docs, medical, neutralization, training, transportation
  */
 function SpoilerServicesTemplate(props) {
@@ -43,9 +43,9 @@ function SpoilerServicesTemplate(props) {
             {props.body}
             <div className={buttonStyle}>
                 {
-                    props.training ?
-                    <ButtonOrderTraining mobile={mobileView}/>
-                    : <ButtonOrder  mobile={mobileView} serviceName={props.serviceName}/>
+                    props.project ?
+                    <ButtonOrderProject orderName={props.orderName} mobile={mobileView}/>
+                    : <ButtonOrder  mobile={mobileView} orderName={props.orderName}/>
                 }
             </div>
         </div>

@@ -8,7 +8,7 @@ function CardGreenMobile() {
     return(
         <ProjectsTemplateMobile
             logo={logo}
-            serviceName={'Зелёный телефон'}
+            orderName={'Зелёный телефон'}
             toAnchor='#greenphone'
         />
     );

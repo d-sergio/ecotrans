@@ -11,7 +11,7 @@ function CardMedicalSmall() {
     const logo = <img src={img} alt='medical_waste_logo' style={imgStyle}/>
 
     return(
-        <ServiceTemplateSmall logo={logo} serviceName={<div>Медицинские<br/>отходы</div>}/>
+        <ServiceTemplateSmall logo={logo} orderName={<div>Медицинские<br/>отходы</div>}/>
     );
 }
 

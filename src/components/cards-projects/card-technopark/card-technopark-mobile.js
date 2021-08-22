@@ -4,12 +4,12 @@ import img from '../../../../static/images/cards-projects/technopark.svg';
 
 function CardTechnoMobile() {
     const logo = <img src={img} alt='technopark_logo' style={{height: '65px'}}/>;
-    const serviceName = <div>Собственный<br/>экотехнопарк</div>
+    const orderName = <div>Собственный<br/>экотехнопарк</div>
     
     return(
         <ProjectsTemplateMobile
             logo={logo}
-            serviceName={serviceName}
+            orderName={orderName}
             toAnchor='#technopark'
         />
     );

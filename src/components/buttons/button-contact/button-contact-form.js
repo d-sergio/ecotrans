@@ -7,7 +7,7 @@ import ModalContactProject from '../../modal-contact-project';
  * 
  * Props:
  * @param {Boolean} mobile - мобильный вариант, если true.
- * @param {String} projectName - название проекта
+ * @param {String} orderName - название проекта
  */
 function ButtonContact(props) {
     const viewMode = props.mobile === true ? mobile: desktop;
@@ -34,7 +34,7 @@ function ButtonContact(props) {
                 key={key}
                 isOpen={isOpen}
                 closeModal={() => setOpen(false)}
-                projectName={props.projectName}
+                orderName={props.orderName}
             />
         </>
     );

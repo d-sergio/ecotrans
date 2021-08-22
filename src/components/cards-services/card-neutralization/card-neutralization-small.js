@@ -6,7 +6,7 @@ function CardNeutralSmall() {
     const logo = <img src={img} alt='neutralization_logo' style={{height: '64px'}}/>
 
     return(
-        <ServiceTemplateSmall logo={logo} serviceName={'Обезвреживание и утилизация'}/>
+        <ServiceTemplateSmall logo={logo} orderName={'Обезвреживание и утилизация'}/>
     );
 }
 

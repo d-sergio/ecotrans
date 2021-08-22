@@ -52,7 +52,7 @@ function MedicalWaste() {
     );
 
     return(
-        <SpoilerServicesTemplate serviceName='medical' title={title} body={body}/>
+        <SpoilerServicesTemplate orderName='medical' title={title} body={body}/>
     );
 }
 

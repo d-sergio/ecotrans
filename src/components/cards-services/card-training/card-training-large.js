@@ -4,13 +4,13 @@ import img from '../../../../static/images/cards-services/training.svg';
 
 function CardTrainingLarge() {
     const logo = <img src={img} alt='training_logo' style={{height: '80px'}}/>
-    const serviceName = <div>Обучение по обращению<br/>с отходами</div>
+    const orderName = <div>Обучение по обращению<br/>с отходами</div>
     const description = <div>Повышение квалификации<br/>и переподготовка персонала</div>
 
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={serviceName}
+            orderName={orderName}
             description={description}
             toAnchor='#training'
         />

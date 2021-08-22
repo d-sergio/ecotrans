@@ -16,7 +16,7 @@
     height: 136px;
 }
 
-.serviceName {
+.orderName {
     display: flex;    
     justify-content: center;
     align-items: center;

@@ -52,7 +52,7 @@ function Training() {
     );
 
     return(
-        <SpoilerServicesTemplate training={true} title={title} body={body}/>
+        <SpoilerServicesTemplate project={true} orderName='training' title={title} body={body}/>
     );
 }
 

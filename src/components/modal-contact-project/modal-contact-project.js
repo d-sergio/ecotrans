@@ -7,7 +7,7 @@ import postProjectForm from '../../send-form-callback/post-project-form';
 function ModalContactProject(props) {
     const [status, setStatus] = useState('order');
     const [formData, setFormData] = useState();
-    const [modal, setModal] = useState(<FormProjectContact formName={props.projectName} setFormData={setFormData}/>);
+    const [modal, setModal] = useState(<FormProjectContact formName={props.orderName} setFormData={setFormData}/>);
 
     useEffect(() => {
         if (formData) {
@@ -21,7 +21,7 @@ function ModalContactProject(props) {
     async function sendForm() {
         if (!formData) return;
         
-        const result = await postProjectForm(formData, props.projectName);
+        const result = await postProjectForm(formData, props.orderName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);

@@ -7,7 +7,7 @@ import postServiceForm from '../../send-form-callback/post-service-form';
 function ModalOrderService(props) {
     const [status, setStatus] = useState('order');
     const [formData, setFormData] = useState();
-    const [modal, setModal] = useState(<FormOrderService formName={props.serviceName} setFormData={setFormData}/>);
+    const [modal, setModal] = useState(<FormOrderService formName={props.orderName} setFormData={setFormData}/>);
 
     useEffect(() => {
         if (formData) {
@@ -21,7 +21,7 @@ function ModalOrderService(props) {
     async function sendForm() {
         if (!formData) return;
         
-        const result = await postServiceForm(formData, props.serviceName);
+        const result = await postServiceForm(formData, props.orderName);
 
         if (result) {
             console.log(`Ответ сервера: ${result.message}`);

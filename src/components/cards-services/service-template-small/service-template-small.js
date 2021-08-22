@@ -1,6 +1,6 @@
 import React from 'react';
 import {commonStyle} from '../service-template-common/service-template-common.module.css';
-import {small, image, serviceName} from './service-template-small.module.css';
+import {small, image, orderName} from './service-template-small.module.css';
 
 const styles = [small, commonStyle].join(" ");
 
@@ -8,7 +8,7 @@ const styles = [small, commonStyle].join(" ");
  * 
  * Props:
  * @param {Node} logo - элемент <img> с логотипом карточки
- * @param {String|Node} serviceName - название услуги
+ * @param {String|Node} orderName - название услуги
  */
 function CardServiceMobile(props) {
 
@@ -17,7 +17,7 @@ function CardServiceMobile(props) {
             <div className={image}>
                 {props.logo}
             </div>
-            <div className={serviceName}>{props.serviceName}</div>
+            <div className={orderName}>{props.orderName}</div>
         </div>
     );
 }

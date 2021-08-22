@@ -8,7 +8,7 @@ function CardTrainingMobile() {
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={'Обучение по обращению с отходами'}
+            orderName={'Обучение по обращению с отходами'}
             toAnchor='#training'
         />
     );

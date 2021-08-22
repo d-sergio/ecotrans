@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import {mobile, desktop} from './button-order.module.css';
 import {buttonsCommon} from '../common-buttons.module.css';
-import ModalCallback from '../../modal-callback';
 import ModalContactProject from '../../modal-contact-project';
 
 /**Кнопка Заказать
  * 
  * Props:
  * @param {Boolean} mobile - мобильный вариант, если true
- * @param {String} serviceName - название услуги:
+ * @param {String} orderName - название услуги:
  * docs, medical, neutralization, training, transportation
  */
 function ButtonOrder(props) {
@@ -32,10 +31,9 @@ function ButtonOrder(props) {
             
             <ModalContactProject
                 key={key}
-                projectName='training'
                 isOpen={isOpen}
                 closeModal={() => setOpen(false)}
-                serviceName={props.serviceName}
+                orderName={props.orderName}
             />
         </>
     );

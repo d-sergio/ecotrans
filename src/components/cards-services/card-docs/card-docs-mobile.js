@@ -8,7 +8,7 @@ function CardDocsMobile() {
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={'Экологическая документация'}
+            orderName={'Экологическая документация'}
             toAnchor='#docs'
         />
     );

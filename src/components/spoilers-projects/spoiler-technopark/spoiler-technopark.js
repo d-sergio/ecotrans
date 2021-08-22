@@ -95,7 +95,7 @@ function Technopark() {
             </div>
 
             <div className={buttonStyle}>
-                <ButtonContact mobile={mobileView} projectName='technopark'/>
+                <ButtonContact mobile={mobileView} orderName='technopark'/>
             </div>
 
         </div>

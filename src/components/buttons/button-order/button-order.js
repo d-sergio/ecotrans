@@ -7,7 +7,7 @@ import ModalOrderService from '../../modal-order-service';
  * 
  * Props:
  * @param {Boolean} mobile - мобильный вариант, если true
- * @param {String} serviceName - название услуги:
+ * @param {String} orderName - название услуги:
  * docs, medical, neutralization, training, transportation
  */
 function ButtonOrder(props) {
@@ -33,7 +33,7 @@ function ButtonOrder(props) {
                 key={key}
                 isOpen={isOpen}
                 closeModal={() => setOpen(false)}
-                serviceName={props.serviceName}
+                orderName={props.orderName}
             />
         </>
     );

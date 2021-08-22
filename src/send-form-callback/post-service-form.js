@@ -1,19 +1,11 @@
 import config from '../config/send-forms.json';
+import orders from '../config/orders.json';
 
-async function postServiceForm(form, serviceName) {
+async function postServiceForm(form, orderName) {
     const defaultName = 'Не указано';
 
-    const orders = {
-        docs: 'Экологическая документация',
-        medical: 'Сбор медицинских отходов',
-        neutralization: 'Утилизация и обезвреживание отходов',
-        training: 'Обучение по обращению с отходами',
-        transportation: 'Транспортирование отходов',
-        price: 'Уточнение стоимости'
-    };
-
     try{
-        form.append('serviceName', orders[serviceName] || defaultName);
+        form.append('orderName', orders[orderName] || defaultName);
 
         const response = await fetch(config.service,
             {

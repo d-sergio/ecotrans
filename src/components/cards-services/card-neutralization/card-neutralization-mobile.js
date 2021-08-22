@@ -8,7 +8,7 @@ function CardNeutralMobile() {
     return(
         <ServicesTemplateMobile
             logo={logo}
-            serviceName={'Обезвреживание и утилизация'}
+            orderName={'Обезвреживание и утилизация'}
             toAnchor='#neutralization'
         />
     );

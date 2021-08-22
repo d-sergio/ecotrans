@@ -6,7 +6,7 @@ function CardDocsSmall() {
     const logo = <img src={img} alt='docs_logo' style={{height: '59px'}}/>;
 
     return(
-        <ServiceTemplateSmall logo={logo} serviceName={'Экологическая документация'}/>
+        <ServiceTemplateSmall logo={logo} orderName={'Экологическая документация'}/>
     );
     
 }

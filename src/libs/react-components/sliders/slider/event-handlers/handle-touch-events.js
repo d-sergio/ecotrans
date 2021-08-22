@@ -51,14 +51,12 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         const deltaSrollY = startScrollY - currentScrollY;
 
         try{
-            preventDefaultEvent(moveEvent);
-
-            if (verticalScrolling) {
-                if (Math.abs(deltaSrollY) > shiftToLockScroll) scrollPage(deltaSrollY);
+            if (verticalScrolling && !horizontalScrolling) {
+                /*if (deltaSrollY > shiftToLockScroll) {
+                    scrollPage(deltaSrollY);
+                }*/
                 return;
             }
-
-            console.log('!!!')
             
             currentMoveX = moveEvent.touches.item(0).pageX;
             shift = currentMoveX - startMoveX;
@@ -73,6 +71,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
                 /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
                 будет запрещена */
                 horizontalScrolling = true;
+                preventDefaultEvent(moveEvent);
             }
             
             const targetMarginLeft = startMarginLeft + cumulativeShift;
@@ -126,6 +125,7 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
         window.removeEventListener('touchcancel', sliderTouchEndHandler);
         window.removeEventListener('touchend', sliderTouchEndHandler);
         window.removeEventListener('touchmove', sliderTouchMoveHandler, {passive: false});
+        window.removeEventListener('touchmove', preventDefaultEvent, {passive: false});
 
         /*Если это был не вертикальный скролл страницы */
         if (callback !== undefined && callback !== null && !verticalScrolling) {
@@ -135,11 +135,10 @@ export default function handleTouchEvents({carousel, viewport, callback, disable
 
     function preventDefaultEvent(e) {
         if (e.cancelable) {
-
+console.log('!')
             e.preventDefault();
 
         } else {
-            
             //sliderTouchEndHandler();
         }
     }

@@ -5,5 +5,5 @@
 
     opacity: 0; /*до инициализации координат кнопки*/
 
-    transition: bottom 0.2s;
+    /*transition: bottom 0.2s;*/
 }

@@ -20,7 +20,7 @@ function handleTouch({carousel, lockScroll, event}) {
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
     let startMoveX = event.touches.item(0).clientX;
-    const startMoveY = event.touches.item(0).clientY;
+    let startMoveY = event.touches.item(0).clientY;
 
     let cumulativeShiftX = 0;   //@2
     let cumulativeShiftY = 0;
@@ -67,7 +67,7 @@ function handleTouch({carousel, lockScroll, event}) {
         const currentMoveY = moveEvent.touches.item(0).clientY;
         const shiftY = startMoveY - currentMoveY;
         cumulativeShiftY += shiftY;
-        //startMoveY = currentMoveY;  //Последняя точка текущего движения становится стартовой для нового движения
+        startMoveY = currentMoveY;  //Последняя точка текущего движения становится стартовой для нового движения
         /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
         запрещена */
         if (!horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {

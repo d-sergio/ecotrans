@@ -30,7 +30,10 @@ function handleTouch({carousel, lockScroll, event}) {
     window.addEventListener('touchend', onTouchEnd, {once: true});
 
     function onTouchMove(moveEvent) {
-        if (verticalScrolling) return;
+        if (verticalScrolling) {
+            onTouchEnd();
+            return;
+        }
 
         if (horizontalScrolling) {
             preventDefaultEvent(moveEvent);

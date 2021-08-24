@@ -15,12 +15,15 @@ function handleTouch({carousel, lockScroll, event}) {
     if (!carousel) return;
 
     event.preventDefault();
-    lockPageScroll();
+    //lockPageScroll();
 
     //Внутренние параметры
     const viewport = carousel.parentNode;
     const shiftToLockScroll = window.innerWidth * lockScroll;   //#1
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
+
+    const firstClientY = event.touches[0].clientY;
+    const startScrollTop = document.documentElement.scrollTop;
 
     let startMoveX = event.touches[0].clientX;
     let startMoveY = event.touches[0].clientY;
@@ -37,13 +40,13 @@ function handleTouch({carousel, lockScroll, event}) {
 
     function onTouchMove(moveEvent) {
         if (verticalScrolling) {
-            onTouchUp();
-            //scrollPage(moveEvent);
+            //onTouchUp();
+            scrollPage(moveEvent);
             return;
         }
 
         if (horizontalScrolling) {
-            //preventDefaultEvent(moveEvent);
+            preventDefaultEvent();
             moveCarousel(moveEvent);
             return;
         }
@@ -62,6 +65,7 @@ function handleTouch({carousel, lockScroll, event}) {
             cumulativeShiftX += shiftX;
             startMoveX = currentMoveX;  //Последняя точка текущего движения становится стартовой для нового движения    
 
+            if (horizontalScrolling) return;
             /*Режим прокрутки слайдера. Вертикальная прокрутка страницы
             будет запрещена */
             if (!horizontalScrolling && Math.abs(cumulativeShiftX) >= shiftToLockScroll) {
@@ -77,6 +81,8 @@ function handleTouch({carousel, lockScroll, event}) {
         startMoveY = currentMoveY;  //Последняя точка текущего движения становится стартовой для нового движения
         /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
         запрещена */
+        if (verticalScrolling) return;
+
         if (!verticalScrolling && !horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {
             verticalScrolling = true;
         }
@@ -105,19 +111,24 @@ function handleTouch({carousel, lockScroll, event}) {
         }
     }
 
-    /*function scrollPage(moveEvent) {
+    function scrollPage(moveEvent) {
         if (!verticalScrolling) return;
-    }*/
-/*
-    function preventDefaultEvent(e) {
-        if (e.cancelable) {
-            e.preventDefault();
+
+        const currentMoveY = moveEvent.touches[0].clientY;
+        const shiftY = firstClientY - currentMoveY;
+
+        window.scrollTo(0, startScrollTop + shiftY);
+    }
+
+    function preventDefaultEvent() {
+        if (event.cancelable) {
+            event.preventDefault();
         } else {
             horizontalScrolling = false;
             verticalScrolling = true;
             console.log('InfinitySlider. handle-touch: невозможно предотвратить прокрутку страницы');
         }
-    }*/
+    }
 
     function lockPageScroll() {
         document.documentElement.style.overflow = 'hidden';
@@ -129,7 +140,7 @@ function handleTouch({carousel, lockScroll, event}) {
 
     //Завершаем работу
     function onTouchUp() {
-        unlockPageScroll();
+        //unlockPageScroll();
         window.removeEventListener('touchmove', onTouchMove, {passive: false});
     }
 }

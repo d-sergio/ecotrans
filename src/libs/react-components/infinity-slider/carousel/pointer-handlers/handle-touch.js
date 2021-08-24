@@ -1,4 +1,7 @@
 /**
+ * @1 shiftToLockScroll -Сдвиг, после которого блокируется скролл страницы или
+ * слайдера. lockScroll - коэффициент 0 до 1
+ * 
  * @2 Суммарный сдвиг с момента touchstart. Накапливается при каждом горизонтеальном
  * движении. При достижении lockScroll блокируется вертикальная прокрутка
  * стариницы и начинается прокрутка слайдера
@@ -17,7 +20,7 @@ function handleTouch({carousel, lockScroll, event}) {
     const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
 
     let startMoveX = event.touches.item(0).clientX;
-    let startMoveY = event.touches.item(0).clientY;
+    const startMoveY = event.touches.item(0).clientY;
 
     let cumulativeShiftX = 0;   //@2
     let cumulativeShiftY = 0;
@@ -64,7 +67,7 @@ function handleTouch({carousel, lockScroll, event}) {
         const currentMoveY = moveEvent.touches.item(0).clientY;
         const shiftY = startMoveY - currentMoveY;
         cumulativeShiftY += shiftY;
-        startMoveY = currentMoveY;  //Последняя точка текущего движения становится стартовой для нового движения
+        //startMoveY = currentMoveY;  //Последняя точка текущего движения становится стартовой для нового движения
         /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет
         запрещена */
         if (!horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {

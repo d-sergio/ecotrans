@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { carouselStyle } from './carousel.module.css';
 import createSlides from './create-slides/create-slides';
 import updateSlideWidth from './update-slide-width';
-import handleTouch from './pointer-handlers/handle-touch';
+import handleTouch from './pointer-handlers/handle-touch-old';
 
 /**
  * @1 Создать слайды

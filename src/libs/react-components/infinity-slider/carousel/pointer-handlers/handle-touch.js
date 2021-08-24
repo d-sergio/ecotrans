@@ -14,6 +14,7 @@
 function handleTouch({carousel, lockScroll, event}) {
     if (!carousel) return;
 
+    event.preventDefault();
     lockPageScroll();
 
     //Внутренние параметры

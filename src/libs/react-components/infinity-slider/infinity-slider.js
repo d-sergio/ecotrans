@@ -18,6 +18,7 @@ function InfinitySlider(props) {
                 <Carousel
                     currentPosition={currentPosition}
                     visible={props.visible}
+                    lockScroll={props.lockScroll}
                 >
                     {props.children}
                 </Carousel>
@@ -33,5 +34,6 @@ export default InfinitySlider;
 InfinitySlider.defaultProps = {
     prev: null,
     next: null,
-    visible: 4
+    visible: 2,
+    lockScroll: 0.0606
 };

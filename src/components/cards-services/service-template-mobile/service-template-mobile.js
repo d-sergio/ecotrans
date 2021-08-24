@@ -22,7 +22,7 @@ function ServicesTemplateMobile(props) {
             </div>
             <div className={orderName}>{props.orderName}</div>
             <ToAnchor to={props.toAnchor}>
-                <Link to='services'>
+                <Link to='/services'>
                     <ButtonChoose mobile={true}/>
                     </Link>
             </ToAnchor>

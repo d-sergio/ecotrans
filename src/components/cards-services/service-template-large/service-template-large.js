@@ -26,7 +26,7 @@ function ServicesTemplateLarge(props) {
                 <div className={description}>{props.description}</div>
             </div>
             <ToAnchor to={props.toAnchor}>
-                <Link to='services'>
+                <Link to='/services'>
                     <ButtonChoose/>
                 </Link>
             </ToAnchor>

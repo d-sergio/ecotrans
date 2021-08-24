@@ -2,18 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import { carouselStyle } from './carousel.module.css';
 import createSlides from './create-slides/create-slides';
 import updateSlideWidth from './update-slide-width';
-import handleTouch from './pointer-handlers/handle-touch-old';
+import handleTouch from './pointer-handlers/handle-touch';
 
 /**
- * @1 Создать слайды
- * @2 Адаптация размеров слайдов. Запускается после добавления слайдов
- * @3 Обработка touch-events
+ * #1 Создать слайды
+ * #2 Адаптация размеров слайдов. Запускается после добавления слайдов
+ * #3 Обработка touch-events
 */
 function Carousel(props) {
     const carouselRef = useRef();
     const [slides, setSlides] = useState();
 
-    useEffect(() => createSlides(setSlides, props), //@1
+    useEffect(() => createSlides(setSlides, props), //#1
     [props.currentPosition, props.visible]);
 
     useEffect(addListeners, [slides]);
@@ -22,10 +22,10 @@ function Carousel(props) {
     function addListeners() {
         if (!carouselRef.current) return;
 
-        updateSlides(); //@2
+        updateSlides(); //#2
         
-        window.addEventListener('resize', updateSlides);    //@2
-        carouselRef.current.addEventListener(               //@3
+        window.addEventListener('resize', updateSlides);    //#2
+        carouselRef.current.addEventListener(               //#3
             'touchstart', onTouchStart, {passive: false}
         );
 

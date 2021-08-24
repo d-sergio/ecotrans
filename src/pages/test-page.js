@@ -34,10 +34,10 @@ function TestPage() {
             <BlockProjects/>
             <div className={mainContainer}>
                 <InfinitySlider>
-                    <Cards.Ecologist mobile={mobileView}/>
-                    <Cards.License mobile={mobileView}/>
-                    <Cards.Technologies mobile={mobileView}/>
-                    <Cards.Training mobile={mobileView}/>
+                    <Cards.Ecologist key={mobileView} mobile={mobileView}/>
+                    <Cards.License key={mobileView} mobile={mobileView}/>
+                    <Cards.Technologies key={mobileView} mobile={mobileView}/>
+                    <Cards.Training key={mobileView} mobile={mobileView}/>
                 </InfinitySlider>
             </div>
             <BlockCost/>

@@ -3,6 +3,7 @@ import { carouselStyle } from './carousel.module.css';
 import createSlides from './create-slides/create-slides';
 import updateSlideWidth from './update-slide-width';
 import handleTouch from './pointer-handlers/handle-touch';
+import handleMouse from './pointer-handlers/handle-mouse';
 
 /**
  * #1 Создать слайды
@@ -52,8 +53,16 @@ function Carousel(props) {
         });
     }
 
+    function onMouseDown(event) {
+        handleMouse({
+            carousel: carouselRef.current,
+            event: event
+        });
+    }
+
     return(
         <div
+            onMouseDown={onMouseDown}
             ref={carouselRef}
             className={carouselStyle}
         >

@@ -46,7 +46,7 @@ function handleTouch({carousel, lockScroll, event}) {
         }
 
         if (horizontalScrolling) {
-            preventDefaultEvent();
+            //preventDefaultEvent();
             moveCarousel(moveEvent);
             return;
         }
@@ -117,10 +117,10 @@ function handleTouch({carousel, lockScroll, event}) {
         const currentMoveY = moveEvent.touches[0].clientY;
         const shiftY = firstClientY - currentMoveY;
 
-        window.scrollTo(0, startScrollTop + shiftY);
+        requestAnimationFrame(() => window.scrollTo(0, startScrollTop + shiftY));
     }
 
-    function preventDefaultEvent() {
+    /*function preventDefaultEvent() {
         if (event.cancelable) {
             event.preventDefault();
         } else {
@@ -128,15 +128,15 @@ function handleTouch({carousel, lockScroll, event}) {
             verticalScrolling = true;
             console.log('InfinitySlider. handle-touch: невозможно предотвратить прокрутку страницы');
         }
-    }
-
+    }*/
+/*
     function lockPageScroll() {
         document.documentElement.style.overflow = 'hidden';
     }
 
     function unlockPageScroll() {
         document.documentElement.style.overflow = '';
-    }
+    }*/
 
     //Завершаем работу
     function onTouchUp() {

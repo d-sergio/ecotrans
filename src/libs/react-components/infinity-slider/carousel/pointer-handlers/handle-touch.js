@@ -20,7 +20,7 @@ function handleTouch({carousel, lockScroll, event}) {
     Причина:
     Предотвращение событий по умолчанию touchmove работает не во всех браузерах
     или не совсем так, как ожидается.*/
-    event.preventDefault();
+    //event.preventDefault();
 
     //Внутренние параметры
     const viewport = carousel.parentNode;   //carousel должна быть прямым потомком viewport
@@ -45,7 +45,8 @@ function handleTouch({carousel, lockScroll, event}) {
 
     function onTouchMove(moveEvent) {
         if (verticalScrolling) {    //Начался вертикальный скролл
-            scrollPage(moveEvent);
+            //scrollPage(moveEvent);
+            onTouchUp();
             return;                 //Остальное пропускаем
         }
 
@@ -72,6 +73,11 @@ function handleTouch({carousel, lockScroll, event}) {
             /*Режим прокрутки слайдера. Вертикальная прокрутка страницы будет запрещена */
             if (!horizontalScrolling && Math.abs(cumulativeShiftX) >= shiftToLockScroll) {
                 horizontalScrolling = true;
+                const visibleHeight = window.visualViewport ?
+                    window.visualViewport.height
+                    : document.documentElement.clientHeight;
+                document.documentElement.style.height = visibleHeight + 'px';
+                document.documentElement.style.overflow = 'hidden';
             }
         }
     }
@@ -111,6 +117,7 @@ function handleTouch({carousel, lockScroll, event}) {
                 if (targetMarginLeft <= 0 && targetMarginLeft >= maxCarouselPosition) {
                     carousel.style.marginLeft = targetMarginLeft + 'px';
                 }
+
             });
         } catch(e) {
             console.log('InfinitySlider Ошибка moveCarousel(): ' + e.name + ":" + e.message + "\n" + e.stack);
@@ -137,6 +144,8 @@ function handleTouch({carousel, lockScroll, event}) {
     //Завершение работы
     function onTouchUp() {
         window.removeEventListener('touchmove', onTouchMove, {passive: false});
+        document.documentElement.style.height = '';
+        document.documentElement.style.overflow = '';
     }
 }
 

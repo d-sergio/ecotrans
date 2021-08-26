@@ -93,8 +93,6 @@ function handleTouch({carousel, lockScroll, event}) {
     function moveCarousel(moveEvent) {
         if (!horizontalScrolling || verticalScrolling) return;
 
-        moveEvent.preventDefault();
-
         try{
             requestAnimationFrame(() => {
                 const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
@@ -111,7 +109,7 @@ function handleTouch({carousel, lockScroll, event}) {
 
                 //Проверить допустимые границы движения ленты слайдов
                 if (targetMarginLeft <= 0 && targetMarginLeft >= maxCarouselPosition) {
-                            carousel.style.marginLeft = targetMarginLeft + 'px';
+                    carousel.style.marginLeft = targetMarginLeft + 'px';
                 }
             });
         } catch(e) {
@@ -121,7 +119,7 @@ function handleTouch({carousel, lockScroll, event}) {
 
     /**Скролл страницы */
     function scrollPage(moveEvent) {
-        if (!verticalScrolling) return;moveEvent.preventDefault();
+        if (!verticalScrolling) return;
 
         requestAnimationFrame(() => {
             const currentY = moveEvent.touches[0].clientY;
@@ -129,10 +127,10 @@ function handleTouch({carousel, lockScroll, event}) {
 
             window.scrollTo(0, startScrollTop + shiftY)
             //Прокрутка в цикле для плавности
-            /*for (let i = 1; i <= Math.abs(shiftY); i++){
+            for (let i = 1; i <= Math.abs(shiftY); i++){
                 const factorX = shiftY > 0 ? 1 : -1;    //вверх или вниз?
                 window.scrollTo(0, startScrollTop + i * factorX);
-            }*/
+            }
         });
     }
 

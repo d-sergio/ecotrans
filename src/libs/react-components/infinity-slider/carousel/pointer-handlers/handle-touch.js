@@ -77,7 +77,7 @@ function handleTouch({carousel, lockScroll, event}) {
             /*Режим прокрутки слайдера. Вертикальная прокрутка страницы будет запрещена */
             if (!horizontalScrolling && Math.abs(cumulativeShiftX) >= shiftToLockScroll) {
                 horizontalScrolling = true;
-                lockPageScroll();
+                //lockPageScroll();
             }
         }
     }
@@ -99,6 +99,11 @@ function handleTouch({carousel, lockScroll, event}) {
     function moveCarousel(moveEvent) {
         if (!horizontalScrolling || verticalScrolling) return;
 
+        const currentScrollTop = document.documentElement.scrollTop;
+        if (currentScrollTop !== startScrollTop) {
+            onTouchUp();
+        }
+        
         try{
             requestAnimationFrame(() => {
                 const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
@@ -106,8 +111,7 @@ function handleTouch({carousel, lockScroll, event}) {
 
                 const currentX = moveEvent.touches[0].clientX;
                 const shiftX = currentX - startX;
-                startX = currentX;  //Последняя точка текущего движения становится стартовой для нового движения    
-
+                startX = currentX;  //Последняя точка текущего движения становится стартовой для нового движения
                 
                 const targetMarginLeft = currentMarginLeft + shiftX;
                 const carouselWidth = carousel.offsetWidth;
@@ -123,7 +127,7 @@ function handleTouch({carousel, lockScroll, event}) {
             console.log('InfinitySlider Ошибка moveCarousel(): ' + e.name + ":" + e.message + "\n" + e.stack);
         }
     }
-
+/*
     function lockPageScroll() {
         window.scrollTo(0, startScrollTop);
         document.documentElement.style.maxHeight = visibleHeight + 'px';
@@ -135,29 +139,29 @@ function handleTouch({carousel, lockScroll, event}) {
         document.documentElement.style.height = '';
         document.documentElement.style.maxHeight = '';
         document.documentElement.style.overflow = '';
-    }
+    }*/
 
     /**Скролл страницы */
-    function scrollPage(moveEvent) {
+    /*function scrollPage(moveEvent) {
         if (!verticalScrolling) return;
 
         requestAnimationFrame(() => {
             const currentY = moveEvent.touches[0].clientY;
-            const shiftY = firstClientY - currentY;
+            const shiftY = firstClientY - currentY;*/
 
             //window.scrollTo(0, startScrollTop + shiftY)
             //Прокрутка в цикле для плавности
-            for (let i = 1; i <= Math.abs(shiftY); i++){
+            /*for (let i = 1; i <= Math.abs(shiftY); i++){
                 const factorX = shiftY > 0 ? 1 : -1;    //вверх или вниз?
                 window.scrollTo(0, startScrollTop + i * factorX);
             }
         });
-    }
+    }*/
 
     //Завершение работы
     function onTouchUp() {
         window.removeEventListener('touchmove', onTouchMove, {passive: false});
-        unlockPageScroll();
+        //unlockPageScroll();
     }
 }
 

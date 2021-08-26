@@ -1,4 +1,5 @@
 .carouselStyle{
     display: inline-flex;
     user-select: none;
+    scroll-behavior: smooth;
 }

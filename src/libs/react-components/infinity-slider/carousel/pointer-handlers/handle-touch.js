@@ -121,20 +121,18 @@ function handleTouch({carousel, lockScroll, event}) {
 
     /**Скролл страницы */
     function scrollPage(moveEvent) {
-        if (!verticalScrolling) return;
-
-        moveEvent.preventDefault();
+        if (!verticalScrolling) return;moveEvent.preventDefault();
 
         requestAnimationFrame(() => {
             const currentY = moveEvent.touches[0].clientY;
             const shiftY = firstClientY - currentY;
 
-            //window.scrollTo(0, startScrollTop + shiftY)
+            window.scrollTo(0, startScrollTop + shiftY)
             //Прокрутка в цикле для плавности
-            for (let i = 1; i <= Math.abs(shiftY); i++){
+            /*for (let i = 1; i <= Math.abs(shiftY); i++){
                 const factorX = shiftY > 0 ? 1 : -1;    //вверх или вниз?
                 window.scrollTo(0, startScrollTop + i * factorX);
-            }
+            }*/
         });
     }
 

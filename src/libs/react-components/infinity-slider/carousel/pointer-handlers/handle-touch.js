@@ -93,6 +93,8 @@ function handleTouch({carousel, lockScroll, event}) {
     function moveCarousel(moveEvent) {
         if (!horizontalScrolling || verticalScrolling) return;
 
+        moveEvent.preventDefault();
+
         try{
             requestAnimationFrame(() => {
                 const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
@@ -120,6 +122,8 @@ function handleTouch({carousel, lockScroll, event}) {
     /**Скролл страницы */
     function scrollPage(moveEvent) {
         if (!verticalScrolling) return;
+
+        moveEvent.preventDefault();
 
         requestAnimationFrame(() => {
             const currentY = moveEvent.touches[0].clientY;

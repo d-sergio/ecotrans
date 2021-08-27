@@ -22,16 +22,16 @@ function handleTouch({carousel, lockScroll, event}) {
     или не совсем так, как ожидается.*/
     //event.preventDefault();
 
-    const visibleHeight = window.visualViewport ?
+    /*const visibleHeight = window.visualViewport ?
         window.visualViewport.height
-        : document.documentElement.clientHeight;
+        : document.documentElement.clientHeight;*/
 
     //Внутренние параметры
     const viewport = carousel.parentNode;   //carousel должна быть прямым потомком viewport
     const shiftToLockScroll = window.innerWidth * lockScroll;   //#1
     //const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);   //начальный сдвиг carousel
 
-    const firstClientY = event.touches[0].clientY;  //начальное положение указателя на момент touchstart
+    //const firstClientY = event.touches[0].clientY;  //начальное положение указателя на момент touchstart
     const startScrollTop = document.documentElement.scrollTop;  //на момент touchstart
 
     let startX = event.touches[0].clientX;  //изменяемые значения, координаты

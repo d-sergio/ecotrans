@@ -19,7 +19,7 @@ function Address() {
             <a target='_blank' href={config.openstreetmap}>
                 <div className={line}>
                     <img src={addressPic} alt="address"/>
-                    <p>Россия, г. Курск, проспект Ленинского комсомола 1Б</p>
+                    <p>Россия, г. Курск, проспект Ленинского комсомола 1Б, офис 17</p>
                 </div>
             </a>
 
@@ -37,7 +37,7 @@ function Address() {
 
             <div className={line}>
                 <img src={clockPic} alt="clock"/>
-                <p>с 09.00 до 18.00</p>
+                <p>с 09.00 до 17.00</p>
             </div>
 
             <div className={title}>

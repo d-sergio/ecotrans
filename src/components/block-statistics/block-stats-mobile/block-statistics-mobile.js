@@ -5,9 +5,9 @@ import Cards from '../../cards-statistics';
 const cards = [
     <Cards.DangerClass mobile={true} key='CardStatMobileDangerClass'/>,
     <Cards.TenYears mobile={true} key='CardStatMobileTenYears'/>,
-    <Cards.Tko mobile={true} key='CardStatMobileTko'/>,
+    <Cards.MedicalWaste mobile={true} key='CardStatMobileMedicalWaste'/>,
     <Cards.WasteClass mobile={true} key='CardStatMobileWasteClass'/>,
-    <Cards.MedicalWaste mobile={true} key='CardStatMobileMedicalWaste'/>
+    <Cards.Tko mobile={true} key='CardStatMobileTko'/>
 ];
 
 const visible = {

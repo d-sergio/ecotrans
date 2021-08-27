@@ -8,9 +8,9 @@ import {freezeContainer, marginBottom} from './block-stats-desktop.module.css';
 const cards = [
     <Cards.TenYears key='CardStatTenYears'/>,
     <Cards.DangerClass key='CardStatDangerClass'/>,
-    <Cards.Tko key='CardStatTko'/>,
+    <Cards.MedicalWaste key='CardStatMedicalWaste'/>,
     <Cards.WasteClass key='CardStatWasteClass'/>,
-    <Cards.MedicalWaste key='CardStatMedicalWaste'/>
+    <Cards.Tko key='CardStatTko'/>
 ];
 
 const visible = {

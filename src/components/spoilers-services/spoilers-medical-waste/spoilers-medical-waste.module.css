@@ -1,0 +1,4 @@
+.li{
+    list-style: disc inside;
+    list-style-image: url('/images/services-spoilers/list-marker.svg');
+}

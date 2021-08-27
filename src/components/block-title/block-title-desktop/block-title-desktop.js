@@ -10,7 +10,7 @@ function TitleDesktop() {
     return(
         <section className={containerStyle}>
             <div className={text}>
-                <p className={about}>Транспортировка, утилизация и переработка отходов</p>
+                <p className={about}>Транспортировка, утилизация и обезвреживание отходов</p>
                 <h1 className={ecotrans}>ЭКОТРАНС</h1>
                 <p className={waste}>Отходы - это не мусор</p>
                 <Buttons.Contact.FormDesktop orderName='contact'/>

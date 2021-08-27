@@ -4,11 +4,11 @@ import {green, greenDesktop, greenMobile, paragraph, imageRight, button} from '.
 import pic from '../../../../static/images/spoilers-projects/green-phone.png';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import useMediaQuery from '../../../libs/react/react-hooks/use-media-query';
-import config from '../../../config/config-media-queries.json';
+import configMedia from '../../../config/config-media-queries.json';
 import ButtonContact from '../../buttons/button-contact/button-contact-phone';
 
 function GreenPhone() {
-    const mobileView = useMediaQuery(config.app);
+    const mobileView = useMediaQuery(configMedia.app);
 
     const paragraphStyle = [mainContainer, paragraph].join(" ");
     const greenDeskStyle = [green, greenDesktop].join(" ");
@@ -57,13 +57,13 @@ function GreenPhone() {
 
                 <div className={greenDeskStyle}>
                     Наш телефон работает каждые понедельник, среду и пятницу<br/>
-                    с 10.00 до 18.00 по номеру 89606948939
+                    с 09.00 до 17.00 по номеру +7 (960) 694 - 89 - 39
                 </div>
             </div>
 
             <div className={greenMobStyle}>
                 Наш телефон работает каждые понедельник, среду и пятницу<br/>
-                с 10.00 до 18.00 по номеру 89606948939
+                с 09.00 до 17.00 по номеру +7 (960) 694 - 89 - 39
             </div>
 
             <div className={paragraphStyle}>

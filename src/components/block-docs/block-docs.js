@@ -6,6 +6,15 @@ import {paragraph} from '../../common-styles/paragraph.module.css';
 import PictureAndText from '../../libs/react-components/picture-and-text';
 import docPic from '../../../static/images/page-clients/file.svg';
 
+/*              
+    <a
+        target='_blank'
+        href='/docs/сертификат эксперта с 05.07.21 по 04.07.24.pdf'
+        className={docCardStyle}>
+        <PictureAndText.Bottom image={docPic} text={expert}/>
+    </a>
+*/
+
 /**Наша документация (Страница Клиентам) */
 function BlockDocs() {
 
@@ -19,7 +28,7 @@ function BlockDocs() {
 
     const sert50001 = 
         <div className={docTextStyle}>
-            Сертификат исо 50001 (05.07.21)<br/>с приложением-2 (стр 1)
+            Сертификат исо 50001 (05.07.21)<br/>с приложением-2
         </div>
 
     const license = 
@@ -67,9 +76,9 @@ function BlockDocs() {
             <div className={files}>
                 <a
                     target='_blank'
-                    href='/docs/санитарно-эпидем. заключение от 29.11.18-2 (стр1).pdf'
+                    href='/docs/Лицензия на сбор отходов III IV классов опасности, транспортирование I - VI классов опасности обезвреживание отходов III IV классов опасности.pdf'
                     className={docCardStyle}>
-                    <PictureAndText.Bottom image={docPic} text={conclusion291118_2}/>
+                    <PictureAndText.Bottom image={docPic} text={license}/>
                 </a>
 
                 <a
@@ -81,9 +90,9 @@ function BlockDocs() {
 
                 <a
                     target='_blank'
-                    href='/docs/Лицензия на сбор отходов III IV классов опасности, транспортирование I - VI классов опасности обезвреживание отходов III IV классов опасности.pdf'
+                    href='/docs/санитарно-эпидем. заключение от 29.11.18-2 (стр1).pdf'
                     className={docCardStyle}>
-                    <PictureAndText.Bottom image={docPic} text={license}/>
+                    <PictureAndText.Bottom image={docPic} text={conclusion291118_2}/>
                 </a>
 
                 <a
@@ -114,12 +123,6 @@ function BlockDocs() {
                     <PictureAndText.Bottom image={docPic} text={sert9001}/>
                 </a>
 
-                <a
-                    target='_blank'
-                    href='/docs/сертификат эксперта с 05.07.21 по 04.07.24.pdf'
-                    className={docCardStyle}>
-                    <PictureAndText.Bottom image={docPic} text={expert}/>
-                </a>
             </div>
 
             <p className={textStyle}>

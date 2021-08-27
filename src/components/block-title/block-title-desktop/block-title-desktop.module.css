@@ -42,7 +42,7 @@
 }
 
 /*Уменьшить шрифты*/
-@media screen and (min-width: 691px) and (max-width: 900px) {
+@media screen and (min-width: 720px) and (max-width: 900px) {
     .ecotrans{
         font-size: 4rem;
         line-height: 4.86rem;
@@ -60,7 +60,7 @@
 }
 
 /*Уменьшить шрифты*/
-@media screen and (min-width: 631px) and (max-width: 690px) {
+@media screen and (min-width: 631px) and (max-width: 719px) {
     .ecotrans{
         font-size: 3.5rem;
         line-height: 4.25rem;

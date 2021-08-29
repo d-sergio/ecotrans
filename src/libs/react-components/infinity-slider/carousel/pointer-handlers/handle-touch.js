@@ -41,34 +41,34 @@ function handleTouch({carousel, lockScroll, event}) {
     let cumulativeShiftY = 0;
     
     let horizontalScrolling = false;    //#3
-    let verticalScrolling = false;  //#4
+    //let verticalScrolling = false;  //#4
 
     window.addEventListener('touchmove', onTouchMove, {passive: false});
     window.addEventListener('touchcancel', onTouchUp, {once: true});
     window.addEventListener('touchend', onTouchUp, {once: true});
 
     function onTouchMove(moveEvent) {
-        if (verticalScrolling) {    //Начался вертикальный скролл
+        /*if (verticalScrolling) {    //Начался вертикальный скролл
             //scrollPage(moveEvent);
             onTouchUp();
             return;                 //Остальное пропускаем
-        }
+        }*/
 
         if (horizontalScrolling) {  //Началась прокрутка слайдера
             moveCarousel(moveEvent);
             return;                 //Остальное пропускаем
         }
         
-        if (!verticalScrolling && !horizontalScrolling) {   //надо выяснить, что делает пользователь
+        if (/*!verticalScrolling && */!horizontalScrolling) {   //надо выяснить, что делает пользователь
             calcCumulativeShiftX(moveEvent);                //листает слайдер?
-            calcCumulativeShiftY(moveEvent);                //скроллит страницу?
+            //calcCumulativeShiftY(moveEvent);                //скроллит страницу?
             return;
         }
     }
 
     /**Суммарный горизонтальный сдвиг */
     function calcCumulativeShiftX(moveEvent) {
-        if (!verticalScrolling) {
+        //if (!verticalScrolling) {
             const currentX = moveEvent.touches[0].clientX;
             const shiftX = currentX - startX;
             cumulativeShiftX += shiftX; //Суммарный горизонтальный сдвиг
@@ -79,25 +79,25 @@ function handleTouch({carousel, lockScroll, event}) {
                 horizontalScrolling = true;
                 //lockPageScroll();
             }
-        }
+        //}
     }
 
     /**Суммарный вертикальный сдвиг */
-    function calcCumulativeShiftY(moveEvent) {
+    /*function calcCumulativeShiftY(moveEvent) {
         const currentY = moveEvent.touches[0].clientY;
         const shiftY = startY - currentY;
         cumulativeShiftY += shiftY; //Суммарный вертикальный сдвиг
-        startY = currentY;  //Последняя точка текущего движения становится стартовой для нового движения
+        startY = currentY;*/  //Последняя точка текущего движения становится стартовой для нового движения
 
         /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет запрещена */
-        if (!verticalScrolling && !horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {
+        /*if (!verticalScrolling && !horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {
             verticalScrolling = true;
         }
-    }
+    }*/
 
     //Двигаем ленту слайдов
     function moveCarousel(moveEvent) {
-        if (!horizontalScrolling || verticalScrolling) return;
+        if (!horizontalScrolling/* || verticalScrolling*/) return;
 
         const currentScrollTop = document.documentElement.scrollTop;
         if (currentScrollTop !== startScrollTop) {

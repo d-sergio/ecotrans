@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {container} from './scroll-up.module.css';
+import { container } from './scroll-up.module.css';
 import Animation from '../../animate/animate';
 import timeFunc from '../../animate/time-functions/slider-time-functions';
 import changeJsProperty from '../../animate/draw-functions/change-js-property';

@@ -10,7 +10,7 @@ function Docs() {
     const greenMobStyle = [green, greenMobile].join(" ");
 
     const title = (
-        <>Эколог на предприятии</>
+        <>Экологическая документация</>
     );
 
     const body = (

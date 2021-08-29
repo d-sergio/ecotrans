@@ -16,9 +16,7 @@ function Layout(props) {
 
     const mobileView = useMediaQuery(config.app);
 
-    const footerView = useMediaQuery(config.footer);
-
-    if (mobileView === undefined || footerView === undefined) return null;
+    if (mobileView === undefined) return null;
 
     return(
         <div className={wrapper}>
@@ -45,7 +43,7 @@ function Layout(props) {
 
             </div>
 
-            <footer><Footer mobile={footerView}/></footer>
+            <footer><Footer/></footer>
             
         </div>
     );

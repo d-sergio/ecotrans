@@ -14,24 +14,10 @@
 function handleTouch({carousel, lockScroll, event}) {
     if (!carousel) return;
 
-    /*Все события по умолчанию предотвращаются, а скролл страницы осуществляется
-    через scrollPage().
-
-    Причина:
-    Предотвращение событий по умолчанию touchmove работает не во всех браузерах
-    или не совсем так, как ожидается.*/
-    //event.preventDefault();
-
-    /*const visibleHeight = window.visualViewport ?
-        window.visualViewport.height
-        : document.documentElement.clientHeight;*/
-
     //Внутренние параметры
     const viewport = carousel.parentNode;   //carousel должна быть прямым потомком viewport
     const shiftToLockScroll = window.innerWidth * lockScroll;   //#1
-    //const startMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);   //начальный сдвиг carousel
 
-    //const firstClientY = event.touches[0].clientY;  //начальное положение указателя на момент touchstart
     const startScrollTop = document.documentElement.scrollTop;  //на момент touchstart
 
     let startX = event.touches[0].clientX;  //изменяемые значения, координаты
@@ -41,34 +27,33 @@ function handleTouch({carousel, lockScroll, event}) {
     let cumulativeShiftY = 0;
     
     let horizontalScrolling = false;    //#3
-    //let verticalScrolling = false;  //#4
+    let verticalScrolling = false;  //#4
 
     window.addEventListener('touchmove', onTouchMove, {passive: false});
     window.addEventListener('touchcancel', onTouchUp, {once: true});
     window.addEventListener('touchend', onTouchUp, {once: true});
 
     function onTouchMove(moveEvent) {
-        /*if (verticalScrolling) {    //Начался вертикальный скролл
-            //scrollPage(moveEvent);
+        if (verticalScrolling) {    //Начался вертикальный скролл
             onTouchUp();
             return;                 //Остальное пропускаем
-        }*/
+        }
 
         if (horizontalScrolling) {  //Началась прокрутка слайдера
             moveCarousel(moveEvent);
             return;                 //Остальное пропускаем
         }
         
-        if (/*!verticalScrolling && */!horizontalScrolling) {   //надо выяснить, что делает пользователь
+        if (!verticalScrolling && !horizontalScrolling) {   //надо выяснить, что делает пользователь
             calcCumulativeShiftX(moveEvent);                //листает слайдер?
-            //calcCumulativeShiftY(moveEvent);                //скроллит страницу?
+            calcCumulativeShiftY(moveEvent);                //скроллит страницу?
             return;
         }
     }
 
     /**Суммарный горизонтальный сдвиг */
     function calcCumulativeShiftX(moveEvent) {
-        //if (!verticalScrolling) {
+        if (!verticalScrolling) {
             const currentX = moveEvent.touches[0].clientX;
             const shiftX = currentX - startX;
             cumulativeShiftX += shiftX; //Суммарный горизонтальный сдвиг
@@ -77,27 +62,26 @@ function handleTouch({carousel, lockScroll, event}) {
             /*Режим прокрутки слайдера. Вертикальная прокрутка страницы будет запрещена */
             if (!horizontalScrolling && Math.abs(cumulativeShiftX) >= shiftToLockScroll) {
                 horizontalScrolling = true;
-                //lockPageScroll();
             }
-        //}
+        }
     }
 
     /**Суммарный вертикальный сдвиг */
-    /*function calcCumulativeShiftY(moveEvent) {
+    function calcCumulativeShiftY(moveEvent) {
         const currentY = moveEvent.touches[0].clientY;
         const shiftY = startY - currentY;
         cumulativeShiftY += shiftY; //Суммарный вертикальный сдвиг
-        startY = currentY;*/  //Последняя точка текущего движения становится стартовой для нового движения
+        startY = currentY;  //Последняя точка текущего движения становится стартовой для нового движения
 
         /*Режим вертикальной прокрутки страницы. Прокрутка слайдера будет запрещена */
-        /*if (!verticalScrolling && !horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {
+        if (!verticalScrolling && !horizontalScrolling && Math.abs(cumulativeShiftY) > shiftToLockScroll) {
             verticalScrolling = true;
         }
-    }*/
+    }
 
     //Двигаем ленту слайдов
     function moveCarousel(moveEvent) {
-        if (!horizontalScrolling/* || verticalScrolling*/) return;
+        if (!horizontalScrolling || verticalScrolling) return;
 
         const currentScrollTop = document.documentElement.scrollTop;
         if (currentScrollTop !== startScrollTop) {
@@ -107,7 +91,6 @@ function handleTouch({carousel, lockScroll, event}) {
         try{
             requestAnimationFrame(() => {
                 const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
-                //calcCumulativeShiftX(moveEvent);
 
                 const currentX = moveEvent.touches[0].clientX;
                 const shiftX = currentX - startX;
@@ -127,41 +110,10 @@ function handleTouch({carousel, lockScroll, event}) {
             console.log('InfinitySlider Ошибка moveCarousel(): ' + e.name + ":" + e.message + "\n" + e.stack);
         }
     }
-/*
-    function lockPageScroll() {
-        window.scrollTo(0, startScrollTop);
-        document.documentElement.style.maxHeight = visibleHeight + 'px';
-        document.documentElement.style.height = visibleHeight + 'px';
-        document.documentElement.style.overflow = 'hidden';
-    }
-
-    function unlockPageScroll() {
-        document.documentElement.style.height = '';
-        document.documentElement.style.maxHeight = '';
-        document.documentElement.style.overflow = '';
-    }*/
-
-    /**Скролл страницы */
-    /*function scrollPage(moveEvent) {
-        if (!verticalScrolling) return;
-
-        requestAnimationFrame(() => {
-            const currentY = moveEvent.touches[0].clientY;
-            const shiftY = firstClientY - currentY;*/
-
-            //window.scrollTo(0, startScrollTop + shiftY)
-            //Прокрутка в цикле для плавности
-            /*for (let i = 1; i <= Math.abs(shiftY); i++){
-                const factorX = shiftY > 0 ? 1 : -1;    //вверх или вниз?
-                window.scrollTo(0, startScrollTop + i * factorX);
-            }
-        });
-    }*/
 
     //Завершение работы
     function onTouchUp() {
         window.removeEventListener('touchmove', onTouchMove, {passive: false});
-        //unlockPageScroll();
     }
 }
 

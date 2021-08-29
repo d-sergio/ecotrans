@@ -16,4 +16,6 @@
     background-color: rgba(196, 196, 196, 0.7);
     
     cursor: default;
+
+    overflow: auto;
 }

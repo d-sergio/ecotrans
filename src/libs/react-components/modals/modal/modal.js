@@ -26,7 +26,7 @@ function Modal(props) {
     useEffect(initialize, []);
 
     useEffect(animateModal, [props.isOpen]);
-    useEffect(preventScroll, [props.isOpen]);
+    useEffect(disablePageScrolling, [props.isOpen]);
 
     /**Инициализация */
     function initialize() {
@@ -71,8 +71,37 @@ function Modal(props) {
         }
     }
 
+    /**Надо ли запретить прокрутку страницы? */
+    function disablePageScrolling() {
+        if (props.isOpen && !scrollPrevented.current) {
+            scrollPrevented.current = true;
+            lockPageScroll();
+
+        } else if (!props.isOpen && scrollPrevented.current) {
+            scrollPrevented.current = false;
+            unlockPageScroll();
+        }
+
+        return () => unlockPageScroll();
+    }
+
+    /**Запретить прокрутку страницы */
+    function lockPageScroll() {
+        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const bodyMarginRight = parseInt(getComputedStyle(document.body).marginRight);
+
+        document.body.style.overflow = 'hidden';
+        document.body.style.marginRight = bodyMarginRight + scrollBarWidth + 'px';
+    }
+
+    /**Разрешить прокрутку страницы */
+    function unlockPageScroll() {
+        document.body.style.overflow = '';
+        document.body.style.marginRight = '';
+    }
+
     /**Обработчики для предотвращения прокрутки страницы */
-    function preventScroll() {
+    /*function preventScroll() {
         if (props.isOpen && !scrollPrevented.current) {
             
             scrollPrevented.current = true;
@@ -94,12 +123,12 @@ function Modal(props) {
                 window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
             }
         };
-    }
+    }/*
 
     /**Предотвратить прокрутку страницы */
-    function preventScrollEvent(e) {
+    /*function preventScrollEvent(e) {
         e.preventDefault();
-    }
+    }*/
 
     return(
         <div

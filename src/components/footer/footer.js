@@ -1,15 +1,21 @@
 import React from 'react';
-import FooterDesktop from './footer-desktop';
-import FooterMobile from './footer-mobile';
+import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
+import config from '../../config/config-media-queries.json';
+import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 
-/**Footer
- * Props:
- * @param {Boolean} mobile - мобильный вид, если true
- */
-function Footer(props) {
-    const viewMode = props.mobile === true ? <FooterMobile/> : <FooterDesktop/>;
+function Footer() {
+    const FooterMobile = React.lazy(() => import('./footer-mobile'));
+    const FooterDesktop = React.lazy(() => import('./footer-desktop'));
+
+    const mobileView = useMediaQuery(config.footer);
+
+    if (mobileView === undefined) return null;
     
-    return viewMode;
+    return (
+        <GatsbySuspense>
+            {mobileView ? <FooterMobile/> : <FooterDesktop/>}
+        </GatsbySuspense>
+    );
 }
 
 export default Footer;

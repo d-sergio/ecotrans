@@ -19,14 +19,14 @@ import animateClose from './animate-close';
 function Modal(props) {
     const modalRef = useRef(null);
     const animate = useRef();   //Объект анимации
+    const observer = useRef();
 
     //прокрутка страницы предотвращаеся?
-    const scrollPrevented = useRef(false);
+    const scrollDisabled = useRef(false);
     
     useEffect(initialize, []);
 
-    useEffect(animateModal, [props.isOpen]);
-    useEffect(disablePageScrolling, [props.isOpen]);
+    useEffect(toggleModal, [props.isOpen]);
 
     /**Инициализация */
     function initialize() {
@@ -37,16 +37,6 @@ function Modal(props) {
         } else {
             modalRef.current.style.display = 'none';
         }
-    }
-    
-    /**Анимация закрытия/открытия модального окна */
-    function animateModal() {
-        
-        const duration = props.duration;
-
-        props.isOpen ?
-            animateOpen({modalRef, animate, duration})
-            : animateClose({modalRef, animate, duration});
     }
 
     /**Закрыть модальное окно кликом (или через touchmove) по пустому пространству
@@ -71,18 +61,112 @@ function Modal(props) {
         }
     }
 
-    /**Надо ли запретить прокрутку страницы? */
-    function disablePageScrolling() {
-        if (props.isOpen && !scrollPrevented.current) {
-            scrollPrevented.current = true;
-            lockPageScroll();
+    /**
+     * #1 Анимация не требуется, если модальное окно скрыто (например, на первом рендере
+     * страница только загрузилась и окно не показывается по умолчанию)
+     * 
+     * #2 Включить модальное окно:
+     *  -блокируется прокрутка страницы
+     *  -observer следит, чтобы блокировка не отключилась извне
+     *  -запускается анимация
+     * 
+     * #3 Выключить модальное окно.
+     * -удаляется observer
+     * - после анимации (через колбэк) разблокируется прокрутка страницы
+     * 
+     * #4 Есть ли у модального окна полосы прокрутки. Если да, то они
+     * должны отображаться до конца анимации, чтобы избежать возможных
+     * багов анимации, когда они внезапно исчезают
+     */
+    function toggleModal() {
 
-        } else if (!props.isOpen && scrollPrevented.current) {
-            scrollPrevented.current = false;
-            unlockPageScroll();
+        if (!modalRef.current) return;
+
+        //if (getComputedStyle(modalRef.current).display === 'none') return;  //#1
+
+        const duration = props.duration;
+
+        if (props.isOpen) {                 //#2
+            scrollDisabled.current = true;
+            lockPageScroll();
+            createObserever();
+            animateOpen({modalRef, animate, duration});
+
+        } else if (!props.isOpen) {         //#3
+            disconnectObserver();
+
+            const scroll = hasScrollBars();     //#4
+            if (scroll.xBar) modalRef.current.style.overflowX = 'scroll';
+            if (scroll.yBar) modalRef.current.style.overflowY = 'scroll';
+
+            const closeCallback = () => {
+                if (!modalRef.current) return;
+
+                scrollDisabled.current = false;
+                unlockPageScroll();
+
+                modalRef.current.style.overflowX = 'auto';
+                modalRef.current.style.overflowY = 'auto';
+            };
+
+            animateClose({modalRef, animate, duration, closeCallback});
         }
 
-        return () => unlockPageScroll();
+        /*return () => {
+            console.log('unmount')
+            unlockPageScroll();
+            disconnectObserver();
+        }*/
+    }
+    
+    /**Есть ли у модального окна полосы прокрутки */
+    function hasScrollBars() {
+        if (!modalRef) return;
+        if (!modalRef.current) return;
+
+        const yBar = modalRef.current.offsetWidth > modalRef.current.clientWidth;
+        const xBar = modalRef.current.offsetHeight > modalRef.current.clientHeight;
+
+        return {xBar, yBar};
+    }
+
+    /**Если document.body.style по какой-то причине изменится, то надо вернуть
+     * на место стили из lockPageScroll
+     */
+    function createObserever() {
+        observer.current = new MutationObserver(observerCallback);
+        observer.current.observe(document.body, {attributes: true});
+
+        function observerCallback(mutations) {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'style') {
+                    if (scrollDisabled.current) {
+
+                        lockPageScroll();
+                        console.log(
+                            `Modals. observerCallback(): модальные окна устанавливают свои значения overflow и margin-right для body`
+                        );
+
+                    } else {
+
+                        console.warn(`Modals. observerCallback(): Прокрутка разрешена, но observer не удалён!`);
+                    }
+                }
+            });
+        }
+    }
+
+    function disconnectObserver() {
+        if (!observer) {
+            return;
+        }
+
+        if (!observer.current) {
+            return;
+        }
+
+        observer.current.disconnect();
+        if (observer.current) observer.current = undefined;
     }
 
     /**Запретить прокрутку страницы */
@@ -99,36 +183,6 @@ function Modal(props) {
         document.body.style.overflow = '';
         document.body.style.marginRight = '';
     }
-
-    /**Обработчики для предотвращения прокрутки страницы */
-    /*function preventScroll() {
-        if (props.isOpen && !scrollPrevented.current) {
-            
-            scrollPrevented.current = true;
-
-            window.addEventListener('wheel', preventScrollEvent, {passive: false});
-            window.addEventListener('touchmove', preventScrollEvent, {passive: false});
-
-        } else if (!props.isOpen && scrollPrevented.current) {
-
-            scrollPrevented.current = false;
-
-            window.removeEventListener('wheel', preventScrollEvent, {passive: false});
-            window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
-        }
-
-        return () => {            
-            if (scrollPrevented.current) {
-                window.removeEventListener('wheel', preventScrollEvent, {passive: false});
-                window.removeEventListener('touchmove', preventScrollEvent, {passive: false});
-            }
-        };
-    }/*
-
-    /**Предотвратить прокрутку страницы */
-    /*function preventScrollEvent(e) {
-        e.preventDefault();
-    }*/
 
     return(
         <div

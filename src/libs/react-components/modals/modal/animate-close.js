@@ -5,7 +5,7 @@ import sliderTimeFunction from '../../../animate/time-functions/slider-time-func
 
 const marginTop = 20;
 
-function animateClose({modalRef, animate, duration}) {
+function animateClose({modalRef, animate, duration, closeCallback = () => {}}) {
     if (!modalRef.current) return;
 
     if (animate.current) animate.current.cancel();
@@ -16,6 +16,7 @@ function animateClose({modalRef, animate, duration}) {
 
     const backgroundCallback = () => {
         background.style.display = 'none';
+        closeCallback();
     };
 
     /*Фон меняет прозрачность от 1 до 0 */

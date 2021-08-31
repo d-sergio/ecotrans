@@ -4,6 +4,7 @@ import {mobilePageTitle} from '../../common-styles/title.module.css';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';
 
+/**Название страницы в мобильной версии */
 function MobilePageTitle(props) {
     const mobileView = useMediaQuery(config.app);
 

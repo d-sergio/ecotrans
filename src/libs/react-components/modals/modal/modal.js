@@ -112,11 +112,12 @@ function Modal(props) {
             animateClose({modalRef, animate, duration, closeCallback});
         }
 
-        /*return () => {
-            console.log('unmount')
-            unlockPageScroll();
-            disconnectObserver();
-        }*/
+        /**Почему здесь нет unlockPageScroll() на случай размонтирования компонента.
+         * Компонент размонтируется всякий раз, когда меняются пропсы. Запуск
+         * unlockPageScroll() приведёт к некорректной анимации закрытия
+         * из-за внезапного появления полос прокрутки страницы
+        */
+        //return () => {};
     }
     
     /**Есть ли у модального окна полосы прокрутки */
@@ -147,9 +148,10 @@ function Modal(props) {
                             `Modals. observerCallback(): модальные окна устанавливают свои значения overflow и margin-right для body`
                         );
 
-                    } else {
+                    } else if (!scrollDisabled.current) {
 
-                        console.warn(`Modals. observerCallback(): Прокрутка разрешена, но observer не удалён!`);
+                        console.warn(`Modals. observerCallback(): Прокрутка разрешена, но observer остался! observer будет удалён.`);
+                        disconnectObserver();
                     }
                 }
             });

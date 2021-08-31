@@ -45,6 +45,12 @@ function AttachModal(props) {
 
             setOpen(false);
         }
+
+        return () => {
+            if (props.isOpen) {
+                setOpen(false);
+            }
+        }
     }
 
     function openModal() {

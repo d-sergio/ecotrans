@@ -9,8 +9,8 @@ import ModalContactProject from '../../modal-contact-project';
  * @param {Boolean} mobile - мобильный вариант, если true.
  * @param {String} orderName - название проекта
  */
-function ButtonContact(props) {
-    const viewMode = props.mobile === true ? mobile: desktop;
+function ButtonContactForm(props) {
+    const viewMode = props.mobile === true ? mobile : desktop;
     const cssStyle = [viewMode, buttonsCommon].join(' ');
 
     const buttonText = 'Связаться';
@@ -40,4 +40,4 @@ function ButtonContact(props) {
     );
 };
 
-export default ButtonContact;
+export default ButtonContactForm;

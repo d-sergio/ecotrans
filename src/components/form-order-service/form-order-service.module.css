@@ -45,7 +45,7 @@
     align-items: flex-end;
 }
 
-/**/
+/*Чтобы flex-контейнер не обрезался сверху при маленькой высоте окна*/
 @media screen and (max-height: 702px) {
     .container{
         margin-top: auto;

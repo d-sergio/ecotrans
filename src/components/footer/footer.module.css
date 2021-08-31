@@ -1,0 +1,76 @@
+.footerMobile{
+    display: none;
+    padding: 22px 0 35px;
+    text-align: center;
+    background-color: #EAFFE2;
+}
+
+@media screen and (max-width: 654px) {
+    .footerMobile{
+        display: block;
+    }
+}
+
+.footerDesktop{
+    display: none;
+    background-color: #EAFFE2;
+}
+
+@media screen and (min-width: 655px) {
+    .footerDesktop{
+        display: block;
+    }
+}
+
+.containerDesktop{
+    /*max-width: 1440px;
+    padding: 36px 83px 26px 83px;
+    margin-left: auto;
+    margin-right: auto;*/
+    padding-top: 36px;
+    padding-bottom: 26px;
+}
+
+.flexContainerDesktop{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-top: 20px;
+
+    line-height: 2.625rem;
+}
+
+.ecotransDesktop{
+    font-family: "MontserratBold";
+    font-size: 1.25rem;
+    background-color: #EAFFE2;
+}
+
+.addressDesktop{
+    padding-right: 15px;
+    font-size: 0.812rem;
+    width: 320px;
+}
+
+.addressDesktop img{
+    padding-right: 12px;
+}
+
+.docsDesktop{
+    padding-right: 15px;
+    font-size: 0.812rem;
+    width: 233px;
+}
+
+.menuDesktop{
+    padding-right: 15px;
+    font-size: 0.875rem;
+    width: 87px;
+}
+
+.linksDesktop{
+    font-size: 0.812rem;
+    width: 245px;
+}

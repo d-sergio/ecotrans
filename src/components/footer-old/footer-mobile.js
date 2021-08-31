@@ -1,9 +1,12 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {container} from './footer-mobile.module.css';
+import CopyToClipboard from '../copy-to-clipboard';
 import config from '../../config/config.json';
+import Modals from '../../libs/react-components/modals';
+import ModalsMessages from '../modal-messages';
 
-function FooterMobile(props) {
+function FooterMobile() {
     return(
         <div className={container}>
             <p style={{fontFamily: 'MontserratBold'}}>ООО “ЭКОТРАНС”</p>
@@ -12,25 +15,17 @@ function FooterMobile(props) {
                     {config.phonePretty}
                 </a>
             </p>
-            <div
-                onClick={props.openCopy}
-                style={{
-                    marginTop: '0.5rem',
-                    marginBottom: '1.5rem',
-                    cursor: 'pointer'
-                }}
-            >
+            <div style={{marginTop: '0.5rem', marginBottom: '1.5rem'}}>
+                <CopyToClipboard>
                     {config.email}
+                </CopyToClipboard>
             </div>
 
             <Link to='/clients'>Разрешительная документация</Link>
 
-            <p
-                onClick={props.openWeWrite}
-                style={{marginTop: '1.5rem', cursor: 'pointer'}}
-            >
-                Сайт разработан we write
-            </p>
+            <Modals.Attach modal={<ModalsMessages.WeWrite/>}>
+                <p style={{marginTop: '1.5rem', cursor: 'pointer'}}>Сайт разработан we write</p>
+            </Modals.Attach>
 
             <p style={{marginTop: '0.75rem'}}>© ООО “Экотранс” 2021</p>
         </div>

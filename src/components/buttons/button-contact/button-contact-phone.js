@@ -8,7 +8,7 @@ import ModalCallback from '../../modal-callback/modal-callback';
  * Props:
  * @param {Boolean} mobile - мобильный вариант, если true.
  */
-function ButtonContact(props) {
+function ButtonContactPhone(props) {
     const [isOpen, setOpen] = useState(false);
     const [key, setKey] = useState(0);
 
@@ -38,4 +38,4 @@ function ButtonContact(props) {
     );
 };
 
-export default ButtonContact;
+export default ButtonContactPhone;

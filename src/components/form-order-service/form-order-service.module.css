@@ -1,3 +1,4 @@
+/* от 768px */
 .container{
     display: flex;
     flex-direction: column;
@@ -6,8 +7,8 @@
     max-width: 515px;
     width: 100%;
 
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
 
     padding: 80px 117px 57px 117px;
 
@@ -45,124 +46,49 @@
     align-items: flex-end;
 }
 
+/* 576px-767px */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .container{
+        padding: 49px 30px 49px 30px;
+    }
+
+    .button{
+        margin-top: 2px;
+    }
+}
+
+/* до 575px */
+@media screen and (max-width: 575px) {
+    .container{
+        padding: 49px 6px 23px 6px;
+    }
+
+    .cross{
+        height: 12px;
+        width: 12px;
+    
+        right: 24px;
+        top: 20px;
+    }
+
+    .title{
+        margin-bottom: 15px;
+        font-family: 'MontserratBold';
+        font-size: 1.25rem;
+        color: #3D3D3D;
+    }
+
+    .button{
+        margin-top: 0px;
+    }
+}
+
 /*Чтобы flex-контейнер не обрезался сверху при маленькой высоте окна*/
-@media screen and (max-height: 702px) {
+@media screen and (max-height: 503px) and (max-width: 575px),
+screen and (max-height: 622px) and (min-width: 576px) and (max-width: 767px),
+screen and (max-height: 702px) and (min-width: 768px) {
     .container{
         margin-top: auto;
         margin-bottom: auto;
     }
 }
-
-/*
-@media screen and (max-width: 575px) and (min-height:569px) {
-    .container{
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 60px 8px 60px 8px;
-    }
-
-    .cross{
-        width: 20px;
-        height: 20px;
-
-        right: 24px;
-        top: 16px;
-    }
-
-    .title{
-        font-size: 1.25rem;
-        margin-top: 0;
-        margin-bottom: 26px;
-    }
-
-    .button{
-        margin-top: 0;
-    }
-}
-
-@media screen and (max-height: 568px), screen and (max-width: 600px) {
-    .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        max-width: unset;
-        width: 100%;
-        height: 100%;
-        
-        padding: 0 8px 0 8px;
-        margin-left: 0;
-        margin-right: 0;
-
-        border-radius: unset;
-        box-shadow: unset;
-    }
-
-    .button{
-        margin-top: 0;
-        margin-bottom: 26px;
-    }
-
-    .cross{
-        width: 20px;
-        height: 20px;
-
-        right: 12px;
-        top: 12px;
-    }
-
-    .title{
-        font-size: 1.25rem;
-        margin-top: 10px;
-        margin-bottom: 26px;
-    }
-}
-
-@media screen and (max-height: 460px) and (orientation: landscape) {
-    .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        max-width: unset;
-        width: 100%;
-        height: 100%;
-        
-        padding: 0 8px 0 8px;
-        margin-left: 0;
-        margin-right: 0;
-
-        border-radius: unset;
-        box-shadow: unset;
-    }
-    
-    .title{
-        font-size: 1.25rem;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    .form{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 20px;
-        align-items: center;
-    }
-
-    .cross{
-        width: 20px;
-        height: 20px;
-
-        right: 12px;
-        top: 12px;
-    }
-
-    .button{
-        text-align: center;
-        height: 60%;
-    }
-
-    .button button {
-        height: 55px;
-    }
-}*/

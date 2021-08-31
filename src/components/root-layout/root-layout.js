@@ -1,5 +1,5 @@
 import React from 'react';
-import {AnchorRoot} from '../../libs/react-components/anchors';
+import {AnchorRoot} from '../../libs/gatsby-components/anchors';
 
 function RootLayout (props) {
 

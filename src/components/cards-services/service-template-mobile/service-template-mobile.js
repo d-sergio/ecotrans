@@ -2,7 +2,7 @@ import React from 'react';
 import {commonStyle} from '../service-template-common/service-template-common.module.css';
 import {mobile, image, orderName} from './service-template-mobile.module.css';
 import ButtonChoose from '../../buttons/button-choose/button-choose';
-import { ToAnchor } from '../../../libs/react-components/anchors';
+import { ToAnchor } from '../../../libs/gatsby-components/anchors';
 import { Link } from 'gatsby';
 
 const styles = [commonStyle, mobile].join(" ");

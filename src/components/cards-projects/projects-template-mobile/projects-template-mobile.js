@@ -1,5 +1,5 @@
 import React from 'react';
-import {ToAnchor} from '../../../libs/react-components/anchors';
+import {ToAnchor} from '../../../libs/gatsby-components/anchors';
 import {Link} from 'gatsby';
 import {commonStyle} from '../projects-template-common/projects-template-common.module.css';
 import {mobile, image, orderName} from './projects-template-mobile.module.css';

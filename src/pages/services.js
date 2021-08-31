@@ -3,7 +3,7 @@ import Layout from '../components/layout/layout';
 import ServicesSpoilers from '../components/spoilers-services';
 import {topPaddings} from '../common-styles/pages.module.css';
 import MobilePageTitle from '../components/mobile-page-title';
-import {AnchorPage} from '../libs/react-components/anchors';
+import {AnchorPage} from '../libs/gatsby-components/anchors';
 
 function Services() {
 

@@ -63,102 +63,53 @@
     align-items: flex-end;
 }
 
-@media screen and (min-width: 576px) and (max-width: 780px) and (min-height: 569px) {
+/* 576px-767px */
+@media screen and (min-width: 576px) and (max-width: 767px) {
     .container{
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 80px 60px 57px 60px;
+        padding: 80px 30px 49px 30px;
+    }
+
+    .button{
+        margin-top: 2px;
     }
 }
 
-@media screen and (max-width: 575px) and (min-height: 569px) {
+/* до 575px */
+@media screen and (max-width: 575px) {
     .container{
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 80px 8px 57px 8px;
+        padding: 49px 6px 23px 6px;
     }
 
     .cross{
-        width: 20px;
-        height: 20px;
-
+        height: 12px;
+        width: 12px;
+    
         right: 24px;
-        top: 16px;
+        top: 20px;
     }
 
     .title{
+        margin-bottom: 15px;
+        font-family: 'MontserratBold';
         font-size: 1.25rem;
+        color: #3D3D3D;
+    }
+
+    .button{
+        margin-top: 0px;
     }
 
     .call{
         font-size: 1.25rem;
-    }
+    }    
 }
 
-@media screen and (max-height: 568px), screen and (max-width: 575px) {
+/*Чтобы flex-контейнер не обрезался сверху при маленькой высоте окна*/
+@media screen and (max-height: 350px) and (max-width: 575px),
+screen and (max-height: 502px) and (min-width: 576px) and (max-width: 767px),
+screen and (max-height: 530px) and (min-width: 768px) {
     .container{
-        max-width: unset;
-        width: 100%;
-        height: 100%;
-
-        padding: 0 8px 0 8px;
-
-        margin-left: 0;
-        margin-right: 0;
-
-        border-radius: unset;
-        box-shadow: unset;
-    }
-
-    .cross{
-        width: 20px;
-        height: 20px;
-
-        right: 24px;
-        top: 16px;
-    }
-
-    .title{
-        font-size: 1.25rem;
-        margin-top: 0;
-        margin-bottom: 26px;
-    }
-
-    .call{
-        font-size: 1.25rem;
-    }
-
-    .button{
-        margin-top: 0;
-    }
-}
-
-@media screen and (max-height: 319px) and (orientation: landscape) {
-    .title{
-        font-size: 1.25rem;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    .form{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 10px;
-    }
-
-
-    .button{
-        display: none;
-        /*grid-column: 2;
-        margin-top: 0;
-        text-align: center;*/
-    }
-/*
-    .button button {
-        height: 55px;
-    }*/
-
-    .buttonSmallMobile{
-        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 }

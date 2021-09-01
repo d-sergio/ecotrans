@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import configMedia from '../../config/config-media-queries.json';
 import config from '../../config/config.json';
-import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import Modals from '../../libs/react-components/modals';
 import ModalMessages from '../modal-messages';
+import FooterDesktop from './footer-desktop';
+import FooterMobile from './footer-mobile';
 
 /**Управление модальными окнами футреа происходит из этого компонента, так
  * как переход между FooterMobile и FooterDesktop при открытом модальном
@@ -12,8 +13,6 @@ import ModalMessages from '../modal-messages';
  * прокрутке страницы
  */
 function Footer() {
-    const FooterMobile = React.lazy(() => import('./footer-mobile'));
-    const FooterDesktop = React.lazy(() => import('./footer-desktop'));
 
     /**Копировать email в буфер обмена
      * navigator.clipboard поддерживается только для HTTPS! Поэтому на HTTP ничего
@@ -62,13 +61,11 @@ function Footer() {
     
     return (
         <>
-            <GatsbySuspense>
-                {
-                    mobileView ?
-                    <FooterMobile openCopy={openCopy} openWeWrite={openWeWrite}/>
-                    : <FooterDesktop openCopy={openCopy} openWeWrite={openWeWrite}/>
-                }
-            </GatsbySuspense>
+            {
+                mobileView ?
+                <FooterMobile openCopy={openCopy} openWeWrite={openWeWrite}/>
+                : <FooterDesktop openCopy={openCopy} openWeWrite={openWeWrite}/>
+            }
 
             <Modals.Set
                 isOpen={copyIsOpen}

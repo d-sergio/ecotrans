@@ -1,6 +1,6 @@
 {
-    "feedback": "http://prostoil.beget.tech/messages/feedback",
-    "service": "http://prostoil.beget.tech/messages/services",
-    "project": "http://prostoil.beget.tech/messages/projects",
-    "callback": "http://prostoil.beget.tech/messages/callback"
+    "feedback": "https://ecotranskursk.ru/messages/feedback",
+    "service": "https://ecotranskursk.ru/messages/services",
+    "project": "https://ecotranskursk.ru/messages/projects",
+    "callback": "https://ecotranskursk.ru/messages/callback"
 }

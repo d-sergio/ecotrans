@@ -31,7 +31,7 @@ function Index() {
             <BlockProjects/>
             <BlockAdvantages/>
             <BlockCost/>
-            {/*<BlockPartners/>*/}
+            <BlockPartners/>
             <BlockInstagram/>
             <GatsbySuspense>
                 {

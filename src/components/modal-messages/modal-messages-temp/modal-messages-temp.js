@@ -10,7 +10,9 @@ function ModalEcotransTemp(props) {
 
     return(
         <div className={container}>
-            <img style={{display: display}} data-close-modal className={cross} src={close} alt='close'/>
+            <div data-close-modal style={{display: display}} className={cross}>
+                <img data-close-modal src={close} alt='close'/>
+            </div>
             
             <div className={text}>
                 <span className={title}>

@@ -32,11 +32,18 @@
     padding-right: 5%;
 }
 
+/*.cross - это обёртка для картинки с крестиком. Обёртка больше картинки,
+чтобы в мобильной версии было проще попасть в кнопку пальцем */
 .cross{
     position: absolute;
 
+    width: 32px;
+    height: 32px;
+
     right: 38px;
     top: 33px;
+
+    text-align: center;
 
     cursor: pointer;
 }
@@ -61,11 +68,17 @@
     }
 
     .cross{
-        width: 20px;
-        height: 20px;
+        right: 13px;
+        top: 9px;
+    }
 
-        right: 25px;
-        top: 18px;
+    /*.cross - это обёртка для картинки с крестиком. Обёртка больше картинки,
+    чтобы в мобильной версии было проще попасть в кнопку пальцем */
+    .cross > img{
+        height: 12px;
+        width: 12px;
+
+        margin-top: 10px;
     }
 }
 

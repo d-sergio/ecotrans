@@ -1,3 +1,5 @@
+/*Модальные окна: услуги, проекты, обратный звонок*/
+
 /* от 768px */
 .container{
     display: flex;
@@ -16,11 +18,18 @@
     border-radius: 30px;
 }
 
+/*.cross - это обёртка для картинки с крестиком. Обёртка больше картинки,
+чтобы в мобильной версии было проще попасть в кнопку пальцем */
 .cross{
     position: absolute;
 
+    width: 32px;
+    height: 32px;
+
     right: 38px;
     top: 33px;
+
+    text-align: center;
 
     cursor: pointer;
 }
@@ -62,11 +71,17 @@
     }
 
     .cross{
+        right: 14px;
+        top: 10px;
+    }
+
+    /*.cross - это обёртка для картинки с крестиком. Обёртка больше картинки,
+    чтобы в мобильной версии было проще попасть в кнопку пальцем */
+    .cross > img{
         height: 12px;
         width: 12px;
-    
-        right: 24px;
-        top: 20px;
+
+        margin-top: 10px;
     }
 
     .title{

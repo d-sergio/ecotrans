@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import {wrapper, content} from './layout.module.css';
@@ -15,6 +15,25 @@ import { NavPage } from '../../libs/react-components/navigation-highlight';
 function Layout(props) {
 
     const mobileView = useMediaQuery(config.app);
+
+    useEffect(createObserver, []);
+
+    /*Чтобы реклама от ростелекома, встраиваемая в HTTP-трафик не ломала функционал
+    модальных окон. В global.css также скрыты все iframe*/
+    function createObserver() {
+        const observer = new MutationObserver(observerCallback);
+        observer.observe(document.documentElement, {attributes: true});
+
+        function observerCallback(mutations) {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'style') {
+                    document.documentElement.style = '';
+                }
+            });
+        }
+
+        return () => observer.disconnect();
+    }
 
     if (mobileView === undefined) return null;
 

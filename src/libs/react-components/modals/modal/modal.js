@@ -132,7 +132,7 @@ function Modal(props) {
     }
 
     /**Если document.body.style по какой-то причине изменится, то надо вернуть
-     * на место стили из lockPageScroll
+     * на место стили из lockPageScroll, чтобы заблокировать прокрутку страницы
      */
     function createObserever() {
         observer.current = new MutationObserver(observerCallback);

@@ -64,7 +64,9 @@ function FormOrderService(props) {
 
     return(
         <div className={containerStyle}>
-            <img data-close-modal className={cross} src={close} alt='close'/>
+            <div data-close-modal className={cross}>
+                <img data-close-modal src={close} alt='close'/>
+            </div>
 
             <div className={title}>Заполните эту форму</div>
 

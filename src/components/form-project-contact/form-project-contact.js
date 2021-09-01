@@ -1,6 +1,7 @@
 import React from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
-import {form, title, container, cross, button} from './form-project-contact.module.css';
+import { form, title, container, cross, button } from '../../common-styles/modals.module.css';
+import { projectContactContainer } from './form-project-contact.module.css';
 import { input, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
 import Buttons from '../buttons';
 import close from '../../../static/images/cross-modal.svg';
@@ -8,6 +9,8 @@ import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';
 
 function FormProjectContact(props) {
+    const containerStyle = [projectContactContainer, container].join(" ");
+
     const mobileView = useMediaQuery(config.app);
 
     //Уникальное имя формы
@@ -39,7 +42,7 @@ function FormProjectContact(props) {
     };
 
     return(
-        <div className={container}>
+        <div className={containerStyle}>
             <img data-close-modal className={cross} src={close} alt='close'/>
 
             <div className={title}>Заполните эту форму</div>

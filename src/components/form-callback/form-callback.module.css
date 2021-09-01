@@ -1,38 +1,7 @@
 /* от 768px */
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-
-    max-width: 515px;
-    width: 100%;
-
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 80px 117px 70px 117px;
-
-
-    background: #FFFFFF;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-}
-
-.cross{
-    position: absolute;
-
-    right: 38px;
-    top: 33px;
-
-    cursor: pointer;
-}
-
-.title{
-    margin-bottom: 28px;
-    text-align: center;
-    font-family: 'MontserratBold';
-    font-size: 1.625rem;
-    color: #3D3D3D;
+.callbackContainer{
+    margin-top: unset;
+    margin-bottom: unset;
 }
 
 .call{
@@ -46,30 +15,13 @@
 }
 
 .button{
-    margin-top: 7px;
+    margin-top: 23px;
     margin-bottom: 28px;
     align-self: center;
-}
-
-/*Только маленьких на мобильных при горизонтальном положении экрана*/
-.buttonSmallMobile{
-    display: none;
-    align-self: center;
-    margin-bottom: 28px;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 }
 
 /* 576px-767px */
 @media screen and (min-width: 576px) and (max-width: 767px) {
-    .container{
-        padding: 80px 30px 49px 30px;
-    }
-
     .button{
         margin-top: 2px;
     }
@@ -77,25 +29,6 @@
 
 /* до 575px */
 @media screen and (max-width: 575px) {
-    .container{
-        padding: 49px 6px 23px 6px;
-    }
-
-    .cross{
-        height: 12px;
-        width: 12px;
-    
-        right: 24px;
-        top: 20px;
-    }
-
-    .title{
-        margin-bottom: 15px;
-        font-family: 'MontserratBold';
-        font-size: 1.25rem;
-        color: #3D3D3D;
-    }
-
     .button{
         margin-top: 0px;
     }
@@ -109,7 +42,7 @@
 @media screen and (max-height: 350px) and (max-width: 575px),
 screen and (max-height: 502px) and (min-width: 576px) and (max-width: 767px),
 screen and (max-height: 530px) and (min-width: 768px) {
-    .container{
+    .callbackContainer{
         margin-top: auto;
         margin-bottom: auto;
     }

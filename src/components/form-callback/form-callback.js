@@ -1,6 +1,7 @@
 import React from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
-import {form, title, container, cross, button, call, buttonSmallMobile} from './form-callback.module.css';
+import { form, title, container, cross } from '../../common-styles/modals.module.css';
+import { callbackContainer, call, button } from './form-callback.module.css';
 import { input, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
 import Buttons from '../buttons';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
@@ -9,6 +10,8 @@ import close from '../../../static/images/cross-modal.svg';
 import config from '../../config/config.json';
 
 function FormCallback(props) {
+    const containerStyle = [callbackContainer, container].join(" ");
+
     const mobileView = useMediaQuery(configMedia.app);
 
     //Уникальное имя формы
@@ -38,7 +41,7 @@ function FormCallback(props) {
     };
 
     return(
-        <div className={container}>
+        <div className={containerStyle}>
             <img data-close-modal className={cross} src={close} alt='close'/>
 
             <div className={title}>Вы можете заказать обратный звонок!</div>
@@ -68,10 +71,6 @@ function FormCallback(props) {
                     }
                 </div>
             </Forms.Form>
-
-            <div className={buttonSmallMobile}>
-                <Buttons.Send.Mobile form={formName}/>
-            </div>
 
             <div className={call}>
                 Или позвоните нам <a href={`tel:${config.greenPhone}`}>{config.greenPhonePretty}</a>

@@ -15,7 +15,7 @@ async function postServiceForm(form, orderName) {
         );
 
         const result = await response.json();
-        console.log(`Отправка формы: ${result.status}`);
+        console.log(`Отправка формы: ${response.status}`);
 
         return result;
         

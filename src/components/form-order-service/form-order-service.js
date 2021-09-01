@@ -1,15 +1,17 @@
 import React from 'react';
 import Forms from '../../libs/react-components/forms-and-fields';
 import { input, attach, passport, inputInActive, inputActive, inputError } from '../form-cost/form-cost.module.css';
-import {form, title, container, cross, button} from './form-order-service.module.css';
+import { form, title, container, cross, button } from '../../common-styles/modals.module.css';
+import { orderServiceContainer } from './form-order-service.module.css';
 import config from '../../config/config.json';
 import Buttons from '../buttons';
 import close from '../../../static/images/cross-modal.svg';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import configMedia from '../../config/config-media-queries.json';
 
-
 function FormOrderService(props) {
+    const containerStyle = [orderServiceContainer, container].join(" ");
+
     const mobileView = useMediaQuery(configMedia.app);
 
     //Уникальное имя формы
@@ -61,7 +63,7 @@ function FormOrderService(props) {
     };
 
     return(
-        <div className={container}>
+        <div className={containerStyle}>
             <img data-close-modal className={cross} src={close} alt='close'/>
 
             <div className={title}>Заполните эту форму</div>

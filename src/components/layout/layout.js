@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React/*, { useEffect }*/ from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import {wrapper, content} from './layout.module.css';
@@ -16,11 +16,11 @@ function Layout(props) {
 
     const mobileView = useMediaQuery(config.app);
 
-    useEffect(createObserver, []);
+    //useEffect(createObserver, []);
 
     /*Чтобы реклама от ростелекома, встраиваемая в HTTP-трафик не ломала функционал
     модальных окон. В global.css также скрыты все iframe*/
-    function createObserver() {
+    /*function createObserver() {
         const observer = new MutationObserver(observerCallback);
         observer.observe(document.documentElement, {attributes: true});
 
@@ -33,7 +33,7 @@ function Layout(props) {
         }
 
         return () => observer.disconnect();
-    }
+    }*/
 
     if (mobileView === undefined) return null;
 

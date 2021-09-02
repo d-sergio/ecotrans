@@ -1,5 +1,5 @@
 import React from 'react';
-import {container, titleAbsolute} from './block-services-desktop.module.css';
+import {container, titleAbsolute, outer, green} from './block-services-desktop.module.css';
 import {mainContainer} from '../../../common-styles/containers.module.css';
 import {title} from '../../../common-styles/title.module.css';
 import Cards from '../../cards-services';
@@ -26,24 +26,26 @@ function BlockServicesDesktop() {
     const titleStyle = [title, titleAbsolute].join(" ");
 
     return(
-        <section className={container}>
-            <div className={mainContainer}>
-                <div className={titleStyle}>
-                    Выберите услугу 
+        <div className={outer}>
+            <div className={green}></div>
+
+            <section className={container}>
+                <div className={mainContainer}>
+                    <div className={titleStyle}>
+                        Выберите услугу 
+                    </div>
                 </div>
-            </div>
-            
-            <Spinner
-            prev={prev}
-            next={next}>
+                
+                <Spinner
+                prev={prev}
+                next={next}>
 
-                {cards}
+                    {cards}
 
-            </Spinner>
+                </Spinner>
 
-
-
-        </section>
+            </section>
+        </div>
     );
 }
 

@@ -1,3 +1,17 @@
+.outer{
+    position: relative;
+}
+
+.green{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: #EAFFE2;
+    height: 288px;
+    width: 100%;
+}
+
 .container{
     width: 100%;
     margin-bottom: 50px;

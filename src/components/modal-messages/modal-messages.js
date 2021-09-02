@@ -24,7 +24,7 @@ function WeWrite() {
     return(
         <ModalEcotransTemp
             title='Уникальное web - решение для вас'
-            text={<div>Звоните нам или пишите в любом мессенджере<br/>{config.phonePretty}</div>}
+            text={<div>Звоните нам или пишите в любом мессенджере<br/>{config.weWritePhone}</div>}
         />
     );
 }

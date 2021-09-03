@@ -35,4 +35,6 @@
     background-position: center;
 
     cursor: default;
+
+    user-select: none;
 }

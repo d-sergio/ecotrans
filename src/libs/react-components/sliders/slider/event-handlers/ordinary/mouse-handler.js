@@ -15,12 +15,12 @@ function configureMouseHandler({e, params, state, setState, viewport, carousel, 
         carousel: carousel
     };
 
-    const numberOFvisible = getVisible(visibleArgs);
+    const numberOfVisible = getVisible(visibleArgs);
     const carouselLength = state.children.length;
     
     /*листать карусель есть смысл только, если число слайдов превышает ширину
     слайдера */
-    if (carouselLength < numberOFvisible) {
+    if (carouselLength < numberOfVisible) {
         return;
     }
 

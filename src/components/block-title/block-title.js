@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import useMediaQuery from '../../libs/react/react-hooks/use-media-query';
 import config from '../../config/config-media-queries.json';
-import GatsbySuspense from '../../libs/gatsby-components/gatsby-suspense';
 import ModalContactProject from '../modal-contact-project';
+import TitleDesktop from './block-title-desktop';
+import TitleMobile from './block-title-mobile';
 
 /**BlockTitle - титульный блок */
 function BlockTitle() {
     const mobileView = useMediaQuery(config.app);
-
-    const TitleDesktop = React.lazy(() => import('./block-title-desktop'));
-    const TitleMobile = React.lazy(() => import('./block-title-mobile'));
 
     /**Модальное окно Связаться */
     const [isOpen, setOpen] = useState(false);
@@ -25,13 +23,11 @@ function BlockTitle() {
 
     return(
         <>
-            <GatsbySuspense>
-                {
-                    mobileView ?
-                    <TitleMobile openModal={openModal}/>
-                    : <TitleDesktop openModal={openModal}/>
-                }
-            </GatsbySuspense>
+            {
+                mobileView ?
+                <TitleMobile openModal={openModal}/>
+                : <TitleDesktop openModal={openModal}/>
+            }
 
             <ModalContactProject
                 key={key}

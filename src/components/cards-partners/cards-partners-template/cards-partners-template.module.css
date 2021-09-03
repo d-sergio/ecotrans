@@ -8,6 +8,8 @@
     height: 151px;
 
     transition: all 0.5s;
+
+    cursor: default;
 }
 
 .logoMobile {
@@ -33,6 +35,8 @@
     height: 202px;
 
     transition: transform 0.5s;
+    
+    cursor: default;
 }
 
 .logoDesktop{

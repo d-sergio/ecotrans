@@ -20,8 +20,6 @@ function handleMouse({carousel, event}) {
     //Двигаем ленту слайдов
     function moveCarousel(event){
         try{
-            carousel.style.cursor = 'grabbing';
-
             currentMoveX = event.pageX;
             shift = currentMoveX - startMoveX;
 
@@ -49,8 +47,6 @@ function handleMouse({carousel, event}) {
     function onMouseUp() {
         window.removeEventListener('mouseup', onMouseUp);
         window.removeEventListener('mousemove', moveCarousel);
-        
-        carousel.style.cursor = 'pointer';
     }
 }
 

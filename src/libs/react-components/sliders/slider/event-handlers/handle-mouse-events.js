@@ -24,7 +24,6 @@ export default function handleMouseEvents({carousel, viewport, callback, event})
     //Двигаем ленту слайдов
     function sliderMouseMoveHandler(event){
         try{
-            carousel.style.cursor = 'grabbing';
 
             currentMoveX = event.pageX;
             shift = currentMoveX - startMoveX;
@@ -59,8 +58,6 @@ export default function handleMouseEvents({carousel, viewport, callback, event})
         setTimeout(() => {
         window.removeEventListener('mouseup', sliderMouseUpHandler);
         window.removeEventListener('mousemove', sliderMouseMoveHandler);
-        
-        carousel.style.cursor = 'pointer';
 
         if (callback !== undefined && callback !== null) {
             callback(speed);

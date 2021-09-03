@@ -12,6 +12,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+
+    cursor: default;
 }
 
 .desktop {
@@ -31,4 +33,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+
+    cursor: default;
 }

@@ -22,9 +22,6 @@
 .thumbsStyle{
     position: absolute;
     top: 0;
-    cursor: pointer;
-
-    user-select: none;
 }
 
 .wrapThumbStyle{

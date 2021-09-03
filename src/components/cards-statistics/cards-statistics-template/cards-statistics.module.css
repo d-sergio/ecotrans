@@ -8,6 +8,10 @@
     height: 150px;
 
     transition: transform 0.5s;
+
+    cursor: default;
+
+    user-select: none;
 }
 
 .numberMobile{
@@ -33,6 +37,10 @@
     height: 160px;
 
     transition: transform 0.5s;
+
+    cursor: default;
+
+    user-select: none;
 }
 
 .numberDesktop{

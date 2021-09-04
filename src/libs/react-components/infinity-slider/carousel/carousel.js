@@ -2,13 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { carouselStyle } from './carousel.module.css';
 import createSlides from './create-slides/create-slides';
 import updateSlideWidth from './update-slide-width';
-import handleTouch from './pointer-handlers/handle-touch';
-import handleMouse from './pointer-handlers/handle-mouse';
 
 /**
  * #1 Создать слайды
  * #2 Адаптация размеров слайдов. Запускается после добавления слайдов
- * #3 Обработка touch-events
 */
 function Carousel(props) {
     const carouselRef = useRef();
@@ -17,18 +14,15 @@ function Carousel(props) {
     useEffect(() => createSlides(setSlides, props), //#1
     [props.currentPosition, props.visible]);
 
-    useEffect(addListeners, [slides]);
+    useEffect(addResizeListener, [slides]);
 
-    /**Обработчики событий resize и touch-events */
-    function addListeners() {
+    /**Обработчики событий resize*/
+    function addResizeListener() {
         if (!carouselRef.current) return;
 
         updateSlides(); //#2
         
         window.addEventListener('resize', updateSlides);    //#2
-        carouselRef.current.addEventListener(               //#3
-            'touchstart', onTouchStart, {passive: false}
-        );
 
         function updateSlides() {
             updateSlideWidth(carouselRef.current, props.visible);
@@ -36,33 +30,11 @@ function Carousel(props) {
 
         return () => {
             window.removeEventListener('resize', updateSlides);
-            
-            if (carouselRef.current) {
-                carouselRef.current.removeEventListener(
-                    'touchstart', onTouchStart, {passive: false}
-                );
-            }
         };
-    }
-
-    function onTouchStart(event) {
-        handleTouch({
-            carousel: carouselRef.current,
-            lockScroll: props.lockScroll,
-            event: event
-        });
-    }
-
-    function onMouseDown(event) {
-        handleMouse({
-            carousel: carouselRef.current,
-            event: event
-        });
     }
 
     return(
         <div
-            onMouseDown={onMouseDown}
             ref={carouselRef}
             className={carouselStyle}
         >

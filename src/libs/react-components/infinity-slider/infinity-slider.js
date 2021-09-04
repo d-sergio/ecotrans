@@ -14,11 +14,13 @@ function InfinitySlider(props) {
         <div className={containerStyle}>
             <Controls/>
 
-            <Viewport setPosition={setPosition}>
+            <Viewport
+                setPosition={setPosition}
+                lockScroll={props.lockScroll}
+            >
                 <Carousel
                     currentPosition={currentPosition}
                     visible={props.visible}
-                    lockScroll={props.lockScroll}
                 >
                     {props.children}
                 </Carousel>
@@ -34,6 +36,6 @@ export default InfinitySlider;
 InfinitySlider.defaultProps = {
     prev: null,
     next: null,
-    visible: 2,
+    visible: 1,
     lockScroll: 0.0606
 };

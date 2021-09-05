@@ -1,31 +1,41 @@
 import React from 'react';
 import { slideStyle } from './slides.module.css';
 
-/**Стандартный рендер слайдов:
- * @1 Взять только нужные слайды
- * @2 Создать каждому слайду обёртку
+/**
+ * Отрисовываются слайды, видимые внутри viewport, а также по одному слева и
+ * справа за пределами viewport.
+ * #1 referenceArray - из props.children создаётся массив слайдов, целиком
+ * заполняющий viewport
+ * #2 viewportArray - массив слайдов внутри viewport
+ * #3 leftArray - если индекс первого слайда меньше нуля, то слева от viewportArray
+ * добавляется массив слайдов, взятых и отсчитанных с конца referenceArray
+ * [слайд 3] + [слайд0][слайд1][слайд2][слайд3]
+ * #4 rightArray - если индекс последнего слайда больше длины referenceArray,
+ * то справа от viewportArray добавляется массив слайдов, взятых и отсчитанных
+ * с начала referenceArray
+ * [слайд0][слайд1][слайд2][слайд3] + [слайд0]
+ * #5 renderArray - массив, который будет отрисован получается путём слияния
+ * leftArray + viewportArray + rightArray
  * 
- * Args:
+ * [слайд 3] + [слайд0][слайд1][слайд2][слайд3] + [слайд0]
+ * 
+ * #6 Создаётся обёртка для каждого слайда
  * 
  * @param {function} setSlides - колбэк, которому отдаются слайды
- * @param {Array} children - массив всех слайдов
- * @param {object} props - в пропс должны быть currentPosition и visible
+ * @param {object} props - в пропс должны быть children, currentPosition и visible
 */
-function createSlides(setSlides, props) {
-    /*сколько слайдов отрисовывать за пределами viewport слева и справа от него*/
-    const additionalSlides = 1;
-
+function createSlides({setSlides, props, additionalSlides}) {
     /*индексы первого и последнего слайдов для отрисовки */
     const firstSlideIndex = props.currentPosition - additionalSlides;
     const lastSlideIndex = props.currentPosition + props.visible + additionalSlides;
 
-    const referenceArray = createReferenceArray(props);
-    const leftArray = createLeftArray(referenceArray, firstSlideIndex);
-    const rightArray = createRightArray(referenceArray, lastSlideIndex);
-    const viewportArray = createViewportArray(referenceArray, firstSlideIndex, lastSlideIndex);
-    const renderArray = leftArray.concat(viewportArray, rightArray);
+    const referenceArray = createReferenceArray(props); //#1
+    const viewportArray = createViewportArray(referenceArray, firstSlideIndex, lastSlideIndex); //#2
+    const leftArray = createLeftArray(referenceArray, firstSlideIndex); //#3
+    const rightArray = createRightArray(referenceArray, lastSlideIndex);    //#4
+    const renderArray = leftArray.concat(viewportArray, rightArray);    //#5
 
-    const wrappedSlides = renderArray.map( item => ( //@2
+    const wrappedSlides = renderArray.map( item => ( //#6
         <div className={slideStyle}>
             {item}
         </div>
@@ -34,13 +44,7 @@ function createSlides(setSlides, props) {
     setSlides(wrappedSlides);
 }
 
-/**Создаётся массив слайдов, от которого дальше будет строиться рендер.
- * 
- * Слайды должны, как минимум, заполнять весь viewport. Если это не так (их
- * меньше, чем visible), то надо вернуть кратно увеличенный массив children.
- * Иначе возвращается массив из props.children.
- */
-function createReferenceArray(props) {
+function createReferenceArray(props) {  //#1
     const children = React.Children.toArray(props.children);
 
     if (children.length >= props.visible) {
@@ -60,24 +64,24 @@ function createReferenceArray(props) {
     }
 }
 
-function createLeftArray(referenceArray, firstSlideIndex) {
-
-    return firstSlideIndex >= 0 ? [] : referenceArray.slice(firstSlideIndex);
-}
-
-function createRightArray(referenceArray, lastSlideIndex) {
-    
-    return lastSlideIndex < referenceArray.length ?
-        [] : referenceArray.slice(0, lastSlideIndex - referenceArray.length + 1);
-}
-
-function createViewportArray(referenceArray, firstSlideIndex, lastSlideIndex) {
+function createViewportArray(referenceArray, firstSlideIndex, lastSlideIndex) { //#2
     const from = firstSlideIndex < 0 ? 0 : firstSlideIndex;
 
     const to = lastSlideIndex >= referenceArray.length ?
         referenceArray.length : lastSlideIndex;
 
     return referenceArray.slice(from, to);
+}
+
+function createLeftArray(referenceArray, firstSlideIndex) { //#3
+
+    return firstSlideIndex >= 0 ? [] : referenceArray.slice(firstSlideIndex);
+}
+
+function createRightArray(referenceArray, lastSlideIndex) { //#4
+    
+    return lastSlideIndex < referenceArray.length ?
+        [] : referenceArray.slice(0, lastSlideIndex - referenceArray.length);
 }
 
 export default createSlides;

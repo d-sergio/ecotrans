@@ -1,13 +1,13 @@
 /**Задать ширину слайда*/
-function updateSlideWidth(carousel, visible) {
+function updateSlideWidth({carouselRef, props}) {
     try{
         //Рефы могли обнулиться, если компонент был перерисован
-        if (!carousel) return;
-        const viewportWidth = carousel.parentNode.offsetWidth;
+        if (!carouselRef.current) return;
+        const viewportWidth = carouselRef.current.parentNode.offsetWidth;
 
-        const slideWidth = viewportWidth / visible;
+        const slideWidth = viewportWidth / props.visible;
 
-        Array.prototype.forEach.call(carousel.children, item => 
+        Array.prototype.forEach.call(carouselRef.current.children, item => 
             item.style.width = slideWidth + 'px');
             
     } catch(e) {

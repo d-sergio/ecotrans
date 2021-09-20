@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Controls from './controls';
 import Viewport from './viewport';
 import Carousel from './carousel';
-import { containerStyle } from './infinity-slider.module.css';
+import { containerStyle } from './infinite-slider.module.css';
 
 
-function InfinitySlider(props) {
+function InfiniteSlider(props) {
     /*Из позиции и props.visible вычисляется какие слайды отрисовывать*/
     const [currentPosition, setPosition] = useState(0);
     const [animationObject, setAnimationObject] = useState();   //объект анимации
@@ -15,11 +15,11 @@ function InfinitySlider(props) {
             <Controls/>
 
             <Viewport
-                setPosition={setPosition}
                 lockScroll={props.lockScroll}
             >
                 <Carousel
                     currentPosition={currentPosition}
+                    setPosition={setPosition}
                     visible={props.visible}
                 >
                     {props.children}
@@ -31,9 +31,9 @@ function InfinitySlider(props) {
     );
 }
 
-export default InfinitySlider;
+export default InfiniteSlider;
 
-InfinitySlider.defaultProps = {
+InfiniteSlider.defaultProps = {
     prev: null,
     next: null,
     visible: 1,

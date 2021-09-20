@@ -15,7 +15,7 @@ function handleTouch({carousel, lockScroll, event}) {
     if (!carousel) return;
 
     //Внутренние параметры
-    const viewport = carousel.parentNode;   //carousel должна быть прямым потомком viewport
+    //const viewport = carousel.parentNode;   //carousel должна быть прямым потомком viewport
     const shiftToLockScroll = window.innerWidth * lockScroll;   //#1
 
     const startScrollTop = document.documentElement.scrollTop;  //на момент touchstart
@@ -29,13 +29,18 @@ function handleTouch({carousel, lockScroll, event}) {
     let horizontalScrolling = false;    //#3
     let verticalScrolling = false;  //#4
 
-    window.addEventListener('touchmove', onTouchMove, {passive: false});
-    window.addEventListener('touchcancel', onTouchUp, {once: true});
-    window.addEventListener('touchend', onTouchUp, {once: true});
+    /*Обрабатываются события pointer, так как событие touchmove почему-то
+    прерывается после нового рендера в процессе пролистывания слайдера.
+    При этом не происходит touchend или touchcancel. И текущее событие
+    touchmove никак нельзя завершить. Это приводит к тому, что карусель
+    перестаёт двигаться или двигается не правильно*/
+    window.addEventListener('pointerup', onTouchEnd);
+    window.addEventListener('pointercancel', onTouchEnd);
+    window.addEventListener('pointermove', onTouchMove, {passive: false});
 
     function onTouchMove(moveEvent) {
         if (verticalScrolling) {    //Начался вертикальный скролл
-            onTouchUp();
+            onTouchEnd();
             return;                 //Остальное пропускаем
         }
 
@@ -54,7 +59,7 @@ function handleTouch({carousel, lockScroll, event}) {
     /**Суммарный горизонтальный сдвиг */
     function calcCumulativeShiftX(moveEvent) {
         if (!verticalScrolling) {
-            const currentX = moveEvent.touches[0].clientX;
+            const currentX = moveEvent.clientX;
             const shiftX = currentX - startX;
             cumulativeShiftX += shiftX; //Суммарный горизонтальный сдвиг
             startX = currentX;  //Последняя точка текущего движения становится стартовой для нового движения    
@@ -68,7 +73,7 @@ function handleTouch({carousel, lockScroll, event}) {
 
     /**Суммарный вертикальный сдвиг */
     function calcCumulativeShiftY(moveEvent) {
-        const currentY = moveEvent.touches[0].clientY;
+        const currentY = moveEvent.clientY;
         const shiftY = startY - currentY;
         cumulativeShiftY += shiftY; //Суммарный вертикальный сдвиг
         startY = currentY;  //Последняя точка текущего движения становится стартовой для нового движения
@@ -85,26 +90,26 @@ function handleTouch({carousel, lockScroll, event}) {
 
         const currentScrollTop = document.documentElement.scrollTop;
         if (currentScrollTop !== startScrollTop) {
-            onTouchUp();
+            onTouchEnd();
         }
         
         try{
             requestAnimationFrame(() => {
-                const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
-
-                const currentX = moveEvent.touches[0].clientX;
+                const currentX = moveEvent.pageX;
                 const shiftX = currentX - startX;
-                startX = currentX;  //Последняя точка текущего движения становится стартовой для нового движения
-                
+
+                const currentMarginLeft = parseFloat(window.getComputedStyle(carousel).marginLeft);
                 const targetMarginLeft = currentMarginLeft + shiftX;
-                const carouselWidth = carousel.offsetWidth;
-                const maxCarouselPosition = -carouselWidth + viewport.offsetWidth;
+
+                //const carouselWidth = carousel.offsetWidth;
+                //const maxCarouselPosition = -carouselWidth + viewport.offsetWidth;
 
                 //Проверить допустимые границы движения ленты слайдов
-                if (targetMarginLeft <= 0 && targetMarginLeft >= maxCarouselPosition) {
+                //if (targetMarginLeft <= 0 && targetMarginLeft >= maxCarouselPosition) {
                     carousel.style.marginLeft = targetMarginLeft + 'px';
-                }
-
+                //}
+                
+                startX = currentX;  //Последняя точка текущего движения становится стартовой для нового движения
             });
         } catch(e) {
             console.log('InfinitySlider Ошибка moveCarousel(): ' + e.name + ":" + e.message + "\n" + e.stack);
@@ -112,8 +117,10 @@ function handleTouch({carousel, lockScroll, event}) {
     }
 
     //Завершение работы
-    function onTouchUp() {
-        window.removeEventListener('touchmove', onTouchMove, {passive: false});
+    function onTouchEnd() {
+        window.removeEventListener('pointerup', onTouchEnd);
+        window.removeEventListener('pointercancel', onTouchEnd);
+        window.removeEventListener('pointermove', onTouchMove, {passive: false});
     }
 }
 

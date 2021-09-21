@@ -23,7 +23,7 @@ function FooterDesktop(props) {
     const Address = () => (
         <div className={address}>
             <a target='_blank' href={config.openstreetmap}>
-                <PictureAndText.Right image={mapPin} text='305018, г. Курск, пр-т Ленинского комсомола 1Б'/>
+                <PictureAndText.Right image={mapPin} text='305018, г. Курск, пр-т Ленинского Комсомола 1Б'/>
             </a>
     
             <a target='_blank' href={`tel:${config.phone}`}>

@@ -64,7 +64,7 @@ function BlockMap() {
 
                 <div className={address}>
                     <img className={image} src={pin} alt="map-pin"/>
-                    <p className={text}>г. Курск, пр. Ленинского комсомола, д. 1Б</p>
+                    <p className={text}>305018, г. Курск, пр. Ленинского Комсомола, д. 1Б</p>
                 </div>
             </div>
 

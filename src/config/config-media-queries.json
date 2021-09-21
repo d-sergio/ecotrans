@@ -3,7 +3,7 @@
 
     "header": "screen and (max-width: 1023px)",
 
-    "footer": "screen and (max-width: 654px)",
+    "footer": "screen and (max-width: 685px)",
 
     "blockAdvDesktop": "screen and (max-width: 1439px)",
 
